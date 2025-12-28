@@ -1,0 +1,20 @@
+:root{
+  --yellowTextColor: #FFBD20;
+}
+
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+body{
+  background-color: #1C1C1C;
+}
+.yellowText{
+  color: var(--yellowTextColor);
+}
+p{
+  white-space: pre-wrap !important; 
+}
+
+

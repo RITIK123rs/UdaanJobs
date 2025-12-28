@@ -1,0 +1,126 @@
+
+
+.mainMessageBox{
+  position: absolute;
+  background: transparent;
+  width: 350px;
+  height: 300px;
+  right: 10px;
+  bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  gap: 10px;
+  overflow-y: hidden;
+}
+.mainMessageBox::-webkit-scrollbar{
+  display: none;
+}
+
+.subMessageBox{
+  position: relative;
+  z-index: 10;
+  background: rgb(255, 255, 255);
+  width: 340px;
+  min-height: 55px;
+  right: 10px;
+  bottom: 10px;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  transform: translateX(100%);
+  animation: moveleft 0.5s linear forwards;
+}
+
+@keyframes moveleft {
+  100%{
+    transform: translateX(0);
+  }
+}
+
+.subMessageBox .icon{
+  font-size: 28px;
+  margin-right: 10px;
+}
+.subMessageBox .check{
+  color: green;
+}
+.subMessageBox .Warning{
+  color: orange;
+}
+.subMessageBox .xMark{
+  color: red;
+}
+.subMessageBox .textMessage{
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.subMessageBox::after{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  content: "";
+  width: 100%;
+  height: 5px;
+  animation: lineAnim 4s linear forwards 0.5s !important;
+}
+.subMessageBox.check::after{
+  background: green;
+}
+.subMessageBox.Warning::after{
+  background: yellow;
+}
+.subMessageBox.xMark::after{
+  background: red;
+}
+@keyframes lineAnim{
+  100%{
+    width: 0;
+  }
+}
+
+
+@media only screen and (max-width: 470.98px){
+    .navbar{
+    background-color: orange;
+  }
+}
+
+
+/* Extra small devices (portrait phones, less than 576px) */
+@media only screen and (min-width: 470.98px) and (max-width: 575.98px) {
+  /* Your styles here */
+  .navbar{
+    background-color: green;
+  }
+}
+
+/* Small devices (landscape phones, 576px and up) */
+@media only screen and (min-width: 576px) and (max-width: 767.98px) {
+  /* Your styles here */
+  .navbar{
+    background-color: yellowgreen;
+  }
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media only screen and (min-width: 768px) and (max-width: 991.98px) {
+  /* Your styles here */
+  .navbar{
+    background-color: yellow;
+  }
+}
+
+/* Large devices (desktops, 992px and up) */
+@media only screen and (min-width: 992px) and (max-width: 1199.98px) {
+  /* Your styles here */
+  .navbar{
+    background-color: red;
+  }
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
+  /* Your styles here */
+}
