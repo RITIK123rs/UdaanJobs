@@ -1,0 +1,24 @@
+const dotenv= require("dotenv");
+const connectDB = require("./database/db");
+const express= require("express");
+const app= express();
+const cors= require("cors");
+const jobseekerRouter= require("./routes/jobseekerPage");
+const multerRouter= require("./routes/multer");
+const fs= require("fs");
+
+dotenv.config();
+connectDB();
+app.use(cors());
+app.use(express.json());
+
+app.use("/upload", express.static('upload'));
+app.use("/defaultImage", express.static('defaultImage'));
+
+app.use("/jobseeker",jobseekerRouter);
+app.use("/fileHandle",multerRouter);
+
+app.listen(process.env.port_no,()=>{
+  console.log(`server running on http://localhost:${process.env.port_no}`);
+})
+

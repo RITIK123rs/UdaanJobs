@@ -1,0 +1,341 @@
+const JobSeeker = require("./database/jobseekerModel");
+const Job = require("./database/jobPostedModel");
+const Recruiter = require("./database/recruiterModel");
+const dotenv = require("dotenv");
+dotenv.config();
+const connectDB = require("./database/db");
+
+// ------------------ Recruiters Data ------------------
+const recruitersData = [
+  {
+    userName: "TechIndiaHR",
+    email: "hr@techindia.com",
+    password: "hashedpassword123",
+    lastLogin: new Date(),
+    company: {
+      name: "TechIndia",
+      about:
+        "TechIndia is a leading technology solutions company based in India. We specialize in web development, cloud solutions, and enterprise applications.\nOur team focuses on delivering innovative products to clients across India and globally, emphasizing collaboration, learning, and continuous innovation. We offer a culture of mentorship, continuous training, and exposure to challenging projects that develop both technical and soft skills. Our vision is to empower businesses with reliable, scalable, and cutting-edge technology while promoting a collaborative and growth-oriented work environment.",
+      contact: { number: "+91-9876543210", emailId: "contact@techindia.com" },
+    },
+    jobposted: [],
+  },
+  {
+    userName: "HealthCareHR",
+    email: "recruit@healthcareindia.com",
+    password: "hashedpassword456",
+    lastLogin: new Date(),
+    company: {
+      name: "HealthCare India",
+      about:
+        "HealthCare India provides advanced healthcare solutions across India. We develop secure and scalable platforms to improve hospital and clinic operations, patient care, and data analytics.\nOur teams collaborate across disciplines to provide innovative solutions that contribute to a healthier society. We emphasize ethical responsibility, continuous learning, and cross-functional teamwork. We also support research and development projects that bring impactful solutions to healthcare challenges and enable data-driven decision making for medical institutions.",
+      contact: { number: "+91-9123456780", emailId: "contact@healthcareindia.com" },
+    },
+    jobposted: [],
+  },
+  {
+    userName: "FinTechHR",
+    email: "hr@fintechindia.com",
+    password: "hashedpassword789",
+    lastLogin: new Date(),
+    company: {
+      name: "FinTech India",
+      about:
+        "FinTech India is a financial technology company focused on digital banking, payment solutions, and blockchain innovations.\nWe aim to make financial services accessible, secure, and efficient across India. Our culture values creativity, problem-solving, and continuous improvement, and we invest heavily in employee development and industry-leading technology research.",
+      contact: { number: "+91-9988776655", emailId: "contact@fintechindia.com" },
+    },
+    jobposted: [],
+  },
+];
+
+// ------------------ Job Posted Data ------------------
+const jobPostedData = [
+  {
+    recruiter: null,
+    role: "Frontend Developer",
+    jobType: "full-time",
+    industryType: "IT",
+    education: "B.Tech in Computer Science",
+    experience: "1-3",
+    location: "Bengaluru",
+    workMode: "Remote",
+    applyBefore: new Date(new Date().setMonth(new Date().getMonth() + 1)),
+    salary: "6,00,000 - 9,00,000",
+    jobDescription:
+      "Looking for a skilled Frontend Developer to join our tech team. You will develop responsive web apps using React and modern JS frameworks. The role involves working with designers to implement visually appealing UIs, optimizing code performance, and collaborating with backend teams to integrate APIs. You will also participate in code reviews and contribute to best practices in frontend development.",
+    skillsRequired: ["JavaScript", "React", "CSS", "HTML"],
+    roleAndResponsibilities:
+      "• Develop responsive frontend applications.\n• Collaborate with UI/UX designers to implement designs.\n• Integrate frontend with backend APIs.\n• Optimize performance and scalability of applications.\n• Participate in code reviews and team meetings.\n• Troubleshoot and debug issues across projects.\n• Keep up-to-date with latest frontend technologies and frameworks.",
+    applications: [],
+    createdAt: new Date(),
+  },
+  {
+    recruiter: null,
+    role: "Backend Developer",
+    jobType: "full-time",
+    industryType: "IT",
+    education: "B.Tech in Computer Science",
+    experience: "3-5",
+    location: "Mumbai",
+    workMode: "Onsite",
+    applyBefore: new Date(new Date().setMonth(new Date().getMonth() + 1)),
+    salary: "8,00,000 - 12,00,000",
+    jobDescription:
+      "Looking for an experienced Backend Developer to build scalable server-side applications using Node.js and Express. You will manage databases, develop REST APIs, ensure application security, and collaborate with frontend teams to deliver high-quality software solutions. The role requires problem-solving skills and experience with cloud deployments and CI/CD pipelines.",
+    skillsRequired: ["Node.js", "Express", "MongoDB", "REST APIs"],
+    roleAndResponsibilities:
+      "• Develop backend services and REST APIs.\n• Manage and optimize databases.\n• Ensure security and data protection.\n• Collaborate with frontend and DevOps teams.\n• Troubleshoot and debug backend issues.\n• Optimize system performance and reliability.\n• Contribute to software architecture design and documentation.",
+    applications: [],
+    createdAt: new Date(),
+  },
+  {
+    recruiter: null,
+    role: "Data Analyst Intern",
+    jobType: "internship",
+    industryType: "Healthcare",
+    education: "Pursuing B.Sc in Statistics",
+    experience: "fresher",
+    location: "Hyderabad",
+    workMode: "Hybrid",
+    applyBefore: new Date(new Date().setMonth(new Date().getMonth() + 1)),
+    salary: "8,00,000 - 12,00,000",
+    jobDescription:
+      "Internship for aspiring data analysts to gain hands-on experience in healthcare analytics, data cleaning, and visualization. Interns will work with real datasets, support reporting activities, and assist senior analysts in deriving actionable insights. The role offers exposure to industry-standard tools and best practices.",
+    skillsRequired: ["Excel", "Python", "SQL", "Data Visualization"],
+    roleAndResponsibilities:
+      "• Assist in collecting and cleaning datasets.\n• Perform basic data analysis and reporting.\n• Create visual dashboards and charts.\n• Document insights and findings clearly.\n• Support senior analysts in ongoing projects.\n• Learn healthcare data compliance standards and procedures.",
+    applications: [],
+    createdAt: new Date(),
+  },
+  {
+    recruiter: null,
+    role: "Full Stack Developer",
+    jobType: "full-time",
+    industryType: "IT",
+    education: "B.Tech in Computer Science",
+    experience: "3-5",
+    location: "Pune",
+    workMode: "Onsite",
+    applyBefore: new Date(new Date().setMonth(new Date().getMonth() + 1)),
+    salary: "7,50,000 - 11,00,000",
+    jobDescription:
+      "Seeking a Full Stack Developer to design, implement, and maintain end-to-end web applications. Responsibilities include working on both frontend and backend tasks, API integration, database management, and collaborating with cross-functional teams.",
+    skillsRequired: ["JavaScript", "React", "Node.js", "MongoDB", "REST APIs"],
+    roleAndResponsibilities:
+      "• Develop and maintain full-stack web applications.\n• Integrate frontend and backend components.\n• Optimize database queries and backend performance.\n• Participate in team code reviews.\n• Troubleshoot and debug issues across the stack.\n• Stay updated with latest full-stack technologies.",
+    applications: [],
+    createdAt: new Date(),
+  },
+];
+
+// ------------------ Job Seekers Data ------------------
+const jobSeekersData = [
+  {
+    userType: "jobSeeker",
+    name: "Ananya Sharma",
+    email: "ananya.sharma@gmail.com",
+    lastLogin: new Date(),
+    password: "hashedpassword789",
+    application: {
+      total: 0,
+      accepted: 0,
+      rejected: 0,
+      pending: 0,
+      appliedJobs: [],
+    },
+    personalInfo: {
+      jobTitle: "Frontend Developer",
+      city: "Bengaluru",
+      phone: "+91-9876543210",
+      email: "ananya.sharma@gmail.com",
+      languages: "English, Hindi",
+      aboutMe:
+        "Passionate frontend developer with experience in React and modern JS frameworks. Enjoy building user-friendly web apps, collaborating with teams, and continuously improving my skills through hands-on projects and self-learning.",
+      skills: ["JavaScript", "React", "CSS", "HTML"],
+      instagram: "@ananya_sharma",
+      twitter: "@ananya_sharma",
+      website: "https://ananyasharma.dev",
+      experience: [
+        {
+          jobTitle: "Junior Developer",
+          companyName: "WebSolutions India",
+          city: "Bengaluru",
+          jobType: "full-time",
+          jobPeriod: "2023-2024",
+          details:
+            "Worked on responsive web applications, collaborated with senior developers, optimized frontend performance, and contributed to multiple client projects.",
+        },
+      ],
+      education: [
+        {
+          institute: "BMS College of Engineering",
+          year: "2023",
+          degree: "B.Tech in Computer Science",
+          city: "Bengaluru",
+          details:
+            "Completed computer science degree with focus on web development, software engineering, and practical project experience.",
+        },
+      ],
+    },
+  },
+  {
+    userType: "jobSeeker",
+    name: "Rohan Kumar",
+    email: "rohan.kumar@gmail.com",
+    lastLogin: new Date(),
+    password: "hashedpassword321",
+    application: {
+      total: 0,
+      accepted: 0,
+      rejected: 0,
+      pending: 0,
+      appliedJobs: [],
+    },
+    personalInfo: {
+      jobTitle: "Data Analyst",
+      city: "Hyderabad",
+      phone: "+91-9123456780",
+      email: "rohan.kumar@gmail.com",
+      languages: "English, Telugu",
+      aboutMe:
+        "Aspiring data analyst skilled in Python, SQL, and Excel. Interested in healthcare and finance datasets, eager to deliver insights that drive business decisions and improve operations.",
+      skills: ["Excel", "Python", "SQL"],
+      instagram: "@rohan_kumar",
+      twitter: "@rohan_kumar",
+      website: "https://rohankumar.io",
+      experience: [],
+      education: [
+        {
+          institute: "Osmania University",
+          year: "2024",
+          degree: "B.Sc in Statistics",
+          city: "Hyderabad",
+          details:
+            "Studied statistics and data analysis with focus on real-world problem solving and applied projects.",
+        },
+      ],
+    },
+  },
+  {
+    userType: "jobSeeker",
+    name: "Priya Mehta",
+    email: "priya.mehta@gmail.com",
+    lastLogin: new Date(),
+    password: "hashedpassword654",
+    application: {
+      total: 0,
+      accepted: 0,
+      rejected: 0,
+      pending: 0,
+      appliedJobs: [],
+    },
+    personalInfo: {
+      jobTitle: "Backend Developer",
+      city: "Mumbai",
+      phone: "+91-9988776650",
+      email: "priya.mehta@gmail.com",
+      languages: "English, Hindi",
+      aboutMe:
+        "Backend developer with knowledge of Node.js, Express, and MongoDB. Passionate about building scalable systems and improving backend performance in collaborative environments.",
+      skills: ["Node.js", "Express", "MongoDB", "REST APIs"],
+      instagram: "@priya_mehta",
+      twitter: "@priya_mehta",
+      website: "https://priyamehta.dev",
+      experience: [],
+      education: [
+        {
+          institute: "University of Mumbai",
+          year: "2023",
+          degree: "B.Tech in Computer Science",
+          city: "Mumbai",
+          details: "Completed degree with a focus on backend development and server-side technologies.",
+        },
+      ],
+    },
+  },
+];
+
+// ------------------ Seed Function ------------------
+async function seedDatabase() {
+  try {
+    await connectDB();
+
+    // Delete existing data
+    await Recruiter.deleteMany({});
+    await Job.deleteMany({});
+    await JobSeeker.deleteMany({});
+    console.log("Deleted existing data");
+
+    // Insert new data
+    await Recruiter.insertMany(recruitersData);
+    await Job.insertMany(jobPostedData);
+    await JobSeeker.insertMany(jobSeekersData);
+    console.log("Database seeded successfully!");
+
+    const recruiterIds = (await Recruiter.find({}, { _id: 1 })).map((r) => r._id);
+    const JobIds = (await Job.find({}, { _id: 1 })).map((r) => r._id);
+    const JobSeekerIds = (await JobSeeker.find({}, { _id: 1 })).map((r) => r._id);
+
+    // Update recruiters with job IDs
+    await Recruiter.updateOne(
+      { _id: recruiterIds[0] },
+      { $set: { jobposted: [JobIds[0], JobIds[2]], lastLogin: new Date() } }
+    );
+    await Recruiter.updateOne(
+      { _id: recruiterIds[1] },
+      { $set: { jobposted: [JobIds[1]], lastLogin: new Date() } }
+    );
+    await Recruiter.updateOne(
+      { _id: recruiterIds[2] },
+      { $set: { jobposted: [JobIds[3]], lastLogin: new Date() } }
+    );
+
+    // Update jobs with recruiter and applications with status "applied"
+    const jobApplicantMapping = [
+      [JobIds[0], recruiterIds[0]],
+      [JobIds[1], recruiterIds[0]],
+      [JobIds[2], recruiterIds[1]],
+      [JobIds[3], recruiterIds[2]],
+    ];
+
+    for (const [jobId, recruiterId] of jobApplicantMapping) {
+      await Job.updateOne(
+        { _id: jobId },
+        {
+          $set: {
+            recruiter: recruiterId,
+            applications: JobSeekerIds.map((jsId) => ({
+              applicant: jsId,
+              status: "applied",
+              appliedAt: new Date(),
+            })),
+          },
+        }
+      );
+    }
+
+    // Update job seekers application info
+    for (const id of JobSeekerIds) {
+      await JobSeeker.updateOne(
+        { _id: id },
+        {
+          $set: {
+            application: {
+              total: JobIds.length,
+              pending: JobIds.length,
+              appliedJobs: JobIds.map((jobId) => ({ jobId, appliedAt: new Date() })),
+            },
+          },
+        }
+      );
+    }
+
+    console.log("Default data added successfully!");
+    process.exit(0);
+  } catch (err) {
+    console.error("Error seeding database:", err);
+    process.exit(1);
+  }
+}
+
+seedDatabase();

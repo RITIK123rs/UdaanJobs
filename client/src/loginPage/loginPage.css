@@ -1,0 +1,199 @@
+.loginPage {
+  width: 156vw;
+  height: 100vh !important;
+  transition: transform 0.8s ease;
+  transform: translateX(0);
+  will-change: transform;
+}
+.loginPage.onLogin {
+  transform: translateX(0%);
+}
+.loginPage.onSignUp {
+  transform: translateX(-36%);
+}
+.loginBox,
+.signUpBox {
+  width: 45%;
+}
+.homeBtn {
+  top: 20px;
+  left: 30px;
+  background: transparent;
+  z-index: 10;
+}
+.imgBox {
+  width: 35%;
+  background-color: var(--yellowTextColor);
+}
+.boyImg {
+  width: 90%;
+}
+
+.signUpForm,
+.loginForm {
+  border: 5px solid var(--yellowTextColor);
+  border-radius: 20px;
+  height: 550px;
+  width: 450px;
+  padding: 22px;
+}
+.loginForm .heading {
+  font-size: 60px;
+}
+.loginForm .subHeading {
+  font-size: 19px;
+}
+.signUpForm .inputBox label,
+.loginForm .inputBox label {
+  font-size: 21px;
+  font-weight: 500;
+}
+.signUpForm .registerAsBox > label {
+  font-size: 20px;
+}
+.signUpForm .inputBox > div,
+.loginForm .inputBox > div {
+  border: 2px solid white;
+  border-radius: 5px;
+}
+.signUpForm .inputBox .icon,
+.loginForm .inputBox .icon {
+  font-size: 25px;
+}
+.signUpForm .inputBox input,
+.loginForm .inputBox input {
+  font-size: 19px;
+  width: 90%;
+  border: 0;
+  outline: none;
+  background: transparent;
+}
+.signUpForm .inputBox:focus-within > div,
+.loginForm .inputBox:focus-within > div {
+  border-color: var(--yellowTextColor);
+}
+
+.signUpForm .checkBox input,
+.loginForm .checkBox input {
+  width: 18px;
+  height: 18px;
+}
+.signUpForm button,
+.loginForm button {
+  background-color: var(--yellowTextColor);
+  font-size: 20px;
+  border: 0;
+  outline: 0;
+}
+.signUpForm .lastLine,
+.loginForm .lastLine {
+  font-size: 17px;
+}
+.signUpForm {
+  height: 650px;
+  width: 500px;
+}
+.signUpForm .nameInput {
+  border: 2px solid white !important;
+  border-radius: 5px;
+}
+.signUpForm .inputBox .nameInput:focus {
+  border-color: var(--yellowTextColor) !important;
+}
+.signUpForm .heading {
+  font-size: 50px;
+}
+.signUpForm .subHeading {
+  font-size: 18px;
+}
+.form-check-input:checked {
+  background-color: var(--yellowTextColor);
+  border-color: var(--yellowTextColors);
+}
+
+.form-check-input:focus {
+  box-shadow: none;
+  border-color: var(--yellowTextColor);
+}
+.signUpForm .registerAsBox > div label {
+  font-size: 18px;
+}
+.signUpForm span,
+.loginForm span {
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 470.98px) {
+  .signUpForm {
+    width: 450px;
+    height: 730px;
+    margin-top: 200px !important;
+  }
+  .loginForm {
+    max-width: 400px;
+  }
+}
+
+@media only screen and (min-width: 470.98px) and (max-width: 575.98px) {
+  .signUpForm {
+    width: 450px;
+  }
+  .loginForm {
+    width: 420px;
+  }
+}
+
+@media only screen and (min-width: 576px) and (max-width: 767.98px) {
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991.98px) {
+}
+
+@media only screen and (max-width: 991.98px) {
+  .loginForm {
+    margin-top: 40px;
+  }
+  .homeBtn {
+    background: transparent !important;
+    color: var(--yellowTextColor) !important;
+    border: 2px solid var(--yellowTextColor) !important;
+  }
+
+  .loginPage.onSignUp {
+    transform: translateX(-36%);
+  }
+  .loginPage {
+    width: 200vw;
+  }
+  .loginPage.onSignUp {
+    min-height: 120vh;
+    overflow-y: scroll;
+  }
+  .signUpForm {
+    margin: 140px 0 100px 0;
+  }
+
+  .loginBox,
+  .signUpBox {
+    width: 100vw;
+  }
+
+  .loginPage.onSignUp {
+    transform: translateX(-100vw);
+  }
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1199.98px) {
+  .loginForm {
+    margin-top: 50px;
+  }
+  .boyImg {
+    width: 100% !important;
+  }
+}
+
+@media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
+  .loginForm {
+    margin-top: 40px;
+  }
+}

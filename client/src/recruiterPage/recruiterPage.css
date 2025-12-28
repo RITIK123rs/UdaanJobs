@@ -1,0 +1,90 @@
+/* .row > div{
+    border: 2px solid white;
+}
+div{
+    border: 2px solid white;
+}  */
+.recruiterPage .pageTitle{
+  font-size: 50px;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+.recruiterPage {
+  height: 98vh;
+}
+.recruiterPage .menuBox {
+  height: 98vh;
+  border-right: 2px solid white;
+}
+.recruiterPage .menuContent {
+  height: 98vh;
+  overflow-y: scroll;
+}
+.recruiterPage .menuContent::-webkit-scrollbar {
+  display: none;
+}
+.recruiterPage .logoName {
+  font-size: 32px !important;
+}
+.recruiterPage ul li:hover {
+  background-color: var(--yellowTextColor);
+}
+.menuList .menuItem {
+  font-size: 20px;
+  margin-bottom: 12px;
+  padding: 8px 0 8px 20px !important;
+}
+.menuList .menuIcon {
+  font-size: 29px;
+}
+/* .loginBox{
+    border: 2px solid white;
+} */
+.menuImgBox {
+  width: 50px;
+}  
+
+
+.recruiterDashboard .databox h1 {
+  font-weight: 700;
+  color: #ffffff;
+}
+
+
+/* Each row */
+.recruiterDashboard .dbList > div {
+  width: 99%;
+  border: 2px solid rgba(255, 255, 255, 0.12);
+}
+
+
+.recruiterDashboard .dbList .nameBox p {
+  color: #9c9c9c;
+}
+
+
+
+
+.recruiterDashboard .dbList .status {
+  border: 2px solid #00ff99;
+  border-radius: 30px;
+  height: 35px;
+  min-width: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #00ff99;
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+}
+
+/* Optional status variants */
+.recruiterDashboard .dbList .status.closed {
+  border-color: #ff4d4d;
+  color: #ff4d4d;
+}
+
+.recruiterDashboard .dbList .status.pending {
+  border-color: #ffc107;
+  color: #ffc107;
+}

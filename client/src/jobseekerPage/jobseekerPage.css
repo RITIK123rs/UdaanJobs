@@ -1,0 +1,603 @@
+/* .row > div{
+    border: 2px solid white;
+}
+div{
+    border: 2px solid white;
+} */
+.jobSeekerPage .pageTitle{
+  font-size: 50px;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+.jobSeekerPage {
+  height: 98vh;
+}
+.jobSeekerPage .menuBox {
+  height: 98vh;
+  border-right: 2px solid white;
+}
+.jobSeekerPage .menuContent {
+  height: 98vh;
+  overflow-y: scroll;
+}
+.jobSeekerPage .menuContent::-webkit-scrollbar {
+  display: none;
+}
+.jobSeekerPage .logoName {
+  font-size: 32px !important;
+}
+.jobSeekerPage ul li:hover {
+  background-color: var(--yellowTextColor);
+}
+.menuList .menuItem {
+  font-size: 20px;
+  margin-bottom: 12px;
+  padding: 8px 0 8px 20px !important;
+}
+.menuList .menuIcon {
+  font-size: 29px;
+}
+/* .loginBox{
+    border: 2px solid white;
+} */
+.menuImgBox {
+  width: 50px;
+}
+.applicationStatus .databox > div {
+  border: 2px solid white;
+  margin-bottom: 20px;
+}
+.pieGraphBox > div {
+  border: 2px solid white;
+}
+.databox > div {
+  height: 130px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.dbList .imgBox {
+  width: 70px;
+  height: 70px;
+}
+.dbList .status {
+  border: 2px solid red;
+  border-radius: 30px;
+  height: 35px;
+  color: red;
+}
+.dbList > div {
+  width: 99%;
+  margin-top: 10px;
+  border: 2px solid white;
+}
+.dbList .nameBox {
+  width: 45%;
+}
+.dbList .statusBox {
+  width: 13%;
+}
+.dbList .dateBox {
+  width: 15%;
+}
+.findJob .field {
+  border: 2px solid white;
+  padding: 6px 12px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  color: white;
+}
+.findJob .jobTitleBox {
+  width: 32%;
+}
+.findJob .LocationBox {
+  width: 32%;
+}
+.findJob .jobTypeBOX {
+  width: 15%;
+}
+.findJob .ExperienceBOX {
+  width: 15%;
+}
+
+.findJob .field .icon {
+  font-size: 22px;
+  margin-right: 8px;
+  color: var(--yellowTextColor);
+}
+
+.findJob .field input,
+.findJob .field select {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: white;
+  width: 100%;
+  font-size: 18px;
+}
+.findJob .field input::placeholder {
+  color: white;
+}
+.findJob .field select option {
+  color: black;
+}
+.findJob .jobList .jobCard {
+  width: 32.3%;
+  border: 1px solid rgba(255, 255, 255, 0.722);
+  border-radius: 10px;
+  padding: 15px;
+}
+.findJob .jobCard .imgBox {
+  width: 70px;
+  height: 70px;
+  background: transparent;
+}
+.findJob .jobCard .detailItem {
+  margin-bottom: 5px;
+}
+.findJob .jobCard .buttonBox .detailBtn {
+  border: 2px solid var(--yellowTextColor);
+  color: var(--yellowTextColor);
+}
+.findJob .jobCard .buttonBox .applyBtn {
+  background-color: var(--yellowTextColor);
+  font-weight: bold;
+}
+.findJob .jobCard .agoBox {
+  font-size: 13px;
+  top: 5px;
+  right: 13px;
+}
+.findJob .jobCard .description {
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: justify;
+}
+.findJob .jobCard .companyName {
+  color: var(--yellowTextColor);
+}
+.findJob .recommendedJob {
+  font-size: 33px;
+}
+.jobApply option {
+  color: black;
+}
+.jobApply .tableContainer {
+  overflow-y: scroll;
+  height: 550px;
+  border: 2px solid white;
+}
+.jobApply .tableHead {
+  background-color: #1c1c1c;
+}
+.jobApply .tableContainer::-webkit-scrollbar {
+  display: none;
+}
+.jobApply table {
+  width: 100%;
+}
+.jobApply table,
+.jobApply th {
+  padding: 3px;
+  text-align: center;
+}
+.jobApply thead {
+  border: 2px solid white;
+}
+.jobApply th {
+  font-size: 20px;
+  padding: 8px 5px;
+}
+.jobApply td {
+  font-size: 18px;
+}
+.jobApply .status span {
+  padding: 4px 15px;
+  border-radius: 20px;
+  font-weight: bold;
+}
+.jobApply .company-logo {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+.jobApply tbody tr {
+  border: 2px solid white;
+}
+.jobApply tbody td {
+  padding: 7px 0;
+}
+
+.jobApply .tableLine {
+  top: 0;
+  width: 100%;
+}
+.jobApply .field {
+  border: 2px solid white;
+  padding: 6px 12px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  color: white;
+}
+.jobApply .field input,
+.jobApply .field select {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: white;
+  width: 100%;
+  font-size: 18px;
+}
+.jobApply .field input::placeholder {
+  color: white;
+}
+.jobApply .filter {
+  width: 14%;
+}
+.jobApply .jobTitleBox {
+  width: 30%;
+}
+.jobApply .filter > .icon,
+.jobApply .jobTitleBox > .icon{
+  color: var(--yellowTextColor);
+}
+
+.jobApply .iconBox button {
+  background: transparent;
+  border: none;
+}
+.jobApply .iconBox .deleteIcon {
+  color: red;
+}
+.jobApply .iconBox .viewIcon {
+  color: green;
+}
+.profile .info{
+    height: 83vh;
+    width: 70%;
+}
+.profile .boxHead{
+  font-size: 37px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+.profile .boxHead::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 3px;
+  background-color: var(--yellowTextColor);
+  border-radius: 2px;
+  margin-top: 5px;
+}
+.profile .additionalInfo{
+    height: 83vh;
+    width: 28%;
+}
+.profile .additionalInfo > div{
+    border: 2px solid white;
+    padding: 15px 20px 25px 20px;
+}
+.profile .additionalInfo h4{
+    color: var(--yellowTextColor);
+}
+.profile .banner{
+    border: 2px solid white;
+    height: 120px;
+    background: yellowgreen;
+}
+.profile .nameBox .imgBox{
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    top: 55px;
+    left: 25px;
+    overflow: hidden;
+    border: 2px solid white;
+}
+.profile .details > div{
+    margin-left: 150px;
+}
+.profile .details .editBtn,
+.profile .details .resumeBtn{
+    height: 40px;
+    border: 2px solid var(--yellowTextColor);
+    background: transparent;
+    color: var(--yellowTextColor);
+    font-weight: bold;
+    border-radius: 10px;
+}
+.profile .details .resumeBtn a{
+  text-decoration: none;
+  color: var(--yellowTextColor);
+}
+.profile .info{
+  overflow-y: scroll;
+}
+.profile .info::-webkit-scrollbar{
+  display: none;
+}
+.profile .info .nameBox,
+.profile .info .aboutBox,
+.profile .info .ExperienceBox,
+.profile .info .educationBox,
+.profile .info .skillBox {
+    border: 2px solid white;
+}
+.profile .info .ExperienceBox .imgBox,
+.profile .info .educationBox .imgBox{
+  max-width: 80px;
+  max-height: 80px;
+  overflow: hidden;
+  border: 2px solid white;
+}
+.profile .info .ExperienceBox .imgBox img,
+.profile .info .educationBox .imgBox img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+.profile .skillBox .skillTag{
+  border: 2px solid var(--yellowTextColor);
+  color: var(--yellowTextColor);
+  border-radius: 100px;
+}
+.editProfile .formRow{
+  display: flex;
+  margin-top: 20px;
+}
+.editProfile form{
+  padding: 0 20px 0 20px;
+}
+.editProfile .formGroup{
+  width: 50%;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+}
+.editProfile .heading{
+  font-size: 36px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.editProfile .formGroup > label{
+  font-size: 24px;
+  margin-left: 5px;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+.editProfile .formGroup > input{
+  margin-top: 7px;
+  width: 95%;
+  font-size: 22px;
+  border-radius: 10px;
+  border: 2px solid white;
+  outline: none;
+  background: transparent;
+  color: white;
+  padding: 5px 10px 5px 10px;
+}
+.editProfile .formGroup > input:focus,
+.editProfile textarea:focus{
+  border: 2px solid var(--yellowTextColor);
+}
+.editProfile textarea{
+  width: 98%;
+  font-size: 22px;
+  border-radius: 10px;
+  border: 2px solid white;
+  outline: none;
+  background: transparent;
+  color: white;
+  padding: 5px 10px 5px 10px;
+}
+.editProfile .formGroup select{
+  width: 95%;
+  font-size: 22px;
+  border-radius: 10px;
+  border: 2px solid white;
+  outline: none;
+  background: transparent;
+  color: white;
+  padding: 5px 10px 5px 10px;
+}
+.editProfile .formGroup option{
+  font-size: 22px;
+  border-radius: 10px;
+  border: 2px solid white;
+  outline: none;
+  background: #1C1C1C;
+  color: white;
+  padding: 5px 10px 5px 10px;
+}
+.editProfile .saveBtn{
+  border: 3px solid var(--yellowTextColor);
+  color: var(--yellowTextColor);
+  background: transparent;
+  width: 80%;
+  font-size: 20px;
+  border-radius: 20px;
+  font-weight: bold;
+}
+.editProfile .endBtn{
+  justify-content: center;
+}
+.editProfile .uploadBox .formRow{
+  flex-direction: column;
+  border: 2px solid white;
+  border-radius: 20px;
+  width: 97%;
+  padding: 5px 5px 20px 20px ;
+}
+.editProfile .uploadBox .formGroup{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  align-items: center;
+}
+.editProfile .uploadBox input{
+  border: none;
+}
+.editProfile .uploadBox label{
+  width: 22%;
+}
+.editProfile .Tag{
+  color: white;
+  border: 2px solid white;
+  border-radius: 40px;
+}
+.editProfile .formGroup input,
+.editProfile .formGroup select,
+.editProfile textarea {
+  padding: 8px 12px;
+  border-radius: 10px;
+  border: 2px solid rgba(255,255,255,0.5);
+  background: rgba(255,255,255,0.03);
+  color: white;
+  outline: none;
+}
+
+.editProfile .formGroup input:focus,
+.editProfile .formGroup select:focus,
+.editProfile textarea:focus {
+  border-color: var(--yellowTextColor);
+  box-shadow: 0 0 6px var(--yellowTextColor);
+}
+
+
+.editProfile .uploadBox input[type="file"]::file-selector-button {
+  background-color: var(--yellowTextColor);
+  color: black;
+  font-weight: bold;
+  border-radius: 20px;
+  padding: 5px 12px;
+  border: none;
+  cursor: pointer;
+  margin-right: 30px;
+}
+.editProfile .uploadBox input{
+  width: 80%;
+}
+.editProfile .cancelIcon{
+  color: red;
+}
+.editProfile .heading::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 3px;
+  background-color: var(--yellowTextColor);
+  border-radius: 2px;
+  margin-top: 5px;
+}
+.editProfile .addBtn{
+  right: 5%;
+  font-size: 50px;
+  background: none;
+  border: 0;
+  color: white;
+
+}
+.jobDetail .imgBox{
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+}
+.jobDetail .applyBtn{
+  width: 150px;
+  height: 43px;
+  font-size: 20px;
+  font-weight: bold;
+  border-radius: 50px;
+  border: none;
+  background-color: var(--yellowTextColor);
+}
+.jobDetail .jobHead,
+.jobDetail .companyDetail,
+.jobDetail .jobBody{
+  border: 2px solid white;
+}
+.jobDetail .skillTag{
+  border: 2px solid white;
+  border-radius: 50px;
+}
+
+.jobDetail .boxTitles{
+  font-size: 35px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.jobDetail .boxTitles::after {
+  content: "";
+  display: block;
+  width: 80px;
+  height: 3px;
+  background-color: var(--yellowTextColor);
+  border-radius: 2px;
+  margin-top: 5px;
+}
+.jobDetail .backBtn,
+.editProfile .backBtn {
+  min-width: 110px;
+  color: var(--yellowTextColor);
+  border: 2px solid var(--yellowTextColor);
+  background: transparent;
+}
+
+.jobDetail .backBtn:hover,
+.editProfile .backBtn:hover{
+  background-color: var(--yellowTextColor);
+  color: #000;
+}
+.jobDetail strong{
+  text-transform: uppercase;
+}
+.status.pending,
+.jobApply .status .pending{
+  
+  color: var(--yellowTextColor);
+  border: 2px solid var(--yellowTextColor);
+}
+.status.accepted,
+.jobApply .status .accepted{
+  color: green;
+  border-color: green;
+}
+.status.rejected,
+.jobApply .status .rejected{
+  color: red;
+  border-color: red;
+}
+
+.jobApply .actionBox .btn {
+  border: none;
+  border-radius: 6px;
+  font-weight: bolder;
+}
+
+.jobApply .actionBox .btn-view {
+  background-color: #4caf50;
+  color: #fff;
+}
+
+.jobApply .actionBox .btn-delete {
+  background-color: #f44336;
+  color: #fff;
+}
+.uploadImg{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+
