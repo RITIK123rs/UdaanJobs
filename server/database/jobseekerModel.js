@@ -1,13 +1,7 @@
 const mongoose = require("mongoose");
 
 const jobSeekerSchema = new mongoose.Schema({
-  userType: {
-    type: String,
-    require: true,
-    enum: ["jobSeeker", "recruiter", "admin"],
-    default: "jobSeeker",
-  },
-  name: {
+  userName: {
     type: String,
     require: true,
     trim: true,

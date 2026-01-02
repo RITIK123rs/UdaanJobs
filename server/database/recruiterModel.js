@@ -18,30 +18,53 @@ const recruiterSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
+  jobPosted: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "jobPosted",
+      }
+    ],
   company: {
     name: {
       type: String,
-      required: true,
+    },
+    logo:{
+      type: String,
     },
     about: {
       type: String,
-      required: true,
+    },
+    founded:{
+      type: Date,
+    },
+    employees:{
+      type: String,
+    },
+    location:{
+      type: String,
+    },
+    industry:{
+      type: String,
     },
     contact: {
-      number: {
+      emailId: {
         type: String,
       },
-      emailId: {
+      twitter:{
+        type: String,
+      },
+      facebook:{
+        type: String,
+      },
+      linkedin:{
+        type: String,
+      },
+      website:{
         type: String,
       },
     },
   },
-  jobposted: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "jobPosted",
-    },
-  ],
+
 });
 
 module.exports = mongoose.model("recruiter", recruiterSchema);

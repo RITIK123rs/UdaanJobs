@@ -4,7 +4,9 @@ import { RiMapPinLine } from "react-icons/ri";
 import { FaArrowLeft } from "react-icons/fa6";
 import { dateFormat } from "../utils/dateFormat";
 
-export default function JobDetail({setActiveContent, selectData, previousComponent,addMessageBox}) {
+export default function JobDetail({setActiveContent, selectData, previousComponent,addMessageBox, isRecruiter=false}) {
+
+  console.log(selectData);
 
   async function applyJob(object) {
     await fetch("http://localhost:3200/jobseeker/apply", {
@@ -31,9 +33,12 @@ export default function JobDetail({setActiveContent, selectData, previousCompone
     <div className="jobDetail container">
       <h2 className="mt-3 pageTitle">Job Details</h2>
       <hr className="my-3" />
-    <button className="backBtn fs-5 p-1 px-2 mb-3 rounded-3 d-flex align-items-center fw-bold" onClick={()=> {console.log(previousComponent), setActiveContent(previousComponent)}} ><FaArrowLeft className="me-2" />BACK</button>
+    <button className="backBtn fs-5 p-1 px-2 mb-3 rounded-3 d-flex align-items-center fw-bold" onClick={()=> isRecruiter?(setActiveContent("jobPosted")):(setActiveContent(previousComponent))} ><FaArrowLeft className="me-2" />BACK</button>
       <div className="jobHead d-flex px-3 py-3 ">
-        <div className="imgBox"></div>
+        <div className="imgBox">
+           <img className="companyLogo" src={ (selectData?.recruiter?.company?.logo || null ) ? `http://localhost:3200/upload/${selectData?.recruiter?.company?.logo}`  : ("http://localhost:3200/defaultImage/defaultCompanyImg.jpg") } alt="" />
+
+        </div>
 
         <div className="ms-3">
           <h1 className="mb-1">{selectData?.role}</h1>
@@ -51,12 +56,12 @@ export default function JobDetail({setActiveContent, selectData, previousCompone
           </div>
         </div>
 
-        <button className={`applyBtn ms-auto ${previousComponent=="jobApply" ? "d-none" : "" }`} onClick={()=> applyJob({"id": selectData._id,"applicants": selectData.applications}) }>Apply Now</button>
+       { (!isRecruiter) ? (<button className={`applyBtn ms-auto ${previousComponent=="jobApply" ? "d-none" : "" }`} onClick={()=> applyJob({"id": selectData._id,"applicants": selectData.applications}) }>Apply Now</button>) : "" }
       </div>
       <div className="jobBody mt-4 px-3 py-3">
          <div className="mt-2">
         <h2 className="boxTitles">Job Description</h2>
-        <p className="mt-3">
+        <p className="mt-3 fs-5">
           {selectData?.jobDescription}
         </p>
       </div>
@@ -73,12 +78,12 @@ export default function JobDetail({setActiveContent, selectData, previousCompone
       </div>
       <div className="mt-5">
         <h2 className="boxTitles">Roles & Responsibilities</h2>
-        <p>
+        <p className="fs-5">
           {selectData?.roleAndResponsibilities}
         </p>
       </div>
 
-      <div className="mt-4 jobInfo">
+      <div className="mt-4 fs-5 jobInfo">
         <p><strong>Role: </strong>{selectData?.role}</p>
         <p><strong>Industry Type: </strong>{selectData?.industryType}</p>
         <p><strong>Education: </strong>{selectData?.education}</p>
@@ -89,13 +94,6 @@ export default function JobDetail({setActiveContent, selectData, previousCompone
         <p><strong>Apply Before: </strong>{ dateFormat(selectData?.applyBefore)}</p>
         <p><strong>Salary: </strong>{selectData?.salary}</p>
       </div>
-      </div>
-      <div className="companyDetail mt-4 px-3 py-3">
-        <h2 className="boxTitles">About Company</h2>
-        <h1 className="fw-bold">{selectData?.recruiter.company.name}</h1>
-        <p className="mt-4">
-          {selectData?.recruiter.company.about}
-        </p>
       </div>
     </div>
   );

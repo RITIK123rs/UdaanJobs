@@ -43,8 +43,8 @@ function App() {
     
     {/* <HomePage /> */}
     {/* <LoginPage /> */}
-    <JobSeekerPage addMessageBox={addMessageBox} />
-    {/* < RecruiterPage /> */}
+    < JobSeekerPage addMessageBox={addMessageBox} />
+    < RecruiterPage addMessageBox={addMessageBox} />
     </>
   )
 }

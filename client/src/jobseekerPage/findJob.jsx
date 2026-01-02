@@ -8,7 +8,7 @@ import { RiUser3Line } from "react-icons/ri";
 import { FaIndianRupeeSign } from "react-icons/fa6";
 import companyImg1 from "../assets/homepage/Netflix.png";
 
-function FindJob({ setActiveContent, setSelectData, fetchData , addMessageBox}) {
+function FindJob({ setActiveContent, setSelectData, fetchData , addMessageBox, setRecruiterId}) {
   const [findJobData, setFindJobData] = useState([]);
   const [searchData, setSearchData]= useState({
     jobTitle: "",
@@ -17,6 +17,8 @@ function FindJob({ setActiveContent, setSelectData, fetchData , addMessageBox}) 
     experience: "",
   });
   const [filterData, setFilterData]= useState([]);
+
+  console.log(filterData);
 
   const changeHandler=(e)=>{
     e.preventDefault(),
@@ -123,7 +125,6 @@ function FindJob({ setActiveContent, setSelectData, fetchData , addMessageBox}) 
             <option value="">
               Job Type
             </option>
-            <option value="remote">Remote</option>
             <option value="full-time">Full Time</option>
             <option value="part-time">Part Time</option>
             <option value="internship">Internship</option>
@@ -149,11 +150,11 @@ function FindJob({ setActiveContent, setSelectData, fetchData , addMessageBox}) 
           <div className="jobCard pt-3 position-relative">
             <div className="head d-flex align-items-center mb-2">
               <div className="imgBox me-3">
-                <img className="w-100 h-100" src={companyImg1} alt="" />
+                <img className="w-100 companyLogo h-100" src={ (data?.recruiter?.company?.logo || null ) ? `http://localhost:3200/upload/${data?.recruiter?.company?.logo}`  : ("http://localhost:3200/defaultImage/defaultCompanyImg.jpg") } alt="" />
               </div>
               <div className="jobTitle">
                 <h5 className="mb-1 fw-bold">{data.role}</h5>
-                <p className="mb-0 fw-light companyName ">
+                <p className="mb-0 fw-light companyName " onClick={()=> {setRecruiterId(data.recruiter._id); setActiveContent("companyProfile")}} >
                   {data.recruiter.company.name}
                 </p>
               </div>

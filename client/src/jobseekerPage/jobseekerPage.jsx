@@ -12,43 +12,103 @@ import JobApply from "./jobApply";
 import Profile from "./profile";
 import EditProfile from "./editProfile";
 import JobDetail from "./jobDetail";
+import CompanyProfile from "../recruiterPage/companyProfile";
 
-function JobSeekerPage({addMessageBox}){
+function JobSeekerPage({ addMessageBox }) {
   const [JobSeekerData, setJobSeekerData] = useState({});
   const [selectData, setSelectData] = useState({});
   const [activeContent, setActiveContent] = useState("dashboard");
-  const [previousComponent,setPreviousComponent]= useState()
+  const [previousComponent, setPreviousComponent] = useState();
+  const [recruiterData, setRecruiterData] = useState({});
+  const [recruiterId, setRecruiterId] = useState("");
 
-  console.log(selectData);
-  
-  async function fetchData(){
-      await fetch("http://localhost:3200/jobseeker")
+  async function fetchData() {
+    await fetch("http://localhost:3200/jobseeker")
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
         setJobSeekerData(data);
       })
-      .catch((error) => console.log("fetch error :-",error));
-    }
+      .catch((error) => console.log("fetch error :-", error));
+  }
 
   useEffect(() => {
-  fetchData();
+    console.log(recruiterId);
+    async function getRecruiterData() {
+      await fetch(`http://localhost:3200/jobseeker/recruiter/${recruiterId}`)
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+          setRecruiterData(data);
+        });
+    }
+
+    getRecruiterData();
+  }, [recruiterId]);
+
+  useEffect(() => {
+    fetchData();
   }, []);
 
   const renderContent = () => {
     switch (activeContent) {
       case "dashboard":
-        return (<DashBoard JobSeekerData={JobSeekerData}  />);
+        return <DashBoard JobSeekerData={JobSeekerData} />;
       case "findJob":
-        return (<FindJob setActiveContent={setActiveContent} setSelectData={setSelectData} fetchData={fetchData} addMessageBox={addMessageBox} />);
+        return (
+          <FindJob
+            setActiveContent={setActiveContent}
+            setSelectData={setSelectData}
+            fetchData={fetchData}
+            addMessageBox={addMessageBox}
+            setRecruiterId={setRecruiterId}
+          />
+        );
       case "jobDetail":
-        return (<JobDetail setActiveContent={setActiveContent} selectData={selectData} previousComponent={previousComponent} addMessageBox={addMessageBox} />);
+        return (
+          <JobDetail
+            setActiveContent={setActiveContent}
+            selectData={selectData}
+            previousComponent={previousComponent}
+            addMessageBox={addMessageBox}
+          />
+        );
       case "jobApply":
-        return (<JobApply JobApplyData={JobSeekerData.application.appliedJobs} setActiveContent={setActiveContent} setSelectData={setSelectData} fetchData={fetchData} addMessageBox={addMessageBox}  />);
+        return (
+          <JobApply
+            JobApplyData={JobSeekerData.application.appliedJobs}
+            setActiveContent={setActiveContent}
+            setSelectData={setSelectData}
+            fetchData={fetchData}
+            addMessageBox={addMessageBox}
+            setRecruiterId={setRecruiterId}
+          />
+        );
       case "profile":
-        return (<Profile setActiveContent={setActiveContent} JobSeekerData={JobSeekerData} addMessageBox={addMessageBox} />);
+        return (
+          <Profile
+            setActiveContent={setActiveContent}
+            JobSeekerData={JobSeekerData}
+            addMessageBox={addMessageBox}
+          />
+        );
       case "editProfile":
-        return (<EditProfile setActiveContent={setActiveContent} JobSeekerData={JobSeekerData} fetchData={fetchData} addMessageBox={addMessageBox} />);
+        return (
+          <EditProfile
+            setActiveContent={setActiveContent}
+            JobSeekerData={JobSeekerData}
+            fetchData={fetchData}
+            addMessageBox={addMessageBox}
+          />
+        );
+      case "companyProfile":
+        return (
+          <CompanyProfile
+            recruiterData={recruiterData}
+            setActiveContent={setActiveContent}
+            previousComponent={previousComponent}
+          />
+        );
     }
   };
 
@@ -81,14 +141,20 @@ function JobSeekerPage({addMessageBox}){
               </li>
               <li
                 className="menuItem d-flex align-items-center fw-semibold"
-                onClick={() => {setPreviousComponent("findJob"); setActiveContent("findJob")}}
+                onClick={() => {
+                  setPreviousComponent("findJob");
+                  setActiveContent("findJob");
+                }}
               >
                 <IoSearch className="menuIcon me-3 " />
                 Find Jobs
               </li>
               <li
                 className="menuItem d-flex align-items-center fw-semibold"
-                onClick={() => {setPreviousComponent("jobApply"); setActiveContent("jobApply")}}
+                onClick={() => {
+                  setPreviousComponent("jobApply");
+                  setActiveContent("jobApply");
+                }}
               >
                 <HiOutlineDocumentText className="menuIcon me-3" />
                 My Applications

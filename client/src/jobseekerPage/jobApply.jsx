@@ -4,12 +4,14 @@ import { FaSearch } from "react-icons/fa";
 import { MdFilterListAlt } from "react-icons/md";
 import { dateFormat } from "../utils/dateFormat";
 
-export default function JobApply({ JobApplyData, setActiveContent, setSelectData, fetchData, addMessageBox }) {
+export default function JobApply({ JobApplyData, setActiveContent, setSelectData, fetchData, addMessageBox, setRecruiterId }) {
   const [filterData, setFilterData] = useState([]);
   const [searchData, setSearchData] = useState({
     jobTitle: "",
     status: "",
   });
+
+  console.log(JobApplyData);
 
   const changeHandler = (e) => {
     const { name, value } = e.target;
@@ -50,7 +52,6 @@ export default function JobApply({ JobApplyData, setActiveContent, setSelectData
       fetchData();
     } catch (error) {
       console.log("Delete error :-", error);
-      addMessageBox("check", "Application deleted successfully");
     }
   };
 
@@ -93,11 +94,11 @@ export default function JobApply({ JobApplyData, setActiveContent, setSelectData
               <tr key={index}>
                 <td>{index + 1}</td>
                 <td>
-                  <div className="company-cell d-flex align-items-center justify-content-center">
-                    <div className="company-logo d-flex">
-                      <img className="w-100 h-100" src={companyImg1} alt="" />
+                  <div className="company-cell d-flex align-items-center justify-content-center" onClick={()=> {setRecruiterId(data.jobId?.recruiter._id); setActiveContent("companyProfile");}} >
+                    <div className="company-logo imgBox me-1 d-flex">
+                      <img className="w-100 h-100 companyLogo" src={ (data?.jobId?.recruiter?.company?.logo || null ) ? `http://localhost:3200/upload/${data?.jobId?.recruiter?.company?.logo}`  : ("http://localhost:3200/defaultImage/defaultCompanyImg.jpg") } alt="" />
                     </div>
-                    <span className="company-name ms-2">{data.jobId?.recruiter.company.name}</span>
+                    <span className="companyName ms-2">{data.jobId?.recruiter.company?.name}</span>
                   </div>
                 </td>
                 <td>{data.jobId?.role}</td>
