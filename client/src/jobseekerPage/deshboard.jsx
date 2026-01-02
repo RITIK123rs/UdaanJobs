@@ -10,7 +10,7 @@ function DashBoard({JobSeekerData}){
       <h2 className="mt-3 pageTitle">Dashboard</h2>
       <hr></hr>
       <div>
-        <h3>Hello, {JobSeekerData?.name}</h3>
+        <h3>Hello, {JobSeekerData?.userName}</h3>
         <p>Here is what's is happening with your job search application</p>
       </div>
       <div className="applicationStatus">

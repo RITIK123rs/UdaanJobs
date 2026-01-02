@@ -4,7 +4,7 @@
 div{
     border: 2px solid white;
 } */
-.jobSeekerPage .pageTitle{
+.jobSeekerPage .pageTitle {
   font-size: 50px;
   text-transform: uppercase;
   font-weight: bold;
@@ -243,7 +243,7 @@ div{
   width: 30%;
 }
 .jobApply .filter > .icon,
-.jobApply .jobTitleBox > .icon{
+.jobApply .jobTitleBox > .icon {
   color: var(--yellowTextColor);
 }
 
@@ -255,13 +255,13 @@ div{
   color: red;
 }
 .jobApply .iconBox .viewIcon {
-  color: green;
+  color: #00ff99;
 }
-.profile .info{
-    height: 83vh;
-    width: 70%;
+.profile .info {
+  height: 83vh;
+  width: 70%;
 }
-.profile .boxHead{
+.profile .boxHead {
   font-size: 37px;
   text-transform: uppercase;
   margin-bottom: 20px;
@@ -276,51 +276,85 @@ div{
   border-radius: 2px;
   margin-top: 5px;
 }
-.profile .additionalInfo{
-    height: 83vh;
-    width: 28%;
+.profile .additionalInfo {
+  height: 83vh;
+  width: 28%;
 }
-.profile .additionalInfo > div{
-    border: 2px solid white;
-    padding: 15px 20px 25px 20px;
+.profile .additionalInfo > div {
+  border: 2px solid white;
+  padding: 15px 20px 25px 20px;
 }
-.profile .additionalInfo h4{
-    color: var(--yellowTextColor);
-}
-.profile .banner{
-    border: 2px solid white;
-    height: 120px;
-    background: yellowgreen;
-}
-.profile .nameBox .imgBox{
-    width: 110px;
-    height: 110px;
-    border-radius: 50%;
-    top: 55px;
-    left: 25px;
-    overflow: hidden;
-    border: 2px solid white;
-}
-.profile .details > div{
-    margin-left: 150px;
-}
-.profile .details .editBtn,
-.profile .details .resumeBtn{
-    height: 40px;
-    border: 2px solid var(--yellowTextColor);
-    background: transparent;
-    color: var(--yellowTextColor);
-    font-weight: bold;
-    border-radius: 10px;
-}
-.profile .details .resumeBtn a{
-  text-decoration: none;
+.profile .additionalInfo h4 {
   color: var(--yellowTextColor);
 }
-.profile .info{
+.profile .banner {
+  border: 2px solid white;
+  height: 120px;
+  background: yellow#00ff99;
+}
+.profile .nameBox .imgBox {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  top: 55px;
+  left: 25px;
+  overflow: hidden;
+  border: 2px solid white;
+}
+.profile .details > div {
+  margin-left: 150px;
+}
+.profile .details .editBtn,
+.profile .details .resumeBtn {
+  padding: 7px 0;
+  border: 2px solid var(--yellowTextColor);
+  background: transparent;
+  color: var(--yellowTextColor);
+  font-weight: bold;
+  border-radius: 10px;
+}
+.profile .details .resumeBtn a {
+  text-decoration: none;
+  font-size: 18px;
+  color: var(--yellowTextColor);
+}
+.profile .setStatus {
+  appearance: none;
+  text-align: center;
+  border: 2px solid var(--yellowTextColor);
+  background: transparent;
+  color: var(--yellowTextColor);
+  font-weight: bold;
+  width: 110px;
+  padding: 3px 0px 7px 0px;
+  border-radius: 10px;
+  margin-right: 10px;
+  font-size: 21px;
+}
+.profile .setStatus option{
+  padding: 0;
+  font-weight: bold;
+}
+.profile .setStatus option.pending,
+.profile .setStatus.pending{
+  color: var(--yellowTextColor);
+  border-color: var(--yellowTextColor);
+}
+.profile .setStatus option.rejected,
+.profile .setStatus.rejected{
+  color: red;
+  border-color: red;
+}
+.profile .setStatus option.accepted,
+.profile .setStatus.accepted{
+  color: #00ff99;
+  border-color: #00ff99;
+}
+
+.profile .info {
   overflow-y: scroll;
 }
-.profile .info::-webkit-scrollbar{
+.profile .info::-webkit-scrollbar {
   display: none;
 }
 .profile .info .nameBox,
@@ -328,52 +362,53 @@ div{
 .profile .info .ExperienceBox,
 .profile .info .educationBox,
 .profile .info .skillBox {
-    border: 2px solid white;
+  border: 2px solid white;
 }
 .profile .info .ExperienceBox .imgBox,
-.profile .info .educationBox .imgBox{
+.profile .info .educationBox .imgBox {
   max-width: 80px;
   max-height: 80px;
   overflow: hidden;
   border: 2px solid white;
 }
 .profile .info .ExperienceBox .imgBox img,
-.profile .info .educationBox .imgBox img{
+.profile .info .educationBox .imgBox img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: center;
 }
-.profile .skillBox .skillTag{
+.profile .skillBox .skillTag {
   border: 2px solid var(--yellowTextColor);
   color: var(--yellowTextColor);
   border-radius: 100px;
 }
-.editProfile .formRow{
+
+.editProfile .formRow {
   display: flex;
   margin-top: 20px;
 }
-.editProfile form{
+.editProfile form {
   padding: 0 20px 0 20px;
 }
-.editProfile .formGroup{
+.editProfile .formGroup {
   width: 50%;
   margin-top: 20px;
   display: flex;
   flex-direction: column;
 }
-.editProfile .heading{
+.editProfile .heading {
   font-size: 36px;
   font-weight: bold;
   text-transform: uppercase;
 }
-.editProfile .formGroup > label{
+.editProfile .formGroup > label {
   font-size: 24px;
   margin-left: 5px;
   text-transform: uppercase;
   font-weight: bold;
 }
-.editProfile .formGroup > input{
+.editProfile .formGroup > input {
   margin-top: 7px;
   width: 95%;
   font-size: 22px;
@@ -385,10 +420,10 @@ div{
   padding: 5px 10px 5px 10px;
 }
 .editProfile .formGroup > input:focus,
-.editProfile textarea:focus{
+.editProfile textarea:focus {
   border: 2px solid var(--yellowTextColor);
 }
-.editProfile textarea{
+.editProfile textarea {
   width: 98%;
   font-size: 22px;
   border-radius: 10px;
@@ -398,7 +433,7 @@ div{
   color: white;
   padding: 5px 10px 5px 10px;
 }
-.editProfile .formGroup select{
+.editProfile .formGroup select {
   width: 95%;
   font-size: 22px;
   border-radius: 10px;
@@ -408,16 +443,16 @@ div{
   color: white;
   padding: 5px 10px 5px 10px;
 }
-.editProfile .formGroup option{
+.editProfile .formGroup option {
   font-size: 22px;
   border-radius: 10px;
   border: 2px solid white;
   outline: none;
-  background: #1C1C1C;
+  background: #1c1c1c;
   color: white;
   padding: 5px 10px 5px 10px;
 }
-.editProfile .saveBtn{
+.editProfile .saveBtn {
   border: 3px solid var(--yellowTextColor);
   color: var(--yellowTextColor);
   background: transparent;
@@ -426,29 +461,29 @@ div{
   border-radius: 20px;
   font-weight: bold;
 }
-.editProfile .endBtn{
+.editProfile .endBtn {
   justify-content: center;
 }
-.editProfile .uploadBox .formRow{
+.editProfile .uploadBox .formRow {
   flex-direction: column;
   border: 2px solid white;
   border-radius: 20px;
   width: 97%;
-  padding: 5px 5px 20px 20px ;
+  padding: 5px 5px 20px 20px;
 }
-.editProfile .uploadBox .formGroup{
+.editProfile .uploadBox .formGroup {
   display: flex;
   flex-direction: row;
   width: 100%;
   align-items: center;
 }
-.editProfile .uploadBox input{
+.editProfile .uploadBox input {
   border: none;
 }
-.editProfile .uploadBox label{
+.editProfile .uploadBox label {
   width: 22%;
 }
-.editProfile .Tag{
+.editProfile .Tag {
   color: white;
   border: 2px solid white;
   border-radius: 40px;
@@ -458,8 +493,8 @@ div{
 .editProfile textarea {
   padding: 8px 12px;
   border-radius: 10px;
-  border: 2px solid rgba(255,255,255,0.5);
-  background: rgba(255,255,255,0.03);
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.03);
   color: white;
   outline: none;
 }
@@ -471,7 +506,6 @@ div{
   box-shadow: 0 0 6px var(--yellowTextColor);
 }
 
-
 .editProfile .uploadBox input[type="file"]::file-selector-button {
   background-color: var(--yellowTextColor);
   color: black;
@@ -482,10 +516,10 @@ div{
   cursor: pointer;
   margin-right: 30px;
 }
-.editProfile .uploadBox input{
+.editProfile .uploadBox input {
   width: 80%;
 }
-.editProfile .cancelIcon{
+.editProfile .cancelIcon {
   color: red;
 }
 .editProfile .heading::after {
@@ -497,20 +531,19 @@ div{
   border-radius: 2px;
   margin-top: 5px;
 }
-.editProfile .addBtn{
+.editProfile .addBtn {
   right: 5%;
   font-size: 50px;
   background: none;
   border: 0;
   color: white;
-
 }
-.jobDetail .imgBox{
+.jobDetail .imgBox {
   width: 80px;
   height: 80px;
   border-radius: 50%;
 }
-.jobDetail .applyBtn{
+.jobDetail .applyBtn {
   width: 150px;
   height: 43px;
   font-size: 20px;
@@ -521,15 +554,17 @@ div{
 }
 .jobDetail .jobHead,
 .jobDetail .companyDetail,
-.jobDetail .jobBody{
+.jobDetail .jobBody {
   border: 2px solid white;
 }
-.jobDetail .skillTag{
-  border: 2px solid white;
+.jobDetail .skillTag {
+  border: 2px solid var(--yellowTextColor);
   border-radius: 50px;
+  color: var(--yellowTextColor);
+  font-size: 18px;
 }
 
-.jobDetail .boxTitles{
+.jobDetail .boxTitles {
   font-size: 35px;
   text-transform: uppercase;
   margin-bottom: 20px;
@@ -545,6 +580,8 @@ div{
   border-radius: 2px;
   margin-top: 5px;
 }
+
+.profile .backBtn,
 .jobDetail .backBtn,
 .editProfile .backBtn {
   min-width: 110px;
@@ -553,27 +590,27 @@ div{
   background: transparent;
 }
 
+.profile .backBtn:hover,
 .jobDetail .backBtn:hover,
-.editProfile .backBtn:hover{
+.editProfile .backBtn:hover {
   background-color: var(--yellowTextColor);
   color: #000;
 }
-.jobDetail strong{
+.jobDetail strong {
   text-transform: uppercase;
 }
 .status.pending,
-.jobApply .status .pending{
-  
+.jobApply .status .pending {
   color: var(--yellowTextColor);
   border: 2px solid var(--yellowTextColor);
 }
 .status.accepted,
-.jobApply .status .accepted{
-  color: green;
-  border-color: green;
+.jobApply .status .accepted {
+  border: 2px solid #00ff99;
+  color: #00ff99;
 }
 .status.rejected,
-.jobApply .status .rejected{
+.jobApply .status .rejected {
   color: red;
   border-color: red;
 }
@@ -593,11 +630,23 @@ div{
   background-color: #f44336;
   color: #fff;
 }
-.uploadImg{
+.uploadImg {
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: center;
 }
-
-
+.imgBox{
+  overflow: hidden;
+  border-radius: 50%;
+  object-position: center;
+  object-fit: fill;
+}
+.companyLogo{
+  width: 100%;
+  height: 100%;
+}
+.jobApply  .companyName,
+.findJob .companyName{
+  cursor: pointer;
+}

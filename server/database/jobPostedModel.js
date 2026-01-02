@@ -7,12 +7,11 @@ const jobPostedSchema = new mongoose.Schema({
   },
   role: {
     type: String,
-    required: true
   },
   jobType: {
     type: String,
     enum: ["remote", "full-time", "part-time", "internship"],
-    required: true
+    default: "full-time",
   },
   industryType: {
     type: String
@@ -23,17 +22,18 @@ const jobPostedSchema = new mongoose.Schema({
   experience: {
     type: String,
     enum: ["fresher", "1-3", "3-5", "5+"],
-    required: true
+    default: "fresher",
   },
   location: {
     type: String
   },
   workMode: {
     type: String,
-    enum: ["Remote", "Onsite", "Hybrid"]
+    enum: ["Remote", "Onsite", "Hybrid"],
+    default: "Onsite",
   },
-  applyBefore: {
-    type: Date
+  closingDate: {
+    type: Date,
   },
   createdAt: {
     type: Date,
@@ -44,7 +44,6 @@ const jobPostedSchema = new mongoose.Schema({
   },
   jobDescription: {
     type: String,
-    required: true
   },
   skillsRequired: [
     {
@@ -53,7 +52,6 @@ const jobPostedSchema = new mongoose.Schema({
   ],
   roleAndResponsibilities: {
     type: String,
-    required: true
   },
   applications: [
     {

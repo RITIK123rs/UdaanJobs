@@ -5,20 +5,18 @@ const jobseeker = require("../database/jobseekerModel");
 const jobPosted = require("../database/jobPostedModel");
 const jobRecruiter = require("../database/recruiterModel");
 
-const UserId="694ff2356935a1966a095606";
+const UserId="6956880475e4b2d1b0a513d8";
 
 router.get("/", async (req, res) => {
   try {
     const jobseekerData = await jobseeker
-      .findById(UserId)
+      .findById(UserId,{password: 0})
       .populate({
         path: "application.appliedJobs.jobId",
-        populate: {
-          path: "recruiter",
-        },
+        populate:{ path:"recruiter", select:" company.name company.logo "}, 
       });
     if (!jobseekerData) {
-      console.log("Data not found");
+      // console.log("Data not found");
       return res.status(404).json("Data not found");
     }
     // console.log("data send :- ", jobseekerData);
@@ -33,6 +31,7 @@ router.get("/findJob", async (req, res) => {
   try {
     const jobPostedData = await jobPosted.find().populate({
       path: "recruiter",
+      select:" company.name company.logo ",
     });
     // console.log("data send :- ", jobPostedData);
     res.json(jobPostedData);
@@ -45,9 +44,9 @@ router.get("/findJob", async (req, res) => {
 router.put("/apply", async (req, res) => {
   try {
    data=req.body;
-   console.log(data);
-   isPresent= await jobseeker.findOne({_id: UserId, "application.appliedJobs.jobId": data.id})
-   console.log(isPresent);
+  //  console.log(data);
+   let isPresent= await jobseeker.findOne({_id: UserId, "application.appliedJobs.jobId": data.id})
+  //  console.log(isPresent);
     if(!isPresent){
       await jobseeker.findByIdAndUpdate(UserId,{$addToSet: {"application.appliedJobs":{jobId: data.id, status: "pending", appliedAt: new Date()}},$inc: { "application.total": 1, "application.pending": 1 }})
       await jobPosted.findByIdAndUpdate(data.id,{$addToSet: {"applications":{applicant: UserId, status: "pending", appliedAt: new Date()}}})
@@ -108,6 +107,13 @@ router.put("/jobApply", async (req, res) => {
     console.error("failed to delete jobseeker/jobApply Data:", error);
     res.status(400).json("failed to delete jobseeker/jobApply Data");
   }
+})
+
+router.get("/recruiter/:Id",async (req,res)=>{
+    const recruiterId=req.params.Id;
+    const data=await jobRecruiter.findById(recruiterId).select("company");
+    // console.log({recruiterId,data});
+    res.json(data);
 })
 
 module.exports = router;

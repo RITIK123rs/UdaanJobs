@@ -10,7 +10,7 @@ function EditProfile({
   addMessageBox,
 }) {
   const [editData, setEditData] = useState({
-    name: JobSeekerData?.name || "",
+    userName: JobSeekerData?.userName || "",
     jobTitle: JobSeekerData.personalInfo?.jobTitle || "",
     city: JobSeekerData.personalInfo?.city || "",
     email: JobSeekerData.personalInfo?.email || "",
@@ -202,7 +202,7 @@ function EditProfile({
               <input
                 type="text"
                 name="formName"
-                value={editData.name}
+                value={editData.userName}
                 className="text-white"
                 disabled
               />
@@ -341,7 +341,7 @@ function EditProfile({
           <textarea
             className="mt-3"
             name="aboutMe"
-            rows="6"
+            rows="14"
             placeholder="Write something about yourself..."
             value={editData.aboutMe}
             onChange={handleChangeEditData}
