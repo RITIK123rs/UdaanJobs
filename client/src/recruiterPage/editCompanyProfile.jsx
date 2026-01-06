@@ -51,8 +51,9 @@ export default function EditCompanyProfile({
       formData.append("logo", companyData.logo);
     }
 
-    await fetch("http://localhost:3200/fileHandle/recruiter", {
+    await fetch(`http://localhost:3200/fileHandle/recruiter`, {
       method: "PUT",
+      headers: { "Authorization": `Bearer ${localStorage.getItem("token")}` },
       body: formData,
     })
       .then((res) => res.json())
@@ -78,7 +79,7 @@ export default function EditCompanyProfile({
       >
         <FaArrowLeft className="me-2" /> BACK
       </button>
-      <form className="mainSection" onSubmit={setComputerData}>
+      <form className="mainSection" onSubmit={setComputerData}method="post" >
         <section className="formSection">
           <h3 className="heading">Basic Information</h3>
 
@@ -89,7 +90,7 @@ export default function EditCompanyProfile({
                 type="text"
                 placeholder="Enter company name"
                 name="name"
-                value={companyData.name}
+                value={companyData?.name}
                 onChange={handleChange}
               />
             </div>
@@ -111,7 +112,7 @@ export default function EditCompanyProfile({
               <input
                 type="date"
                 name="founded"
-                value={companyData.founded.split("T")[0]}
+                value={companyData?.founded.split("T")[0]}
                 onChange={handleChange}
               />
             </div>
@@ -122,7 +123,7 @@ export default function EditCompanyProfile({
                 type="text"
                 placeholder="Number of employees"
                 name="employees"
-                value={companyData.employees}
+                value={companyData?.employees}
                 onChange={handleChange}
               />
             </div>
@@ -135,7 +136,7 @@ export default function EditCompanyProfile({
                 type="text"
                 placeholder="City or State"
                 name="location"
-                value={companyData.location}
+                value={companyData?.location}
                 onChange={handleChange}
               />
             </div>
@@ -146,7 +147,7 @@ export default function EditCompanyProfile({
                 type="text"
                 placeholder="Industry type"
                 name="industry"
-                value={companyData.industry}
+                value={companyData?.industry}
                 onChange={handleChange}
               />
             </div>
@@ -160,7 +161,7 @@ export default function EditCompanyProfile({
             placeholder="Write about the company"
             onChange={handleChange}
             name="about"
-            value={companyData.about}
+            value={companyData?.about}
           />
         </div>
 
@@ -174,7 +175,7 @@ export default function EditCompanyProfile({
                 type="email"
                 placeholder="Email ID"
                 name="contact.emailId"
-                value={companyData.contact.emailId}
+                value={companyData?.contact?.emailId}
                 onChange={handleChange}
               />
             </div>
@@ -185,7 +186,7 @@ export default function EditCompanyProfile({
                 type="text"
                 placeholder="Website URL"
                 name="contact.website"
-                value={companyData.contact.website}
+                value={companyData?.contact?.website}
                 onChange={handleChange}
               />
             </div>
@@ -198,7 +199,7 @@ export default function EditCompanyProfile({
                 type="text"
                 placeholder="Twitter URL"
                 name="contact.twitter"
-                value={companyData.contact.twitter}
+                value={companyData?.contact?.twitter}
                 onChange={handleChange}
               />
             </div>
@@ -209,7 +210,7 @@ export default function EditCompanyProfile({
                 type="text"
                 placeholder="Facebook URL"
                 name="contact.facebook"
-                value={companyData.contact.facebook}
+                value={companyData?.contact?.facebook}
                 onChange={handleChange}
               />
             </div>
@@ -222,7 +223,7 @@ export default function EditCompanyProfile({
                 type="text"
                 placeholder="LinkedIn URL"
                 name="contact.linkedin"
-                value={companyData.contact.linkedin}
+                value={companyData?.contact?.linkedin}
                 onChange={handleChange}
               />
             </div>

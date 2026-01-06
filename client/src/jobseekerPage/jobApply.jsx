@@ -4,6 +4,7 @@ import { FaSearch } from "react-icons/fa";
 import { MdFilterListAlt } from "react-icons/md";
 import { dateFormat } from "../utils/dateFormat";
 
+
 export default function JobApply({ JobApplyData, setActiveContent, setSelectData, fetchData, addMessageBox, setRecruiterId }) {
   const [filterData, setFilterData] = useState([]);
   const [searchData, setSearchData] = useState({
@@ -41,9 +42,9 @@ export default function JobApply({ JobApplyData, setActiveContent, setSelectData
 
   const deleteApplication = async (object) => {
     try {
-      const res = await fetch("http://localhost:3200/jobseeker/jobApply", {
+      const res = await fetch(`http://localhost:3200/jobseeker/jobApply`, {
         method: "PUT",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json", "Authorization": `Bearer ${localStorage.getItem("token")}` },
         body: JSON.stringify(object),
       });
       const data = await res.json();

@@ -18,36 +18,32 @@ function Profile({
   getRecruiterData
 }) {
   
-  const [activeStatus, setActiveStatus] = useState();
+  const [activeStatus, setActiveStatus] = useState(jobSeekerJobPost?.jobStatus);
 
-  useEffect(()=>{
-    if(isRecruiter){
-      setActiveStatus(jobSeekerJobPost.jobStatus);
-    }
-  },[])
-
-  useEffect(() => {
+  const StatusChange=(newStatus)=>{
+    console.log(newStatus);
     async function updateJobSeekerStatus() {
       await fetch(`http://localhost:3200/recruiter/updateJobSeekerStatus`, {
         method: "PUT",
         headers: {"Content-Type" : "application/json"},
         body: JSON.stringify({
           jobId: jobSeekerJobPost?.jobId,
-          jobStatus: activeStatus,
-          jobSeekerId: jobSeekerJobPost?.jobSeekerId }),
+          jobStatus: newStatus,
+          jobSeekerId: jobSeekerJobPost?.jobSeekerId,
+          oldJobStatus: jobSeekerJobPost?.jobStatus,
+         }),
       })
       .then((res) => res.json())
       .then((data) => {console.log(data), addMessageBox("check","status Changed successfully")})
       .catch((error) => console.log(error));
     }
-
     console.log(activeStatus);
     if(isRecruiter){
       updateJobSeekerStatus();
       getRecruiterData();
     }
-    
-  }, [activeStatus]);
+  }
+
 
   return (
     <div className="profile">
@@ -107,7 +103,9 @@ function Profile({
                     className={`setStatus ${activeStatus}`}
                     value={activeStatus}
                     onChange={(e) => {
-                      setActiveStatus(e.target.value);
+                      const newStatus = e.target.value;
+                      setActiveStatus(newStatus); // update local state immediately
+                      StatusChange(newStatus);
                     }}
                   >
                     <option className="pending" value="pending">

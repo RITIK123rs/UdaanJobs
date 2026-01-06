@@ -6,8 +6,8 @@ const fs = require("fs");
 const path = require("path");
 const jobseeker = require("../database/jobseekerModel");
 const jobRecruiter = require("../database/recruiterModel");
+const auth = require("./auth");
 
-const UserId = "6956880475e4b2d1b0a513d8";
 
 const uploadFolder = path.join(__dirname, "../upload");
 
@@ -30,7 +30,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 router.put(
-  "/jobseeker",
+  "/jobSeeker", auth("jobSeeker"),
   upload.fields([
     { name: "resume", maxCount: 1 },
     { name: "profilePhoto", maxCount: 1 },
@@ -38,6 +38,7 @@ router.put(
   ]),
   async (req, res) => {
     try {
+      const userId=req.user.userId;
       // console.log("Files:", req.files);
 
       const resumeURL = req.files?.resume?.[0]?.filename || null;
@@ -46,7 +47,7 @@ router.put(
 
       // console.log({ resumeURL, profilePhotoURL, bannerURL });
 
-      const prevData = await jobseeker.findById(UserId);
+      const prevData = await jobseeker.findById(userId);
 
       const updateObj = {};
 
@@ -85,7 +86,7 @@ router.put(
       }
 
       const updateData = await jobseeker.findByIdAndUpdate(
-        UserId,
+        userId,
         { $set: updateObj },
         { new: true }
       );
@@ -99,9 +100,11 @@ router.put(
   }
 );
 
-router.put("/recruiter", upload.single("logo"), async (req, res) => {
+router.put("/recruiter",auth("recruiter"), upload.single("logo"), async (req, res) => {
   // console.log("File:", req.file);
   // console.log("Text fields:", req.body);
+
+  const userId=req.user.userId;
 
   const fileName=req?.file?.filename;
   console.log(fileName);
@@ -109,7 +112,7 @@ router.put("/recruiter", upload.single("logo"), async (req, res) => {
   data.contact= JSON.parse(data.contact);
 
   if (fileName) {
-    const oldLogo = await jobRecruiter.findById("6956880475e4b2d1b0a513cf", {
+    const oldLogo = await jobRecruiter.findById(userId, {
       "company.logo": 1,
     });
     console.log({oldLogo});
@@ -119,7 +122,7 @@ router.put("/recruiter", upload.single("logo"), async (req, res) => {
     data.logo=fileName;
   }
   
-  const updatedData= await jobRecruiter.findByIdAndUpdate("6956880475e4b2d1b0a513cf",{$set:{"company": data}},{new: true});
+  const updatedData= await jobRecruiter.findByIdAndUpdate(userId,{$set:{"company": data}},{new: true});
   // console.log(updatedData);
 
   res.json("Company Data updated Successfully");

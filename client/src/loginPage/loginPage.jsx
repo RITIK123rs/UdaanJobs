@@ -1,38 +1,549 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./loginPage.css";
 import img1 from "../assets/homepage/Boy.png";
 import { MdOutlineMailOutline } from "react-icons/md";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { FaArrowLeft } from "react-icons/fa6";
+import { Navigate,NavLink, useNavigate } from "react-router-dom";
+import { MdMail } from "react-icons/md";
+import { FaRegCircleXmark } from "react-icons/fa6";
 
-function LoginPage() {
+function LoginPage({ addMessageBox }) {
   const [showPassword, setShowPassword] = useState(false);
+  const [showPassword2, setShowPassword2] = useState(false);
+  const [showPassword3, setShowPassword3] = useState(false);
   const [currentLoginBox, setCurrentLoginBox] = useState(true);
- 
+  const navigate = useNavigate();
+  const otpRef = useRef([]);
+  const otpRef2 = useRef([]);
+  const [forgotPasswordStatus, setForgotPasswordStatus] = useState("close");
+  const [blurBackground, setBlurBackground] = useState(false);
+  const [isOTPclose, setisOTPclose] = useState(true);
+  const defaultForgotPasswordData={
+    email: "",
+    password: "",
+    confirmPassword: "",
+  }
+  
+  const [changeBorder, setChangeBorder] = useState({
+    email: false,
+    password: false,
+  });
+
+  const [loginData, setLoginData] = useState({
+    email: "",
+    password: "",
+    rememberMe: false,
+  });
+
+  const [signUpData, setSignUpData] = useState({
+    name: "",
+    email: "",
+    password: "",
+    userType: "jobSeeker",
+  });
+
+  const [forgotPasswordData,setForgotPasswordData]=useState(defaultForgotPasswordData);
+
+  const signUpChangeHandler = (e) => {
+    const { name, value } = e.target;
+    console.log({ name, value });
+    setSignUpData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const LoginChangeHandler = (e) => {
+    const { name, value, type, checked } = e.target;
+    console.log({ name, value, checked });
+    setLoginData((prev) => ({
+      ...prev,
+      [name]: type == "checkbox" ? checked : value,
+    }));
+  };
+
+  const forgotPasswordChangeHandler=(e)=>{
+    const { name, value } = e.target;
+    console.log({ name, value });
+    setForgotPasswordData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+    console.log(forgotPasswordData);
+  }
+
+  const loginFormSubmit = (e) => {
+    e.preventDefault();
+
+    console.log("loginButton");
+
+    fetch("http://localhost:3200/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(loginData),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.login) {
+          console.log("Login Successfully");
+          console.log(data);
+          localStorage.setItem("token", data.token);
+          navigate(`/${data.userType}`);
+          addMessageBox("check", "Welcome back! Login successful.");
+        } else {
+          if (data.emailMatch) {
+            addMessageBox("xMark", "Wrong password!");
+            setChangeBorder({
+              email: false,
+              password: true,
+            });
+          } else {
+            addMessageBox("Warning", "Email not found!");
+            setChangeBorder({
+              email: true,
+              password: true,
+            });
+          }
+        }
+      });
+  };
+
+  async function generateOTP(email, isSignUp ){
+    await fetch("http://localhost:3200/login/generateOTP", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, isSignUp }),
+    })
+      .then((res) => res.json())
+      .then((data) => console.log(data))
+      .catch((error) => console.log(error));
+  }
+
+  async function signUpFunction(otp) {
+    console.log(otp);
+    await fetch("http://localhost:3200/login/signUp", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ ...signUpData, otp }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.newUserCreated) {
+          console.log("SignUp Successfully");
+          console.log(data);
+          localStorage.setItem("token", data.token);
+          navigate(`/${data.userType}`);
+          setisOTPclose(true);
+          otpRef.current.map((e) => (e.value = ""));
+          addMessageBox("check", "Account created successfully!");
+        } else {
+          if (data.isExpired) {
+            addMessageBox("warning", "OTP expired");
+          } else {
+            addMessageBox("xMark", "Wrong OTP enter. try Again");
+          }
+        }
+      })
+      .catch((error) => console.log(error));
+  }
+
+  const signUpFormSubmit = async (e) => {
+    e.preventDefault();
+    console.log(signUpData);
+
+    const res = await fetch("http://localhost:3200/login/userCheck", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email: signUpData.email }),
+    });
+
+    let userCheck = await res.json();
+
+    if (!res.ok) {
+      console.log(userCheck);
+      return;
+    }
+
+    if (userCheck.emailExist) {
+      console.log(userCheck.message);
+      addMessageBox("warning", "email already exist");
+      return;
+    }
+
+    await generateOTP(signUpData.email, true);
+
+    setisOTPclose(false);
+  };
+
+  const otpHandleChange = (e) => {
+    if (e.target.value && /^\d$/.test(e.target.value))
+      e.target.nextSibling?.focus();
+    else e.target.value = "";
+  };
+
+  const otpHandleKeyDown = (e) => {
+    if (e.key === "Backspace" && !e.target.value) {
+      e.target.previousSibling?.focus();
+    }
+  };
+
+  const otpSubmit = async (e) => {
+    e.preventDefault();
+    let OTP = otpRef.current.map((e) => e.value).join("");
+    console.log(OTP);
+
+    if (OTP.length < 6) {
+      console.log("please enter the otp");
+      addMessageBox("Warning", "Please enter the OTP");
+      return;
+    }
+
+    signUpFunction(OTP);
+  };
+
+  const forgotEmailCheck= async (e)=>{
+
+    e.preventDefault();
+    console.log("email check of forgotPassword :-",forgotPasswordData.email);
+    
+    await fetch("http://localhost:3200/login/userCheck", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({email:forgotPasswordData.email })
+    })
+    .then(res => res.json())
+    .then(data => {
+      console.log({data});
+      if(!data.emailExist){
+        console.log(data.message);
+        addMessageBox("warning", "email do not exist");
+        return;
+      }
+      else{
+        console.log(data.message);
+        generateOTP(forgotPasswordData.email, false);
+        setForgotPasswordStatus("optCheck");
+        return;
+      }
+    })
+    .catch(error => console.log(error));
+
+  }
+
+  const forgotPasswordOtpSubmit=async (e)=>{
+    e.preventDefault();
+    let OTP = otpRef2.current.map((e) => e.value).join("");
+    console.log(OTP);
+
+    if (OTP.length < 6) {
+      console.log("please enter the otp");
+      addMessageBox("Warning", "Please enter the OTP");
+      return;
+    }
+
+    const res= await fetch(`http://localhost:3200/login/forgotPasswordOtp`,{
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({email:forgotPasswordData.email, OTP })
+    })
+
+    const data=await res.json();
+    if(!res.ok){
+      console.log("error :-",data);
+      return;
+    }
+    console.log(data);
+
+    if(!data.otpCorrect){
+      if (data.isExpired) addMessageBox("warning", "OTP expired");
+      else addMessageBox("xMark", "Wrong OTP enter. try Again");
+      return;
+    }
+    
+    otpRef2.current.map((e) => (e.value = ""));
+    setForgotPasswordStatus("takePassword");
+
+  }
+
+  const changeForgotPassword=async (e)=>{
+    e.preventDefault();
+    if(forgotPasswordData.password!==forgotPasswordData.confirmPassword){
+      addMessageBox("xMark", "Passwords do not match!");
+      return;
+    }
+
+    await fetch("http://localhost:3200/login/changePassword", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email: forgotPasswordData.email , password: forgotPasswordData.password }),
+    })
+      .then((res) => res.json())
+      .then((data) => addMessageBox("check", "Password Change Successfully"))
+      .catch((error) => console.log(error));
+
+    setBlurBackground(false);
+    setForgotPasswordStatus("close");
+
+  }
+
+  function forgotPasswordContent(currentContent) {
+
+    console.log(currentContent);
+
+    if (currentContent === "emailTake") {
+      return (
+        <form
+          className="emailTake w-100 h-100"
+          method="POST"
+          onSubmit={forgotEmailCheck}
+        >
+          <h1>Forgot Password</h1>
+          <div className="d-flex flex-column inputBox pb-3">
+            <label>Email</label>
+            <div
+              className="d-flex align-items-center justify-content-center"
+            >
+              <input
+                type="email"
+                name="email"
+                className="p-1 ps-1 text-white"
+                onChange={forgotPasswordChangeHandler}
+                required
+              />
+              <MdOutlineMailOutline className="icon" />
+            </div>
+          </div>
+          <button type="submit" >Forgot Password</button>
+        </form>
+      )
+    } else if (currentContent === "optCheck") {
+      return (
+        <form
+          className="w-100 h-100 position-relative optCheck"
+          method="POST"
+          onSubmit={forgotPasswordOtpSubmit}
+        >
+          <div className="iconBox mt-3">
+            <MdMail className="icon" />
+          </div>
+          <h2 className="text-white fw-bolder text-center head">
+            Verify Your Email
+          </h2>
+          <p className="text-white  text-center text ">
+            Please Enter The Verification Code We Send <br /> To{" "}
+            <span className="emailText">{forgotPasswordData.email}</span>
+          </p>
+          <div className="otpInputsBox">
+            {Array.from({ length: 6 }).map((_, index) => (
+              <input
+                maxLength="1"
+                type="text"
+                inputMode="numeric"
+                ref={(element) => (otpRef2.current[index] = element)}
+                onChange={otpHandleChange}
+                onKeyDown={otpHandleKeyDown}
+              />
+            ))}
+          </div>
+          <button type="submit" className="verifyBtn mt-2">Verify</button>
+          <p className="resendText">
+            Didn’t get the code? <span onClick={()=> generateOTP(forgotPasswordData.email, false)} >Resend</span>
+          </p>
+        </form>
+      )
+    } else if (currentContent === "takePassword") {
+      return (
+        <form
+          className="w-100 h-100 takePassword"
+          method="POST"
+          onSubmit={changeForgotPassword}
+        >
+          <h1>Reset Password</h1>
+          <div className="d-flex flex-column showPassword2 mt-4 inputBox pb-3">
+            <label>Password</label>
+            <div
+              className="d-flex align-items-center justify-content-center"
+            >
+              <input
+                name="password"
+                type={showPassword2 ? "text" : "password"}
+                className="p-1 ps-1 text-white"
+                // disabledShowPassword={true}
+                onChange={forgotPasswordChangeHandler}
+                required
+              />
+              {showPassword2 ? (
+                <FaEye
+                  className="icon eyeIcon"
+                  onClick={() => setShowPassword2(false)}
+                />
+              ) : (
+                <FaEyeSlash
+                  className="icon eyeIcon"
+                  onClick={() => setShowPassword2(true)}
+                />
+              )}
+            </div>
+          </div>
+          <div className="d-flex flex-column showPassword3 inputBox pb-3">
+            <label>Confirm Password</label>
+            <div
+              className="d-flex align-items-center justify-content-center"
+            >
+              <input
+                name="confirmPassword"
+                type={showPassword3 ? "text" : "password"}
+                className="p-1 ps-1 text-white"
+                // disabledShowPassword={true}
+                onChange={forgotPasswordChangeHandler}
+                required
+              />
+              {showPassword3 ? (
+                <FaEye
+                  className="icon eyeIcon"
+                  onClick={() => setShowPassword3(false)}
+                />
+              ) : (
+                <FaEyeSlash
+                  className="icon eyeIcon"
+                  onClick={() => setShowPassword3(true)}
+                />
+              )}
+            </div>
+          </div>
+          <button type="submit">Reset Password</button>
+        </form>
+      )
+    } else {return null};
+  }
 
   return (
     <div className="w-100 overflow-hidden position-relative">
-      <button className="position-absolute homeBtn fs-5 p-1 px-2 rounded-3 d-flex align-items-center fw-bold" style={{border: currentLoginBox ? '2px solid var(--yellowTextColor)' : '2px solid black' , color: currentLoginBox ? 'var(--yellowTextColor)' : 'black' ,
-        transition: 'all 0.9s ease'
-        }}><FaArrowLeft className="me-2" />Home</button>
-      <div className={`loginPage d-flex ${currentLoginBox ? 'onLogin' : 'onSignUp'}`} >
+      <div
+        className={`otpBackground position-absolute ${
+          !isOTPclose || blurBackground ? "active" : ""
+        } `}
+      >
+        <div className="d-flex justify-content-center align-items-center w-100 h-100">
+          <div className={`passwordChangeBox position-relative ${forgotPasswordStatus}`}>
+            
+              <FaRegCircleXmark className="position-absolute closeIcon"
+                onClick={() => {
+                  setBlurBackground(false);
+                  setForgotPasswordStatus("close");
+                  setForgotPasswordData(defaultForgotPasswordData);
+                  otpRef2.current.map((e) => (e.value = ""));
+                }}
+              />
+
+            {forgotPasswordContent(forgotPasswordStatus)}
+          </div>
+          <div
+            className="otpBox"
+            style={{ display: isOTPclose ? "none" : undefined }}
+          >
+            <form
+              className="w-100 h-100 position-relative"
+              method="POST"
+              onSubmit={otpSubmit}
+            >
+              <div className="position-absolute closeBox">
+                <FaRegCircleXmark
+                  onClick={() => {
+                    setisOTPclose(true),
+                      otpRef.current.map((e) => (e.value = ""));
+                  }}
+                />
+              </div>
+              <div className="iconBox mt-3">
+                <MdMail className="icon" />
+              </div>
+              <h2 className="text-white fw-bolder text-center head">
+                Verify Your Email
+              </h2>
+              <p className="text-white  text-center text ">
+                Please Enter The Verification Code We Send <br /> To{" "}
+                <span className="emailText">{signUpData.email}</span>
+              </p>
+              <div className="otpInputsBox">
+                {Array.from({ length: 6 }).map((_, index) => (
+                  <input
+                    maxLength="1"
+                    type="text"
+                    inputMode="numeric"
+                    onChange={otpHandleChange}
+                    onKeyDown={otpHandleKeyDown}
+                    ref={(element) => (otpRef.current[index] = element)}
+                  />
+                ))}
+              </div>
+              <button className="verifyBtn mt-2">Verify</button>
+              <p className="resendText">
+                {" "}
+                Didn’t get the code? <span  onClick={()=> generateOTP(signUpData.email, true)} >Resend</span>
+              </p>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <NavLink to="/" > <button
+        className="position-absolute homeBtn fs-5 p-1 px-2 rounded-3 d-flex align-items-center fw-bold"
+        style={{
+          border: currentLoginBox
+            ? "2px solid var(--yellowTextColor)"
+            : "2px solid black",
+          color: currentLoginBox ? "var(--yellowTextColor)" : "black",
+          transition: "all 0.9s ease",
+        }}
+      >
+        <FaArrowLeft className="me-2" />
+        Home
+      </button> </NavLink>
+      <div
+        className={`loginPage d-flex ${
+          currentLoginBox ? "onLogin" : "onSignUp"
+        }`}
+      >
         <div className="loginBox d-flex justify-content-center align-items-center">
-          <form className="loginForm text-white">
+          <form
+            className="loginForm text-white"
+            method="post"
+            onSubmit={loginFormSubmit}
+          >
             <h1 className="heading fw-bold mt-1">Login</h1>
             <p className="subHeading mt-3">
               Welcome back! Let’s get started by logging into your account
             </p>
             <div className="d-flex flex-column inputBox pb-3">
               <label>Email</label>
-              <div className="d-flex align-items-center justify-content-center">
-                <input type="email" className="p-1 ps-1 text-white" required />
+              <div
+                className="d-flex align-items-center justify-content-center"
+                style={{ borderColor: changeBorder.email ? "red" : undefined }}
+              >
+                <input
+                  type="email"
+                  name="email"
+                  onChange={LoginChangeHandler}
+                  className="p-1 ps-1 text-white"
+                  required
+                />
                 <MdOutlineMailOutline className="icon" />
               </div>
             </div>
-            <div className="d-flex flex-column inputBox">
+            <div className="d-flex flex-column inputBox passwordBox">
               <label>Password</label>
-              <div className="d-flex align-items-center justify-content-center">
+              <div
+                className="d-flex align-items-center justify-content-center"
+                style={{
+                  borderColor: changeBorder.password ? "red" : undefined,
+                }}
+              >
                 <input
+                  name="password"
+                  onChange={LoginChangeHandler}
                   type={showPassword ? "text" : "password"}
                   className="p-1 ps-1 text-white"
                   // disabledShowPassword={true}
@@ -40,37 +551,71 @@ function LoginPage() {
                 />
                 {showPassword ? (
                   <FaEye
-                    className="icon"
+                    className="icon eyeIcon"
                     onClick={() => setShowPassword(false)}
                   />
                 ) : (
                   <FaEyeSlash
-                    className="icon"
+                    className="icon eyeIcon"
                     onClick={() => setShowPassword(true)}
                   />
                 )}
               </div>
             </div>
             <div className="checkBox mt-3 d-flex align-items-center">
-              <input type="checkBox" className="form-check-input" />
+              <input
+                type="checkbox"
+                name="rememberMe"
+                onChange={LoginChangeHandler}
+                className="form-check-input"
+              />
               <label className="ms-2">Remember me</label>
-              <p className="m-0 mt-1 ms-auto yellowText text-end">
+              <p
+                className="forgetPasswordText m-0 mt-1 ms-auto yellowText text-end"
+                onClick={() =>{setBlurBackground(true); setForgotPasswordStatus("emailTake")}}
+              >
                 Forgot Passoword?
               </p>
             </div>
-            <button className="w-100 mt-3 rounded-3 p-1 fw-bold text-white">
+            <button
+              type="submit"
+              className="w-100 mt-3 rounded-3 p-1 fw-bold text-white"
+            >
               Login
             </button>
             <p className="m-0 mt-3 lastLine">
-              Don't have an account? <span className="yellowText" onClick={()=>setCurrentLoginBox(false)}>Sign Up</span>
+              Don't have an account?{" "}
+              <span
+                className="yellowText"
+                onClick={() => setCurrentLoginBox(false)}
+              >
+                Sign Up
+              </span>
             </p>
           </form>
         </div>
-        <div className="imgBox d-none d-lg-flex justify-content-center align-items-center" style={{borderRadius: currentLoginBox ? '20% 0 0 20%' : '0 20% 20% 0', transition: 'border-radius 1.5s ease' }}>
-          <img src={img1} alt="" className=" boyImg " style={{transform: currentLoginBox ? 'rotateY(0deg)' : 'rotateY(180deg)', transition: 'transform 0.7s ease'}} />
+        <div
+          className="imgBox d-none d-lg-flex justify-content-center align-items-center"
+          style={{
+            borderRadius: currentLoginBox ? "20% 0 0 20%" : "0 20% 20% 0",
+            transition: "border-radius 1.5s ease",
+          }}
+        >
+          <img
+            src={img1}
+            alt=""
+            className=" boyImg "
+            style={{
+              transform: currentLoginBox ? "rotateY(0deg)" : "rotateY(180deg)",
+              transition: "transform 0.7s ease",
+            }}
+          />
         </div>
         <div className="signUpBox d-flex justify-content-center align-items-center">
-          <form className="signUpForm text-white pt-3">
+          <form
+            className="signUpForm text-white pt-3"
+            onSubmit={signUpFormSubmit}
+          >
             <h1 className="heading fw-bold ">Sign Up</h1>
             <p className="subHeading mt-3">
               Sign up to connect with great companies and exciting career
@@ -79,7 +624,9 @@ function LoginPage() {
             <div className="d-flex flex-column inputBox pb-3">
               <label>Full Name</label>
               <input
+                onChange={signUpChangeHandler}
                 type="text"
+                name="name"
                 className="w-100 p-1 ps-2 text-white nameInput"
                 required
               />
@@ -87,7 +634,13 @@ function LoginPage() {
             <div className="d-flex flex-column inputBox pb-3">
               <label>Email</label>
               <div className="d-flex align-items-center justify-content-center">
-                <input type="email" className="p-1 ps-1 text-white" required />
+                <input
+                  type="email"
+                  onChange={signUpChangeHandler}
+                  name="email"
+                  className="p-1 ps-1 text-white"
+                  required
+                />
                 <MdOutlineMailOutline className="icon" />
               </div>
             </div>
@@ -95,6 +648,8 @@ function LoginPage() {
               <label>Password</label>
               <div className="d-flex align-items-center justify-content-center">
                 <input
+                  onChange={signUpChangeHandler}
+                  name="password"
                   type={showPassword ? "text" : "password"}
                   className="p-1 ps-1 text-white"
                   // disabledShowPassword={true}
@@ -118,36 +673,49 @@ function LoginPage() {
               <div className="d-flex align-items-center mt-2">
                 <div>
                   <input
+                    onChange={signUpChangeHandler}
                     className="form-check-input"
+                    value="jobSeeker"
                     type="radio"
-                    name="registerAs"
+                    name="userType"
                     defaultChecked
                   />
-                  <label className="ms-2">Job Seeker</label>
+                  <label className="ms-2">JobSeeker</label>
                 </div>
                 <div className="ms-4">
                   <input
+                    onChange={signUpChangeHandler}
                     className="form-check-input"
                     type="radio"
-                    name="registerAs"
+                    name="userType"
+                    value="recruiter"
                   />
-                  <label className="ms-2">Employer</label>
+                  <label className="ms-2">Recruiter</label>
                 </div>
               </div>
             </div>
             <div className="checkBox d-flex align-items-center">
               <input className="form-check-input" type="checkBox" required />
               <label className="ms-2">
-                i agree with the 
+                i agree with the
                 <span className="yellowText"> Terms of services</span> and
                 <span className="yellowText"> Privacy Policy</span>
               </label>
             </div>
-            <button className="w-100 mt-3 rounded-3 p-1 fw-bold text-white">
+            <button
+              type="submit"
+              className="w-100 mt-3 rounded-3 p-1 fw-bold text-white"
+            >
               Sign Up
             </button>
             <p className="m-0 mt-3 lastLine">
-              Already have an account? <span className="yellowText"  onClick={()=>setCurrentLoginBox(true)} >Login</span>
+              Already have an account?{" "}
+              <span
+                className="yellowText"
+                onClick={() => setCurrentLoginBox(true)}
+              >
+                Login
+              </span>
             </p>
           </form>
         </div>

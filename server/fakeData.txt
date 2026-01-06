@@ -8,7 +8,7 @@ const RecruitersData = [
     lastLogin: new Date(),
     company: {
       name: "TechIndia",
-      logo: "https://example.com/logos/techindia.png",
+      // logo: "https://example.com/logos/techindia.png",
       about: `TechIndia is a leading technology solutions company based in India. We specialize in web development, cloud solutions, and enterprise applications.\nOur team focuses on delivering innovative products to clients across India and globally, emphasizing collaboration, learning, and continuous innovation. We offer a culture of mentorship, continuous training, and exposure to challenging projects that develop both technical and soft skills. Our vision is to empower businesses with reliable, scalable, and cutting-edge technology while promoting a collaborative and growth-oriented work environment.\nTechIndia has consistently focused on nurturing a dynamic team that thrives in fast-paced and complex technological landscapes. By leveraging a combination of deep industry knowledge, technical expertise, and a commitment to excellence, we aim to solve some of the most challenging problems faced by businesses today. Our engineers and consultants work in cross-functional teams, combining their skills to create solutions that are not only robust but also adaptable to changing market demands.\nThe company encourages ongoing education and skill development. Employees participate in workshops, certifications, and global conferences, fostering a culture of continuous learning. We have established internal knowledge-sharing programs where teams present innovations, case studies, and lessons learned from client projects. This ensures that knowledge is democratized and everyone has the opportunity to grow.\nOur project portfolio spans multiple industries including finance, healthcare, retail, and education. Each project is approached with a client-centric mindset, emphasizing the understanding of business objectives, technological feasibility, and user experience. By applying agile methodologies and modern development practices, we ensure that projects are delivered on time and meet high-quality standards.\nTechIndia is also deeply committed to social responsibility. Through initiatives like tech mentorship programs, coding bootcamps for underprivileged youth, and participation in open-source projects, we aim to contribute positively to society. Sustainability and ethical technology practices are core to our decision-making process.\nAs we expand globally, our vision remains clear: to be a trusted technology partner for businesses seeking digital transformation. By maintaining a strong focus on innovation, employee growth, and client satisfaction, TechIndia continues to set benchmarks in the tech industry.\nWith a team that is passionate, creative, and driven, we believe that technology can empower businesses to achieve more, improve efficiency, and create meaningful impact in communities worldwide.`, // >700 words
       founded: new Date("2010-06-15"),
       employees: "500+",
@@ -18,7 +18,7 @@ const RecruitersData = [
         emailId: "contact@techindia.com",
         twitter: "https://twitter.com/techindia",
         facebook: "https://facebook.com/techindia",
-        linkedin: "https://linkedin.com/company/techindia",
+        linkedin: "https://linkedin.com/techindia",
         website: "https://www.techindia.com",
       },
     },
@@ -31,7 +31,7 @@ const RecruitersData = [
     lastLogin: new Date(),
     company: {
       name: "HealthCare India",
-      logo: "https://example.com/logos/healthcareindia.png",
+      //logo: "https://example.com/logos/healthcareindia.png",
       about: `HealthCare India provides advanced healthcare solutions across India. We develop secure and scalable platforms to improve hospital and clinic operations, patient care, and data analytics.\nOur teams collaborate across disciplines to provide innovative solutions that contribute to a healthier society. We emphasize ethical responsibility, continuous learning, and cross-functional teamwork. We also support research and development projects that bring impactful solutions to healthcare challenges and enable data-driven decision making for medical institutions.\nOur organization has grown to include a wide range of specialized departments, each focusing on improving patient outcomes through cutting-edge technology. From electronic health records to AI-driven diagnostics, our solutions are designed to reduce inefficiencies and enhance healthcare delivery. Each team member is encouraged to innovate and share insights that can improve patient care across India.\nWe conduct workshops, seminars, and training sessions to ensure that our staff and partners are up-to-date with the latest medical technologies and practices. Collaboration with universities and research institutions enables us to participate in groundbreaking medical research, ensuring that our solutions are evidence-based and impactful.\nEthics and patient confidentiality are core principles that guide our operations. HealthCare India invests in secure data management systems and employs best practices to protect sensitive health information. Our culture promotes transparency, accountability, and a relentless focus on improving patient care.\nBy combining technology, research, and a commitment to healthcare excellence, HealthCare India continues to be at the forefront of transforming healthcare services across the nation. We are committed to creating a future where healthcare is accessible, effective, and patient-centered, impacting the lives of millions positively.`, // >700 words
       founded: new Date("2010-06-15"),
       employees: "1200+",
@@ -41,7 +41,7 @@ const RecruitersData = [
         emailId: "contact@healthcareindia.com",
         twitter: "https://twitter.com/healthcareindia",
         facebook: "https://facebook.com/healthcareindia",
-        linkedin: "https://linkedin.com/company/healthcareindia",
+        linkedin: "https://linkedin.com/healthcareindia",
         website: "https://www.healthcareindia.com",
       },
     },
@@ -54,7 +54,7 @@ const RecruitersData = [
     lastLogin: new Date(),
     company: {
       name: "FinTech India",
-      logo: "https://example.com/logos/fintechindia.png",
+      //logo: "https://example.com/logos/fintechindia.png",
       about: `FinTech India is a financial technology company focused on digital banking, payment solutions, and blockchain innovations.\nWe aim to make financial services accessible, secure, and efficient across India. Our culture values creativity, problem-solving, and continuous improvement, and we invest heavily in employee development and industry-leading technology research.\nOur team works on developing platforms that enable seamless financial transactions, promote financial literacy, and integrate modern technologies like blockchain, AI, and big data analytics. We provide services that cater to banks, startups, and individual consumers, helping them navigate the complexities of the modern financial ecosystem.\nEmployee growth and skill development are central to our philosophy. We encourage learning new technologies, attending workshops, and sharing knowledge across teams. By fostering a culture of innovation, we ensure that our employees are empowered to contribute to the company’s success while also advancing their personal careers.\nPartnerships with financial institutions, regulatory bodies, and technology providers ensure that our solutions comply with industry standards and maintain high levels of security. By continually analyzing market trends and customer feedback, we adapt our products to meet evolving needs.\nAt FinTech India, we are committed to building a future where financial services are inclusive, secure, and customer-centric. Our initiatives include digital payment solutions for underserved communities, blockchain-based transparent transaction platforms, and AI-powered financial advisory tools. We envision a world where technology and finance come together to empower individuals and organizations alike.\nBy combining innovation, ethical responsibility, and continuous improvement, FinTech India stands as a leader in the fintech sector, transforming financial services across India.`, // >700 words
       founded: new Date("2010-06-15"),
       employees: "350+",
@@ -64,7 +64,7 @@ const RecruitersData = [
         emailId: "contact@fintechindia.com",
         twitter: "https://twitter.com/fintechindia",
         facebook: "https://facebook.com/fintechindia",
-        linkedin: "https://linkedin.com/company/fintechindia",
+        linkedin: "https://linkedin.com/fintechindia",
         website: "https://www.fintechindia.com",
       },
     },
@@ -162,9 +162,9 @@ const JobSeekerData = [
       phone: "+91-9876543210",
       email: "ananya.sharma@gmail.com",
       languages: "English, Hindi",
-      resume: "https://example.com/resumes/ananya.pdf",
-      profilePhoto: "https://example.com/photos/ananya.jpg",
-      banner: "https://example.com/banners/ananya.jpg",
+      //resume: "https://example.com/resumes/ananya.pdf",
+      //profilePhoto: "https://example.com/photos/ananya.jpg",
+      //banner: "https://example.com/banners/ananya.jpg",
       aboutMe: `I am a passionate and detail-oriented Frontend Developer with a strong foundation in modern web technologies and user interface development. My journey into web development started during my college years, where I discovered a deep interest in building interactive and visually appealing applications that solve real-world problems.\n
 Over time, I have developed strong expertise in JavaScript, React, HTML, and CSS, and I enjoy transforming complex requirements into intuitive user experiences. I strongly believe that a great product is built at the intersection of usability, performance, and clean code, and I continuously strive to achieve that balance in my work.\n
 I have hands-on experience working with responsive layouts, component-driven architecture, REST API integration, and performance optimization techniques. I am comfortable collaborating with designers, backend developers, and product managers to deliver seamless digital experiences. I value clean code, reusable components, and scalable architecture.\n
@@ -220,9 +220,9 @@ My coursework and projects helped me develop problem-solving skills, logical thi
       phone: "+91-9123456780",
       email: "rohan.kumar@gmail.com",
       languages: "English, Telugu",
-      resume: "https://example.com/resumes/rohan.pdf",
-      profilePhoto: "https://example.com/photos/rohan.jpg",
-      banner: "https://example.com/banners/rohan.jpg",
+      //resume: "https://example.com/resumes/rohan.pdf",
+      //profilePhoto: "https://example.com/photos/rohan.jpg",
+      //banner: "https://example.com/banners/rohan.jpg",
       aboutMe: `I am an aspiring Data Analyst with a strong analytical mindset and a passion for working with data to uncover meaningful insights. My interest in data analytics developed during my academic studies, where I explored statistics, data visualization, and real-world datasets.\n
 I have hands-on experience using Excel, Python, and SQL for data cleaning, analysis, and reporting. I enjoy transforming raw data into structured information that helps organizations make informed decisions. I am particularly interested in healthcare and finance analytics.\n
 I am highly detail-oriented, curious, and driven by problem-solving. I enjoy working with large datasets, identifying trends, and presenting findings in a clear and concise manner. I continuously work on improving my analytical and technical skills through practice and learning.\n

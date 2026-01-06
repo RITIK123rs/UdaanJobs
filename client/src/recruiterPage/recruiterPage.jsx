@@ -14,6 +14,8 @@ import { useEffect } from "react";
 import Profile from "../jobseekerPage/profile";
 import JobDetail from "../jobseekerPage/jobDetail";
 import EditCompanyProfile from "./editCompanyProfile";
+import { ImExit } from "react-icons/im";
+import { NavLink, useNavigate } from "react-router-dom";
 
 export default function RecruiterPage({ addMessageBox }) {
   const [activeContent, setActiveContent] = useState("dashboard");
@@ -23,6 +25,7 @@ export default function RecruiterPage({ addMessageBox }) {
   const [viewPostId, setViewPostId] = useState();
   const [viewPostData, setViewPostData] = useState();
   const [jobSeekerJobPost, setJobSeekerJobPost] = useState();
+  const navigate=useNavigate();
 
   const renderContent = () => {
     switch (activeContent) {
@@ -120,7 +123,9 @@ export default function RecruiterPage({ addMessageBox }) {
   }, [viewPostId]);
 
   async function getRecruiterData() {
-    await fetch("http://localhost:3200/recruiter")
+    await fetch(`http://localhost:3200/recruiter`, {
+      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+    })
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
@@ -138,9 +143,9 @@ export default function RecruiterPage({ addMessageBox }) {
       <div className="row">
         <div className="col-3 menuBox d-flex flex-column">
           <div className="d-flex justify-content-center mt-4">
-            <a
+            <NavLink
+              to="/"
               className="logoName text-decoration-none fw-bold fs-3 text-white"
-              href="#"
             >
               <img
                 src={logo}
@@ -149,7 +154,7 @@ export default function RecruiterPage({ addMessageBox }) {
                 className="d-inline-block align-text-top me-3 mt-1"
               />
               Udaan<span className="yellowText">Jobs</span>
-            </a>
+            </NavLink>
           </div>
 
           <div className="menuList mt-5">
@@ -196,13 +201,34 @@ export default function RecruiterPage({ addMessageBox }) {
             </ul>
           </div>
 
-          <div className="loginBox w-100 mt-auto mb-3 d-flex align-items-center ps-3">
-            <div className="rounded-circle overflow-hidden menuImgBox">
-              <img src={img} alt="" width="100%" />
+          <div className="loginBox w-100 mt-auto mb-2 ps-3">
+            <div
+              className="dropMenu mb-2 me-2"
+              onClick={() => {
+                localStorage.clear();
+                navigate("/");
+              }}
+            >
+              <ImExit className="icon" /> EXIT
             </div>
-            <div className="ms-3 text-white">
-              <p className="personName m-0 fw-bold">Ritik Singh</p>
-              <p className="emailId m-0">ritiksingh123@gmail.com</p>
+            <div className="w-100 mt-auto d-flex align-items-center">
+              <div className="rounded-circle overflow-hidden menuImgBox">
+                <img
+                  src={
+                    recruiterData?.company?.logo || null
+                      ? `http://localhost:3200/upload/${recruiterData?.company?.logo}`
+                      : "http://localhost:3200/defaultImage/defaultCompanyImg.jpg"
+                  }
+                  alt=""
+                  width="100%"
+                />
+              </div>
+              <div className="ms-2 text-white">
+                <p className="personName m-0 fw-bold fs-5">
+                  {recruiterData?.company?.name}
+                </p>
+                <p className="emailId m-0">{recruiterData?.email}</p>
+              </div>
             </div>
           </div>
         </div>

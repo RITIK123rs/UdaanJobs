@@ -12,6 +12,11 @@ div{
 .jobSeekerPage {
   height: 98vh;
 }
+
+.jobSeekerPage .exitIcon{
+  color: red;
+  font-size: 27px;
+}
 .jobSeekerPage .menuBox {
   height: 98vh;
   border-right: 2px solid white;
@@ -290,7 +295,7 @@ div{
 .profile .banner {
   border: 2px solid white;
   height: 120px;
-  background: yellow#00ff99;
+  background: yellow;
 }
 .profile .nameBox .imgBox {
   width: 110px;
@@ -388,9 +393,7 @@ div{
   display: flex;
   margin-top: 20px;
 }
-.editProfile form {
-  padding: 0 20px 0 20px;
-}
+
 .editProfile .formGroup {
   width: 50%;
   margin-top: 20px;
@@ -612,7 +615,7 @@ div{
 .status.rejected,
 .jobApply .status .rejected {
   color: red;
-  border-color: red;
+  border: 2px solid red;
 }
 
 .jobApply .actionBox .btn {
@@ -650,3 +653,34 @@ div{
 .findJob .companyName{
   cursor: pointer;
 }
+
+
+.jobSeekerPage .dropMenu{
+  display: none;
+  border: 1px solid red;
+  max-width: 29%;
+  color: red;
+  font-weight: bold;
+  font-size: 20px;
+  border-radius: 20px;
+  padding: 2px 0 4px 15px;
+  background: rgba(255, 255, 255, 0.03);
+  animation: exitBoxAni 0.5s ease forwards;
+}
+@keyframes exitBoxAni {
+  0%{
+    transform: translateX(-70px);
+     opacity: 0;
+  }
+  100%{
+    transform: translateX(0px);
+     opacity: 1;
+  }
+}
+.jobSeekerPage .loginBox:hover > .dropMenu{
+  display: block;
+  cursor: pointer;
+}
+
+
+

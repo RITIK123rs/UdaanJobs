@@ -534,7 +534,6 @@ textarea::-webkit-scrollbar,
   background: #1C1C1C;
 }
 
-
 .editCompanyProfile .formRow {
   display: flex;
   gap: 20px;
@@ -646,4 +645,37 @@ textarea::-webkit-scrollbar,
 .editCompanyProfile textarea{
   margin-top: -10px;
   margin-right: 20px;
+  resize: vertical;
+}
+
+.recruiterPage .menuImgBox{
+  width: 58px;
+  height: 58px;
+}
+
+.recruiterPage .dropMenu{
+  display: none;
+  border: 1px solid red;
+  max-width: 29%;
+  color: red;
+  font-weight: bold;
+  font-size: 20px;
+  border-radius: 20px;
+  padding: 2px 0 4px 15px;
+  background: rgba(255, 255, 255, 0.03);
+  animation: exitBoxAni 0.5s ease forwards;
+}
+@keyframes exitBoxAni {
+  0%{
+    transform: translateX(-70px);
+     opacity: 0;
+  }
+  100%{
+    transform: translateX(0px);
+     opacity: 1;
+  }
+}
+.recruiterPage .loginBox:hover > .dropMenu{
+  display: block;
+  cursor: pointer;
 }
