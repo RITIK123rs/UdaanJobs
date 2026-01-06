@@ -6,12 +6,11 @@ import { dateFormat } from "../utils/dateFormat";
 
 export default function JobDetail({setActiveContent, selectData, previousComponent,addMessageBox, isRecruiter=false}) {
 
-  console.log(selectData);
 
   async function applyJob(object) {
-    await fetch("http://localhost:3200/jobseeker/apply", {
+    await fetch(`http://localhost:3200/jobseeker/apply`, {
       method: "PUT",
-      headers: { "Content-Type": "application/json" },
+      headers: { "Content-Type": "application/json", "Authorization": `Bearer ${localStorage.getItem("token")}` },
       body: JSON.stringify(object),
     })
       .then((res) => res.json())

@@ -45,7 +45,9 @@ function DashBoard({JobSeekerData}){
       <div className="dbList d-flex  flex-column justify-content-evenly">
         { (JobSeekerData?.application?.appliedJobs || []).slice(0,5).map(( data , i) => (
           <div key={data._id} className="d-flex flex-row justify-content-around py-2">
-            <div className="imgBox rounded-circle mt-1"></div>
+            <div className="imgBox rounded-circle mt-1">
+              <img className="w-100 h-100 companyLogo" src={ (data?.jobId?.recruiter?.company?.logo || null ) ? `http://localhost:3200/upload/${data?.jobId?.recruiter?.company?.logo}`  : ("http://localhost:3200/defaultImage/defaultCompanyImg.jpg") } alt="" />
+            </div>
 
             <div className="nameBox d-flex flex-column justify-content-center ">
               <h4 className="m-0 mb-1">{data.jobId?.role}</h4>
@@ -58,7 +60,7 @@ function DashBoard({JobSeekerData}){
             </div>
 
             <div className="statusBox d-flex justify-content-center align-items-center">
-              <div className={`status fw-bold px-3 d-flex align-items-center text-uppercase ${data?.status}`}>
+              <div className={`status fs-5 fw-bold px-3 d-flex align-items-center text-uppercase ${data?.status}`}>
                 {data?.status}
               </div>
               

@@ -6,6 +6,8 @@ const cors= require("cors");
 const jobseekerRouter= require("./routes/jobseekerPage");
 const multerRouter= require("./routes/multer");
 const recruiterRoter= require("./routes/recruiterPage");
+const loginRouter=require("./routes/loginPage");
+const homeRouter= require("./routes/homePage");
 const fs= require("fs");
 
 dotenv.config();
@@ -19,6 +21,8 @@ app.use("/defaultImage", express.static('defaultImage'));
 app.use("/jobseeker",jobseekerRouter);
 app.use("/fileHandle",multerRouter);
 app.use("/recruiter",recruiterRoter);
+app.use("/login",loginRouter);
+app.use("/home",homeRouter);
 
 app.listen(process.env.port_no,()=>{
   console.log(`server running on http://localhost:${process.env.port_no}`);

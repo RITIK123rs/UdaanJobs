@@ -40,9 +40,9 @@ export default function PostJob({
         .filter((skill) => skill != ""),
     };
     try {
-      const res = await fetch("http://localhost:3200/recruiter/postJob", {
+      const res = await fetch(`http://localhost:3200/recruiter/postJob`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json", "Authorization": `Bearer ${localStorage.getItem("token")}` },
         body: JSON.stringify(data),
       });
       const result = await res.json();
@@ -116,7 +116,6 @@ export default function PostJob({
         onSubmit={isEditPost ? postEditJobPostData : postJobPostData}
         className="mainSection"
         method="POST"
-        
       >
         <section className="formSection">
           <h3 className="heading">Job Information</h3>
@@ -260,7 +259,7 @@ export default function PostJob({
           <textarea
             rows="2"
             name="skillsRequired"
-            placeholder="Enter required skills"
+            placeholder="Enter required skills (e.g. React, Node, MongoDB)"
             value={jobPostData?.skillsRequired}
             onChange={handleChange}
             required
@@ -280,16 +279,7 @@ export default function PostJob({
         </section>
 
         <div className="endBtn mt-5 mb-4 w-100 d-flex justify-content-center">
-          <button type="submit" className="saveBtn py-1" onClick={()=>{
-            if(!isEditPost){
-            for(let key in jobPostData){
-              if(jobPostData[key]==""){
-                addMessageBox("Warning","Please fill all details carefully");
-                break;
-              }
-            }
-          }
-          }} >
+          <button type="submit" className="saveBtn py-1" >
             {isEditPost ? "Update Post" : "Post Job"}
           </button>
         </div>

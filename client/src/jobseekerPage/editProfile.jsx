@@ -25,6 +25,7 @@ function EditProfile({
     education: JobSeekerData.personalInfo?.education || [],
   });
 
+
   const handleChangeEditData = (e) => {
     const { name, value } = e.target;
     console.log(`${name} : ${value}`);
@@ -63,7 +64,7 @@ function EditProfile({
         {
           ["jobTitle"]: experienceData.experienceJobTitle,
           ["companyName"]: experienceData.companyName,
-          ["city"]: experienceData.city,
+          ["city"]: experienceData.experienceCity,
           ["jobType"]: experienceData.jobType,
           ["jobPeriod"]: experienceData.jobPeriod,
           ["details"]: experienceData.experienceDetails,
@@ -139,7 +140,8 @@ function EditProfile({
     }));
   };
 
-  const saveEditData = async () => {
+  const saveEditData = async (e) => {
+     e.preventDefault();
     var data = { ...editData };
     data.skills = data.skills
       .split(",")
@@ -147,9 +149,9 @@ function EditProfile({
       .filter((info) => info != "");
     // console.log(data);
 
-    await fetch("http://localhost:3200/jobseeker/editProfile", {
+    await fetch(`http://localhost:3200/jobseeker/editProfile`, {
       method: "PUT",
-      headers: { "content-Type": "application/json" },
+      headers: { "content-Type": "application/json", "Authorization": `bearer ${localStorage.getItem("token")}`},
       body: JSON.stringify(data),
     })
     .then((res) => res.json())
@@ -166,8 +168,9 @@ function EditProfile({
 
     // console.log([...fileData.entries()]);
 
-    await fetch("http://localhost:3200/fileHandle/jobseeker", {
+    await fetch(`http://localhost:3200/fileHandle/jobseeker`, {
       method: "PUT",
+      headers: { "Authorization": `bearer ${localStorage.getItem("token")}`  },
       body: fileData,
     })
     .then((res) => res.json())
@@ -180,6 +183,7 @@ function EditProfile({
     setActiveContent("profile");
     console.log("change to profile");
     addMessageBox("check", "Profile updated successfully.");
+    return;
   };
 
   return (
@@ -193,7 +197,7 @@ function EditProfile({
         <FaArrowLeft className="me-2" />
         BACK
       </button>
-      <div>
+      <form onSubmit={saveEditData} method="post" >
         <section className="formSection">
           <h3 className="heading">Personal Information</h3>
           <div className="formRow d-flex">
@@ -215,6 +219,7 @@ function EditProfile({
                 placeholder="Your job title"
                 value={editData.jobTitle}
                 onChange={handleChangeEditData}
+                required
               />
             </div>
           </div>
@@ -228,6 +233,7 @@ function EditProfile({
                 placeholder="Your city"
                 value={editData.city}
                 onChange={handleChangeEditData}
+                required
               />
             </div>
             <div className="formGroup d-flex flex-column">
@@ -238,6 +244,7 @@ function EditProfile({
                 placeholder="Your email address"
                 value={editData.email}
                 onChange={handleChangeEditData}
+                required
               />
             </div>
           </div>
@@ -251,6 +258,7 @@ function EditProfile({
                 placeholder="Your phone number"
                 value={editData.phone}
                 onChange={handleChangeEditData}
+                required
               />
             </div>
             <div className="formGroup d-flex flex-column">
@@ -362,6 +370,7 @@ function EditProfile({
 
         <section className="Section mt-5 position-relative p-0">
           <button
+            type="button"
             className="addBtn position-absolute"
             onClick={addExperienceData}
           >
@@ -458,6 +467,7 @@ function EditProfile({
 
         <section className="Section mt-5 position-relative p-0">
           <button
+            type="button"
             className="addBtn position-absolute"
             onClick={addEducationData}
           >
@@ -536,11 +546,11 @@ function EditProfile({
         </section>
 
         <div className="endBtn mt-5 mb-4 w-100 d-flex">
-          <button className="saveBtn py-1" onClick={saveEditData}>
+          <button type="submit" className="saveBtn py-1" >
             Save Profile
           </button>
         </div>
-      </div>
+      </form>
     </div>
   );
 }

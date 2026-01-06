@@ -13,6 +13,8 @@ import Profile from "./profile";
 import EditProfile from "./editProfile";
 import JobDetail from "./jobDetail";
 import CompanyProfile from "../recruiterPage/companyProfile";
+import { ImExit } from "react-icons/im";
+import { NavLink, useNavigate } from "react-router-dom";
 
 function JobSeekerPage({ addMessageBox }) {
   const [JobSeekerData, setJobSeekerData] = useState({});
@@ -21,9 +23,12 @@ function JobSeekerPage({ addMessageBox }) {
   const [previousComponent, setPreviousComponent] = useState();
   const [recruiterData, setRecruiterData] = useState({});
   const [recruiterId, setRecruiterId] = useState("");
+  const navigate = useNavigate();
 
   async function fetchData() {
-    await fetch("http://localhost:3200/jobseeker")
+    await fetch(`http://localhost:3200/jobseeker`, {
+      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+    })
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
@@ -35,7 +40,9 @@ function JobSeekerPage({ addMessageBox }) {
   useEffect(() => {
     console.log(recruiterId);
     async function getRecruiterData() {
-      await fetch(`http://localhost:3200/jobseeker/recruiter/${recruiterId}`)
+      await fetch(`http://localhost:3200/jobseeker/recruiter/${recruiterId}`, {
+        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+      })
         .then((res) => res.json())
         .then((data) => {
           console.log(data);
@@ -117,9 +124,9 @@ function JobSeekerPage({ addMessageBox }) {
       <div className="row">
         <div className="col-3 menuBox d-flex flex-column">
           <div className="d-flex justify-content-center mt-4">
-            <a
+            <NavLink
+              to="/"
               className="logoName text-decoration-none fw-bold fs-3 text-white"
-              href="#"
             >
               <img
                 src={logo}
@@ -128,7 +135,7 @@ function JobSeekerPage({ addMessageBox }) {
                 className="d-inline-block align-text-top me-3 mt-1"
               />
               Udaan<span className="yellowText">Jobs</span>
-            </a>
+            </NavLink>
           </div>
           <div className="menuList mt-5 ">
             <ul type="none" className="text-white p-0">
@@ -168,13 +175,34 @@ function JobSeekerPage({ addMessageBox }) {
               </li>
             </ul>
           </div>
-          <div className="loginBox w-100 mt-auto mb-3 d-flex align-items-center ps-3">
-            <div className="rounded-circle overflow-hidden menuImgBox">
-              <img src={img} alt="" width="100%" />
-            </div>
-            <div className="ms-3 text-white">
-              <p className="personName m-0 fw-bold">Ritik Singh</p>
-              <p className="emailId m-0">ritiksingh123@gmail.com</p>
+          <div className="loginBox w-100 mt-auto mb-2 ps-3">
+            <span
+              className="dropMenu mb-2 me-2"
+              onClick={() => {
+                localStorage.clear();
+                navigate("/");
+              }}
+            >
+              <ImExit className="icon" /> EXIT
+            </span>
+            <div className="w-100 mt-auto d-flex align-items-center">
+              <div className="rounded-circle overflow-hidden menuImgBox">
+                <img
+                  src={
+                    JobSeekerData?.personalInfo?.profilePhoto || null
+                      ? `http://localhost:3200/upload/${JobSeekerData.personalInfo.profilePhoto}`
+                      : `http://localhost:3200/defaultImage/defaultProfilePic.jpg`
+                  }
+                  alt=""
+                  width="100%"
+                />
+              </div>
+              <div className="ms-2 text-white">
+                <p className="personName m-0 fw-bold">
+                  {JobSeekerData.userName}
+                </p>
+                <p className="emailId m-0">{JobSeekerData.email}</p>
+              </div>
             </div>
           </div>
         </div>

@@ -7,6 +7,7 @@ import RecruiterPage from './recruiterPage/recruiterPage';
 import { FaCheckCircle } from "react-icons/fa";
 import { FaCircleXmark } from "react-icons/fa6";
 import { RiErrorWarningFill } from "react-icons/ri";
+import Router from './router';
 
 function App() {
 
@@ -40,11 +41,8 @@ function App() {
       }
     </div>
 
-    
-    {/* <HomePage /> */}
-    {/* <LoginPage /> */}
-    < JobSeekerPage addMessageBox={addMessageBox} />
-    < RecruiterPage addMessageBox={addMessageBox} />
+    < Router addMessageBox={addMessageBox} />
+  
     </>
   )
 }

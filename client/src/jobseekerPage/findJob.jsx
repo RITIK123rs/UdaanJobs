@@ -8,6 +8,7 @@ import { RiUser3Line } from "react-icons/ri";
 import { FaIndianRupeeSign } from "react-icons/fa6";
 import companyImg1 from "../assets/homepage/Netflix.png";
 
+
 function FindJob({ setActiveContent, setSelectData, fetchData , addMessageBox, setRecruiterId}) {
   const [findJobData, setFindJobData] = useState([]);
   const [searchData, setSearchData]= useState({
@@ -69,9 +70,9 @@ function FindJob({ setActiveContent, setSelectData, fetchData , addMessageBox, s
   }
 
   async function applyJob(object) {
-    await fetch("http://localhost:3200/jobseeker/apply", {
+    await fetch(`http://localhost:3200/jobseeker/apply`, {
       method: "PUT",
-      headers: { "Content-Type": "application/json" },
+      headers: { "Content-Type": "application/json", "Authorization": `Bearer ${localStorage.getItem("token")}` },
       body: JSON.stringify(object),
     })
       .then((res) => res.json())
@@ -146,7 +147,7 @@ function FindJob({ setActiveContent, setSelectData, fetchData , addMessageBox, s
       </div>
       <h4 className="recommendedJob my-4">Recommended Jobs</h4>
       <div className="jobList mt-3 d-flex flex-wrap gap-3">
-        {filterData.map((data) => (
+        {filterData?.map((data) => (
           <div className="jobCard pt-3 position-relative">
             <div className="head d-flex align-items-center mb-2">
               <div className="imgBox me-3">
@@ -155,32 +156,32 @@ function FindJob({ setActiveContent, setSelectData, fetchData , addMessageBox, s
               <div className="jobTitle">
                 <h5 className="mb-1 fw-bold">{data.role}</h5>
                 <p className="mb-0 fw-light companyName " onClick={()=> {setRecruiterId(data.recruiter._id); setActiveContent("companyProfile")}} >
-                  {data.recruiter.company.name}
+                  {data.recruiter?.company?.name}
                 </p>
               </div>
               <span className="agoBox position-absolute ">
-                {dayAgo(data.createdAt)}
+                {dayAgo(data?.createdAt)}
               </span>
             </div>
             <div className="jobDetail d-flex justify-content-between mb-2 flex-wrap">
               <div className="detailItem d-flex align-items-center">
                 <FaBriefcase className="me-1" />
-                <span>{data.jobType}</span>
+                <span>{data?.jobType}</span>
               </div>
               <div className="detailItem d-flex align-items-center">
                 <RiUser3Line className="me-1" />
-                <span>{data.experience} {data.experience!="fresher" ? "Years" : "" }</span>
+                <span>{data?.experience} {data?.experience!="fresher" ? "Years" : "" }</span>
               </div>
               <div className="detailItem d-flex align-items-center">
                 <RiMapPinLine className="me-1" />
-                <span>{data.location}</span>
+                <span>{data?.location}</span>
               </div>
               <div className="detailItem d-flex align-items-center">
                 <FaIndianRupeeSign className="me-1" />
-                <span>{data.salary}</span>
+                <span>{data?.salary}</span>
               </div>
             </div>
-            <div className="description mb-4">{data.jobDescription}</div>
+            <div className="description mb-4">{data?.jobDescription}</div>
             <div className="buttonBox d-flex gap-2">
               <button
                 className="btn detailBtn w-50"
@@ -192,7 +193,7 @@ function FindJob({ setActiveContent, setSelectData, fetchData , addMessageBox, s
               >
                 Details
               </button>
-              <button className="btn applyBtn w-50" onClick={()=>{applyJob({"id": data._id,"applicants": data.applications })}}>Apply</button>
+              <button className="btn applyBtn w-50" onClick={()=>{applyJob({"id": data?._id,"applicants": data?.applications })}}>Apply</button>
             </div>
           </div>
         ))}

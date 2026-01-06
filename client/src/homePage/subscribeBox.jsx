@@ -2,7 +2,7 @@ import React from "react";
 
 function SubscribeBox() {
   return (
-    <div className="subscribeBox container">
+    <div className="subscribeBox container py-3 mb-5">
       <h1 className="heading text-center text-white fw-bold">
         Never Wants to Miss Any <span className="yellowText">Job News?</span>
       </h1>
