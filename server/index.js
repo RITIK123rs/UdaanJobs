@@ -8,6 +8,7 @@ const multerRouter= require("./routes/multer");
 const recruiterRoter= require("./routes/recruiterPage");
 const loginRouter=require("./routes/loginPage");
 const homeRouter= require("./routes/homePage");
+const adminRouter= require("./routes/admin");
 const fs= require("fs");
 
 dotenv.config();
@@ -23,7 +24,10 @@ app.use("/fileHandle",multerRouter);
 app.use("/recruiter",recruiterRoter);
 app.use("/login",loginRouter);
 app.use("/home",homeRouter);
+app.use("/admin",adminRouter);
 
 app.listen(process.env.port_no,()=>{
   console.log(`server running on http://localhost:${process.env.port_no}`);
 });
+
+

@@ -183,7 +183,7 @@ function JobSeekerPage({ addMessageBox }) {
                 navigate("/");
               }}
             >
-              <ImExit className="icon" /> EXIT
+              <ImExit className="icon" /> Logout
             </span>
             <div className="w-100 mt-auto d-flex align-items-center">
               <div className="rounded-circle overflow-hidden menuImgBox">

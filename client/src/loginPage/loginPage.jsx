@@ -7,6 +7,7 @@ import { FaArrowLeft } from "react-icons/fa6";
 import { Navigate,NavLink, useNavigate } from "react-router-dom";
 import { MdMail } from "react-icons/md";
 import { FaRegCircleXmark } from "react-icons/fa6";
+import signUpLoading from "../assets/loginPage/signUpLoading.webm";
 
 function LoginPage({ addMessageBox }) {
   const [showPassword, setShowPassword] = useState(false);
@@ -18,6 +19,7 @@ function LoginPage({ addMessageBox }) {
   const otpRef2 = useRef([]);
   const [forgotPasswordStatus, setForgotPasswordStatus] = useState("close");
   const [blurBackground, setBlurBackground] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [isOTPclose, setisOTPclose] = useState(true);
   const defaultForgotPasswordData={
     email: "",
@@ -130,6 +132,7 @@ function LoginPage({ addMessageBox }) {
     })
       .then((res) => res.json())
       .then((data) => {
+        console.log(data);
         if (data.newUserCreated) {
           console.log("SignUp Successfully");
           console.log(data);
@@ -151,6 +154,8 @@ function LoginPage({ addMessageBox }) {
 
   const signUpFormSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
+
     console.log(signUpData);
 
     const res = await fetch("http://localhost:3200/login/userCheck", {
@@ -267,9 +272,12 @@ function LoginPage({ addMessageBox }) {
 
   }
 
+  
   const changeForgotPassword=async (e)=>{
     e.preventDefault();
-    if(forgotPasswordData.password!==forgotPasswordData.confirmPassword){
+    console.log({forgotPasswordData});
+    console.log(forgotPasswordData.password !=forgotPasswordData.confirmPassword);
+    if(forgotPasswordData.password != forgotPasswordData.confirmPassword){
       addMessageBox("xMark", "Passwords do not match!");
       return;
     }
@@ -431,6 +439,7 @@ function LoginPage({ addMessageBox }) {
             
               <FaRegCircleXmark className="position-absolute closeIcon"
                 onClick={() => {
+                  setLoading(false);
                   setBlurBackground(false);
                   setForgotPasswordStatus("close");
                   setForgotPasswordData(defaultForgotPasswordData);
@@ -452,6 +461,7 @@ function LoginPage({ addMessageBox }) {
               <div className="position-absolute closeBox">
                 <FaRegCircleXmark
                   onClick={() => {
+                    setLoading(false);
                     setisOTPclose(true),
                       otpRef.current.map((e) => (e.value = ""));
                   }}
@@ -479,7 +489,7 @@ function LoginPage({ addMessageBox }) {
                   />
                 ))}
               </div>
-              <button className="verifyBtn mt-2">Verify</button>
+              <button className="verifyBtn mt-2  ">Verify</button>
               <p className="resendText">
                 {" "}
                 Didn’t get the code? <span  onClick={()=> generateOTP(signUpData.email, true)} >Resend</span>
@@ -702,12 +712,24 @@ function LoginPage({ addMessageBox }) {
                 <span className="yellowText"> Privacy Policy</span>
               </label>
             </div>
-            <button
-              type="submit"
-              className="w-100 mt-3 rounded-3 p-1 fw-bold text-white"
-            >
-              Sign Up
-            </button>
+           <button
+  type="submit"
+  className="w-100 mt-3 rounded-3 fw-bold text-white signUpBtn d-flex justify-content-center align-items-center"
+  disabled={loading}
+>
+  {loading ? (
+    <video
+      src={signUpLoading}
+      autoPlay
+      loop
+      muted
+      style={{
+        width: "90px",
+        height: "90px",
+      } }
+    />
+  ) : "Sign Up" }
+</button>
             <p className="m-0 mt-3 lastLine">
               Already have an account?{" "}
               <span

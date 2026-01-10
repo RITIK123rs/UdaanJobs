@@ -1,0 +1,351 @@
+
+.adminPage .tableBox,
+.usersSection .tableBox,
+.jobsSection .tableBox,
+.jobSeekerSection .tableBox,
+.recruiterSection .tableBox {
+  overflow-y: scroll;
+  height: 530px;
+  border: 2px solid white;
+  background: transparent;
+}
+
+
+.adminPage .tableBox::-webkit-scrollbar,
+.usersSection .tableBox::-webkit-scrollbar,
+.jobsSection .tableBox::-webkit-scrollbar,
+.jobSeekerSection .tableBox::-webkit-scrollbar,
+.recruiterSection .tableBox::-webkit-scrollbar,
+textarea::-webkit-scrollbar {
+  display: none;
+}
+
+.adminPage .pageTitle {
+  font-size: 50px;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.adminPage,
+.adminPage .menuBox,
+.adminPage .menuContent {
+  height: 98vh;
+}
+
+.adminPage .menuBox {
+  border-right: 2px solid white;
+}
+
+.adminPage .menuContent {
+  overflow-y: scroll;
+}
+
+.adminPage .menuContent::-webkit-scrollbar {
+  display: none;
+}
+
+.adminPage .logoName {
+  font-size: 32px !important;
+}
+
+.adminPage ul li:hover {
+  background-color: var(--yellowTextColor);
+}
+
+.menuList .menuItem {
+  font-size: 20px;
+  margin-bottom: 12px;
+  padding: 8px 0 8px 20px !important;
+}
+
+.menuList .menuIcon {
+  font-size: 29px;
+}
+
+.adminPage .loginBox {
+  color: red;
+  font-size: 20px;
+  margin-left: 10px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.adminDashboard .statCard > div,
+.adminDashboard .pieGraphBox > div,
+.adminDashboard .loginCard {
+  border: 2px solid white;
+}
+
+.adminDashboard .statCard > div{
+  min-height: 134px;
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 10px;
+}
+
+.adminDashboard .statCard > div h5{
+  font-size: 25px;
+}
+.adminDashboard .statCard > div h1{
+  font-size: 40px;
+  font-weight: bold;
+}
+.usersSection .imgBox img{
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  object-position: center;
+}
+.adminDashboard .loginCard .imgBox {
+  width: 65px;
+  height: 65px;
+  object-fit: contain;
+  object-position: center;
+}
+.adminDashboard .loginCard .imgBox img {
+  width: 100%;
+  height: 100%;
+}
+
+.adminDashboard .loginCard h5 {
+  font-size: 22px;
+}
+.adminDashboard .pieGraphBox > div{
+  border-radius: 10px;
+}
+.adminDashboard .pieGraphBox .title{
+  font-size: 18px;
+  font-weight: 500;
+}
+.adminDashboard .loginCard{
+  border-radius: 15px;
+}
+.adminDashboard .loginTime h5,
+.adminDashboard .userEmail h5,
+.adminDashboard .userRole h5{
+  font-size: 20px ;
+  font-weight: bold;
+}
+.adminDashboard .loginTime p,
+.adminDashboard .userEmail p,
+.adminDashboard .userRole p{
+  font-size: 19px ;
+  font-weight: 500;
+}
+.adminDashboard .userInfo h5{
+  font-size: 27px;
+  text-transform: capitalize
+}
+.adminDashboard .userRole p{
+  font-size: 22px;
+  text-transform: capitalize
+}
+
+.usersSection thead,
+.jobsSection thead,
+.jobSeekerSection thead,
+.recruiterSection thead {
+  border: 2px solid white;
+}
+
+.usersSection th,
+.jobsSection th,
+.jobSeekerSection th,
+.recruiterSection th {
+  font-size: 20px;
+  padding: 18px 5px;
+  background: transparent;
+  color: white;
+}
+
+.usersSection td,
+.jobsSection td,
+.jobSeekerSection td,
+.recruiterSection td {
+  font-size: 20px;
+  background: transparent;
+  color: white;
+  vertical-align: middle;
+  font-weight: 600;
+}
+
+.usersSection .imgBox,
+.jobsSection .imgBox,
+.jobSeekerSection .imgBox,
+.recruiterSection .imgBox {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.usersSection .profileBtn,
+.jobSeekerSection .profileBtn,
+.recruiterSection .profileBtn {
+  padding: 4px 10px;
+  border-radius: 20px;
+  background: #00CED1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  font-weight: bold;
+  border: 1px solid #00CED1;
+}
+
+.usersSection .profileBtn:hover,
+.jobSeekerSection .profileBtn:hover,
+.recruiterSection .profileBtn:hover{
+  background: transparent;
+  color: #00CED1;
+}
+
+.jobsSection .viewBtn {
+  padding: 5px 15px;
+  background: transparent;
+  color: #00CED1;
+  cursor: pointer;
+  display: flex;
+  font-size: 30px;
+  justify-self: center;
+  align-items: center;
+  border: none;
+}
+
+.usersSection .field,
+.jobsSection .filterField,
+.jobSeekerSection .filterField,
+.recruiterSection .filterField {
+  border: 2px solid white;
+  padding: 6px 12px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  color: white;
+  min-width: 200px;
+}
+
+.usersSection .field:focus-within,
+.jobsSection .filterField:focus-within,
+.jobSeekerSection .filterField:focus-within,
+.recruiterSection .filterField:focus-within{
+  border-color: var(--yellowTextColor);
+} 
+
+.usersSection .field input,
+.usersSection .field select,
+.jobsSection .filterField input,
+.jobsSection .filterField select,
+.jobSeekerSection .filterField input,
+.jobSeekerSection .filterField select,
+.recruiterSection .filterField input,
+.recruiterSection .filterField select {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: white;
+  width: 100%;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.usersSection .field option,
+.jobsSection .filterField option,
+.jobSeekerSection .filterField option,
+.recruiterSection .filterField option {
+  color: black;
+}
+
+.usersSection .field input::placeholder,
+.jobsSection .filterField input::placeholder,
+.jobSeekerSection .filterField input::placeholder,
+.recruiterSection .filterField input::placeholder {
+  color: white;
+}
+
+.usersSection .role > .icon,
+.usersSection .textBox > .icon,
+.usersSection .dateBox > .icon,
+.jobsSection .filterField > .icon,
+.jobSeekerSection .filterField > .icon,
+.recruiterSection .filterField > .icon {
+  color: var(--yellowTextColor);
+  font-size: 26px;
+}
+
+.jobSeekerSection .filterRow,
+.recruiterSection .filterRow {
+  gap: 14px;
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+}
+
+.jobSeekerSection .dateBox,
+.recruiterSection .dateBox,
+.jobsSection .dateBox {
+  width: 22%;
+}
+
+.jobSeekerSection .textBox,
+.recruiterSection .textBox,
+.jobsSection .textBox {
+  width: 22%;
+}
+.jobsSection .statusBox{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.jobsSection .statusBadge {
+  padding: 2px 15px;
+  border-radius: 20px;
+  font-weight: 700;
+  font-size: 20px;
+  text-transform: capitalize;
+}
+
+.jobsSection .statusBadge.live {
+  padding: 2px 25px;
+  border: 2px solid #00ff99;
+  color: #00ff99;
+}
+
+.jobsSection .statusBadge.closed {
+  border: 2px solid red;
+  color: red;
+}
+
+.jobsSection .jobTitle {
+  font-size: 20px;
+}
+
+.dateBox > input::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+}
+
+.loginButton{
+  width: 40%;
+  color: red;
+  font-size: 20px;
+  font-weight: bold;
+  background: transparent;
+  border: 2px solid red;
+  border-radius: 20px;
+  padding: 5px 0;
+  margin: 0 0 20px 30px;
+}
+
+.jobSeekerSection .imgBox img,
+.recruiterSection .imgBox img{
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  object-position: center;
+}

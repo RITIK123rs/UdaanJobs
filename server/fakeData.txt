@@ -1,10 +1,25 @@
 
 
+
+
+
+const bcrypt= require("bcryptjs");
+
+//bcrypt.hashSync( ,10)
+
+const AdminData= [
+  {
+  userName: "ritik",
+  email: "admin@gmail.com",
+  password: bcrypt.hashSync("admin123",10),
+},
+]
+
 const RecruitersData = [
   {
     userName: "TechIndiaHR",
-    email: "hr@techindia.com",
-    password: "hashedpassword123",
+    email: "recruiter1@gmail.com",
+    password: bcrypt.hashSync("recruiter123",10),
     lastLogin: new Date(),
     company: {
       name: "TechIndia",
@@ -16,9 +31,9 @@ const RecruitersData = [
       industry: "Information Technology",
       contact: {
         emailId: "contact@techindia.com",
-        twitter: "https://twitter.com/techindia",
-        facebook: "https://facebook.com/techindia",
-        linkedin: "https://linkedin.com/techindia",
+        twitter: "twitter.com/techindia",
+        facebook: "facebook.com/techindia",
+        linkedin: "linkedin.com/techindia",
         website: "https://www.techindia.com",
       },
     },
@@ -26,8 +41,8 @@ const RecruitersData = [
   },
   {
     userName: "HealthCareHR",
-    email: "recruit@healthcareindia.com",
-    password: "hashedpassword456",
+    email: "recruiter2@gmail.com",
+    password: bcrypt.hashSync("recruiter246",10),
     lastLogin: new Date(),
     company: {
       name: "HealthCare India",
@@ -39,9 +54,9 @@ const RecruitersData = [
       industry: "Healthcare",
       contact: {
         emailId: "contact@healthcareindia.com",
-        twitter: "https://twitter.com/healthcareindia",
-        facebook: "https://facebook.com/healthcareindia",
-        linkedin: "https://linkedin.com/healthcareindia",
+        twitter: "twitter.com/healthcareindia",
+        facebook: "facebook.com/healthcareindia",
+        linkedin: "linkedin.com/healthcareindia",
         website: "https://www.healthcareindia.com",
       },
     },
@@ -49,8 +64,8 @@ const RecruitersData = [
   },
   {
     userName: "FinTechHR",
-    email: "hr@fintechindia.com",
-    password: "hashedpassword789",
+    email: "recruiter3@gamil.com",
+    password: bcrypt.hashSync("recruiter369",10),
     lastLogin: new Date(),
     company: {
       name: "FinTech India",
@@ -62,9 +77,9 @@ const RecruitersData = [
       industry: "Financial Technology",
       contact: {
         emailId: "contact@fintechindia.com",
-        twitter: "https://twitter.com/fintechindia",
-        facebook: "https://facebook.com/fintechindia",
-        linkedin: "https://linkedin.com/fintechindia",
+        twitter: "twitter.com/fintechindia",
+        facebook: "facebook.com/fintechindia",
+        linkedin: "linkedin.com/fintechindia",
         website: "https://www.fintechindia.com",
       },
     },
@@ -146,9 +161,9 @@ const jobPostedData = [
 const JobSeekerData = [
   {
     userName: "Ananya Sharma",
-    email: "ananya.sharma@gmail.com",
+    email: "jobseeker1@gmail.com",
     lastLogin: new Date(),
-    password: "hashedpassword789",
+    password: bcrypt.hashSync("jobseeker123",10),
     application: {
       total: 0,
       accepted: 0,
@@ -172,8 +187,8 @@ Apart from technical skills, I bring strong communication and teamwork abilities
 I am motivated by challenges and enjoy solving UI/UX problems that require creativity and logical thinking. I take ownership of my work and always aim to deliver high-quality solutions within deadlines. My long-term goal is to become a frontend architect who builds accessible, performant, and impactful web applications.\n
 Outside of work, I enjoy reading tech blogs, contributing to small open-source projects, and exploring design inspirations. I am always eager to learn, grow, and contribute meaningfully to the teams and products I work on.`,
       skills: ["JavaScript", "React", "HTML", "CSS", "Git", "REST APIs"],
-      instagram: "https://instagram.com/ananya_sharma",
-      twitter: "https://twitter.com/ananya_sharma",
+      instagram: "instagram.com/ananya_sharma",
+      twitter: "twitter.com/ananya_sharma",
       website: "https://ananyasharma.dev",
       experience: [
         {
@@ -204,9 +219,9 @@ My coursework and projects helped me develop problem-solving skills, logical thi
 
   {
     userName: "Rohan Kumar",
-    email: "rohan.kumar@gmail.com",
+    email: "jobseeker2@gmail.com",
     lastLogin: new Date(),
-    password: "hashedpassword321",
+    password: bcrypt.hashSync("jobseeker246",10),
     application: {
       total: 0,
       accepted: 0,
@@ -228,8 +243,8 @@ I have hands-on experience using Excel, Python, and SQL for data cleaning, analy
 I am highly detail-oriented, curious, and driven by problem-solving. I enjoy working with large datasets, identifying trends, and presenting findings in a clear and concise manner. I continuously work on improving my analytical and technical skills through practice and learning.\n
 My goal is to grow into a professional data analyst who contributes to impactful projects and helps businesses optimize operations using data-driven insights.`,
       skills: ["Excel", "Python", "SQL", "Power BI"],
-      instagram: "https://instagram.com/rohan_kumar",
-      twitter: "https://twitter.com/rohan_kumar",
+      instagram: "instagram.com/rohan_kumar",
+      twitter: "twitter.com/rohan_kumar",
       website: "https://rohankumar.io",
       experience: [],
       education: [
@@ -247,9 +262,9 @@ I worked on academic projects involving real-world datasets, applied statistical
 
   {
     userName: "Priya Mehta",
-    email: "priya.mehta@gmail.com",
+    email: "jobseeker3@gmail.com",
     lastLogin: new Date(),
-    password: "hashedpassword654",
+    password: bcrypt.hashSync("jobseeker369",10),
     application: {
       total: 0,
       accepted: 0,
@@ -263,15 +278,15 @@ I worked on academic projects involving real-world datasets, applied statistical
       phone: "+91-9988776650",
       email: "priya.mehta@gmail.com",
       languages: "English, Hindi",
-      resume: "https://example.com/resumes/priya.pdf",
-      profilePhoto: "https://example.com/photos/priya.jpg",
-      banner: "https://example.com/banners/priya.jpg",
+      //resume: "https://example.com/resumes/priya.pdf",
+      //profilePhoto: "https://example.com/photos/priya.jpg",
+      //banner: "https://example.com/banners/priya.jpg",
       aboutMe: `I am a backend-focused developer with a strong interest in building scalable, secure, and high-performance server-side applications. I specialize in Node.js, Express, and MongoDB, and enjoy designing APIs and backend architectures.\n
 I value clean code, proper documentation, and efficient system design. I enjoy collaborating with frontend developers and DevOps teams to build complete, production-ready solutions.\n
 I am continuously learning about backend performance optimization, database design, and system scalability. My goal is to grow into a backend engineer capable of designing complex distributed systems.`,
       skills: ["Node.js", "Express", "MongoDB", "REST APIs"],
-      instagram: "https://instagram.com/priya_mehta",
-      twitter: "https://twitter.com/priya_mehta",
+      instagram: "instagram.com/priya_mehta",
+      twitter: "twitter.com/priya_mehta",
       website: "https://priyamehta.dev",
       experience: [],
       education: [
@@ -291,6 +306,7 @@ My coursework included database management systems, operating systems, and web t
 const JobSeeker = require("./database/jobseekerModel");
 const Job = require("./database/jobPostedModel");
 const Recruiter = require("./database/recruiterModel");
+const Admin= require("./database/adminModel")
 const dotenv = require("dotenv");
 dotenv.config();
 const connectDB = require("./database/db");
@@ -305,12 +321,14 @@ async function seedDatabase() {
     console.log("MongoDB connected");
 
     // 1️⃣ Clear existing data
+    await Admin.deleteMany({});
     await Recruiter.deleteMany({});
     await Job.deleteMany({});
     await JobSeeker.deleteMany({});
     console.log("Old data deleted");
 
     // 2️⃣ Insert base data
+    await Admin.insertMany(AdminData);
     const recruiters = await Recruiter.insertMany(recruitersData);
     const jobs = await Job.insertMany(jobsData);
     const jobSeekers = await JobSeeker.insertMany(jobSeekersData);
@@ -424,6 +442,4 @@ await Recruiter.findByIdAndUpdate(
 }
 
 seedDatabase();
-
-
 

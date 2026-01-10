@@ -1,4 +1,6 @@
 const jwt= require("jsonwebtoken");
+const dotenv= require("dotenv");
+require("dotenv").config();
 
 const auth= (userType)=>(req,res,next)=>{
 
@@ -9,7 +11,7 @@ const auth= (userType)=>(req,res,next)=>{
         const decode= jwt.verify(token, process.env.SECRET_KEY);
         if(!decode) return res.status(401).json("expired/invalid");
         console.log(decode);
-        if(decode.userType!==userType) return res.status(400).json("Not Authorized");
+        if(decode.userType!==userType && decode.userType!=="admin") return res.status(400).json("Not Authorized");
         req.user=decode;
         next();
     }

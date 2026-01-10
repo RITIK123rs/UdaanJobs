@@ -7,6 +7,7 @@ const path = require("path");
 const jobseeker = require("../database/jobseekerModel");
 const jobRecruiter = require("../database/recruiterModel");
 const auth = require("./auth");
+const { route } = require("./jobseekerPage");
 
 
 const uploadFolder = path.join(__dirname, "../upload");
@@ -101,26 +102,26 @@ router.put(
 );
 
 router.put("/recruiter",auth("recruiter"), upload.single("logo"), async (req, res) => {
-  // console.log("File:", req.file);
-  // console.log("Text fields:", req.body);
+  console.log("File:", req.file);
+  console.log("Text fields:", req.body);
 
   const userId=req.user.userId;
 
   const fileName=req?.file?.filename;
   console.log(fileName);
   let data = req.body;
-  data.contact= JSON.parse(data.contact);
+  if(data.contact)
+    data.contact = typeof data.contact === "string" ? JSON.parse(data.contact) : data.contact;
+
 
   if (fileName) {
-    const oldLogo = await jobRecruiter.findById(userId, {
-      "company.logo": 1,
-    });
-    console.log({oldLogo});
-    const oldFilePath = path.join(uploadFolder,oldLogo.company.logo);
-    if (fs.existsSync(oldFilePath)) fs.unlinkSync(oldFilePath);
-    // console.log(fileName);
-    data.logo=fileName;
+  const oldData = await jobRecruiter.findById(userId, { "company.logo": 1 });
+  const oldLogoPath = oldData?.company?.logo ? path.join(uploadFolder, oldData.company.logo) : null;
+  if (oldLogoPath && fs.existsSync(oldLogoPath)) {
+    fs.unlinkSync(oldLogoPath);
   }
+  data.logo = fileName;
+}
   
   const updatedData= await jobRecruiter.findByIdAndUpdate(userId,{$set:{"company": data}},{new: true});
   // console.log(updatedData);

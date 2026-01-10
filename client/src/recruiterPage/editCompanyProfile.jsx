@@ -92,6 +92,7 @@ export default function EditCompanyProfile({
                 name="name"
                 value={companyData?.name}
                 onChange={handleChange}
+                required
               />
             </div>
 
@@ -112,8 +113,9 @@ export default function EditCompanyProfile({
               <input
                 type="date"
                 name="founded"
-                value={companyData?.founded.split("T")[0]}
+                value={companyData?.founded?.split("T")[0]}
                 onChange={handleChange}
+                required
               />
             </div>
 
@@ -125,6 +127,7 @@ export default function EditCompanyProfile({
                 name="employees"
                 value={companyData?.employees}
                 onChange={handleChange}
+                required
               />
             </div>
           </div>
@@ -138,6 +141,7 @@ export default function EditCompanyProfile({
                 name="location"
                 value={companyData?.location}
                 onChange={handleChange}
+                required
               />
             </div>
 
@@ -149,6 +153,7 @@ export default function EditCompanyProfile({
                 name="industry"
                 value={companyData?.industry}
                 onChange={handleChange}
+                required
               />
             </div>
           </div>
@@ -162,6 +167,7 @@ export default function EditCompanyProfile({
             onChange={handleChange}
             name="about"
             value={companyData?.about}
+            required
           />
         </div>
 
@@ -177,6 +183,7 @@ export default function EditCompanyProfile({
                 name="contact.emailId"
                 value={companyData?.contact?.emailId}
                 onChange={handleChange}
+                required
               />
             </div>
 
@@ -188,6 +195,7 @@ export default function EditCompanyProfile({
                 name="contact.website"
                 value={companyData?.contact?.website}
                 onChange={handleChange}
+                
               />
             </div>
           </div>
@@ -201,6 +209,7 @@ export default function EditCompanyProfile({
                 name="contact.twitter"
                 value={companyData?.contact?.twitter}
                 onChange={handleChange}
+                
               />
             </div>
 

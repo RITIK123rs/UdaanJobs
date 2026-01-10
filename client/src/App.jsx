@@ -1,9 +1,5 @@
 import { useState } from 'react'
 import './App.css'
-import HomePage from './homePage/HomePage';
-import LoginPage from './loginPage/loginPage';
-import JobSeekerPage from './jobseekerPage/jobseekerPage';
-import RecruiterPage from './recruiterPage/recruiterPage';
 import { FaCheckCircle } from "react-icons/fa";
 import { FaCircleXmark } from "react-icons/fa6";
 import { RiErrorWarningFill } from "react-icons/ri";

@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const mongoose= require("mongoose");
+const ObjectId = mongoose.Types.ObjectId;
 const jobseeker = require("../database/jobseekerModel");
 const jobPosted = require("../database/jobPostedModel");
 const jobRecruiter = require("../database/recruiterModel");
@@ -24,13 +25,14 @@ router.get("/findJob" , async (req, res) => {
 router.put("/jobApply", auth("jobSeeker") ,async (req, res) => {
   try {
     const userId=req.user.userId
-    const data= req.body;
-    // console.log("Delete request data:", data);
-    jobData=await jobPosted.findById(data.jobId);
-    const updatedApplicants = jobData.applications.filter((info) => info.applicant != userId);
-    console.log("updated data :-",updatedApplicants);
-    await jobPosted.findByIdAndUpdate(data.jobId,{$set:{"applications": updatedApplicants}},{ new: true });
-    updatedData=await jobseeker.findByIdAndUpdate(userId,{ $set: { "application.appliedJobs": data.jobApplyedData }, $inc:{"application.total": -1, [`application.${data.status}`]: -1}},{new: true});
+    const {jobId,status}= req.body;
+    await jobPosted.findOneAndUpdate({_id: new ObjectId(jobId), "applications.applicant": new ObjectId(userId) },{$pull:{"applications":{ applicant: new ObjectId(userId) }}},{ new: true });
+    const seekerUpdate=await jobseeker.findOneAndUpdate({_id: new ObjectId(userId), "application.appliedJobs.jobId": new ObjectId(jobId) },{ $pull: { "application.appliedJobs":{ jobId: new ObjectId(jobId) }}},{new: true});
+    if (seekerUpdate) {
+      await jobseeker.findByIdAndUpdate(userId,{
+        $inc: { "application.total": -1, [`application.${status}`]: -1 }
+      });
+    }
     // console.log(updatedData);
     res.status(200).json("data deleted succcessfully");
   } catch (error) {
@@ -93,11 +95,18 @@ router.put("/editProfile", auth("jobSeeker"), async (req, res) => {
   }
 });
 
-router.get("/recruiter/:id", auth("jobSeeker"),async (req,res)=>{
+router.get("/recruiter/:id",
+  //  auth("jobSeeker"),
+   async (req,res)=>{
+    try{
     const recruiterId=req.params.id;
     const data=await jobRecruiter.findById(recruiterId).select("company");
     // console.log({recruiterId,data});
     res.json(data);
+    }
+    catch(error){
+      res.status(500).json(error);
+    }
 })
 
 router.get("/", auth("jobSeeker") , async (req, res) => {

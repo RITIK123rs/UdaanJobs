@@ -13,8 +13,10 @@ function Profile({
   setActiveContent,
   JobSeekerData,
   addMessageBox,
+  isAdmin = false,
   isRecruiter = false,
   jobSeekerJobPost,
+  prevContent,
   getRecruiterData
 }) {
   
@@ -49,10 +51,10 @@ function Profile({
     <div className="profile">
       <h2 className="mt-3 pageTitle">{isRecruiter ? "" : "My"} Profile</h2>
       <hr className="my-3"></hr>
-      {isRecruiter ? (
+      {(isRecruiter || isAdmin) ? (
         <button
           className="backBtn fs-5 ms-2 p-1 px-2 mb-3 rounded-3 d-flex align-items-center fw-bold"
-          onClick={() => setActiveContent("applicants")}
+          onClick={() => { isAdmin ? setActiveContent(prevContent)  : setActiveContent("applicants") } }
         >
           <FaArrowLeft className="me-2" />
           BACK
@@ -98,7 +100,7 @@ function Profile({
                 </p>
               </div>
               <div className="btnBox ms-auto me-3">
-                {isRecruiter ? (
+                {isAdmin? "" : isRecruiter ? (
                   <select
                     className={`setStatus ${activeStatus}`}
                     value={activeStatus}
@@ -121,7 +123,9 @@ function Profile({
                 ) : (
                   ""
                 )}
-                <button
+                {
+                  isAdmin ? "" : (
+                    <button
                   className="resumeBtn"
                   onClick={(e) => {
                     if (!JobSeekerData?.personalInfo?.resume) {
@@ -143,6 +147,9 @@ function Profile({
                     Resume
                   </a>
                 </button>
+                  )
+                }
+                
                 {isRecruiter ? (
                   ""
                 ) : (
