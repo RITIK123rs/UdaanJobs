@@ -12,7 +12,7 @@ import { dateFormat } from "../utils/dateFormat";
 import { FaArrowLeft } from "react-icons/fa6";
 
 
-export default function CompanyProfile({recruiterData,setActiveContent, previousComponent, isRecruiter=false }) {
+export default function CompanyProfile({recruiterData,setActiveContent, previousComponent, isRecruiter=false}) {
 
   return (
     <div className="profile companyProfile text-white">

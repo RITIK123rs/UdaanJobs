@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import AdminPage from "./AdminPage/adminPage";
 import HomePage from "./homePage/HomePage";
 import LoginPage from "./loginPage/loginPage";
 import JobSeekerPage from "./jobseekerPage/jobseekerPage";
@@ -12,7 +13,9 @@ export default function Router({ addMessageBox }) {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<HomePage />} />
+        <Route path="/" element={
+          <HomePage />
+          } />
         <Route
           path="/login"
           element={<LoginPage addMessageBox={addMessageBox} />}
@@ -30,6 +33,14 @@ export default function Router({ addMessageBox }) {
           element={
             <ProtectedRoute userType="recruiter">
               <RecruiterPage addMessageBox={addMessageBox} />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/admin"
+          element={
+            <ProtectedRoute userType="admin">
+              < AdminPage />
             </ProtectedRoute>
           }
         />

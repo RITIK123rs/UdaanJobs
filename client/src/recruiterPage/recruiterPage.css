@@ -649,8 +649,14 @@ textarea::-webkit-scrollbar,
 }
 
 .recruiterPage .menuImgBox{
-  width: 58px;
-  height: 58px;
+  width: 53px;
+  height: 53px;
+}
+.recruiterPage .menuImgBox > img{
+  width: 100%;
+  object-position: center;
+  object-fit: fill;
+  height: 100%;
 }
 
 .recruiterPage .dropMenu{

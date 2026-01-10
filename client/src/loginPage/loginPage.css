@@ -324,6 +324,11 @@
   border-color: var(--yellowTextColor);
 }
 
+.signUpBtn{
+  height: 42px;
+}
+
+
 @media only screen and (max-width: 470.98px) {
   .signUpForm {
     width: 450px;

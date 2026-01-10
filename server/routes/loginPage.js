@@ -1,19 +1,22 @@
 const express = require("express");
+const dotenv = require("dotenv");
 const router = express.Router();
 const mongoose = require("mongoose");
 const jobSeeker = require("../database/jobseekerModel");
 const jobRecruiter = require("../database/recruiterModel");
+const Admin = require("../database/adminModel");
 const jwt = require("jsonwebtoken");
+const bcrypt= require("bcryptjs");
+require("dotenv").config();
+const nodemailer = require("nodemailer");
 
-// const nodemailer = require("nodemailer");
-
-// const transporter = nodemailer.createTransport({
-//   server: "gmail",
-//   auth: {
-//     user: "",
-//     pass: "",
-//   },
-// });
+const transporter = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    user: process.env.Email_Id,
+    pass: process.env.Email_PasswordCode,
+  },
+});
 
 const otpStore = {};
 
@@ -33,52 +36,109 @@ router.post("/generateOTP", async (req, res) => {
       delete otpStore[email];
     }, 5 * 60 * 1000);
 
-//     if (isSignUp) {
-//       const mailData = {
-//         from: "UdaanJobs <your-email@gmail.com>",
-//         to: email,
-//         subject: "UdaanJobs | Email Verification OTP",
-//         text: `Dear User,
+    let mailData;
 
-//       Thank you for signing up with UdaanJobs.
+    console.log("User:", process.env.Email_Id);
+    console.log("Pass:", process.env.Email_PasswordCode);
 
-//       To complete your registration, please use the One-Time Password (OTP) below:
+    if (isSignUp) {
+      mailData = {
+        from: `UdaanJobs < ${process.env.Email_Id} >`,
+        to: email,
+        subject: "Email Verification OTP",
+        html: `
+<!DOCTYPE html>
+<html lang="en">
 
-//       OTP: ${OTP}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OTP Verification</title>
+</head>
 
-//       This OTP is valid for 5 minutes only. Please do not share this OTP with anyone for security reasons.
+<body>
+    <h1 style="padding: 20px; text-align: center; background:#0a66c2; color:#ffffff;">UdaanJobs</h1>
+    <div style="padding: 20px 10px;">
 
-//       If you did not initiate this request, please ignore this email.`,
-//       };
-//     } else {
-//       const mailData = {
-//   from: "UdaanJobs <your-email@gmail.com>",
-//   to: email,
-//   subject: "UdaanJobs | Password Reset OTP",
-//   text: `Dear User,
+        <p style="font-size:16px;">Dear User,</p>
 
-// We received a request to reset your UdaanJobs account password.
+        <p style="font-size:15px;">
+            Thank you for signing up with <strong>UdaanJobs</strong>.
+            To complete your registration, please use the One-Time Password (OTP) below:
+        </p>
 
-// Please use the following One-Time Password (OTP) to reset your password:
+        <div style="margin: 35px 0; text-align:center;">
+            <span style="color: #0a66c2; font-weight: bold; background-color: #0a66c251; padding: 10px 20px; border-radius: 5px; font-size: 25px; letter-spacing: 7px;" >
+                ${OTP}
+            </span>
+        </div>
 
-// OTP: ${OTP}
+        <p style="font-size:14px; color: #484545;">
+            This OTP is valid for <strong>5 minutes</strong> only.
+            Please do not share this OTP with anyone for security reasons.<br><br><br>
+            If you did not initiate this request, please ignore this email.
+        </p>
 
-// This OTP is valid for 5 minutes only. If you did not request a password reset, please ignore this email.
+    </div>
+</body>
 
-// For your security, do not share this OTP with anyone.`,
-// };
-//     }
+</html>
+`,
+      };
+    } else {
+      mailData = {
+        from: `Udaan Jobs < ${process.env.Email_Id} >`,
+        to: email,
+        subject: "Password Reset OTP",
+        html: `
+<!DOCTYPE html>
+<html lang="en">
 
-//     transporter.sendMail(mailData, (error, info) => {
-//       if (error) {
-//         console.log("error in sending mail");
-//         return res.json(`error in sending mail`);
-//       }
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OTP Verification</title>
+</head>
 
-//       console.log("email send :- ", info.response);
-//     });
+<body>
+    <h1 style="padding: 20px; text-align: center; background:#0a66c2; color:#ffffff;">UdaanJobs</h1>
+    <div style="padding: 20px 10px;">
 
-    return res.json(`OTP generated successfully :- ${OTP} `);
+        <p style="font-size:16px;">Dear User,</p>
+
+        <p style="font-size:15px;">
+            We received a request to reset your UdaanJobs account password.
+          Please use the following One-Time Password (OTP) to reset your password:
+        </p>
+
+        <div style="margin: 35px 0; text-align:center;">
+            <span style="color: #0a66c2; font-weight: bold; background-color: #0a66c251; padding: 10px 20px; border-radius: 5px; font-size: 25px; letter-spacing: 7px;" >
+                ${OTP}
+            </span>
+        </div>
+
+        <p style="font-size:14px; color: #484545;">
+            This OTP is valid for <strong>5 minutes</strong> only.
+            If you did not request a password reset, please ignore this email.<br><br><br>
+            For your security, do not share this OTP with anyone.
+        </p>
+
+    </div>
+</body>
+
+</html>
+`,
+      };
+    }
+    console.log(mailData);
+
+    try {
+      await transporter.sendMail(mailData);
+      return res.json("Email sent successfully");
+    } catch (error) {
+      console.error("Mail error:", error);
+      return res.status(500).json("Error sending email");
+    }
   } catch (error) {
     console.log("otp error :- ", error);
     res.status(500).json(`otp error :- ${error} `);
@@ -105,17 +165,27 @@ router.post("/changePassword", async (req, res) => {
   try {
     const { email, password } = req.body;
 
+    const hashedPassword= bcrypt.hashSync(password,10);
+
     console.log({ email, password });
     let user = await jobSeeker.findOneAndUpdate(
       { email },
-      { $set: { password } },
+      { $set: {password: hashedPassword} },
       { new: true }
     );
 
     if (!user) {
-      let user = await jobRecruiter.findOneAndUpdate(
+      user = await jobRecruiter.findOneAndUpdate(
         { email },
-        { $set: { password } },
+        { $set: {password: hashedPassword } },
+        { new: true }
+      );
+    }
+
+    if (!user) {
+      user = await Admin.findOneAndUpdate(
+        { email },
+        { $set: { password: hashedPassword } },
         { new: true }
       );
     }
@@ -134,7 +204,8 @@ router.post("/userCheck", async (req, res) => {
 
     const checkUser =
       (await jobSeeker.findOne({ email })) ||
-      (await jobRecruiter.findOne({ email }));
+      (await jobRecruiter.findOne({ email } )) ||
+      (await Admin.findOne({ email })) ;
 
     console.log("userCheck :-", checkUser);
 
@@ -169,11 +240,13 @@ router.post("/signUp", async (req, res) => {
     console.log("userType");
 
     let user = null;
+    const hashedPassword= await bcrypt.hash(password, 10)
+    console.log(hashedPassword);
 
     if (userType == "jobSeeker") {
-      user = await jobSeeker.create({ userName: name, email, password });
+      user = await jobSeeker.create({ userName: name, email, password: hashedPassword });
     } else {
-      user = await jobRecruiter.create({ userName: name, email, password });
+      user = await jobRecruiter.create({ userName: name, email, password: hashedPassword });
     }
 
     console.log(user);
@@ -196,25 +269,41 @@ router.post("/", async (req, res) => {
     console.log(req.body);
     const { email, password, rememberMe } = req.body;
 
-    // let user = (await jobSeeker.findOne({ email: email })) || (await jobRecruiter.findOne({ email: email }));
     let userType = "jobSeeker";
     let user = await jobSeeker.findOne({ email });
     if (user)
       await jobSeeker.findByIdAndUpdate(user._id, {
         $set: { lastLogin: new Date() },
       });
-    if (!user) {
-      user = await jobRecruiter.findOne({ email });
-      await jobRecruiter.findByIdAndUpdate(user._id, {
-        $set: { lastLogin: new Date() },
-      });
-      userType = "recruiter";
 
-      if (!user) return res.json({ login: false, emailMatch: false });
+    if (!user) {
+      console.log("recruiter");
+      user = await jobRecruiter.findOne({ email });
+      if (user) {
+        await jobRecruiter.findByIdAndUpdate(user._id, {
+          $set: { lastLogin: new Date() },
+        });
+        userType = "recruiter";
+      }
     }
 
+    if (!user) {
+      console.log("admin");
+      user = await Admin.findOne({ email });
+      if (user) {
+        await Admin.findByIdAndUpdate(user._id, {
+          $set: { lastLogin: new Date() },
+        });
+        userType = "admin";
+      }
+    }
+
+    if (!user) return res.json({ login: false, emailMatch: false });
+
     console.log(user.password);
-     if (user.password !== password) {
+    const match = await bcrypt.compare(password, user.password)
+    console.log(match);
+    if (!match) {
       return res.json({ login: false, emailMatch: true });
     }
 
@@ -225,7 +314,6 @@ router.post("/", async (req, res) => {
     );
 
     return res.json({ login: true, token, userType });
-
   } catch (error) {
     return res.status(500).json("failed to login");
   }

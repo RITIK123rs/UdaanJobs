@@ -87,6 +87,7 @@ function JobApplicants({
     await fetch(`http://localhost:3200/recruiter/jobSeeker/${jobSeekerId}`)
       .then((res) => res.json())
       .then((data) => {
+
         setJobSeekerData(data);
         setActiveContent("jobSeekerProfile");
       })

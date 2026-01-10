@@ -122,7 +122,6 @@ export default function JobApply({ JobApplyData, setActiveContent, setSelectData
                     onClick={() => {
                       deleteApplication({
                         jobId: data.jobId._id,
-                        jobApplyedData: JobApplyData.filter((_, i) => i !== index),
                         status: data.status,
                       });
                     }}

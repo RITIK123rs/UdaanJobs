@@ -32,7 +32,7 @@ function FindJob({ setActiveContent, setSelectData, fetchData , addMessageBox, s
 
   useEffect(()=>{
 
-    if(searchData.jobTitle==""  && searchData.location=="" && searchData.jobType=="" && searchData.experience==""){
+    if(searchData.jobTitle==""  && searchData.location=="" && searchData.jobType=="" && searchData.experience=="" ){
       setFilterData(findJobData);
       return ;
     }
@@ -98,7 +98,15 @@ function FindJob({ setActiveContent, setSelectData, fetchData , addMessageBox, s
         .then((res) => res.json())
         .then((data) => {
           console.log(data);
-          setFindJobData(data);
+          const currentDate = new Date();
+          const openJob =data.filter((info)=> {
+            const closingDate= new Date(info.closingDate);
+            console.log(closingDate);
+            console.log(currentDate);
+            if(closingDate > currentDate ) return true;
+            else return false;
+          } )
+          setFindJobData(openJob);
         })
         .catch((error) => console.log("fetch error :-", error));
     }

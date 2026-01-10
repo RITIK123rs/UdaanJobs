@@ -14,6 +14,7 @@ const jobSeekerSchema = new mongoose.Schema({
   lastLogin: {
     type: Date,
     require: true,
+    default: Date.now,
   },
   password: {
     type: String,

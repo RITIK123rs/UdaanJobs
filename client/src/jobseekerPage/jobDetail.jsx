@@ -4,8 +4,7 @@ import { RiMapPinLine } from "react-icons/ri";
 import { FaArrowLeft } from "react-icons/fa6";
 import { dateFormat } from "../utils/dateFormat";
 
-export default function JobDetail({setActiveContent, selectData, previousComponent,addMessageBox, isRecruiter=false}) {
-
+export default function JobDetail({setActiveContent, selectData, previousComponent,addMessageBox, isRecruiter=false, isAdmin=false}) {
 
   async function applyJob(object) {
     await fetch(`http://localhost:3200/jobseeker/apply`, {
@@ -32,7 +31,7 @@ export default function JobDetail({setActiveContent, selectData, previousCompone
     <div className="jobDetail container">
       <h2 className="mt-3 pageTitle">Job Details</h2>
       <hr className="my-3" />
-    <button className="backBtn fs-5 p-1 px-2 mb-3 rounded-3 d-flex align-items-center fw-bold" onClick={()=> isRecruiter?(setActiveContent("jobPosted")):(setActiveContent(previousComponent))} ><FaArrowLeft className="me-2" />BACK</button>
+    <button className="backBtn fs-5 p-1 px-2 mb-3 rounded-3 d-flex align-items-center fw-bold" onClick={()=> isAdmin ? (setActiveContent("jobs")) : isRecruiter?(setActiveContent("jobPosted")):(setActiveContent(previousComponent))} ><FaArrowLeft className="me-2" />BACK</button>
       <div className="jobHead d-flex px-3 py-3 ">
         <div className="imgBox">
            <img className="companyLogo" src={ (selectData?.recruiter?.company?.logo || null ) ? `http://localhost:3200/upload/${selectData?.recruiter?.company?.logo}`  : ("http://localhost:3200/defaultImage/defaultCompanyImg.jpg") } alt="" />
