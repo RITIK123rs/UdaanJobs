@@ -3,9 +3,17 @@ import companyImg1 from "../assets/homepage/Netflix.png";
 import { FaSearch } from "react-icons/fa";
 import { MdFilterListAlt } from "react-icons/md";
 import { dateFormat } from "../utils/dateFormat";
+import { MdOutlineMenu } from "react-icons/md";
 
-
-export default function JobApply({ JobApplyData, setActiveContent, setSelectData, fetchData, addMessageBox, setRecruiterId }) {
+export default function JobApply({
+  JobApplyData,
+  setActiveContent,
+  setSelectData,
+  fetchData,
+  addMessageBox,
+  setRecruiterId,
+  setOpenMenu,
+}) {
   const [filterData, setFilterData] = useState([]);
   const [searchData, setSearchData] = useState({
     jobTitle: "",
@@ -16,7 +24,7 @@ export default function JobApply({ JobApplyData, setActiveContent, setSelectData
 
   const changeHandler = (e) => {
     const { name, value } = e.target;
-    console.log({name,value});
+    console.log({ name, value });
     setSearchData((prev) => ({ ...prev, [name]: value }));
   };
 
@@ -30,8 +38,11 @@ export default function JobApply({ JobApplyData, setActiveContent, setSelectData
       console.log(JobApplyData);
       const data = JobApplyData.filter((value) => {
         console.log(value);
-        const jobTitleMatch=value.jobId.role.toLowerCase().startsWith(searchData.jobTitle.toLowerCase().trim());
-        const statusMatch = searchData.status === "" || searchData.status === value.status;
+        const jobTitleMatch = value.jobId.role
+          .toLowerCase()
+          .startsWith(searchData.jobTitle.toLowerCase().trim());
+        const statusMatch =
+          searchData.status === "" || searchData.status === value.status;
         return jobTitleMatch && statusMatch;
       });
       setFilterData(data);
@@ -44,7 +55,10 @@ export default function JobApply({ JobApplyData, setActiveContent, setSelectData
     try {
       const res = await fetch(`http://localhost:3200/jobseeker/jobApply`, {
         method: "PUT",
-        headers: { "Content-Type": "application/json", "Authorization": `Bearer ${localStorage.getItem("token")}` },
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
         body: JSON.stringify(object),
       });
       const data = await res.json();
@@ -58,17 +72,33 @@ export default function JobApply({ JobApplyData, setActiveContent, setSelectData
 
   return (
     <div className="jobApply">
-      <h2 className="mt-3 pageTitle">My Applications</h2>
+      <div className="d-flex gap-3 mt-3 align-items-center">
+        <MdOutlineMenu
+          className="PhoneMenuIcon d-xl-none"
+          onClick={() => setOpenMenu(true)}
+        />
+        <h2 className="pageTitle">My Applications</h2>
+      </div>
       <hr className="my-3" />
-      
+
       <div className="filterBox mb-3 d-flex justify-content-end pe-3">
         <div className="field jobTitleBox">
           <FaSearch className="icon me-2 fs-5" />
-          <input type="text" placeholder="Job Title" name="jobTitle" onChange={changeHandler} />
+          <input
+            type="text"
+            placeholder="Job Title"
+            name="jobTitle"
+            onChange={changeHandler}
+          />
         </div>
         <div className="field filter ms-2">
           <MdFilterListAlt className="icon fs-3" />
-          <select className="fs-5" defaultValue="" name="status" onChange={changeHandler}>
+          <select
+            className="fs-5"
+            defaultValue=""
+            name="status"
+            onChange={changeHandler}
+          >
             <option value="">Status</option>
             <option value="pending">Pending</option>
             <option value="accepted">Accepted</option>
@@ -95,11 +125,27 @@ export default function JobApply({ JobApplyData, setActiveContent, setSelectData
               <tr key={index}>
                 <td>{index + 1}</td>
                 <td>
-                  <div className="company-cell d-flex align-items-center justify-content-center" onClick={()=> {setRecruiterId(data.jobId?.recruiter._id); setActiveContent("companyProfile");}} >
+                  <div
+                    className="company-cell d-flex align-items-center justify-content-center"
+                    onClick={() => {
+                      setRecruiterId(data.jobId?.recruiter._id);
+                      setActiveContent("companyProfile");
+                    }}
+                  >
                     <div className="company-logo imgBox me-1 d-flex">
-                      <img className="w-100 h-100 companyLogo" src={ (data?.jobId?.recruiter?.company?.logo || null ) ? `http://localhost:3200/upload/${data?.jobId?.recruiter?.company?.logo}`  : ("http://localhost:3200/defaultImage/defaultCompanyImg.jpg") } alt="" />
+                      <img
+                        className="w-100 h-100 companyLogo"
+                        src={
+                          data?.jobId?.recruiter?.company?.logo || null
+                            ? `http://localhost:3200/upload/${data?.jobId?.recruiter?.company?.logo}`
+                            : "http://localhost:3200/defaultImage/defaultCompanyImg.jpg"
+                        }
+                        alt=""
+                      />
                     </div>
-                    <span className="companyName ms-2">{data.jobId?.recruiter.company?.name}</span>
+                    <span className="companyName ms-2">
+                      {data.jobId?.recruiter.company?.name}
+                    </span>
                   </div>
                 </td>
                 <td>{data.jobId?.role}</td>

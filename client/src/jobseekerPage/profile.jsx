@@ -8,6 +8,7 @@ import { BsGlobe2 } from "react-icons/bs";
 import { FaLocationDot } from "react-icons/fa6";
 import { MdFileDownload } from "react-icons/md";
 import { FaArrowLeft } from "react-icons/fa6";
+import { MdOutlineMenu } from "react-icons/md";
 
 function Profile({
   setActiveContent,
@@ -17,44 +18,56 @@ function Profile({
   isRecruiter = false,
   jobSeekerJobPost,
   prevContent,
-  getRecruiterData
+  getRecruiterData,
+  setOpenMenu,
 }) {
-  
   const [activeStatus, setActiveStatus] = useState(jobSeekerJobPost?.jobStatus);
 
-  const StatusChange=(newStatus)=>{
+  const StatusChange = (newStatus) => {
     console.log(newStatus);
     async function updateJobSeekerStatus() {
       await fetch(`http://localhost:3200/recruiter/updateJobSeekerStatus`, {
         method: "PUT",
-        headers: {"Content-Type" : "application/json"},
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           jobId: jobSeekerJobPost?.jobId,
           jobStatus: newStatus,
           jobSeekerId: jobSeekerJobPost?.jobSeekerId,
           oldJobStatus: jobSeekerJobPost?.jobStatus,
-         }),
+        }),
       })
-      .then((res) => res.json())
-      .then((data) => {console.log(data), addMessageBox("check","status Changed successfully")})
-      .catch((error) => console.log(error));
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data),
+            addMessageBox("check", "status Changed successfully");
+        })
+        .catch((error) => console.log(error));
     }
     console.log(activeStatus);
-    if(isRecruiter){
+    if (isRecruiter) {
       updateJobSeekerStatus();
       getRecruiterData();
     }
-  }
-
+  };
 
   return (
     <div className="profile">
-      <h2 className="mt-3 pageTitle">{isRecruiter ? "" : "My"} Profile</h2>
+      <div className="d-flex gap-3 mt-3 align-items-center">
+              <MdOutlineMenu
+                className="PhoneMenuIcon d-xl-none"
+                onClick={() => setOpenMenu(true)}
+              />
+              <h2 className="pageTitle">{isRecruiter ? "" : "My"} Profile</h2>
+            </div>
       <hr className="my-3"></hr>
-      {(isRecruiter || isAdmin) ? (
+      {isRecruiter || isAdmin ? (
         <button
           className="backBtn fs-5 ms-2 p-1 px-2 mb-3 rounded-3 d-flex align-items-center fw-bold"
-          onClick={() => { isAdmin ? setActiveContent(prevContent)  : setActiveContent("applicants") } }
+          onClick={() => {
+            isAdmin
+              ? setActiveContent(prevContent)
+              : setActiveContent("applicants");
+          }}
         >
           <FaArrowLeft className="me-2" />
           BACK
@@ -63,7 +76,7 @@ function Profile({
         ""
       )}
 
-      <div className="d-flex justify-content-between">
+      <div className="d-flex flex-column flex-lg-row justify-content-between">
         <div className="info">
           <div className="nameBox position-relative">
             <div className="banner">
@@ -88,7 +101,7 @@ function Profile({
                 className="uploadImg"
               />
             </div>
-            <div className="details d-flex mt-2">
+            <div className="details d-sm-flex mt-2">
               <div>
                 <h2 className="m-0 mb-1">{JobSeekerData?.userName}</h2>
                 <p className="m-0 mb-1">
@@ -100,7 +113,9 @@ function Profile({
                 </p>
               </div>
               <div className="btnBox ms-auto me-3">
-                {isAdmin? "" : isRecruiter ? (
+                {isAdmin ? (
+                  ""
+                ) : isRecruiter ? (
                   <select
                     className={`setStatus ${activeStatus}`}
                     value={activeStatus}
@@ -123,33 +138,33 @@ function Profile({
                 ) : (
                   ""
                 )}
-                {
-                  isAdmin ? "" : (
-                    <button
-                  className="resumeBtn"
-                  onClick={(e) => {
-                    if (!JobSeekerData?.personalInfo?.resume) {
-                      e.preventDefault();
-                      addMessageBox(
-                        "warning",
-                        "You haven’t uploaded a resume yet"
-                      );
-                    }
-                  }}
-                >
-                  <a
-                    className="px-3"
-                    href={`http://localhost:3200/upload/${JobSeekerData?.personalInfo?.resume}`}
-                    target="_blank"
-                    download="Resume.pdf"
+                {isAdmin ? (
+                  ""
+                ) : (
+                  <button
+                    className="resumeBtn"
+                    onClick={(e) => {
+                      if (!JobSeekerData?.personalInfo?.resume) {
+                        e.preventDefault();
+                        addMessageBox(
+                          "warning",
+                          "You haven’t uploaded a resume yet"
+                        );
+                      }
+                    }}
                   >
-                    <MdFileDownload className="fs-4 me-1" />
-                    Resume
-                  </a>
-                </button>
-                  )
-                }
-                
+                    <a
+                      className="px-3"
+                      href={`http://localhost:3200/upload/${JobSeekerData?.personalInfo?.resume}`}
+                      target="_blank"
+                      download="Resume.pdf"
+                    >
+                      <MdFileDownload className="fs-4 me-1" />
+                      Resume
+                    </a>
+                  </button>
+                )}
+
                 {isRecruiter ? (
                   ""
                 ) : (
@@ -202,19 +217,34 @@ function Profile({
             <h3 className="boxHead">Educations</h3>
             {JobSeekerData?.personalInfo?.education.map((data) => (
               <div className="cardBox mt-4 d-flex">
-                <div className="imgBox rounded-circle me-3">
+                <div className="imgBox d-none d-lg-block rounded-circle me-3">
                   <img
                     src="http://localhost:3200/defaultImage/defaultCollegeImg.jpg"
                     alt=""
                   />
                 </div>
-                <div>
-                  <h4>{data.degree}</h4>
-                  <p className="m-0 mt-2">
-                    {data.institute} . ({data.year})
-                  </p>
-                  <p className="m-0 mt-2">{data.city}</p>
-                  <p className="mt-2">{data.details}</p>
+                <div className="d-lg-block ">
+                  <div className="d-block" >
+                    <div className="d-flex">
+                      <div className="imgBox d-block d-lg-none img2 rounded-circle me-3">
+                        <img
+                          src="http://localhost:3200/defaultImage/defaultCollegeImg.jpg"
+                          alt=""
+                        />
+                      </div>
+                      <div>
+                          <h4>{data.degree}</h4>
+                      <p className="m-0 mt-2">
+                        {data.institute} ({data.year})
+                      </p>
+                      <p className="m-0 mt-2 d-none d-md-block ">{data.city}</p>
+                      </div>
+                      
+                    </div>
+                  </div>
+                  <div>
+                    <p className="mt-2">{data.details}</p>
+                  </div>
                 </div>
               </div>
             ))}
@@ -247,7 +277,7 @@ function Profile({
               </div>
             </div>
           </div>
-          <div className="mt-3">
+          <div className="mt-lg-3">
             <h4 className="fw-bold mb-3">Social Links</h4>
             <div className="d-flex align-items-center mt-2">
               <FaInstagram className="fs-3 me-2" />
