@@ -200,7 +200,7 @@ function EditProfile({
       <form onSubmit={saveEditData} method="post" >
         <section className="formSection">
           <h3 className="heading">Personal Information</h3>
-          <div className="formRow d-flex">
+          <div className="formRow d-block d-md-flex">
             <div className="formGroup d-flex flex-column ">
               <label>Name</label>
               <input
@@ -224,7 +224,7 @@ function EditProfile({
             </div>
           </div>
 
-          <div className="formRow d-flex ">
+          <div className="formRow d-block d-md-flex ">
             <div className="formGroup d-flex flex-column">
               <label>City</label>
               <input
@@ -249,7 +249,7 @@ function EditProfile({
             </div>
           </div>
 
-          <div className="formRow d-flex">
+          <div className="formRow d-block d-md-flex">
             <div className="formGroup d-flex flex-column">
               <label>Phone Number</label>
               <input
@@ -273,7 +273,7 @@ function EditProfile({
             </div>
           </div>
 
-          <div className="formRow d-flex">
+          <div className="formRow d-block d-md-flex">
             <div className="formGroup d-flex flex-column">
               <label>Instagram</label>
               <input
@@ -313,9 +313,9 @@ function EditProfile({
 
         <section className="formSection uploadBox mt-5">
           <h3 className="heading">Uploads</h3>
-          <div className="formRow pe-5 mt-3">
+          <div className="formRow pe-md-5 mt-3">
             <div className="formGroup gap-1">
-              <label>Resume (PDF) :</label>
+              <label >Resume (PDF) <span className="labelDot" >:</span></label>
               <input
                 type="file"
                 name="resume"
@@ -324,7 +324,7 @@ function EditProfile({
               />
             </div>
             <div className="formGroup gap-1">
-              <label>Profile Photo :</label>
+              <label>Profile Photo <span className="labelDot" >:</span></label>
               <input
                 type="file"
                 name="profilePhoto"
@@ -333,7 +333,7 @@ function EditProfile({
               />
             </div>
             <div className="formGroup gap-1">
-              <label>Banner Image :</label>
+              <label>Banner Image <span className="labelDot" >:</span></label>
               <input
                 type="file"
                 name="banner"

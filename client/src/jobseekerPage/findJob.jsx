@@ -7,51 +7,70 @@ import { RiMapPinLine } from "react-icons/ri";
 import { RiUser3Line } from "react-icons/ri";
 import { FaIndianRupeeSign } from "react-icons/fa6";
 import companyImg1 from "../assets/homepage/Netflix.png";
+import { MdOutlineMenu } from "react-icons/md";
 
 
-function FindJob({ setActiveContent, setSelectData, fetchData , addMessageBox, setRecruiterId}) {
+function FindJob({
+  setActiveContent,
+  setSelectData,
+  fetchData,
+  addMessageBox,
+  setRecruiterId,
+  setOpenMenu,
+}) {
   const [findJobData, setFindJobData] = useState([]);
-  const [searchData, setSearchData]= useState({
+  const [searchData, setSearchData] = useState({
     jobTitle: "",
     location: "",
     jobType: "",
     experience: "",
   });
-  const [filterData, setFilterData]= useState([]);
+  const [filterData, setFilterData] = useState([]);
 
   console.log(filterData);
 
-  const changeHandler=(e)=>{
-    e.preventDefault(),
-    console.log(`${e.target.name} = ${e.target.value}`);
-    setSearchData((prev)=>({
+  const changeHandler = (e) => {
+    e.preventDefault(), console.log(`${e.target.name} = ${e.target.value}`);
+    setSearchData((prev) => ({
       ...prev,
       [e.target.name]: e.target.value,
-    }))
-  }
+    }));
+  };
 
-  useEffect(()=>{
-
-    if(searchData.jobTitle==""  && searchData.location=="" && searchData.jobType=="" && searchData.experience=="" ){
+  useEffect(() => {
+    if (
+      searchData.jobTitle == "" &&
+      searchData.location == "" &&
+      searchData.jobType == "" &&
+      searchData.experience == ""
+    ) {
       setFilterData(findJobData);
-      return ;
+      return;
     }
 
-    const timer=setTimeout(()=>{
-      const data=findJobData.filter((value)=>{
-        const jobTitleMatch=value.role.toLowerCase().startsWith(searchData.jobTitle.toLowerCase().trim());
-        const locationMatch=value.location.toLowerCase().startsWith(searchData.location.toLowerCase().trim());
-        const jobTypeMatch=(searchData.jobType==value.jobType ||  searchData.jobType=="");
-        const experienceMatch=(searchData.experience==value.experience ||  searchData.experience=="" );
-        return jobTitleMatch && locationMatch && jobTypeMatch && experienceMatch;
+    const timer = setTimeout(() => {
+      const data = findJobData.filter((value) => {
+        const jobTitleMatch = value.role
+          .toLowerCase()
+          .startsWith(searchData.jobTitle.toLowerCase().trim());
+        const locationMatch = value.location
+          .toLowerCase()
+          .startsWith(searchData.location.toLowerCase().trim());
+        const jobTypeMatch =
+          searchData.jobType == value.jobType || searchData.jobType == "";
+        const experienceMatch =
+          searchData.experience == value.experience ||
+          searchData.experience == "";
+        return (
+          jobTitleMatch && locationMatch && jobTypeMatch && experienceMatch
+        );
       });
       console.log(data);
       setFilterData(data);
-    },800);
+    }, 800);
 
-    return ()=> clearTimeout(timer);
-
-  },[searchData,findJobData]);
+    return () => clearTimeout(timer);
+  }, [searchData, findJobData]);
 
   function dayAgo(prev) {
     const currentDate = new Date();
@@ -72,23 +91,25 @@ function FindJob({ setActiveContent, setSelectData, fetchData , addMessageBox, s
   async function applyJob(object) {
     await fetch(`http://localhost:3200/jobseeker/apply`, {
       method: "PUT",
-      headers: { "Content-Type": "application/json", "Authorization": `Bearer ${localStorage.getItem("token")}` },
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
       body: JSON.stringify(object),
     })
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        if(!data.isPresent){
+        if (!data.isPresent) {
           console.log(data.message);
-          addMessageBox("check","Application submitted successfully");
-        }
-        else{
+          addMessageBox("check", "Application submitted successfully");
+        } else {
           console.log(data.message);
-          addMessageBox("Warning","Already applied for this job");
+          addMessageBox("Warning", "Already applied for this job");
         }
       })
       .catch((error) => console.log("Put error :-", error));
-    
+
     fetchData();
   }
 
@@ -99,13 +120,13 @@ function FindJob({ setActiveContent, setSelectData, fetchData , addMessageBox, s
         .then((data) => {
           console.log(data);
           const currentDate = new Date();
-          const openJob =data.filter((info)=> {
-            const closingDate= new Date(info.closingDate);
+          const openJob = data.filter((info) => {
+            const closingDate = new Date(info.closingDate);
             console.log(closingDate);
             console.log(currentDate);
-            if(closingDate > currentDate ) return true;
+            if (closingDate > currentDate) return true;
             else return false;
-          } )
+          });
           setFindJobData(openJob);
         })
         .catch((error) => console.log("fetch error :-", error));
@@ -115,25 +136,36 @@ function FindJob({ setActiveContent, setSelectData, fetchData , addMessageBox, s
 
   return (
     <div className="findJob">
-      <h2 className="mt-3 pageTitle">Find Job</h2>
-      <hr className="my-4"></hr>
-      <div className="d-flex justify-content-evenly mt-4">
+      <div className="d-flex gap-3 mt-3 align-items-center">
+        <MdOutlineMenu className="PhoneMenuIcon d-xl-none" onClick={() => setOpenMenu(true)} />
+        <h2 className="pageTitle">Find Job</h2>
+      </div>
+      <hr className="my-2"></hr>
+      <div className="d-flex filterInput justify-content-lg-evenly mt-4">
         <div className="field jobTitleBox ">
           <FaSearch className="icon" />
-          <input type="text" placeholder="Job Title" name="jobTitle" onChange={changeHandler} />
+          <input
+            type="text"
+            placeholder="Job Title"
+            name="jobTitle"
+            onChange={changeHandler}
+          />
         </div>
 
         <div className="field LocationBox">
           <FaLocationDot className="icon" />
-          <input type="text" placeholder="Location" name="location" onChange={changeHandler} />
+          <input
+            type="text"
+            placeholder="Location"
+            name="location"
+            onChange={changeHandler}
+          />
         </div>
 
         <div className="field jobTypeBOX">
           <FaBriefcase className="icon" />
-          <select defaultValue="" name="jobType" onChange={changeHandler} >
-            <option value="">
-              Job Type
-            </option>
+          <select defaultValue="" name="jobType" onChange={changeHandler}>
+            <option value="">Job Type</option>
             <option value="full-time">Full Time</option>
             <option value="part-time">Part Time</option>
             <option value="internship">Internship</option>
@@ -142,10 +174,8 @@ function FindJob({ setActiveContent, setSelectData, fetchData , addMessageBox, s
 
         <div className="field ExperienceBOX">
           <FaUserTie className="icon" />
-          <select defaultValue="" name="experience" onChange={changeHandler} >
-            <option value="">
-              Experience
-            </option>
+          <select defaultValue="" name="experience" onChange={changeHandler}>
+            <option value="">Experience</option>
             <option value="fresher">Fresher</option>
             <option value="1-3">1–3 Years</option>
             <option value="3-5">3–5 Years</option>
@@ -159,11 +189,25 @@ function FindJob({ setActiveContent, setSelectData, fetchData , addMessageBox, s
           <div className="jobCard pt-3 position-relative">
             <div className="head d-flex align-items-center mb-2">
               <div className="imgBox me-3">
-                <img className="w-100 companyLogo h-100" src={ (data?.recruiter?.company?.logo || null ) ? `http://localhost:3200/upload/${data?.recruiter?.company?.logo}`  : ("http://localhost:3200/defaultImage/defaultCompanyImg.jpg") } alt="" />
+                <img
+                  className="w-100 companyLogo h-100"
+                  src={
+                    data?.recruiter?.company?.logo || null
+                      ? `http://localhost:3200/upload/${data?.recruiter?.company?.logo}`
+                      : "http://localhost:3200/defaultImage/defaultCompanyImg.jpg"
+                  }
+                  alt=""
+                />
               </div>
               <div className="jobTitle">
                 <h5 className="mb-1 fw-bold">{data.role}</h5>
-                <p className="mb-0 fw-light companyName " onClick={()=> {setRecruiterId(data.recruiter._id); setActiveContent("companyProfile")}} >
+                <p
+                  className="mb-0 fw-light companyName "
+                  onClick={() => {
+                    setRecruiterId(data.recruiter._id);
+                    setActiveContent("companyProfile");
+                  }}
+                >
                   {data.recruiter?.company?.name}
                 </p>
               </div>
@@ -173,19 +217,22 @@ function FindJob({ setActiveContent, setSelectData, fetchData , addMessageBox, s
             </div>
             <div className="jobDetail d-flex justify-content-between mb-2 flex-wrap">
               <div className="detailItem d-flex align-items-center">
-                <FaBriefcase className="me-1" />
+                <FaBriefcase className="me-1 icon" />
                 <span>{data?.jobType}</span>
               </div>
               <div className="detailItem d-flex align-items-center">
-                <RiUser3Line className="me-1" />
-                <span>{data?.experience} {data?.experience!="fresher" ? "Years" : "" }</span>
+                <RiUser3Line className="me-1 icon" />
+                <span>
+                  {data?.experience}{" "}
+                  {data?.experience != "fresher" ? "Years" : ""}
+                </span>
               </div>
               <div className="detailItem d-flex align-items-center">
-                <RiMapPinLine className="me-1" />
+                <RiMapPinLine className="me-1 icon" />
                 <span>{data?.location}</span>
               </div>
               <div className="detailItem d-flex align-items-center">
-                <FaIndianRupeeSign className="me-1" />
+                <FaIndianRupeeSign className="me-1 icon" />
                 <span>{data?.salary}</span>
               </div>
             </div>
@@ -196,12 +243,19 @@ function FindJob({ setActiveContent, setSelectData, fetchData , addMessageBox, s
                 onClick={() => {
                   console.log(data);
                   setSelectData(data);
-                  setActiveContent("jobDetail")
+                  setActiveContent("jobDetail");
                 }}
               >
                 Details
               </button>
-              <button className="btn applyBtn w-50" onClick={()=>{applyJob({"id": data?._id,"applicants": data?.applications })}}>Apply</button>
+              <button
+                className="btn applyBtn w-50"
+                onClick={() => {
+                  applyJob({ id: data?._id, applicants: data?.applications });
+                }}
+              >
+                Apply
+              </button>
             </div>
           </div>
         ))}

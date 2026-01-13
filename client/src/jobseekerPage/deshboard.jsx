@@ -1,47 +1,51 @@
 import React from "react";
 import PieGraph from "./pieChart";
 import { dateFormat } from "../utils/dateFormat";
+import { MdOutlineMenu } from "react-icons/md";
 
 
-function DashBoard({JobSeekerData}){
+function DashBoard({JobSeekerData, setOpenMenu}){
 
   return (
     <>
-      <h2 className="mt-3 pageTitle">Dashboard</h2>
-      <hr></hr>
-      <div>
-        <h3>Hello, {JobSeekerData?.userName}</h3>
+      <div className="d-flex gap-3 mt-3 align-items-center" >
+        < MdOutlineMenu className="PhoneMenuIcon d-xl-none" onClick={()=> setOpenMenu(true)} />
+        <h2 className="pageTitle">Dashboard</h2>
+      </div>
+      <hr className="mt-1" ></hr>
+      <div className="heading" >
+        <h3>Hello, <span className="yellowText fw-bolder" >{JobSeekerData?.userName}</span></h3>
         <p>Here is what's is happening with your job search application</p>
       </div>
       <div className="applicationStatus">
-        <div className="row text-center d-flex justify-content-evenly">
-          <div className="col-3 p-0 databox">
+        <div className="row-lg text-center d-md-flex justify-content-lg-evenly">
+          <div className="col-lg-3 p-0 databox">
             <div>
-              <h1>{JobSeekerData.application?.total}</h1>
+              <h1 className="yellowText">{JobSeekerData.application?.total}</h1>
               <h5>Total Applications</h5>
             </div>
             <div>
-              <h1>{JobSeekerData.application?.pending}</h1>
+              <h1 className="yellowText" >{JobSeekerData.application?.pending}</h1>
               <h5>Pending Applications</h5>
             </div>
           </div>
-          <div className="col-3 p-0 databox">
+          <div className="col-lg-3 p-0 databox">
             <div>
-              <h1>{JobSeekerData.application?.accepted}</h1>
+              <h1 className="yellowText" >{JobSeekerData.application?.accepted}</h1>
               <h5>Accepted Applications</h5>
             </div>
             <div>
-              <h1>{JobSeekerData.application?.rejected}</h1>
+              <h1 className="yellowText" >{JobSeekerData.application?.rejected}</h1>
               <h5>Rejected Applications</h5>
             </div>
           </div>
 
-          <div className="pieGraphBox col-5 ps-0">
+          <div className="pieGraphBox d-none d-lg-block col-5 ps-0">
             <PieGraph pending={JobSeekerData.application?.pending} accepted={JobSeekerData?.application?.accepted} rejected={JobSeekerData?.application?.rejected} />
           </div>
         </div>
       </div>
-      <h2 className="my-3">Recent Application History</h2>
+      <h2 className="my-3 rah">Recent Application History</h2>
       <div className="dbList d-flex  flex-column justify-content-evenly">
         { (JobSeekerData?.application?.appliedJobs || []).slice(0,5).map(( data , i) => (
           <div key={data._id} className="d-flex flex-row justify-content-around py-2">

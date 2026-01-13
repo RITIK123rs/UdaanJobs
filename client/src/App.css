@@ -86,7 +86,8 @@
 
 
 @media only screen and (max-width: 470.98px){
-    .navbar{
+    .navbar,
+    .logoName{
     background-color: orange;
   }
 }
@@ -95,7 +96,8 @@
 /* Extra small devices (portrait phones, less than 576px) */
 @media only screen and (min-width: 470.98px) and (max-width: 575.98px) {
   /* Your styles here */
-  .navbar{
+  .navbar,
+  .logoName{
     background-color: green;
   }
 }
@@ -103,7 +105,8 @@
 /* Small devices (landscape phones, 576px and up) */
 @media only screen and (min-width: 576px) and (max-width: 767.98px) {
   /* Your styles here */
-  .navbar{
+  .navbar,
+  .logoName{
     background-color: yellowgreen;
   }
 }
@@ -111,7 +114,8 @@
 /* Medium devices (tablets, 768px and up) */
 @media only screen and (min-width: 768px) and (max-width: 991.98px) {
   /* Your styles here */
-  .navbar{
+  .navbar,
+  .logoName{
     background-color: yellow;
   }
 }
@@ -119,7 +123,8 @@
 /* Large devices (desktops, 992px and up) */
 @media only screen and (min-width: 992px) and (max-width: 1199.98px) {
   /* Your styles here */
-  .navbar{
+  .navbar,
+  .logoName{
     background-color: red;
   }
 }
