@@ -4,6 +4,12 @@
 div{
     border: 2px solid white;
 } */
+
+.imgBox,
+.menuImgBox {
+  border: 2px solid var(--yellowTextColor);
+}
+
 .jobSeekerPage .pageTitle {
   font-size: 50px;
   text-transform: uppercase;
@@ -27,13 +33,13 @@ div{
   overflow-y: scroll;
   padding-left: 15px;
 }
-.jobSeekerPage .heading h3{
+.jobSeekerPage .heading h3 {
   font-size: 30px;
 }
-.jobSeekerPage .heading p{
+.jobSeekerPage .heading p {
   font-size: 19px;
 }
-.jobSeekerPage .heading{
+.jobSeekerPage .heading {
   margin-bottom: 20px;
 }
 .jobSeekerPage .menuContent::-webkit-scrollbar {
@@ -78,10 +84,8 @@ div{
   height: 70px;
 }
 .dbList .status {
-  border: 2px solid red;
   border-radius: 30px;
   height: 35px;
-  color: red;
 }
 .dbList > div {
   width: 99%;
@@ -189,6 +193,7 @@ div{
   height: 76vh;
   white-space: nowrap;
   border: 2px solid white;
+  border-radius: 10px;
 }
 .jobApply .tableHead {
   background-color: #1c1c1c;
@@ -205,14 +210,15 @@ div{
   text-align: center;
 }
 .jobApply thead {
-  border: 2px solid white;
+  border-bottom: 2px solid white;
+  color: var(--yellowTextColor);
 }
 .jobApply th {
   font-size: 20px;
   padding: 8px 5px;
 }
 .jobApply td {
-  font-size: 18px;
+  font-size: 20px;
 }
 .jobApply .status span {
   padding: 4px 15px;
@@ -220,12 +226,12 @@ div{
   font-weight: bold;
 }
 .jobApply .company-logo {
-  width: 40px;
-  height: 40px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
 }
 .jobApply tbody tr {
-  border: 2px solid white;
+  border-bottom: 2px solid white;
 }
 .jobApply tbody td {
   padding: 7px 0;
@@ -309,7 +315,6 @@ div{
 .profile .banner {
   border: 2px solid white;
   height: 120px;
-  background: yellow;
 }
 .profile .nameBox .imgBox {
   width: 110px;
@@ -318,7 +323,7 @@ div{
   top: 55px;
   left: 25px;
   overflow: hidden;
-  border: 2px solid white;
+  border: 2px solid var(--yellowTextColor);
 }
 .profile .details > div {
   margin-left: 150px;
@@ -636,6 +641,7 @@ div{
   border: none;
   border-radius: 6px;
   font-weight: bolder;
+  font-size: 19px;
 }
 
 .jobApply .actionBox .btn-view {
@@ -647,6 +653,7 @@ div{
   background-color: #f44336;
   color: #fff;
 }
+
 .uploadImg {
   width: 100%;
   height: 100%;
@@ -692,7 +699,7 @@ div{
 }
 .jobSeekerPage .loginBox:hover > .dropMenu {
   min-width: 90%;
-  font-size: 23px !important;
+  font-size: 20px !important;
   display: flex;
   cursor: pointer;
   align-items: center;
@@ -737,32 +744,30 @@ div{
   }
 }
 
-.jobSeekerPage .profile .img2{
+.jobSeekerPage .profile .img2 {
   width: 70px;
   height: 70px;
 }
-
-.jobSeekerPage .applicationStatus .databox h1{
+.jobSeekerPage .applicationStatus .databox h1 {
   font-size: 45px;
   font-weight: bolder;
 }
-
-.jobSeekerPage .findJob .jobCard{
+.jobSeekerPage .findJob .jobCard {
   position: relative;
   background: #1c1c1c;
-  border: 1px solid var(--yellowTextColor);
+  border: 1px solid var(--yellowTextColor) !important;
 }
 
-.jobSeekerPage .findJob .jobCard .detailItem .icon{
-   color: var(--yellowTextColor);
+.jobSeekerPage .findJob .jobCard .detailItem .icon {
+  color: var(--yellowTextColor);
 }
 
-@property --angle1{
+@property --angle1 {
   syntax: "<angle>";
   initial-value: 0deg;
   inherits: false;
 }
-@property --angle2{
+@property --angle2 {
   syntax: "<angle>";
   initial-value: 180deg;
   inherits: false;
@@ -773,7 +778,7 @@ div{
 .jobSeekerPage .applicationStatus .databox > div::after,
 .jobSeekerPage .applicationStatus .databox > div::before,
 .jobSeekerPage .applicationStatus .pieGraphBox > div::after,
-.jobSeekerPage .applicationStatus .pieGraphBox > div::before{
+.jobSeekerPage .applicationStatus .pieGraphBox > div::before {
   content: "";
   position: absolute;
   height: calc(100% + 8px);
@@ -785,24 +790,32 @@ div{
   animation: roundMove 5s linear infinite;
 }
 .jobSeekerPage .applicationStatus .databox > div,
-.jobSeekerPage .applicationStatus .pieGraphBox > div{
+.jobSeekerPage .applicationStatus .pieGraphBox > div {
   position: relative;
   background: #1c1c1c;
   border-radius: 10px;
-  border: 1px solid var(--yellowTextColor);
+  border: 1px solid var(--yellowTextColor) !important;
 }
 
 .jobSeekerPage .applicationStatus .databox > div::after,
 .jobSeekerPage .applicationStatus .pieGraphBox > div::after,
-.jobSeekerPage .findJob .jobCard::after{
-   --angle1: 0deg;
-    background-image: conic-gradient(from var(--angle1), transparent 74%, var(--yellowTextColor) );
+.jobSeekerPage .findJob .jobCard::after {
+  --angle1: 0deg;
+  background-image: conic-gradient(
+    from var(--angle1),
+    transparent 74%,
+    var(--yellowTextColor)
+  );
 }
 .jobSeekerPage .applicationStatus .databox > div::before,
 .jobSeekerPage .applicationStatus .pieGraphBox > div::before,
-.jobSeekerPage .findJob .jobCard::before{
-   --angle2: 180deg;
-    background-image: conic-gradient(from var(--angle2), transparent 74%, var(--yellowTextColor) );
+.jobSeekerPage .findJob .jobCard::before {
+  --angle2: 180deg;
+  background-image: conic-gradient(
+    from var(--angle2),
+    transparent 74%,
+    var(--yellowTextColor)
+  );
 }
 
 @keyframes roundMove {
@@ -810,7 +823,7 @@ div{
     --angle1: 0deg;
     --angle2: 180deg;
   }
-  to{
+  to {
     --angle1: 360deg;
     --angle2: 540deg;
   }
@@ -821,17 +834,11 @@ div{
   display: none;
 }
 .jobSeekerPage .findJob .jobCard:hover {
-  box-shadow: -2px -2px 15px #ffbc20ee;
-  transform: translateY(-4px);
+  box-shadow: 0 2px 25px rgba(255, 189, 32, 0.3);
+  transform: translateY(-10px);
 }
 
 @media only screen and (max-width: 470.98px) {
-  .navbar,
-  .logoName,
-  .pageTitle {
-    background-color: orange;
-  }
-  
   .menuIcon {
     font-size: 43px !important;
   }
@@ -849,9 +856,7 @@ div{
     background-color: #f44336;
     width: 48%;
     justify-content: center;
-    
   }
-
   .jobSeekerPage .applicationStatus .databox > div {
     border: 2px solid white;
     margin-bottom: 6px;
@@ -861,12 +866,12 @@ div{
     justify-content: space-between;
     margin-bottom: 10px;
   }
-  .jobSeekerPage .applicationStatus .databox > div{
+  .jobSeekerPage .applicationStatus .databox > div {
     padding: 0 10px;
   }
-  .jobSeekerPage .rah{
-    margin: 20px 0 10px 0;
-    font-size: 23px;
+  .jobSeekerPage .rah {
+    margin: 10px 0 10px 0;
+    font-size: 20px;
     font-weight: bold;
   }
   .jobSeekerPage .phoneMenu {
@@ -880,6 +885,15 @@ div{
   }
   .jobSeekerPage .logoName {
     font-size: 26px !important;
+  }
+  .loginBox .menuImgBox {
+    width: 40px !important;
+  }
+  .loginBox .personName {
+    font-size: 17px !important;
+  }
+  .loginBox .emailId {
+    display: none;
   }
   .menuList .menuItem {
     font-size: 20px !important;
@@ -898,152 +912,296 @@ div{
   .loginBox .emailId {
     font-size: 12px;
   }
-   .jobSeekerPage .pageTitle{
-    font-size: 25px !important;
+  .jobSeekerPage .pageTitle {
+    font-size: 28px !important;
+    margin: auto 0;
   }
-  .jobSeekerPage .PhoneMenuIcon{
+  .jobSeekerPage .PhoneMenuIcon {
     font-size: 30px !important;
   }
 
-  .findJob .filterInput{
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-.findJob .filterInput > div{
-  margin-bottom: 10px;
-}
-.findJob .jobList .jobCard {
-  width: 98%;
-}
-.findJob .jobTitleBox {
-  width: 97%;
-}
-.findJob .LocationBox {
-  width: 97%;
-}
-.findJob .jobTypeBOX {
-  width: 48%;
-}
-.findJob .ExperienceBOX {
-  width: 48%;
-}
-.findJob .field select {
-   width: 80% ;
-}
-.findJob .field select option {
-   font-size: 15px;
-}
-.jobApply .field input,
-.jobApply .field select {
-  font-size: 20px;
-  margin-left: 5px;
-}
-.jobApply .field select option{
-  font-size: 17px !important;
-}
-.jobApply .filterBox{
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-.jobApply .filter {
-  width: 50%;
-}
-.jobApply .field{
-  margin: 0 !important;
-}
-.jobApply .jobTitleBox {
-  width: 100%;
-}
+  .findJob .filterInput {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .findJob .filterInput > div {
+    margin-bottom: 10px;
+  }
+  .findJob .jobList .jobCard {
+    width: 98%;
+  }
+  .findJob .jobTitleBox {
+    width: 97%;
+  }
+  .findJob .LocationBox {
+    width: 97%;
+  }
+  .findJob .jobTypeBOX {
+    width: 48%;
+  }
+  .findJob .ExperienceBOX {
+    width: 48%;
+  }
+  .findJob .field select {
+    width: 80%;
+  }
+  .findJob .field select option {
+    font-size: 15px;
+  }
+  .jobApply .field input,
+  .jobApply .field select {
+    font-size: 20px;
+    margin-left: 5px;
+  }
+  .jobApply .field select option {
+    font-size: 17px !important;
+  }
+  .jobApply .filterBox {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .jobApply .filter {
+    width: 50%;
+  }
+  .jobApply .field {
+    margin: 0 !important;
+  }
+  .jobApply .jobTitleBox {
+    width: 100%;
+  }
   .jobApply .tableContainer {
-  height: 69vh !important;
-}
-.profile .info {
-  width: 100%;
-  height: 100%;
- overflow-y: none !important;
-}
+    height: 69vh !important;
+  }
+  .jobApply th {
+    font-size: 15px;
+  }
+  .jobApply .imgBox {
+    width: 40px;
+    height: 40px;
+  }
+  .jobApply td {
+    font-size: 15px;
+  }
+  th,
+  td {
+    padding: 10px 14px !important;
+  }
+  .profile .info {
+    width: 100%;
+    height: 100%;
+    overflow-y: none !important;
+  }
 
-.profile .additionalInfo {
-  height: 38vh;
-  width: 100%;
-  margin-top: 20px;
-}
-.profile .additionalInfo > div{
-  width: 100%;
-  margin-top: 10px;
-}
-.profile .details .btnBox{
+  .profile .additionalInfo {
+    height: 38vh;
+    width: 100%;
+    margin-top: 20px;
+  }
+  .profile .additionalInfo > div {
+    width: 100%;
+    margin-top: 10px;
+  }
+  .profile .nameBox .userName {
+    font-size: 19px;
+  }
+  .profile .details > div {
+    margin-left: 130px;
+  }
+  .profile .nameBox p {
+    font-size: 14px;
+  }
+  .profile .details .btnBox {
     display: flex;
     justify-content: space-between;
     padding-left: 10px;
   }
-  .profile .details .btnBox button{
+  .profile .details .btnBox button {
     width: 49%;
     margin-bottom: 10px;
   }
-  .jobDetail .jobHead button{
-  margin-top: 20px;
-  width: 100%;
-}
-.jobDetail .pageTitle {
-    font-size: 45px !important;
+  .jobSeekerPage .profile .img2 {
+    width: 80px;
+    height: 60px;
   }
-.editProfile .formRow {
-  display: block;
-  margin-top: 0;
-}
-.editProfile .formGroup {
-  width: 100%;
-  margin-top: 25px;
-}
-.editProfile .saveBtn{
-  width: 95%;
-}
-.editProfile .uploadBox .formGroup {
-  display: block;
-  width: 100%;
-}
-.editProfile .labelDot{
-  display: none;
-}
-.editProfile .uploadBox label,
-.editProfile .uploadBox input{
-  width: 98%;
-}
-.editProfile .uploadBox .formRow{
-  padding-bottom: 30px;
-}
-.jobSeekerPage .menuContent {
-  padding: 0 10px;
-}
- .jobSeekerPage .loginBox:hover > .dropMenu {
-  font-size: 19px !important;
-}
-.jobSeekerPage .findJob .jobCard::after,
-.jobSeekerPage .findJob .jobCard::before,
-.jobSeekerPage .applicationStatus .databox > div::after,
-.jobSeekerPage .applicationStatus .databox > div::before,
-.jobSeekerPage .applicationStatus .pieGraphBox > div::after,
-.jobSeekerPage .applicationStatus .pieGraphBox > div::before{
-  display: none;
-}
-.jobSeekerPage .heading h3{
-  font-size: 25px;
-}
-.jobSeekerPage .heading p{
-  font-size: 13px;
-}
 
+  .jobDetail .jobHead button {
+    margin-top: 20px;
+    width: 100%;
+  }
+  .jobDetail .pageTitle {
+    font-size: 28px !important;
+  }
+  .editProfile .formRow {
+    display: block;
+    margin-top: 0;
+  }
+  .editProfile .formGroup {
+    width: 100%;
+    margin-top: 25px;
+  }
+  .editProfile .saveBtn {
+    width: 95%;
+  }
+  .editProfile .uploadBox .formGroup {
+    display: block;
+    width: 100%;
+  }
+  .editProfile .labelDot {
+    display: none;
+  }
+  .editProfile .uploadBox label,
+  .editProfile .uploadBox input {
+    width: 98%;
+  }
+  .editProfile .uploadBox .formRow {
+    padding-bottom: 30px;
+  }
+  .jobSeekerPage .menuContent {
+    padding: 0 10px;
+  }
+  .jobSeekerPage .loginBox:hover > .dropMenu {
+    font-size: 19px !important;
+  }
+
+  .jobSeekerPage .applicationStatus .databox > div::after,
+  .jobSeekerPage .applicationStatus .databox > div::before,
+  .jobSeekerPage .applicationStatus .pieGraphBox > div::after,
+  .jobSeekerPage .applicationStatus .pieGraphBox > div::before {
+    display: none;
+  }
+  .jobSeekerPage .heading h3 {
+    font-size: 25px;
+  }
+  .jobSeekerPage .heading p {
+    font-size: 13px;
+  }
+  .profile .nameBox .banner {
+    height: 100px;
+  }
+  .profile .nameBox .imgBox {
+    width: 80px;
+    height: 80px;
+    top: 57px;
+    left: 25px;
+  }
+
+  .jobDetail .jobHead .info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 5px;
+  }
+  .jobDetail .jobHead .companyRole {
+    font-size: 22px;
+  }
+  .jobDetail .imgBox {
+    width: 74px;
+    height: 70px;
+  }
+  .jobDetail .applyBtn {
+    height: 32px;
+    font-size: 17px;
+  }
+  .jobDetail .boxTitles {
+    font-size: 25px;
+  }
+  .jobDetail .boxTitles::after {
+    width: 60px;
+  }
+  .jobDetail .detailItem .icon {
+    color: var(--yellowTextColor);
+  }
+  .jobDetail .jobBody p {
+    font-size: 15px !important;
+  }
+  .jobDetail .skillTag {
+    font-size: 17px;
+  }
+  .editProfile .pageTitle {
+    font-size: 35px !important;
+  }
+  .editProfile .heading {
+    font-size: 26px;
+  }
+  .editProfile .formGroup > label {
+    font-size: 19px;
+  }
+  .editProfile .formGroup > input {
+    margin-top: 5px;
+    width: 99%;
+    font-size: 19px;
+    padding: 5px 10px 5px 10px !important;
+  }
+
+  .editProfile textarea {
+    font-size: 19px;
+    padding: 5px 10px 5px 10px !important;
+  }
+  .editProfile .formGroup select {
+    font-size: 19px;
+  }
+  .editProfile .formGroup option {
+    font-size: 19px;
+  }
+  .editProfile .saveBtn {
+    width: 95%;
+  }
+  .editProfile .uploadBox .formRow {
+    border: none;
+    padding: 0;
+  }
+  .editProfile .uploadBox label {
+    width: 90%;
+  }
+  .editProfile textarea {
+    margin: 0 !important;
+  }
+  .editProfile .uploadBox input[type="file"]::file-selector-button {
+    font-size: 17px;
+    margin-right: 9px;
+  }
+  .editProfile .heading::after {
+    width: 40px;
+  }
+  .editProfile .addBtn {
+    top: -10px;
+    font-size: 32px;
+  }
+
+  .jobApply .status span {
+    font-size: 15px;
+    padding: 3px 10px;
+  }
+  .jobApply .actionBox .btn {
+    font-size: 16px;
+    padding: 3px 10px;
+  }
+  .profile .boxHead {
+    font-size: 29px;
+  }
+  .profile .boxHead::after {
+    width: 50px;
+  }
+
+  .dbList .imgBox {
+    width: 60px;
+    height: 60px;
+  }
+  .dbList > div {
+    margin-top: 7px;
+    border: 1px solid white;
+  }
+  .dbList .nameBox {
+    font-size: 12px;
+  }
+  .dbList h4 {
+    font-size: 20px;
+  }
 }
 
 @media only screen and (min-width: 470.98px) and (max-width: 575.98px) {
-  .navbar,
-  .logoName,
-  .pageTitle {
-    background-color: green;
-  }
   .dbList .nameBox {
     width: 77%;
   }
@@ -1063,93 +1221,182 @@ div{
     width: 100%;
     justify-content: space-between !important;
   }
-  .jobSeekerPage .pageTitle{
+  .jobSeekerPage .pageTitle {
     font-size: 36px !important;
   }
-  .jobSeekerPage .PhoneMenuIcon{
+  .jobSeekerPage .PhoneMenuIcon {
     font-size: 35px !important;
   }
 
-.findJob .filterInput{
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-.findJob .filterInput > div{
-  margin-bottom: 10px;
-}
-.findJob .jobList .jobCard {
-  width: 98%;
-}
-.findJob .jobTitleBox {
-  width: 48%;
-}
-.findJob .LocationBox {
-  width: 48%;
-}
-.findJob .jobTypeBOX {
-  width: 48%;
-}
-.findJob .ExperienceBOX {
-  width: 48%;
-}
-.jobApply .field input,
-.jobApply .field select {
-  font-size: 20px;
-  margin-left: 5px;
-}
-.jobApply .field select option{
-  font-size: 17px !important;
-}
-.jobApply .filter {
-  width: 35%;
-}
-.jobApply .jobTitleBox {
-  width: 60%;
-}
-.profile .info {
-  width: 100%;
-  height: 100%;
- overflow-y: none !important;
-}
+  .findJob .filterInput {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .findJob .filterInput > div {
+    margin-bottom: 10px;
+  }
+  .findJob .jobList .jobCard {
+    width: 98%;
+  }
+  .findJob .jobTitleBox {
+    width: 48%;
+  }
+  .findJob .LocationBox {
+    width: 48%;
+  }
+  .findJob .jobTypeBOX {
+    width: 48%;
+  }
+  .findJob .ExperienceBOX {
+    width: 48%;
+  }
+  .jobApply .field input,
+  .jobApply .field select {
+    font-size: 20px;
+    margin-left: 5px;
+  }
+  .jobApply .field select option {
+    font-size: 17px !important;
+  }
+  .jobApply .filter {
+    width: 35%;
+  }
+  .jobApply .jobTitleBox {
+    width: 60%;
+  }
+  .jobApply th {
+    font-size: 16px;
+  }
+  .jobApply .imgBox {
+    width: 45px;
+    height: 45px;
+  }
+  .jobApply td {
+    font-size: 15px;
+  }
+  th,
+  td {
+    padding: 10px 14px !important;
+  }
+  .profile .info {
+    width: 100%;
+    height: 100%;
+    overflow-y: none !important;
+  }
 
-.profile .additionalInfo {
-  height: 38vh;
-  width: 100%;
-  margin-top: 20px;
-}
-.profile .additionalInfo > div{
-  width: 100%;
-  margin-top: 10px;
-}
-.profile .details .btnBox{
+  .profile .additionalInfo {
+    height: 38vh;
+    width: 100%;
+    margin-top: 20px;
+  }
+  .profile .additionalInfo > div {
+    width: 100%;
+    margin-top: 10px;
+  }
+  .profile .details .btnBox {
     display: flex;
     justify-content: space-between;
     padding-left: 10px;
   }
-  .profile .details .btnBox button{
+  .profile .details .btnBox button {
     width: 49%;
     margin-bottom: 10px;
   }
- .jobSeekerPage .loginBox:hover > .dropMenu {
-  font-size: 18px !important;
-}
-.jobSeekerPage .findJob .jobCard::after,
-.jobSeekerPage .findJob .jobCard::before,
-.jobSeekerPage .applicationStatus .databox > div::after,
-.jobSeekerPage .applicationStatus .databox > div::before,
-.jobSeekerPage .applicationStatus .pieGraphBox > div::after,
-.jobSeekerPage .applicationStatus .pieGraphBox > div::before{
-  display: none;
-}
-.jobSeekerPage .heading h3{
-  font-size: 27px;
-}
-.jobSeekerPage .heading p{
-  font-size: 15px;
-}
+  .jobSeekerPage .loginBox:hover > .dropMenu {
+    font-size: 18px !important;
+  }
 
-  
+  .jobSeekerPage .applicationStatus .databox > div::after,
+  .jobSeekerPage .applicationStatus .databox > div::before,
+  .jobSeekerPage .applicationStatus .pieGraphBox > div::after,
+  .jobSeekerPage .applicationStatus .pieGraphBox > div::before {
+    display: none;
+  }
+  .jobSeekerPage .heading h3 {
+    font-size: 27px;
+  }
+  .jobSeekerPage .heading p {
+    font-size: 15px;
+  }
+  .profile .nameBox .imgBox {
+    width: 90px;
+    height: 90px;
+    top: 75px;
+    left: 25px;
+  }
+
+  .editProfile .pageTitle {
+    font-size: 35px !important;
+  }
+  .editProfile .heading {
+    font-size: 26px;
+  }
+  .editProfile .formGroup > label {
+    font-size: 19px;
+  }
+  .editProfile .formGroup > input {
+    margin-top: 5px;
+    width: 99%;
+    font-size: 19px;
+    padding: 5px 10px 5px 10px !important;
+  }
+
+  .editProfile textarea {
+    font-size: 19px;
+    padding: 5px 10px 5px 10px !important;
+  }
+  .editProfile .formGroup select {
+    font-size: 19px;
+  }
+  .editProfile .formGroup option {
+    font-size: 19px;
+  }
+  .editProfile .saveBtn {
+    width: 95%;
+  }
+  .editProfile .uploadBox .formRow {
+    border: none;
+    padding: 0;
+  }
+  .editProfile .uploadBox label {
+    width: 90%;
+  }
+  .editProfile textarea {
+    margin: 0 !important;
+  }
+  .editProfile .uploadBox input[type="file"]::file-selector-button {
+    font-size: 17px;
+    margin-right: 9px;
+  }
+  .editProfile .heading::after {
+    width: 40px;
+  }
+  .editProfile .addBtn {
+    top: -10px;
+    font-size: 32px;
+  }
+
+  .jobApply .status span {
+    font-size: 16px;
+    padding: 3px 10px;
+  }
+  .jobApply .actionBox .btn {
+    font-size: 17px;
+    padding: 3px 10px;
+  }
+  .profile .boxHead {
+    font-size: 29px;
+  }
+  .profile .boxHead::after {
+    width: 50px;
+  }
+  .menuImgBox {
+    width: 40px !important;
+  }
+  .loginBox .personName {
+    font-size: 17px;
+  }
 }
 
 @media only screen and (min-width: 470.98px) and (max-width: 767.98px) {
@@ -1159,7 +1406,7 @@ div{
   .menuIcon {
     font-size: 45px !important;
   }
-  
+
   .jobSeekerPage .applicationStatus .databox > div {
     border: 2px solid white;
     margin-bottom: 6px;
@@ -1182,6 +1429,7 @@ div{
   }
   .jobSeekerPage .logoName {
     font-size: 30px !important;
+    background-color: none;
   }
   .menuList .menuItem {
     font-size: 20px !important;
@@ -1190,78 +1438,68 @@ div{
   .menuList .menuIcon {
     font-size: 27px !important;
   }
-  .menuImgBox {
-    width: 40px !important;
-  }
-  .menuImgBox {
-    width: 30px !important;
-  }
   .loginBox .personName {
-    font-size: 14px;
+    font-size: 16px;
   }
   .loginBox .emailId {
-    font-size: 12px;
+    display: none;
   }
-  .jobDetail .jobHead button{
-  margin-top: 20px;
-  width: 100%;
-}
-.jobDetail .pageTitle {
+  .jobDetail .jobHead button {
+    margin-top: 20px;
+    width: 100%;
+  }
+  .jobDetail .pageTitle {
     font-size: 45px !important;
   }
-.editProfile .formRow {
-  display: block;
-  margin-top: 0;
-}
-.editProfile .formGroup {
-  width: 100%;
-  margin-top: 25px;
-}
-.editProfile .saveBtn{
-  width: 90%;
-}
-.editProfile .uploadBox .formGroup {
-  display: block;
-  width: 100%;
-}
-.editProfile .labelDot{
-  display: none;
-}
-.editProfile .uploadBox label,
-.editProfile .uploadBox input{
-  width: 98%;
-}
-.editProfile .uploadBox .formRow{
-  padding-bottom: 30px;
-}
-.jobSeekerPage .menuContent {
-  padding: 0 10px;
+  .editProfile .formRow {
+    display: block;
+    margin-top: 0;
+  }
+  .editProfile .formGroup {
+    width: 100%;
+    margin-top: 25px;
+  }
+  .editProfile .saveBtn {
+    width: 90%;
+  }
+  .editProfile .uploadBox .formGroup {
+    display: block;
+    width: 100%;
+  }
+  .editProfile .labelDot {
+    display: none;
+  }
+  .editProfile .uploadBox label,
+  .editProfile .uploadBox input {
+    width: 98%;
+  }
+  .editProfile .uploadBox .formRow {
+    padding-bottom: 30px;
+  }
+  .jobSeekerPage .menuContent {
+    padding: 0 10px;
+  }
 }
 
-}
-
-@media only screen and (min-width:576px ) and (max-width: 662px){
-  .profile .details{
+@media only screen and (min-width: 576px) and (max-width: 662px) {
+  .profile .details {
     display: block !important;
   }
-  .profile .details .btnBox{
+  .profile .details .btnBox {
     display: flex;
     justify-content: space-between;
     padding-left: 10px;
   }
-  .profile .details .btnBox button{
+  .profile .details .btnBox button {
     width: 49%;
     margin-bottom: 10px;
   }
-  
+  .jobApply .actionBox .btn {
+    font-size: 17px;
+  }
 }
 
 @media only screen and (min-width: 576px) and (max-width: 767.98px) {
-  .navbar,
-  .logoName,
-  .pageTitle {
-    background-color: yellowgreen;
-  }
   .dbList .nameBox {
     width: 57%;
   }
@@ -1294,108 +1532,116 @@ div{
     font-size: 27px !important;
   }
   .menuImgBox {
-    width: 33px !important;
+    width: 40px !important;
   }
-  .jobSeekerPage .PhoneMenuIcon{
+  .loginBox .personName {
+    font-size: 17px;
+  }
+  .jobSeekerPage .PhoneMenuIcon {
     font-size: 45px !important;
   }
-    .findJob .ExperienceBOX {
-  display: none;
-}
-.findJob .filterInput{
-  justify-content: end;
-  gap: 10px;
-}
-.findJob .jobTypeBOX {
-  width: 23%;
-}
-.findJob .jobList .jobCard {
-  width: 99%;
-}
-.jobApply .field input,
-.jobApply .field select {
-  font-size: 25px;
-  margin-left: 5px;
-}
-.jobApply .field select option{
-  font-size: 17px !important;
-}
-.jobApply .filter {
-  width: 24%;
-}
-.jobApply .jobTitleBox {
-  width: 45%;
-}
+  .findJob .ExperienceBOX {
+    display: none;
+  }
+  .findJob .filterInput {
+    justify-content: end;
+    gap: 10px;
+  }
+  .findJob .jobTypeBOX {
+    width: 23%;
+  }
+  .findJob .jobList .jobCard {
+    width: 99%;
+  }
+  .jobApply .field input,
+  .jobApply .field select {
+    font-size: 25px;
+    margin-left: 5px;
+  }
+  .jobApply .field select option {
+    font-size: 17px !important;
+  }
+  .jobApply .filter {
+    width: 24%;
+  }
+  .jobApply .jobTitleBox {
+    width: 45%;
+  }
+  .jobApply th {
+    font-size: 17px;
+  }
+  .jobApply .imgBox {
+    width: 40px;
+    height: 40px;
+  }
+  .jobApply td {
+    font-size: 16px;
+  }
+  th,
+  td {
+    padding: 10px 14px !important;
+  }
+  .profile .info {
+    width: 100%;
+    height: 100%;
+    overflow-y: none !important;
+  }
 
-.profile .info {
-  width: 100%;
-  height: 100%;
- overflow-y: none !important;
-}
-
-.profile .additionalInfo {
-  height: 38vh;
-  display: flex;
-  width: 100%;
-  margin-top: 20px;
-  justify-content: space-between
-}
-.profile .additionalInfo > div{
-  width: 49%;
-}
-.jobDetail .jobHead button{
-  margin-top: 20px;
-  width: 100%;
-}
-.editProfile .formRow {
-  display: block;
-  margin-top: 0;
-}
-.editProfile .formGroup {
-  width: 100%;
-  margin-top: 25px;
-}
-.editProfile .saveBtn{
-  width: 90%;
-}
-.editProfile .uploadBox .formGroup {
-  display: block;
-  width: 100%;
-}
-.editProfile .labelDot{
-  display: none;
-}
-.editProfile .uploadBox label,
-.editProfile .uploadBox input{
-  width: 98%;
-}
-.editProfile .uploadBox .formRow{
-  padding-bottom: 30px;
-}
-.jobSeekerPage .menuContent {
-  padding: 0 10px;
-}
-.jobSeekerPage .loginBox:hover > .dropMenu {
-  font-size: 18px !important;
-}
-.jobSeekerPage .applicationStatus > div > div{
-  margin-bottom: 14px;
-}
-.jobSeekerPage .applicationStatus > div > div > div{
-  width: 45%;
-}
-
+  .profile .additionalInfo {
+    height: 38vh;
+    display: flex;
+    width: 100%;
+    margin-top: 20px;
+    justify-content: space-between;
+  }
+  .profile .additionalInfo > div {
+    width: 49%;
+  }
+  .jobDetail .jobHead button {
+    margin-top: 20px;
+    width: 100%;
+  }
+  .editProfile .formRow {
+    display: block;
+    margin-top: 0;
+  }
+  .editProfile .formGroup {
+    width: 100%;
+    margin-top: 25px;
+  }
+  .editProfile .saveBtn {
+    width: 90%;
+  }
+  .editProfile .uploadBox .formGroup {
+    display: block;
+    width: 100%;
+  }
+  .editProfile .labelDot {
+    display: none;
+  }
+  .editProfile .uploadBox label,
+  .editProfile .uploadBox input {
+    width: 98%;
+  }
+  .editProfile .uploadBox .formRow {
+    padding-bottom: 30px;
+  }
+  .jobSeekerPage .menuContent {
+    padding: 0 10px;
+  }
+  .jobSeekerPage .loginBox:hover > .dropMenu {
+    font-size: 15px !important;
+  }
+  .jobSeekerPage .applicationStatus > div > div {
+    margin-bottom: 14px;
+  }
+  .jobSeekerPage .applicationStatus > div > div > div {
+    width: 45%;
+  }
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991.98px) {
-  .navbar,
-  .logoName,
-  .pageTitle {
-    background-color: yellow;
-  }
-
   .jobSeekerPage .applicationStatus > div > div > div {
-    background-color: #f44336;
     width: 49%;
     display: flex;
     justify-content: center;
@@ -1406,8 +1652,8 @@ div{
   }
   .jobSeekerPage .applicationStatus .databox > div {
     border: 2px solid white;
-    margin-bottom: 0px;
     margin-bottom: 23px;
+    padding: 0 19px;
   }
   .jobSeekerPage .applicationStatus .databox {
     display: flex;
@@ -1425,79 +1671,89 @@ div{
   .jobSeekerPage .phoneMenu {
     width: 300px;
   }
-  .jobSeekerPage .PhoneMenuIcon{
+  .jobSeekerPage .PhoneMenuIcon {
     font-size: 50px !important;
   }
   .findJob .ExperienceBOX {
-  display: none;
-}
-.findJob .filterInput{
-  justify-content: end;
-  gap: 10px;
-}
-.findJob .jobTypeBOX {
-  width: 18%;
-}
-.findJob .jobList .jobCard {
-  width: 48%;
-}
-.findJob .jobTitleBox {
-  width: 34%;
-}
-.findJob .LocationBox {
-  width: 34%;
-}
-.findJob .jobTypeBOX {
-  width: 22%;
-}
-.jobApply .tableContainer {
-  height: 79vh;
-}
-  .jobApply .tableContainer td{
-  padding: 10px 20px;
-}
-.jobApply .field input,
-.jobApply .field select {
-  font-size: 22px;
-}
-.jobApply .field select option{
-  font-size: 16px !important;
-}
-.jobApply .filter {
-  width: 20%;
-}
-.jobApply .jobTitleBox {
-  width: 40%;
-}
+    display: none;
+  }
+  .findJob .filterInput {
+    justify-content: end;
+    gap: 10px;
+  }
+  .findJob .jobTypeBOX {
+    width: 18%;
+  }
+  .findJob .jobList .jobCard {
+    width: 48%;
+  }
+  .findJob .jobTitleBox {
+    width: 34%;
+  }
+  .findJob .LocationBox {
+    width: 34%;
+  }
+  .findJob .jobTypeBOX {
+    width: 22%;
+  }
+  .jobApply .tableContainer {
+    height: 79vh;
+  }
+  .jobApply .tableContainer td {
+    padding: 10px 20px;
+  }
+  .jobApply .field input,
+  .jobApply .field select {
+    font-size: 22px;
+  }
+  .jobApply .field select option {
+    font-size: 16px !important;
+  }
+  .jobApply .filter {
+    width: 20%;
+  }
+  .jobApply .jobTitleBox {
+    width: 40%;
+  }
+  .jobApply th {
+    font-size: 18px;
+  }
+  .jobApply .imgBox {
+    width: 40px;
+    height: 40px;
+  }
+  .jobApply td {
+    font-size: 16px;
+  }
+  th,
+  td {
+    padding: 10px 14px !important;
+  }
+  .profile .info {
+    width: 100%;
+    height: 100%;
+    overflow-y: none !important;
+  }
 
-.profile .info {
-  width: 100%;
-  height: 100%;
- overflow-y: none !important;
-}
-
-.profile .additionalInfo {
-  height: 38vh;
-  display: flex;
-  width: 100%;
-  margin-top: 20px;
-  justify-content: space-between
-}
-.profile .additionalInfo > div{
-  width: 49%;
-}
-.jobSeekerPage .menuContent {
-  padding: 0 15px;
-}
-.jobSeekerPage .findJob .jobCard::after,
-.jobSeekerPage .findJob .jobCard::before,
-.jobSeekerPage .applicationStatus .databox > div::after,
-.jobSeekerPage .applicationStatus .databox > div::before,
-.jobSeekerPage .applicationStatus .pieGraphBox > div::after,
-.jobSeekerPage .applicationStatus .pieGraphBox > div::before{
-  display: none;
-}
-
+  .profile .additionalInfo {
+    height: 38vh;
+    display: flex;
+    width: 100%;
+    margin-top: 20px;
+    justify-content: space-between;
+  }
+  .profile .additionalInfo > div {
+    width: 49%;
+  }
+  .jobSeekerPage .menuContent {
+    padding: 0 15px;
+  }
+  .jobSeekerPage .applicationStatus .databox > div::after,
+  .jobSeekerPage .applicationStatus .databox > div::before,
+  .jobSeekerPage .applicationStatus .pieGraphBox > div::after,
+  .jobSeekerPage .applicationStatus .pieGraphBox > div::before {
+    display: none;
+  }
 }
 
 @media only screen and (max-width: 1199.98px) {
@@ -1505,80 +1761,65 @@ div{
     width: 100%;
   }
   .jobApply .tableContainer {
-  height: 71vh;
-}
-  .jobApply .tableContainer td{
-  padding: 9px 10px;
-}
+    height: 71vh;
+  }
+  .jobApply .tableContainer td {
+    padding: 9px 10px;
+  }
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1199.98px) {
-  .navbar,
-  .logoName,
-  .pageTitle {
-    background-color: red;
-  }
   .jobSeekerPage .phoneMenu {
     width: 330px;
   }
-  .jobSeekerPage .PhoneMenuIcon{
+  .jobSeekerPage .PhoneMenuIcon {
     font-size: 55px !important;
   }
   .findJob .jobTitleBox {
-  width: 30%;
-}
-.findJob .LocationBox {
-  width: 30%;
-}
-.findJob .jobTypeBOX {
-  width: 17%;
-}
-.findJob .ExperienceBOX {
-  width: 17%;
-}
-.jobApply .tableContainer {
-  height: 71vh;
-}
+    width: 30%;
+  }
+  .findJob .LocationBox {
+    width: 30%;
+  }
+  .findJob .jobTypeBOX {
+    width: 17%;
+  }
+  .findJob .ExperienceBOX {
+    width: 17%;
+  }
+  .jobApply .tableContainer {
+    height: 71vh;
+  }
 
-.jobApply .field input,
-.jobApply .field select {
-  font-size: 22px;
-}
-.jobApply .field select option{
-  font-size: 16px !important;
-}
-.jobDetail{
-  margin: 0;
-  background-color: #4caf50;
-}
-
+  .jobApply .field input,
+  .jobApply .field select {
+    font-size: 22px;
+  }
+  .jobApply .field select option {
+    font-size: 16px !important;
+  }
+  .jobDetail {
+    margin: 0;
+  }
 }
 
 @media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
-  .navbar,
-  .logoName {
-    background-color: pink;
-  }
   .jobSeekerPage .phoneMenu {
     width: 330px;
   }
-    .findJob .jobTitleBox {
-  width: 31%;
-}
-.findJob .LocationBox {
-  width: 31%;
-}
-.findJob .jobTypeBOX {
-  width: 17%;
-}
-.findJob .ExperienceBOX {
-  width: 17%;
-}
-.jobApply .tableContainer {
-  height: 72vh;
-}
-.jobApply .tableContainer td{
- 
-  background-color: #4caf50;
-}
+  .findJob .jobTitleBox {
+    width: 31%;
+  }
+  .findJob .LocationBox {
+    width: 31%;
+  }
+  .findJob .jobTypeBOX {
+    width: 17%;
+  }
+  .findJob .ExperienceBOX {
+    width: 17%;
+  }
+  .jobApply .tableContainer {
+    height: 72vh;
+  }
 }

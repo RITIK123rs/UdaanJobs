@@ -1,7 +1,8 @@
-:root{
+
+:root {
+  --yellowGradient: linear-gradient(135deg, #FFBD20 10%, #FFD700 90%);
   --yellowTextColor: #FFBD20;
 }
-
 *{
   padding: 0;
   margin: 0;

@@ -9,6 +9,8 @@ function RecruiterSection({
   setPrevContent,
   setActiveContent,
 }) {
+
+  const API_URL= import.meta.env.VITE_API_URL;
   const [recruiterData, setRecruiterData] = useState();
 
   const [searchData, setSearchData] = useState({
@@ -68,7 +70,7 @@ function RecruiterSection({
 
   useEffect(() => {
     async function getDashBoardData() {
-      await fetch("http://localhost:3200/admin/recruiter", {
+      await fetch(`${API_URL}/admin/recruiter`, {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       })
         .then((res) => res.json())
@@ -138,8 +140,8 @@ function RecruiterSection({
                       <img
                         src={
                           data.image
-                            ? `http://localhost:3200/upload/${data.image}`
-                            : "http://localhost:3200/defaultImage/defaultCompanyImg.jpg"
+                            ? `${API_URL}/upload/${data.image}`
+                            : `${API_URL}/defaultImage/defaultCompanyImg.jpg`
                         }
                         alt=""
                       />

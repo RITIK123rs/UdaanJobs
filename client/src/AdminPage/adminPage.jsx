@@ -29,6 +29,7 @@ export default function AdminPage() {
   const [recruiterId, setRecruiterId] = useState();
   const [recruiterData, setRecruiterData] = useState();
   const [prevContent, setPrevContent]= useState();
+  const API_URL= import.meta.env.VITE_API_URL;
 
   const renderContent = () => {
     switch (activeContent) {
@@ -70,7 +71,7 @@ export default function AdminPage() {
   useEffect(() => {
     async function getJobPostData() {
       console.log(jobPostId);
-      await fetch(`http://localhost:3200/recruiter/jobPostData/${jobPostId}`)
+      await fetch(`${API_URL}/recruiter/jobPostData/${jobPostId}`)
         .then((res) => res.json())
         .then((data) => {
           console.log(data), setJobPostData(data);
@@ -83,7 +84,7 @@ export default function AdminPage() {
 
   useEffect(() => {
     async function getJobSeekerData() {
-      await fetch(`http://localhost:3200/recruiter/jobSeeker/${jobSeekerId}`)
+      await fetch(`${API_URL}/recruiter/jobSeeker/${jobSeekerId}`)
         .then((res) => res.json())
         .then((data) => {
           console.log(data);
@@ -99,7 +100,7 @@ export default function AdminPage() {
   useEffect(() => {
       console.log(recruiterId);
       async function getRecruiterData() {
-        await fetch(`http://localhost:3200/jobseeker/recruiter/${recruiterId}`, {
+        await fetch(`${API_URL}/jobseeker/recruiter/${recruiterId}`, {
           headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
         })
           .then((res) => res.json())

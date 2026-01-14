@@ -18,6 +18,7 @@ function FindJob({
   setRecruiterId,
   setOpenMenu,
 }) {
+  const API_URL=import.meta.env.VITE_API_URL;
   const [findJobData, setFindJobData] = useState([]);
   const [searchData, setSearchData] = useState({
     jobTitle: "",
@@ -89,7 +90,7 @@ function FindJob({
   }
 
   async function applyJob(object) {
-    await fetch(`http://localhost:3200/jobseeker/apply`, {
+    await fetch(`${API_URL}/jobseeker/apply`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -115,7 +116,7 @@ function FindJob({
 
   useEffect(() => {
     async function fetchData() {
-      await fetch("http://localhost:3200/jobseeker/findJob")
+      await fetch(`${API_URL}/jobseeker/findJob`)
         .then((res) => res.json())
         .then((data) => {
           console.log(data);
@@ -193,8 +194,8 @@ function FindJob({
                   className="w-100 companyLogo h-100"
                   src={
                     data?.recruiter?.company?.logo || null
-                      ? `http://localhost:3200/upload/${data?.recruiter?.company?.logo}`
-                      : "http://localhost:3200/defaultImage/defaultCompanyImg.jpg"
+                      ? `${API_URL}/upload/${data?.recruiter?.company?.logo}`
+                      : `${API_URL}/defaultImage/defaultCompanyImg.jpg`
                   }
                   alt=""
                 />

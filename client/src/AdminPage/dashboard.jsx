@@ -5,11 +5,12 @@ import { dateFormat } from "../utils/dateFormat";
 
 function DashBoard() {
 
+  const API_URL= import.meta.env.VITE_API_URL;
   const [dashBoardData,setDashBoardData]=useState()
 
   useEffect(()=>{
     async function getDashBoardData(){
-      await fetch("http://localhost:3200/admin",{
+      await fetch(`${API_URL}/admin`,{
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       })
       .then(res => res.json())
@@ -76,7 +77,7 @@ function DashBoard() {
           >
             <div className="imgBox me-2">
               <img
-                src={ data.userType === "jobSeeker" ? data.image ? `http://localhost:3200/upload/${data.image}` : `http://localhost:3200/defaultImage/defaultProfilePic.jpg`  :  data.image  ? `http://localhost:3200/upload/${data.image}`  : "http://localhost:3200/defaultImage/defaultCompanyImg.jpg" }
+                src={ data.userType === "jobSeeker" ? data.image ? `${API_URL}/upload/${data.image}` : `${API_URL}/defaultImage/defaultProfilePic.jpg`  :  data.image  ? `${API_URL}/upload/${data.image}`  : `${API_URL}/defaultImage/defaultCompanyImg.jpg` }
                 alt="user"
               />
             </div>

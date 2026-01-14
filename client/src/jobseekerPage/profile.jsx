@@ -22,11 +22,12 @@ function Profile({
   setOpenMenu,
 }) {
   const [activeStatus, setActiveStatus] = useState(jobSeekerJobPost?.jobStatus);
+  const API_URL= import.meta.env.VITE_API_URL;
 
   const StatusChange = (newStatus) => {
     console.log(newStatus);
     async function updateJobSeekerStatus() {
-      await fetch(`http://localhost:3200/recruiter/updateJobSeekerStatus`, {
+      await fetch(`${API_URL}/recruiter/updateJobSeekerStatus`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -53,12 +54,12 @@ function Profile({
   return (
     <div className="profile">
       <div className="d-flex gap-3 mt-3 align-items-center">
-              <MdOutlineMenu
-                className="PhoneMenuIcon d-xl-none"
-                onClick={() => setOpenMenu(true)}
-              />
-              <h2 className="pageTitle">{isRecruiter ? "" : "My"} Profile</h2>
-            </div>
+        <MdOutlineMenu
+          className="PhoneMenuIcon d-xl-none"
+          onClick={() => setOpenMenu(true)}
+        />
+        <h2 className="pageTitle">{isRecruiter ? "" : "My"} Profile</h2>
+      </div>
       <hr className="my-3"></hr>
       {isRecruiter || isAdmin ? (
         <button
@@ -83,8 +84,8 @@ function Profile({
               <img
                 src={
                   JobSeekerData?.personalInfo?.banner || null
-                    ? `http://localhost:3200/upload/${JobSeekerData.personalInfo.banner}`
-                    : `http://localhost:3200/defaultImage/defaultbanner.jpg`
+                    ? `${API_URL}/upload/${JobSeekerData.personalInfo.banner}`
+                    : `${API_URL}/defaultImage/defaultbanner.jpg`
                 }
                 alt="banner"
                 className="uploadImg"
@@ -94,8 +95,8 @@ function Profile({
               <img
                 src={
                   JobSeekerData?.personalInfo?.profilePhoto || null
-                    ? `http://localhost:3200/upload/${JobSeekerData.personalInfo.profilePhoto}`
-                    : `http://localhost:3200/defaultImage/defaultProfilePic.jpg`
+                    ? `${API_URL}/upload/${JobSeekerData.personalInfo.profilePhoto}`
+                    : `${API_URL}/defaultImage/defaultProfilePic.jpg`
                 }
                 alt="Profile"
                 className="uploadImg"
@@ -103,7 +104,7 @@ function Profile({
             </div>
             <div className="details d-sm-flex mt-2">
               <div>
-                <h2 className="m-0 mb-1">{JobSeekerData?.userName}</h2>
+                <h2 className="m-0 mb-1 userName">{JobSeekerData?.userName}</h2>
                 <p className="m-0 mb-1">
                   {JobSeekerData?.personalInfo?.jobTitle}
                 </p>
@@ -121,7 +122,7 @@ function Profile({
                     value={activeStatus}
                     onChange={(e) => {
                       const newStatus = e.target.value;
-                      setActiveStatus(newStatus); // update local state immediately
+                      setActiveStatus(newStatus); 
                       StatusChange(newStatus);
                     }}
                   >
@@ -155,7 +156,7 @@ function Profile({
                   >
                     <a
                       className="px-3"
-                      href={`http://localhost:3200/upload/${JobSeekerData?.personalInfo?.resume}`}
+                      href={`${API_URL}/upload/${JobSeekerData?.personalInfo?.resume}`}
                       target="_blank"
                       download="Resume.pdf"
                     >
@@ -195,19 +196,35 @@ function Profile({
             <h3 className="boxHead">Experiences</h3>
             {JobSeekerData?.personalInfo?.experience.map((data) => (
               <div className="cardBox mt-4 d-flex">
-                <div className="imgBox rounded-circle me-3">
+                <div className="imgBox d-none d-lg-block rounded-circle me-3">
                   <img
-                    src="http://localhost:3200/defaultImage/defaultCompanyImg.jpg"
+                    src={`${API_URL}/defaultImage/defaultCompanyImg.jpg`}
                     alt=""
                   />
                 </div>
-                <div>
-                  <h4>{data.jobTitle}</h4>
-                  <p className="m-0 mt-2">
-                    {data.companyName} . {data.jobType} . {data.jobPeriod}
-                  </p>
-                  <p className="m-0 mt-2">{data.city}</p>
-                  <p className="mt-2">{data.details}</p>
+                <div className="d-lg-block " >
+                  <div className="d-block">
+                    <div className="d-flex">
+                      <div className="imgBox d-block d-lg-none img2 rounded-circle me-3">
+                        <img
+                          src={`${API_URL}/defaultImage/defaultCompanyImg.jpg`}
+                          alt=""
+                        />
+                      </div>
+                      <div>
+                        <h4>{data.jobTitle}</h4>
+                        <p className="m-0 mt-2">
+                          {data.companyName} . {data.jobType} . {data.jobPeriod}
+                        </p>
+                        <p className="m-0 mt-2 d-none d-md-block ">
+                          {data.city}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div>
+                    <p className="mt-2">{data.details}</p>
+                  </div>
                 </div>
               </div>
             ))}
@@ -219,27 +236,28 @@ function Profile({
               <div className="cardBox mt-4 d-flex">
                 <div className="imgBox d-none d-lg-block rounded-circle me-3">
                   <img
-                    src="http://localhost:3200/defaultImage/defaultCollegeImg.jpg"
+                    src={`${API_URL}/defaultImage/defaultCollegeImg.jpg`}
                     alt=""
                   />
                 </div>
                 <div className="d-lg-block ">
-                  <div className="d-block" >
+                  <div className="d-block">
                     <div className="d-flex">
                       <div className="imgBox d-block d-lg-none img2 rounded-circle me-3">
                         <img
-                          src="http://localhost:3200/defaultImage/defaultCollegeImg.jpg"
+                          src={`${API_URL}/defaultImage/defaultCollegeImg.jpg`}
                           alt=""
                         />
                       </div>
                       <div>
-                          <h4>{data.degree}</h4>
-                      <p className="m-0 mt-2">
-                        {data.institute} ({data.year})
-                      </p>
-                      <p className="m-0 mt-2 d-none d-md-block ">{data.city}</p>
+                        <h4>{data.degree}</h4>
+                        <p className="m-0 mt-2">
+                          {data.institute} ({data.year})
+                        </p>
+                        <p className="m-0 mt-2 d-none d-md-block ">
+                          {data.city}
+                        </p>
                       </div>
-                      
                     </div>
                   </div>
                   <div>

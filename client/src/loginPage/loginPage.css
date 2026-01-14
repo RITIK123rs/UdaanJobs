@@ -21,6 +21,7 @@
   left: 30px;
   background: transparent;
   z-index: 10;
+  
 }
 .imgBox {
   width: 35%;
@@ -37,6 +38,7 @@
   height: 550px;
   width: 450px;
   padding: 22px;
+  box-shadow: 0 2px 25px rgba(255, 189, 32, 0.3);
 }
 .loginForm .heading {
   font-size: 60px;
@@ -82,6 +84,7 @@
 .signUpForm button,
 .loginForm button {
   background-color: var(--yellowTextColor);
+  box-shadow: 0 2px 25px rgba(255, 189, 32, 0.3);
   font-size: 20px;
   border: 0;
   outline: 0;
@@ -307,7 +310,8 @@
 
 .passwordChangeBox .emailTake button,
 .takePassword button{
-  background-color: var(--yellowTextColor);
+  background: var(--yellowGradient);
+  box-shadow: 0 2px 25px rgba(255, 189, 32, 0.3);
   font-size: 20px;
   border: 0;
   outline: 0;

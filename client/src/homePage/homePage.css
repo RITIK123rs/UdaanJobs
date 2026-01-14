@@ -9,7 +9,8 @@
 }
 .header .content button{
     font-size: 20px;
-    background-color: var(--yellowTextColor);
+    background: var(--yellowGradient);
+    box-shadow: 0 2px 25px rgba(255, 189, 32, 0.3);
 }
 
 .header .content .subtitle{
@@ -17,7 +18,7 @@
 }
 
 .header .avatarBox{
-  border: 2px solid gold;
+  border: 2px solid var(--yellowTextColor);
   width: 140px;
   height: 75px;
   top: 50%;
@@ -102,8 +103,9 @@
 
 .JobCategoryBox .cardImgBox{
   width: 90px;
-  background-color: var(--yellowTextColor);
   padding: 15px;
+  background: var(--yellowGradient);
+  box-shadow: 0 2px 25px rgba(255, 189, 32, 0.3);
 }
 
 .stepWorkingBox {
@@ -113,7 +115,8 @@
   width: 60px;
   height: 60px;
   padding: 8px;
-  background-color: var(--yellowTextColor);
+  background: var(--yellowGradient);
+  box-shadow: 0 2px 25px rgba(255, 189, 32, 0.3);
 }
 .stepWorkingBox .stepBox{
   margin: 30px 0;
@@ -134,7 +137,7 @@
   min-height: 230px;
 }
 .commentBox .starBox{
-  color: gold;
+  color: var(--yellowTextColor);
   font-size: 17px;
 }
 .commentBox .imgBox{
@@ -148,6 +151,7 @@
   padding: 8px;
   background-color: var(--yellowTextColor);
   border: none;
+  box-shadow: 0 2px 25px rgba(255, 189, 32, 0.3);
 }
 .subscribeBox .emailBox input{
   width: 52%;

@@ -2,9 +2,9 @@ import React from "react";
 import AvatarHeader from "./avatarHeader";
 import { useNavigate } from "react-router-dom";
 
-
 function Header() {
 
+  const API_URL=import.meta.env.VITE_API_URL;
   const navigate = useNavigate();
 
   const getStarted=async ()=>{
@@ -17,7 +17,7 @@ function Header() {
     }
     
     let userType="login"
-    await fetch("http://localhost:3200/home",{
+    await fetch(`${API_URL}/home`,{
       headers: {"Authorization": `Bearer ${token}`}
     })
     .then(res => res.json())

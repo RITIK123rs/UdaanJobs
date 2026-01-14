@@ -10,6 +10,7 @@ import { FaRegCircleXmark } from "react-icons/fa6";
 import signUpLoading from "../assets/loginPage/signUpLoading.webm";
 
 function LoginPage({ addMessageBox }) {
+  const API_URL=import.meta.env.VITE_API_URL;
   const [showPassword, setShowPassword] = useState(false);
   const [showPassword2, setShowPassword2] = useState(false);
   const [showPassword3, setShowPassword3] = useState(false);
@@ -80,7 +81,7 @@ function LoginPage({ addMessageBox }) {
 
     console.log("loginButton");
 
-    fetch("http://localhost:3200/login", {
+    fetch(`${API_URL}/login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(loginData),
@@ -113,7 +114,7 @@ function LoginPage({ addMessageBox }) {
   };
 
   async function generateOTP(email, isSignUp ){
-    await fetch("http://localhost:3200/login/generateOTP", {
+    await fetch(`${API_URL}/login/generateOTP`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, isSignUp }),
@@ -125,7 +126,7 @@ function LoginPage({ addMessageBox }) {
 
   async function signUpFunction(otp) {
     console.log(otp);
-    await fetch("http://localhost:3200/login/signUp", {
+    await fetch(`${API_URL}/login/signUp`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ ...signUpData, otp }),
@@ -158,7 +159,7 @@ function LoginPage({ addMessageBox }) {
 
     console.log(signUpData);
 
-    const res = await fetch("http://localhost:3200/login/userCheck", {
+    const res = await fetch(`${API_URL}/login/userCheck`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email: signUpData.email }),
@@ -213,7 +214,7 @@ function LoginPage({ addMessageBox }) {
     e.preventDefault();
     console.log("email check of forgotPassword :-",forgotPasswordData.email);
     
-    await fetch("http://localhost:3200/login/userCheck", {
+    await fetch(`${API_URL}/login/userCheck`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({email:forgotPasswordData.email })
@@ -248,7 +249,7 @@ function LoginPage({ addMessageBox }) {
       return;
     }
 
-    const res= await fetch(`http://localhost:3200/login/forgotPasswordOtp`,{
+    const res= await fetch(`${API_URL}/login/forgotPasswordOtp`,{
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({email:forgotPasswordData.email, OTP })
@@ -282,7 +283,7 @@ function LoginPage({ addMessageBox }) {
       return;
     }
 
-    await fetch("http://localhost:3200/login/changePassword", {
+    await fetch(`${API_URL}/login/changePassword`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email: forgotPasswordData.email , password: forgotPasswordData.password }),

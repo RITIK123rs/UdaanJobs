@@ -14,6 +14,7 @@ export default function JobApply({
   setRecruiterId,
   setOpenMenu,
 }) {
+  const API_URL=import.meta.env.VITE_API_URL;
   const [filterData, setFilterData] = useState([]);
   const [searchData, setSearchData] = useState({
     jobTitle: "",
@@ -53,7 +54,7 @@ export default function JobApply({
 
   const deleteApplication = async (object) => {
     try {
-      const res = await fetch(`http://localhost:3200/jobseeker/jobApply`, {
+      const res = await fetch(`${API_URL}/jobseeker/jobApply`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -137,8 +138,8 @@ export default function JobApply({
                         className="w-100 h-100 companyLogo"
                         src={
                           data?.jobId?.recruiter?.company?.logo || null
-                            ? `http://localhost:3200/upload/${data?.jobId?.recruiter?.company?.logo}`
-                            : "http://localhost:3200/defaultImage/defaultCompanyImg.jpg"
+                            ? `${API_URL}/upload/${data?.jobId?.recruiter?.company?.logo}`
+                            : `${API_URL}/defaultImage/defaultCompanyImg.jpg`
                         }
                         alt=""
                       />

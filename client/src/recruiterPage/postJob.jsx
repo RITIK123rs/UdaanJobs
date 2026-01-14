@@ -8,6 +8,7 @@ export default function PostJob({
   editPostId,
   addMessageBox,
 }) {
+  const API_URL= import.meta.env.VITE_API_URL;
   const resetJobPostData = {
     role: "",
     jobType: "full-time",
@@ -40,7 +41,7 @@ export default function PostJob({
         .filter((skill) => skill != ""),
     };
     try {
-      const res = await fetch(`http://localhost:3200/recruiter/postJob`, {
+      const res = await fetch(`${API_URL}/recruiter/postJob`, {
         method: "POST",
         headers: { "Content-Type": "application/json", "Authorization": `Bearer ${localStorage.getItem("token")}` },
         body: JSON.stringify(data),
@@ -66,7 +67,7 @@ export default function PostJob({
     };
     console.log(data);
     await fetch(
-      `http://localhost:3200/recruiter/UpdatePostData/${editPostId}`,
+      `${API_URL}/recruiter/UpdatePostData/${editPostId}`,
       {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
@@ -85,7 +86,7 @@ export default function PostJob({
   useEffect(() => {
     async function editJobPost() {
       console.log(editPostId);
-      await fetch(`http://localhost:3200/recruiter/jobPostData/${editPostId}`)
+      await fetch(`${API_URL}/recruiter/jobPostData/${editPostId}`)
         .then((res) => res.json())
         .then((data) => {
           console.log(data);

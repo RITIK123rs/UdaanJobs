@@ -6,6 +6,8 @@ import { MdOutlineMenu } from "react-icons/md";
 
 function DashBoard({JobSeekerData, setOpenMenu}){
 
+  const API_URL= import.meta.env.VITE_API_URL;
+
   return (
     <>
       <div className="d-flex gap-3 mt-3 align-items-center" >
@@ -50,7 +52,7 @@ function DashBoard({JobSeekerData, setOpenMenu}){
         { (JobSeekerData?.application?.appliedJobs || []).slice(0,5).map(( data , i) => (
           <div key={data._id} className="d-flex flex-row justify-content-around py-2">
             <div className="imgBox rounded-circle mt-1">
-              <img className="w-100 h-100 companyLogo" src={ (data?.jobId?.recruiter?.company?.logo || null ) ? `http://localhost:3200/upload/${data?.jobId?.recruiter?.company?.logo}`  : ("http://localhost:3200/defaultImage/defaultCompanyImg.jpg") } alt="" />
+              <img className="w-100 h-100 companyLogo" src={ (data?.jobId?.recruiter?.company?.logo || null ) ? `${API_URL}/upload/${data?.jobId?.recruiter?.company?.logo}`  : (`${API_URL}/defaultImage/defaultCompanyImg.jpg`) } alt="" />
             </div>
 
             <div className="nameBox d-flex flex-column justify-content-center ">

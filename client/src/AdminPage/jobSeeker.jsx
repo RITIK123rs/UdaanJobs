@@ -9,6 +9,7 @@ function JobSeekerSection({
   setJobSeekerId,
   setPrevContent,
 }) {
+  const API_URL= import.meta.env.VITE_API_URL;
   const [jobSeekerData, setJobSeekerData] = useState();
 
   const [searchData, setSearchData] = useState({
@@ -68,7 +69,7 @@ function JobSeekerSection({
 
   useEffect(() => {
     async function getDashBoardData() {
-      await fetch("http://localhost:3200/admin/jobSeeker", {
+      await fetch(`${API_URL}/admin/jobSeeker`, {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       })
         .then((res) => res.json())
@@ -138,8 +139,8 @@ function JobSeekerSection({
                       <img
                         src={
                           data.personalInfo.profilePhoto
-                            ? `http://localhost:3200/upload/${data.personalInfo.profilePhoto}`
-                            : `http://localhost:3200/defaultImage/defaultProfilePic.jpg`
+                            ? `${API_URL}/upload/${data.personalInfo.profilePhoto}`
+                            : `${API_URL}/defaultImage/defaultProfilePic.jpg`
                         }
                         alt=""
                       />
