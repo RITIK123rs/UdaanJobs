@@ -9,6 +9,7 @@ function EditProfile({
   fetchData,
   addMessageBox,
 }) {
+  const API_URL=import.meta.env.VITE_API_URL;
   const [editData, setEditData] = useState({
     userName: JobSeekerData?.userName || "",
     jobTitle: JobSeekerData.personalInfo?.jobTitle || "",
@@ -149,7 +150,7 @@ function EditProfile({
       .filter((info) => info != "");
     // console.log(data);
 
-    await fetch(`http://localhost:3200/jobseeker/editProfile`, {
+    await fetch(`${API_URL}/jobseeker/editProfile`, {
       method: "PUT",
       headers: { "content-Type": "application/json", "Authorization": `bearer ${localStorage.getItem("token")}`},
       body: JSON.stringify(data),
@@ -168,7 +169,7 @@ function EditProfile({
 
     // console.log([...fileData.entries()]);
 
-    await fetch(`http://localhost:3200/fileHandle/jobseeker`, {
+    await fetch(`${API_URL}/fileHandle/jobseeker`, {
       method: "PUT",
       headers: { "Authorization": `bearer ${localStorage.getItem("token")}`  },
       body: fileData,

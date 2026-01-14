@@ -26,8 +26,6 @@ app.use("/login",loginRouter);
 app.use("/home",homeRouter);
 app.use("/admin",adminRouter);
 
-app.listen(process.env.port_no,()=>{
+app.listen(process.env.port_no,"0.0.0.0",()=>{
   console.log(`server running on http://localhost:${process.env.port_no}`);
 });
-
-

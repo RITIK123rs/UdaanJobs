@@ -11,6 +11,7 @@ function JobsPosted({
   setViewPostId,
   addMessageBox,
 }) {
+  const API_URL= import.meta.env.VITE_API_URL;
   const [searchData, setSearchData] = useState({
     jobTitle: "",
     status: "",
@@ -56,7 +57,7 @@ function JobsPosted({
 
   async function deleteJobPost(jobPostId) {
     console.log(jobPostId);
-    await fetch(`http://localhost:3200/recruiter/deletePost/${jobPostId}`, {
+    await fetch(`${API_URL}/recruiter/deletePost/${jobPostId}`, {
       method: "DELETE",
     })
       .then((res) => res.json())

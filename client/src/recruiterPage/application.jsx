@@ -13,6 +13,7 @@ function JobApplicants({
 
   const [usedData,SetUsedData]=useState([]);
   const [filterData, setFilterData] = useState([]);
+  const API_URL= import.meta.env.VITE_API_URL;
 
 
   useEffect(()=>{
@@ -84,7 +85,7 @@ function JobApplicants({
   let sno = 1;
 
   async function getJobSeekerData(jobSeekerId) {
-    await fetch(`http://localhost:3200/recruiter/jobSeeker/${jobSeekerId}`)
+    await fetch(`${API_URL}/recruiter/jobSeeker/${jobSeekerId}`)
       .then((res) => res.json())
       .then((data) => {
 
@@ -170,7 +171,7 @@ function JobApplicants({
                       >
                         <a
                           className="text-decoration-none d-flex align-items-center"
-                          href={`http://localhost:3200/upload/${data.resume}`}
+                          href={`${API_URL}/upload/${data.resume}`}
                           target="_blank"
                           download="Resume.pdf"
                         >

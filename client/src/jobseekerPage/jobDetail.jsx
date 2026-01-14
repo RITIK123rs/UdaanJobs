@@ -12,8 +12,11 @@ export default function JobDetail({
   isRecruiter = false,
   isAdmin = false,
 }) {
+
+  const API_URL=import.meta.env.VITE_API_URL;
+
   async function applyJob(object) {
-    await fetch(`http://localhost:3200/jobseeker/apply`, {
+    await fetch(`${API_URL}/jobseeker/apply`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -59,24 +62,24 @@ export default function JobDetail({
               className="companyLogo"
               src={
                 selectData?.recruiter?.company?.logo || null
-                  ? `http://localhost:3200/upload/${selectData?.recruiter?.company?.logo}`
-                  : "http://localhost:3200/defaultImage/defaultCompanyImg.jpg"
+                  ? `${API_URL}/upload/${selectData?.recruiter?.company?.logo}`
+                  : `${API_URL}/defaultImage/defaultCompanyImg.jpg`
               }
               alt=""
             />
           </div>
 
-          <div className="ms-3">
-            <h1 className="mb-1">{selectData?.role}</h1>
+          <div className="ms-3 info">
+            <h1 className="mb-1 companyRole">{selectData?.role}</h1>
 
             <div className="jobDetail d-flex mb-2 flex-wrap gap-3">
               <div className="detailItem d-flex align-items-center">
-                <RiMapPinLine className="me-1" />
+                <RiMapPinLine className="me-1 icon" />
                 <span>{selectData?.location}</span>
               </div>
 
               <div className="detailItem d-flex align-items-center">
-                <FaBriefcase className="me-1" />
+                <FaBriefcase className="me-1 icon" />
                 <span>{selectData?.jobType}</span>
               </div>
             </div>
@@ -109,7 +112,7 @@ export default function JobDetail({
 
         <div className="mt-5">
           <h2 className="boxTitles">Skills Required</h2>
-          <div className="mt-3 d-flex flex-wrap gap-3">
+          <div className="mt-3 d-flex flex-wrap gap-2 gap-sm-3">
             {(selectData?.skillsRequired || []).map((skill) => (
               <div className="skillTag px-3 py-2">{skill}</div>
             ))}

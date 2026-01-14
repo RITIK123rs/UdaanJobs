@@ -7,6 +7,8 @@ export default function EditCompanyProfile({
   getRecruiterData,
   addMessageBox,
 }) {
+
+  const API_URL= import.meta.env.VITE_API_URL;
   const [companyData, setCompanyData] = useState(recruiterData?.company);
 
   const handleChange = (e) => {
@@ -51,7 +53,7 @@ export default function EditCompanyProfile({
       formData.append("logo", companyData.logo);
     }
 
-    await fetch(`http://localhost:3200/fileHandle/recruiter`, {
+    await fetch(`${API_URL}/fileHandle/recruiter`, {
       method: "PUT",
       headers: { "Authorization": `Bearer ${localStorage.getItem("token")}` },
       body: formData,

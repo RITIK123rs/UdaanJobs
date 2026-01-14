@@ -12,17 +12,18 @@ import { NavLink, useNavigate } from "react-router-dom";
 import MenuContent from "./menuContent";
 
 function JobSeekerPage({ addMessageBox }) {
+  const API_URL = import.meta.env.VITE_API_URL;
   const [JobSeekerData, setJobSeekerData] = useState({});
   const [selectData, setSelectData] = useState({});
   const [activeContent, setActiveContent] = useState("dashboard");
   const [previousComponent, setPreviousComponent] = useState();
   const [recruiterData, setRecruiterData] = useState({});
   const [recruiterId, setRecruiterId] = useState("");
-  const [openMenu,setOpenMenu]= useState(false)
+  const [openMenu, setOpenMenu] = useState(false);
   const navigate = useNavigate();
 
   async function fetchData() {
-    await fetch(`http://localhost:3200/jobseeker`, {
+    await fetch(`${API_URL}/jobseeker`, {
       headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
     })
       .then((res) => res.json())
@@ -36,7 +37,7 @@ function JobSeekerPage({ addMessageBox }) {
   useEffect(() => {
     console.log(recruiterId);
     async function getRecruiterData() {
-      await fetch(`http://localhost:3200/jobseeker/recruiter/${recruiterId}`, {
+      await fetch(`${API_URL}/jobseeker/recruiter/${recruiterId}`, {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       })
         .then((res) => res.json())
@@ -53,11 +54,12 @@ function JobSeekerPage({ addMessageBox }) {
     fetchData();
   }, []);
 
-
   const renderContent = () => {
     switch (activeContent) {
       case "dashboard":
-        return (<DashBoard JobSeekerData={JobSeekerData} setOpenMenu={setOpenMenu} />);
+        return (
+          <DashBoard JobSeekerData={JobSeekerData} setOpenMenu={setOpenMenu} />
+        );
       case "findJob":
         return (
           <FindJob
@@ -121,12 +123,26 @@ function JobSeekerPage({ addMessageBox }) {
 
   return (
     <div className="jobSeekerPage position-relative ">
-      <div className={`phoneMenu position-absolute h-100 d-flex flex-column ${ openMenu ? "menuOpen" : " menuClose" } `} >
-          < MenuContent JobSeekerData={JobSeekerData} phoneMenu={true} setOpenMenu={setOpenMenu} setActiveContent={setActiveContent} setPreviousComponent={setPreviousComponent}  />
+      <div
+        className={`phoneMenu position-absolute h-100 d-flex flex-column ${
+          openMenu ? "menuOpen" : " menuClose"
+        } `}
+      >
+        <MenuContent
+          JobSeekerData={JobSeekerData}
+          phoneMenu={true}
+          setOpenMenu={setOpenMenu}
+          setActiveContent={setActiveContent}
+          setPreviousComponent={setPreviousComponent}
+        />
       </div>
       <div className="d-flex ">
         <div className="menuBox d-none d-xl-flex flex-column">
-          < MenuContent JobSeekerData={JobSeekerData} setActiveContent={setActiveContent} setPreviousComponent={setPreviousComponent} />
+          <MenuContent
+            JobSeekerData={JobSeekerData}
+            setActiveContent={setActiveContent}
+            setPreviousComponent={setPreviousComponent}
+          />
         </div>
         <div className="menuContent text-white ">{renderContent()}</div>
       </div>

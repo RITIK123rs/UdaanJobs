@@ -13,6 +13,7 @@ function Users({
   setPrevContent,
 }) {
   const [users, setUsers] = useState([]);
+  const API_URL= import.meta.env.VITE_API_URL;
 
   const [searchData, setSearchData] = useState({
     name: "",
@@ -77,7 +78,7 @@ function Users({
 
   useEffect(() => {
     async function getDashBoardData() {
-      await fetch("http://localhost:3200/admin/users", {
+      await fetch(`${API_URL}/admin/users`, {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       })
         .then((res) => res.json())
@@ -164,11 +165,11 @@ function Users({
                         src={
                           user.userType === "jobSeeker"
                             ? user.image
-                              ? `http://localhost:3200/upload/${user.image}`
-                              : `http://localhost:3200/defaultImage/defaultProfilePic.jpg`
+                              ? `${API_URL}/upload/${user.image}`
+                              : `${API_URL}/defaultImage/defaultProfilePic.jpg`
                             : user.image
-                            ? `http://localhost:3200/upload/${user.image}`
-                            : "http://localhost:3200/defaultImage/defaultCompanyImg.jpg"
+                            ? `${API_URL}/upload/${user.image}`
+                            : `${API_URL}/defaultImage/defaultCompanyImg.jpg`
                         }
                         alt="user"
                       />

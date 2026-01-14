@@ -6,6 +6,7 @@ import { dateFormat } from "../utils/dateFormat";
 function JobsSection({ setActiveContent, setJobPostId }) {
 
   const[jobsData,setJobsData]=useState();
+  const API_URL= import.meta.env.VITE_API_URL;
 
   function checkJobStatus(dueDate) {
     const currentDate = new Date();
@@ -56,7 +57,7 @@ function JobsSection({ setActiveContent, setJobPostId }) {
   useEffect(()=>{
 
     async function getJobsData(){
-      fetch("http://localhost:3200/admin/jobs",{
+      fetch(`${API_URL}/admin/jobs`,{
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       })
       .then(res => res.json())

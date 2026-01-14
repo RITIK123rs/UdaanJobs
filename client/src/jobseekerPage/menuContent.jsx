@@ -11,7 +11,7 @@ import { ImCancelCircle } from "react-icons/im";
 
 export default function MenuContent({ JobSeekerData, setOpenMenu, phoneMenu=false, setActiveContent, setPreviousComponent }) {
   const navigate = useNavigate();
-  
+  const API_URL=import.meta.env.VITE_API_URL;
   return (
     < >
       <div className="d-flex flex-column mt-3">
@@ -41,7 +41,7 @@ export default function MenuContent({ JobSeekerData, setOpenMenu, phoneMenu=fals
             onClick={() => {setActiveContent("dashboard"),setOpenMenu(false);}}
           >
             <RiHome2Line className="menuIcon me-3" />
-            Dashboard
+            <span>Dashboard</span>
           </li>
           <li
             className="menuItem d-flex align-items-center fw-semibold"
@@ -52,7 +52,7 @@ export default function MenuContent({ JobSeekerData, setOpenMenu, phoneMenu=fals
             }}
           >
             <IoSearch className="menuIcon me-3 " />
-            Find Jobs
+            <span>Find Jobs</span>
           </li>
           <li
             className="menuItem d-flex align-items-center fw-semibold"
@@ -63,14 +63,14 @@ export default function MenuContent({ JobSeekerData, setOpenMenu, phoneMenu=fals
             }}
           >
             <HiOutlineDocumentText className="menuIcon me-3" />
-            My Applications
+            <span>My Applications</span>
           </li>
           <li
             className="menuItem d-flex align-items-center fw-semibold"
             onClick={() => {setActiveContent("profile"); setOpenMenu(false);}}
           >
             <IoPersonOutline className="menuIcon me-3" />
-            Profile
+            <span>Profile</span>
           </li>
         </ul>
       </div>
@@ -90,8 +90,8 @@ export default function MenuContent({ JobSeekerData, setOpenMenu, phoneMenu=fals
             <img
               src={
                 JobSeekerData?.personalInfo?.profilePhoto || null
-                  ? `http://localhost:3200/upload/${JobSeekerData.personalInfo.profilePhoto}`
-                  : `http://localhost:3200/defaultImage/defaultProfilePic.jpg`
+                  ? `${API_URL}/upload/${JobSeekerData.personalInfo.profilePhoto}`
+                  : `${API_URL}/defaultImage/defaultProfilePic.jpg`
               }
               alt=""
               width="100%"
