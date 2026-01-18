@@ -1,0 +1,13 @@
+
+.clockTime {
+    font-size: 26px;         
+    font-weight: bold;
+    color: white;  
+}
+
+.clockDate {
+    font-size: 17px;  
+    font-weight: 500;
+    color: var(--yellowTextColor);;
+}
+

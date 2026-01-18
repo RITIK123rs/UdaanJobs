@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { FaArrowLeft } from "react-icons/fa6";
+import { MdOutlineMenu } from "react-icons/md";
+import Loading from "../assets/loginPage/signUpLoading.webm";
+import Clock from "../component/clock";
+
 
 export default function PostJob({
   isEditPost = false,
@@ -7,8 +11,10 @@ export default function PostJob({
   getRecruiterData,
   editPostId,
   addMessageBox,
+  setOpenMenu,
 }) {
-  const API_URL= import.meta.env.VITE_API_URL;
+  const API_URL = import.meta.env.VITE_API_URL;
+  const [postJobActive, setPostJobActive]= useState(false);
   const resetJobPostData = {
     role: "",
     jobType: "full-time",
@@ -33,6 +39,7 @@ export default function PostJob({
 
   const postJobPostData = async (e) => {
     e.preventDefault();
+    setPostJobActive(true);
     const data = {
       ...jobPostData,
       skillsRequired: jobPostData.skillsRequired
@@ -43,21 +50,26 @@ export default function PostJob({
     try {
       const res = await fetch(`${API_URL}/recruiter/postJob`, {
         method: "POST",
-        headers: { "Content-Type": "application/json", "Authorization": `Bearer ${localStorage.getItem("token")}` },
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
         body: JSON.stringify(data),
       });
       const result = await res.json();
-      console.log(result);
+      // console.log(result);
       setJobPostData(resetJobPostData);
       getRecruiterData();
     } catch (error) {
       console.log(error);
     }
-    addMessageBox("check","Job post created successfully")
+    addMessageBox("check", "Job post created successfully");
+    setPostJobActive(false);
   };
 
   const postEditJobPostData = async (e) => {
     e.preventDefault();
+    setPostJobActive(true);
     const data = {
       ...jobPostData,
       skillsRequired: jobPostData?.skillsRequired
@@ -65,22 +77,20 @@ export default function PostJob({
         .map((skill) => skill.trim())
         .filter((skill) => skill != ""),
     };
-    console.log(data);
-    await fetch(
-      `${API_URL}/recruiter/UpdatePostData/${editPostId}`,
-      {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      }
-    )
+    // console.log(data);
+    await fetch(`${API_URL}/recruiter/UpdatePostData/${editPostId}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    })
       .then((res) => res.json())
       .then((result) => console.log(result))
       .catch((error) => console.log(error));
 
     getRecruiterData();
     setActiveContent("jobPosted");
-    addMessageBox("check","JobPost Updated successfully");
+    addMessageBox("check", "JobPost Updated successfully");
+    setPostJobActive(false);
   };
 
   useEffect(() => {
@@ -89,7 +99,7 @@ export default function PostJob({
       await fetch(`${API_URL}/recruiter/jobPostData/${editPostId}`)
         .then((res) => res.json())
         .then((data) => {
-          console.log(data);
+          // console.log(data);
           setJobPostData({
             ...data,
             skillsRequired: data.skillsRequired.join(","),
@@ -102,7 +112,16 @@ export default function PostJob({
 
   return (
     <div className="postJob ps-2">
-      <h1 className="pageTitle mt-3">{isEditPost ? "Update Post Job": "Post Job" }</h1>
+      <div className="d-flex gap-2 mt-3 align-items-center">
+        <MdOutlineMenu
+          className="PhoneMenuIcon d-xl-none"
+          onClick={() => setOpenMenu(true)}
+        />
+        <h2 className="pageTitle">{isEditPost ? "Update Post Job" : "Post Job"}</h2>
+        <div className="ms-auto d-none d-md-block" >
+                  < Clock />
+                </div>
+      </div>
       <hr className="divider" />
       {isEditPost ? (
         <button
@@ -112,7 +131,9 @@ export default function PostJob({
         >
           <FaArrowLeft className="me-2" /> BACK
         </button>
-      ) : ""}
+      ) : (
+        ""
+      )}
       <form
         onSubmit={isEditPost ? postEditJobPostData : postJobPostData}
         className="mainSection"
@@ -203,7 +224,7 @@ export default function PostJob({
           </div>
 
           <div className="formRow">
-            <div className="formGroup" style={{ width: "48%" }}>
+            <div className="formGroup" >
               <label>Experience</label>
               <select
                 name="experience"
@@ -217,7 +238,7 @@ export default function PostJob({
               </select>
             </div>
 
-            <div className="formGroup" style={{ width: "48%" }}>
+            <div className="formGroup">
               <label>Education</label>
               <input
                 type="text"
@@ -280,9 +301,24 @@ export default function PostJob({
         </section>
 
         <div className="endBtn mt-5 mb-4 w-100 d-flex justify-content-center">
-          <button type="submit" className="saveBtn py-1" >
-            {isEditPost ? "Update Post" : "Post Job"}
-          </button>
+         <button
+           type="submit"
+           className="w-100 mt-3 rounded-pill fw-bold text-white saveBtn py-1 d-flex justify-content-center align-items-center"
+           disabled={postJobActive}
+         >
+           {postJobActive ? (
+             <video
+               src={Loading}
+               autoPlay
+               loop
+               muted
+               style={{
+                 width: "90px",
+                 height: "90px",
+               } }
+             />
+           ) : ( <span className="yellowText"> {isEditPost ? "Update Post" : "Post Job"}</span> ) }
+         </button>
         </div>
       </form>
     </div>

@@ -4,13 +4,13 @@ import img1 from "../assets/homepage/Boy.png";
 import { MdOutlineMailOutline } from "react-icons/md";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { FaArrowLeft } from "react-icons/fa6";
-import { Navigate,NavLink, useNavigate } from "react-router-dom";
+import { Navigate, NavLink, useNavigate } from "react-router-dom";
 import { MdMail } from "react-icons/md";
 import { FaRegCircleXmark } from "react-icons/fa6";
-import signUpLoading from "../assets/loginPage/signUpLoading.webm";
+import Loading from "../assets/loginPage/signUpLoading.webm";
 
 function LoginPage({ addMessageBox }) {
-  const API_URL=import.meta.env.VITE_API_URL;
+  const API_URL = import.meta.env.VITE_API_URL;
   const [showPassword, setShowPassword] = useState(false);
   const [showPassword2, setShowPassword2] = useState(false);
   const [showPassword3, setShowPassword3] = useState(false);
@@ -22,12 +22,12 @@ function LoginPage({ addMessageBox }) {
   const [blurBackground, setBlurBackground] = useState(false);
   const [loading, setLoading] = useState(false);
   const [isOTPclose, setisOTPclose] = useState(true);
-  const defaultForgotPasswordData={
+  const defaultForgotPasswordData = {
     email: "",
     password: "",
     confirmPassword: "",
-  }
-  
+  };
+
   const [changeBorder, setChangeBorder] = useState({
     email: false,
     password: false,
@@ -46,11 +46,13 @@ function LoginPage({ addMessageBox }) {
     userType: "jobSeeker",
   });
 
-  const [forgotPasswordData,setForgotPasswordData]=useState(defaultForgotPasswordData);
+  const [forgotPasswordData, setForgotPasswordData] = useState(
+    defaultForgotPasswordData
+  );
 
   const signUpChangeHandler = (e) => {
     const { name, value } = e.target;
-    console.log({ name, value });
+    // console.log({ name, value });
     setSignUpData((prev) => ({
       ...prev,
       [name]: value,
@@ -59,28 +61,27 @@ function LoginPage({ addMessageBox }) {
 
   const LoginChangeHandler = (e) => {
     const { name, value, type, checked } = e.target;
-    console.log({ name, value, checked });
+    // console.log({ name, value, checked });
     setLoginData((prev) => ({
       ...prev,
       [name]: type == "checkbox" ? checked : value,
     }));
   };
 
-  const forgotPasswordChangeHandler=(e)=>{
+  const forgotPasswordChangeHandler = (e) => {
     const { name, value } = e.target;
-    console.log({ name, value });
+    // console.log({ name, value });
     setForgotPasswordData((prev) => ({
       ...prev,
       [name]: value,
     }));
-    console.log(forgotPasswordData);
-  }
+    // console.log(forgotPasswordData);
+  };
 
   const loginFormSubmit = (e) => {
     e.preventDefault();
-
-    console.log("loginButton");
-
+    setLoading(true);
+    // console.log("loginButton");
     fetch(`${API_URL}/login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -88,10 +89,10 @@ function LoginPage({ addMessageBox }) {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         if (data.login) {
-          console.log("Login Successfully");
-          console.log(data);
+          // console.log("Login Successfully");
+          // console.log(data);
           localStorage.setItem("token", data.token);
           navigate(`/${data.userType}`);
           addMessageBox("check", "Welcome back! Login successful.");
@@ -110,22 +111,29 @@ function LoginPage({ addMessageBox }) {
             });
           }
         }
+      })
+      .catch((error) => {
+        console.error(error);
+        addMessageBox("Warning", "Something went wrong. Try again!");
+      })
+      .finally(() => {
+        setLoading(false);
       });
   };
 
-  async function generateOTP(email, isSignUp ){
+  async function generateOTP(email, isSignUp) {
     await fetch(`${API_URL}/login/generateOTP`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, isSignUp }),
     })
-      .then((res) => res.json())
-      .then((data) => console.log(data))
-      .catch((error) => console.log(error));
+      // .then((res) => res.json())
+      // .then((data) => console.log(data))
+      // .catch((error) => console.log(error));
   }
 
   async function signUpFunction(otp) {
-    console.log(otp);
+    // console.log(otp);
     await fetch(`${API_URL}/login/signUp`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -133,31 +141,37 @@ function LoginPage({ addMessageBox }) {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         if (data.newUserCreated) {
-          console.log("SignUp Successfully");
-          console.log(data);
+          // console.log("SignUp Successfully");
+          // console.log(data);
           localStorage.setItem("token", data.token);
           navigate(`/${data.userType}`);
           setisOTPclose(true);
           otpRef.current.map((e) => (e.value = ""));
           addMessageBox("check", "Account created successfully!");
+          setLoading(false);
         } else {
           if (data.isExpired) {
             addMessageBox("warning", "OTP expired");
+            setLoading(false);
+
           } else {
             addMessageBox("xMark", "Wrong OTP enter. try Again");
+            setLoading(false);
           }
         }
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        // console.log(error),
+         setLoading(false);});
   }
 
   const signUpFormSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
 
-    console.log(signUpData);
+    // console.log(signUpData);
 
     const res = await fetch(`${API_URL}/login/userCheck`, {
       method: "POST",
@@ -168,19 +182,21 @@ function LoginPage({ addMessageBox }) {
     let userCheck = await res.json();
 
     if (!res.ok) {
-      console.log(userCheck);
+      // console.log(userCheck);
       return;
     }
 
     if (userCheck.emailExist) {
-      console.log(userCheck.message);
+      // console.log(userCheck.message);
       addMessageBox("warning", "email already exist");
+      setLoading(false);
       return;
     }
 
     await generateOTP(signUpData.email, true);
 
     setisOTPclose(false);
+    setLoading(false);
   };
 
   const otpHandleChange = (e) => {
@@ -198,87 +214,85 @@ function LoginPage({ addMessageBox }) {
   const otpSubmit = async (e) => {
     e.preventDefault();
     let OTP = otpRef.current.map((e) => e.value).join("");
-    console.log(OTP);
+    // console.log(OTP);
 
     if (OTP.length < 6) {
-      console.log("please enter the otp");
+      // console.log("please enter the otp");
       addMessageBox("Warning", "Please enter the OTP");
+      setLoading(false);
       return;
     }
 
     signUpFunction(OTP);
   };
 
-  const forgotEmailCheck= async (e)=>{
-
+  const forgotEmailCheck = async (e) => {
     e.preventDefault();
-    console.log("email check of forgotPassword :-",forgotPasswordData.email);
-    
+    // console.log("email check of forgotPassword :-", forgotPasswordData.email);
+
     await fetch(`${API_URL}/login/userCheck`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({email:forgotPasswordData.email })
+      body: JSON.stringify({ email: forgotPasswordData.email }),
     })
-    .then(res => res.json())
-    .then(data => {
-      console.log({data});
-      if(!data.emailExist){
-        console.log(data.message);
-        addMessageBox("warning", "email do not exist");
-        return;
-      }
-      else{
-        console.log(data.message);
-        generateOTP(forgotPasswordData.email, false);
-        setForgotPasswordStatus("optCheck");
-        return;
-      }
-    })
-    .catch(error => console.log(error));
+      .then((res) => res.json())
+      .then((data) => {
+        // console.log({ data });
+        if (!data.emailExist) {
+          // console.log(data.message);
+          addMessageBox("warning", "email do not exist");
+          setLoading(false);
+          return;
+        } else {
+          // console.log(data.message);
+          generateOTP(forgotPasswordData.email, false);
+          setForgotPasswordStatus("optCheck");
+          setLoading(false);
+          return;
+        }
+      })
+      .catch((error) => console.log(error));
+  };
 
-  }
-
-  const forgotPasswordOtpSubmit=async (e)=>{
+  const forgotPasswordOtpSubmit = async (e) => {
     e.preventDefault();
     let OTP = otpRef2.current.map((e) => e.value).join("");
-    console.log(OTP);
+    // console.log(OTP);
 
     if (OTP.length < 6) {
-      console.log("please enter the otp");
+      // console.log("please enter the otp");
       addMessageBox("Warning", "Please enter the OTP");
       return;
     }
 
-    const res= await fetch(`${API_URL}/login/forgotPasswordOtp`,{
+    const res = await fetch(`${API_URL}/login/forgotPasswordOtp`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({email:forgotPasswordData.email, OTP })
-    })
+      body: JSON.stringify({ email: forgotPasswordData.email, OTP }),
+    });
 
-    const data=await res.json();
-    if(!res.ok){
-      console.log("error :-",data);
+    const data = await res.json();
+    if (!res.ok) {
+      // console.log("error :-", data);
       return;
     }
-    console.log(data);
+    // console.log(data);
 
-    if(!data.otpCorrect){
+    if (!data.otpCorrect) {
       if (data.isExpired) addMessageBox("warning", "OTP expired");
       else addMessageBox("xMark", "Wrong OTP enter. try Again");
       return;
     }
-    
+
     otpRef2.current.map((e) => (e.value = ""));
     setForgotPasswordStatus("takePassword");
+  };
 
-  }
-
-  
-  const changeForgotPassword=async (e)=>{
+  const changeForgotPassword = async (e) => {
     e.preventDefault();
-    console.log({forgotPasswordData});
-    console.log(forgotPasswordData.password !=forgotPasswordData.confirmPassword);
-    if(forgotPasswordData.password != forgotPasswordData.confirmPassword){
+    // console.log({ forgotPasswordData });
+    // console.log(forgotPasswordData.password != forgotPasswordData.confirmPassword);
+    if (forgotPasswordData.password != forgotPasswordData.confirmPassword) {
       addMessageBox("xMark", "Passwords do not match!");
       return;
     }
@@ -286,7 +300,10 @@ function LoginPage({ addMessageBox }) {
     await fetch(`${API_URL}/login/changePassword`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email: forgotPasswordData.email , password: forgotPasswordData.password }),
+      body: JSON.stringify({
+        email: forgotPasswordData.email,
+        password: forgotPasswordData.password,
+      }),
     })
       .then((res) => res.json())
       .then((data) => addMessageBox("check", "Password Change Successfully"))
@@ -294,13 +311,10 @@ function LoginPage({ addMessageBox }) {
 
     setBlurBackground(false);
     setForgotPasswordStatus("close");
-
-  }
+  };
 
   function forgotPasswordContent(currentContent) {
-
-    console.log(currentContent);
-
+    // console.log(currentContent);
     if (currentContent === "emailTake") {
       return (
         <form
@@ -311,9 +325,7 @@ function LoginPage({ addMessageBox }) {
           <h1>Forgot Password</h1>
           <div className="d-flex flex-column inputBox pb-3">
             <label>Email</label>
-            <div
-              className="d-flex align-items-center justify-content-center"
-            >
+            <div className="d-flex align-items-center justify-content-center">
               <input
                 type="email"
                 name="email"
@@ -324,9 +336,9 @@ function LoginPage({ addMessageBox }) {
               <MdOutlineMailOutline className="icon" />
             </div>
           </div>
-          <button type="submit" >Forgot Password</button>
+          <button type="submit">Forgot Password</button>
         </form>
-      )
+      );
     } else if (currentContent === "optCheck") {
       return (
         <form
@@ -356,12 +368,17 @@ function LoginPage({ addMessageBox }) {
               />
             ))}
           </div>
-          <button type="submit" className="verifyBtn mt-2">Verify</button>
+          <button type="submit" className="verifyBtn mt-2">
+            Verify
+          </button>
           <p className="resendText">
-            Didn’t get the code? <span onClick={()=> generateOTP(forgotPasswordData.email, false)} >Resend</span>
+            Didn’t get the code?{" "}
+            <span onClick={() => generateOTP(forgotPasswordData.email, false)}>
+              Resend
+            </span>
           </p>
         </form>
-      )
+      );
     } else if (currentContent === "takePassword") {
       return (
         <form
@@ -372,9 +389,7 @@ function LoginPage({ addMessageBox }) {
           <h1>Reset Password</h1>
           <div className="d-flex flex-column showPassword2 mt-4 inputBox pb-3">
             <label>Password</label>
-            <div
-              className="d-flex align-items-center justify-content-center"
-            >
+            <div className="d-flex align-items-center justify-content-center">
               <input
                 name="password"
                 type={showPassword2 ? "text" : "password"}
@@ -398,9 +413,7 @@ function LoginPage({ addMessageBox }) {
           </div>
           <div className="d-flex flex-column showPassword3 inputBox pb-3">
             <label>Confirm Password</label>
-            <div
-              className="d-flex align-items-center justify-content-center"
-            >
+            <div className="d-flex align-items-center justify-content-center">
               <input
                 name="confirmPassword"
                 type={showPassword3 ? "text" : "password"}
@@ -424,8 +437,10 @@ function LoginPage({ addMessageBox }) {
           </div>
           <button type="submit">Reset Password</button>
         </form>
-      )
-    } else {return null};
+      );
+    } else {
+      return null;
+    }
   }
 
   return (
@@ -436,17 +451,19 @@ function LoginPage({ addMessageBox }) {
         } `}
       >
         <div className="d-flex justify-content-center align-items-center w-100 h-100">
-          <div className={`passwordChangeBox position-relative ${forgotPasswordStatus}`}>
-            
-              <FaRegCircleXmark className="position-absolute closeIcon"
-                onClick={() => {
-                  setLoading(false);
-                  setBlurBackground(false);
-                  setForgotPasswordStatus("close");
-                  setForgotPasswordData(defaultForgotPasswordData);
-                  otpRef2.current.map((e) => (e.value = ""));
-                }}
-              />
+          <div
+            className={`passwordChangeBox position-relative ${forgotPasswordStatus}`}
+          >
+            <FaRegCircleXmark
+              className="position-absolute closeIcon"
+              onClick={() => {
+                setLoading(false);
+                setBlurBackground(false);
+                setForgotPasswordStatus("close");
+                setForgotPasswordData(defaultForgotPasswordData);
+                otpRef2.current.map((e) => (e.value = ""));
+              }}
+            />
 
             {forgotPasswordContent(forgotPasswordStatus)}
           </div>
@@ -493,26 +510,32 @@ function LoginPage({ addMessageBox }) {
               <button className="verifyBtn mt-2  ">Verify</button>
               <p className="resendText">
                 {" "}
-                Didn’t get the code? <span  onClick={()=> generateOTP(signUpData.email, true)} >Resend</span>
+                Didn’t get the code?{" "}
+                <span onClick={() => generateOTP(signUpData.email, true)}>
+                  Resend
+                </span>
               </p>
             </form>
           </div>
         </div>
       </div>
 
-      <NavLink to="/" > <button
-        className="position-absolute homeBtn fs-5 p-1 px-2 rounded-3 d-flex align-items-center fw-bold"
-        style={{
-          border: currentLoginBox
-            ? "2px solid var(--yellowTextColor)"
-            : "2px solid black",
-          color: currentLoginBox ? "var(--yellowTextColor)" : "black",
-          transition: "all 0.9s ease",
-        }}
-      >
-        <FaArrowLeft className="me-2" />
-        Home
-      </button> </NavLink>
+      <NavLink to="/">
+        {" "}
+        <button
+          className="position-absolute homeBtn fs-5 p-1 px-2 rounded-3 d-flex align-items-center fw-bold"
+          style={{
+            border: currentLoginBox
+              ? "2px solid var(--yellowTextColor)"
+              : "2px solid black",
+            color: currentLoginBox ? "var(--yellowTextColor)" : "black",
+            transition: "all 0.9s ease",
+          }}
+        >
+          <FaArrowLeft className="me-2" />
+          Home
+        </button>{" "}
+      </NavLink>
       <div
         className={`loginPage d-flex ${
           currentLoginBox ? "onLogin" : "onSignUp"
@@ -583,16 +606,33 @@ function LoginPage({ addMessageBox }) {
               <label className="ms-2">Remember me</label>
               <p
                 className="forgetPasswordText m-0 mt-1 ms-auto yellowText text-end"
-                onClick={() =>{setBlurBackground(true); setForgotPasswordStatus("emailTake")}}
+                onClick={() => {
+                  setBlurBackground(true);
+                  setForgotPasswordStatus("emailTake");
+                }}
               >
                 Forgot Passoword?
               </p>
             </div>
             <button
               type="submit"
-              className="w-100 mt-3 rounded-3 p-1 fw-bold text-white"
+              className="w-100 mt-3 rounded-pill p-1 fw-bold text-white loginBtn d-flex justify-content-center align-items-center"
+              disabled={loading}
             >
-              Login
+              {loading ? (
+                <video
+                  src={Loading}
+                  autoPlay
+                  loop
+                  muted
+                  style={{
+                    width: "90px",
+                    height: "90px",
+                  }}
+                />
+              ) : (
+                "Login"
+              )}
             </button>
             <p className="m-0 mt-3 lastLine">
               Don't have an account?{" "}
@@ -713,24 +753,26 @@ function LoginPage({ addMessageBox }) {
                 <span className="yellowText"> Privacy Policy</span>
               </label>
             </div>
-           <button
-  type="submit"
-  className="w-100 mt-3 rounded-3 fw-bold text-white signUpBtn d-flex justify-content-center align-items-center"
-  disabled={loading}
->
-  {loading ? (
-    <video
-      src={signUpLoading}
-      autoPlay
-      loop
-      muted
-      style={{
-        width: "90px",
-        height: "90px",
-      } }
-    />
-  ) : "Sign Up" }
-</button>
+            <button
+              type="submit"
+              className="w-100 mt-3 rounded-pill fw-bold text-white signUpBtn d-flex justify-content-center align-items-center"
+              disabled={loading}
+            >
+              {loading ? (
+                <video
+                  src={Loading}
+                  autoPlay
+                  loop
+                  muted
+                  style={{
+                    width: "90px",
+                    height: "90px",
+                  }}
+                />
+              ) : (
+                "Sign Up"
+              )}
+            </button>
             <p className="m-0 mt-3 lastLine">
               Already have an account?{" "}
               <span

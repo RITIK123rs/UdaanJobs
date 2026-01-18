@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import { FaBriefcase } from "react-icons/fa";
 import { RiMapPinLine } from "react-icons/ri";
 import { FaArrowLeft } from "react-icons/fa6";
@@ -14,8 +14,10 @@ export default function JobDetail({
 }) {
 
   const API_URL=import.meta.env.VITE_API_URL;
+  const [applyActive, setApplyActive]=useState(false);
 
   async function applyJob(object) {
+    setApplyActive(true);
     await fetch(`${API_URL}/jobseeker/apply`, {
       method: "PUT",
       headers: {
@@ -26,16 +28,18 @@ export default function JobDetail({
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         if (!data.isPresent) {
-          console.log(data.message);
+          // console.log(data.message);
           addMessageBox("check", "Application submitted successfully");
         } else {
-          console.log(data.message);
+          // console.log(data.message);
           addMessageBox("Warning", "Already applied for this job");
         }
       })
       .catch((error) => console.log("Put error :-", error));
+
+      setApplyActive(false);
   }
 
   return (
@@ -74,12 +78,12 @@ export default function JobDetail({
 
             <div className="jobDetail d-flex mb-2 flex-wrap gap-3">
               <div className="detailItem d-flex align-items-center">
-                <RiMapPinLine className="me-1 icon" />
+                <RiMapPinLine className="me-1 icon yellowText " />
                 <span>{selectData?.location}</span>
               </div>
 
               <div className="detailItem d-flex align-items-center">
-                <FaBriefcase className="me-1 icon" />
+                <FaBriefcase className="me-1 icon yellowText" />
                 <span>{selectData?.jobType}</span>
               </div>
             </div>
@@ -88,6 +92,7 @@ export default function JobDetail({
 
         {!isRecruiter ? (
           <button
+            disabled={applyActive}
             className={`applyBtn ms-auto ${
               previousComponent == "jobApply" ? "d-none" : ""
             }`}

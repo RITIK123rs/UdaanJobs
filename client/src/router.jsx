@@ -9,7 +9,7 @@ import ProtectedRoute from "./protectedRoute";
 
 
 export default function Router({ addMessageBox }) {
-  console.log("Route");
+  // console.log("Route");
   return (
     <BrowserRouter>
       <Routes>

@@ -22,24 +22,24 @@ const otpStore = {};
 
 router.post("/generateOTP", async (req, res) => {
   try {
-    console.log("generateOTP");
-    console.log(req.body);
+    // console.log("generateOTP");
+    // console.log(req.body);
     const { email, isSignUp } = req.body;
     let OTP = "";
     for (let i = 0; i < 6; i++) {
       OTP += Math.floor(Math.random() * 10);
     }
-    console.log(OTP);
+    // console.log(OTP);
     otpStore[email] = OTP;
-    console.log(otpStore[email]);
+    // console.log(otpStore[email]);
     setTimeout(() => {
       delete otpStore[email];
     }, 5 * 60 * 1000);
 
     let mailData;
 
-    console.log("User:", process.env.Email_Id);
-    console.log("Pass:", process.env.Email_PasswordCode);
+    // console.log("User:", process.env.Email_Id);
+    // console.log("Pass:", process.env.Email_PasswordCode);
 
     if (isSignUp) {
       mailData = {
@@ -130,7 +130,7 @@ router.post("/generateOTP", async (req, res) => {
 `,
       };
     }
-    console.log(mailData);
+    // console.log(mailData);
 
     try {
       await transporter.sendMail(mailData);
@@ -140,21 +140,21 @@ router.post("/generateOTP", async (req, res) => {
       return res.status(500).json("Error sending email");
     }
   } catch (error) {
-    console.log("otp error :- ", error);
+    // console.log("otp error :- ", error);
     res.status(500).json(`otp error :- ${error} `);
   }
 });
 
 router.post("/forgotPasswordOtp", async (req, res) => {
-  console.log(req.body);
+  // console.log(req.body);
   const { email, OTP } = req.body;
 
   if (!otpStore[email]) {
-    console.log("OTP expired");
+    // console.log("OTP expired");
     return res.json({ otpCorrect: false, isExpired: true });
   }
   if (otpStore[email] != OTP) {
-    console.log("wrong OTP");
+    // console.log("wrong OTP");
     return res.json({ otpCorrect: false, isExpired: false });
   }
 
@@ -167,7 +167,7 @@ router.post("/changePassword", async (req, res) => {
 
     const hashedPassword= bcrypt.hashSync(password,10);
 
-    console.log({ email, password });
+    // console.log({ email, password });
     let user = await jobSeeker.findOneAndUpdate(
       { email },
       { $set: {password: hashedPassword} },
@@ -190,7 +190,7 @@ router.post("/changePassword", async (req, res) => {
       );
     }
 
-    console.log(user);
+    // console.log(user);
 
     return res.json("password change successfully");
   } catch (error) {
@@ -207,7 +207,7 @@ router.post("/userCheck", async (req, res) => {
       (await jobRecruiter.findOne({ email } )) ||
       (await Admin.findOne({ email })) ;
 
-    console.log("userCheck :-", checkUser);
+    // console.log("userCheck :-", checkUser);
 
     if (checkUser) {
       return res.json({ message: "email already exist", emailExist: true });
@@ -221,27 +221,27 @@ router.post("/userCheck", async (req, res) => {
 
 router.post("/signUp", async (req, res) => {
   try {
-    console.log(req.body);
+    // console.log(req.body);
     const { name, email, password, userType, otp } = req.body;
 
-    console.log(otpStore);
+    // console.log(otpStore);
 
-    console.log(!otpStore[email]);
+    // console.log(!otpStore[email]);
     if (!otpStore[email]) {
-      console.log("OTP expired");
+      // console.log("OTP expired");
       return res.json({ newUserCreated: false, isExpired: true });
     }
-    console.log(otpStore[email] != otp);
+    // console.log(otpStore[email] != otp);
     if (otpStore[email] != otp) {
-      console.log("wrong OTP");
+      // console.log("wrong OTP");
       return res.json({ newUserCreated: false, isExpired: false });
     }
 
-    console.log("userType");
+    // console.log("userType");
 
     let user = null;
     const hashedPassword= await bcrypt.hash(password, 10)
-    console.log(hashedPassword);
+    // console.log(hashedPassword);
 
     if (userType == "jobSeeker") {
       user = await jobSeeker.create({ userName: name, email, password: hashedPassword });
@@ -249,8 +249,8 @@ router.post("/signUp", async (req, res) => {
       user = await jobRecruiter.create({ userName: name, email, password: hashedPassword });
     }
 
-    console.log(user);
-    console.log("SignUp successfully");
+    // console.log(user);
+    // console.log("SignUp successfully");
 
     const token = jwt.sign(
       { userId: user._id, userType },
@@ -259,14 +259,14 @@ router.post("/signUp", async (req, res) => {
     );
     return res.json({ newUserCreated: true, token, userType });
   } catch (error) {
-    console.log("signUp error :- ".error);
+    // console.log("signUp error :- ".error);
     return res.status(400).json(`signUp error :- ${error} `);
   }
 });
 
 router.post("/", async (req, res) => {
   try {
-    console.log(req.body);
+    // console.log(req.body);
     const { email, password, rememberMe } = req.body;
 
     let userType = "jobSeeker";
@@ -277,7 +277,7 @@ router.post("/", async (req, res) => {
       });
 
     if (!user) {
-      console.log("recruiter");
+      // console.log("recruiter");
       user = await jobRecruiter.findOne({ email });
       if (user) {
         await jobRecruiter.findByIdAndUpdate(user._id, {
@@ -288,7 +288,7 @@ router.post("/", async (req, res) => {
     }
 
     if (!user) {
-      console.log("admin");
+      // console.log("admin");
       user = await Admin.findOne({ email });
       if (user) {
         await Admin.findByIdAndUpdate(user._id, {
@@ -300,15 +300,15 @@ router.post("/", async (req, res) => {
 
     if (!user) return res.json({ login: false, emailMatch: false });
 
-    console.log(user.password);
+    // console.log(user.password);
     const match = await bcrypt.compare(password, user.password)
-    console.log(match);
+    // console.log(match);
     if (!match) {
       return res.json({ login: false, emailMatch: true });
     }
 
     const token = jwt.sign(
-      { userId: user._id, userType },
+      { userId: user._id, userName: user.userName, userType },
       process.env.SECRET_KEY,
       rememberMe ? { expiresIn: "30d" } : {}
     );

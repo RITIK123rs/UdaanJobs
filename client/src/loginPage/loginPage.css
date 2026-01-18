@@ -144,12 +144,6 @@
 }
 
 .passwordChangeBox{
-  /* width: 540px;
-  height: 40%; */
-  /* height: 415px;
-  width: 500px; */
-  /* height: 380px;
-  width: 540px; */
   background: #1C1C1C;
   z-index: 20;
   border-radius: 20px;
@@ -261,7 +255,6 @@
   font-size: 35px;
   right: 20px;
   color: var(--yellowTextColor);
-
 }
 
 .otpBackground.active{
@@ -290,7 +283,7 @@
 .takePassword > div > div{
   border: 2px solid white;
   border-radius: 5px;
-}
+}s
 .passwordChangeBox .emailTake .icon,
 .takePassword .icon {
   font-size: 25px;
@@ -328,7 +321,8 @@
   border-color: var(--yellowTextColor);
 }
 
-.signUpBtn{
+.signUpBtn,
+.loginBtn{
   height: 42px;
 }
 
@@ -342,6 +336,94 @@
   .loginForm {
     max-width: 400px;
   }
+
+  
+.otpBox{
+  height: 370px;
+  width: 350px;
+}
+
+.passwordChangeBox .emailTake{
+  padding: 30px 20px 20px 20px;
+}
+
+.passwordChangeBox .takePassword{
+  padding: 30px 20px 20px 20px;
+}
+
+.passwordChangeBox.emailTake{
+  width: 350px;
+  height: 36%;
+}
+.passwordChangeBox.optCheck{
+  height: 370px;
+  width: 350px;
+}
+.passwordChangeBox.takePassword{
+  height: 45%;
+  width: 350px;
+}
+
+.passwordChangeBox .closeIcon{
+  font-size: 27px;
+}
+
+.otpBox .iconBox,
+.optCheck .iconBox{
+  font-size: 35px;
+  width: 55px;
+  height: 53px;
+}
+.otpBox h2,
+.optCheck h2{
+  font-size: 23px;
+}
+.otpBox .text,
+.optCheck .text{
+  font-size: 15px;
+}
+.otpBox .otpInputsBox,
+.optCheck .otpInputsBox{
+  display: flex;
+  gap: 9px;
+  margin-bottom: 15px;
+}
+.otpBox .otpInputsBox input,
+.optCheck .otpInputsBox input{
+  width: 45px;
+  height: 45px;
+  font-size: 40px;
+  border: 2px solid var(--yellowTextColor);
+}
+
+.otpBox .verifyBtn,
+.optCheck .verifyBtn{
+  width: 70%;
+  margin-left: 14%;
+  padding: 3px 0;
+  font-size: 18px;
+}
+
+.otpBox .closeBox,
+.optCheck .closeBox{
+  font-size: 30px;
+}
+.passwordChangeBox .emailTake h1,
+.takePassword h1{
+  font-size: 27px;
+}
+
+.passwordChangeBox .emailTake label,
+.takePassword label{
+  font-size: 20px;
+}
+
+.passwordChangeBox .emailTake > div > div,
+.takePassword > div > div{
+  padding-right: 5px;
+}
+
+
 }
 
 @media only screen and (min-width: 470.98px) and (max-width: 575.98px) {
@@ -351,6 +433,66 @@
   .loginForm {
     width: 420px;
   }
+.otpBox{
+  height: 380px;
+  width: 450px;
+}
+.passwordChangeBox .emailTake{
+  padding: 30px 40px 20px 40px;
+}
+
+.passwordChangeBox.optCheck{
+  height: 370px;
+  width: 450px;
+}
+
+
+.otpBox .iconBox,
+.optCheck .iconBox{
+  font-size: 30px;
+  width: 55px;
+  height: 53px;
+}
+.otpBox h2,
+.optCheck h2{
+  font-size: 23px;
+}
+.otpBox .text,
+.optCheck .text{
+  font-size: 15px;
+}
+.otpBox .otpInputsBox,
+.optCheck .otpInputsBox{
+  gap: 10px;
+}
+.otpBox .otpInputsBox input,
+.optCheck .otpInputsBox input{
+  width: 55px;
+  height: 55px;
+  font-size: 40px;
+}
+
+.otpBox .verifyBtn,
+.optCheck .verifyBtn{
+  width: 50%;
+  margin-left: 24%;
+  padding: 3px 0;
+  font-size: 18px;
+}
+
+.otpBox .closeBox,
+.optCheck .closeBox{
+  font-size: 30px;
+}
+
+
+.passwordChangeBox .emailTake h1,
+.takePassword h1{
+  font-size: 35px;
+}
+
+
+
 }
 
 @media only screen and (min-width: 576px) and (max-width: 767.98px) {

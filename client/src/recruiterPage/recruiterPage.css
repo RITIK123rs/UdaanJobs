@@ -12,26 +12,43 @@ textarea::-webkit-scrollbar,
 .recruiterPage .tableBox::-webkit-scrollbar {
   display: none;
 }
-.recruiterPage .pageTitle{
+.recruiterPage .pageTitle {
   font-size: 50px;
   text-transform: uppercase;
   font-weight: bold;
 }
 .recruiterPage {
-  height: 98vh;
+  height: 100vh;
 }
 .recruiterPage .menuBox {
-  height: 98vh;
+  height: 100vh;
+  width: 21%;
   border-right: 2px solid white;
 }
 .recruiterPage .menuContent {
-  height: 98vh;
+  height: 100vh;
+  width: 78%;
   overflow-y: scroll;
+  padding-left: 1%;
+}
+.recruiterPage .phoneMenu {
+  background-color: #1c1c1c;
+  border-right: 3px solid white;
+  transform: translateX(-100%);
+  width: 350px;
+  height: 100%;
+  z-index: 400;
+}
+.phoneMenu.menuOpen {
+  animation: menuOpen 0.4s ease forwards;
+}
+
+.phoneMenu.menuClose {
+  animation: menuClose 0.4s ease forwards;
 }
 .recruiterPage .menuContent::-webkit-scrollbar {
   display: none;
 }
-
 .recruiterPage .logoName {
   font-size: 32px !important;
 }
@@ -48,10 +65,6 @@ textarea::-webkit-scrollbar,
 }
 .menuImgBox {
   width: 50px;
-}
-
-.recruiterPage .logoName {
-  font-size: 32px !important;
 }
 .recruiterPage ul li:hover {
   background-color: var(--yellowTextColor);
@@ -69,16 +82,11 @@ textarea::-webkit-scrollbar,
 } */
 .menuImgBox {
   width: 50px;
-}  
-
-
-.recruiterDashboard .databox h1 {
-  font-weight: 700;
-  color: #ffffff;
 }
-
-
-/* Each row */
+.recruiterDashboard .databox h1 {
+  font-weight: bolder;
+  font-size: 49px;
+}
 .recruiterDashboard .dbList > div {
   width: 99%;
   border: 2px solid rgba(255, 255, 255, 0.12);
@@ -98,13 +106,26 @@ textarea::-webkit-scrollbar,
   letter-spacing: 1px;
 }
 
-.recruiterDashboard .dbList .status.live{
+.recruiterDashboard .dbList .status.live {
   color: #00ff99;
   border: 2px solid #00ff99;
 }
-.recruiterDashboard .dbList .status.closed{
+.recruiterDashboard .dbList .status.closed {
   color: red;
   border: 2px solid red;
+}
+
+.recruiterDashboard .dbList .nameBox{
+  width: 38%;
+}
+.recruiterDashboard .dbList .applicationBox{
+  width: 15%;
+}
+.recruiterDashboard .dbList .databox{
+  width: 15%;
+}
+.recruiterDashboard .dbList .statusBox{
+  width: 15%;
 }
 
 .jobPosted .tableBox {
@@ -115,7 +136,7 @@ textarea::-webkit-scrollbar,
   text-align: center;
 }
 .jobPosted table th,
-.jobPosted table td {
+.jobPosted table td{
   background: transparent;
   color: white;
   padding: 10px 8px;
@@ -124,11 +145,16 @@ textarea::-webkit-scrollbar,
 
 .jobPosted table th {
   font-size: 20px;
-  font-weight:  bold;
+  font-weight: bold;
   height: 60px;
-  background: #1C1C1C;
+  background: #1c1c1c;
+  color: var(--yellowTextColor);
 }
-
+table td,
+table th {
+  white-space: nowrap;
+  padding: 10px 10px !important;
+}
 .jobPosted .btnBox button {
   margin-right: 8px;
   min-width: 75px;
@@ -172,15 +198,15 @@ textarea::-webkit-scrollbar,
   color: red;
 }
 
-.jobPosted table td{
-  font-size: 17px;
-  font-weight: 500;
+.jobPosted table td {
+  font-size: 19px;
+  font-weight: 400;
 }
 
 .jobPosted .field {
   border: 2px solid white;
-  padding: 4px 5px 4px 10px;
-  border-radius: 20px;
+  padding: 4px 5px 3px 12px;
+  border-radius: 40px;
   display: flex;
   align-items: center;
   color: white;
@@ -204,11 +230,10 @@ textarea::-webkit-scrollbar,
 .jobPosted .jobTitleBox {
   width: 30%;
 }
-
 .jobPosted .filter {
   width: 13%;
 }
-.jobPosted .field option{
+.jobPosted .field option {
   color: black;
 }
 
@@ -236,8 +261,9 @@ textarea::-webkit-scrollbar,
 
 .Applicants table th {
   font-size: 20px;
-  font-weight: 600;
+  font-weight: 700;
   position: sticky;
+  color: var(--yellowTextColor);
   top: 0;
   height: 60px;
 }
@@ -265,7 +291,7 @@ textarea::-webkit-scrollbar,
   color: red;
 }
 
-.Applicants option{
+.Applicants option {
   color: black;
 }
 
@@ -302,7 +328,7 @@ textarea::-webkit-scrollbar,
   color: var(--yellowTextColor);
 }
 
-.Applicants .actionBox button{
+.Applicants .actionBox button {
   padding: 7px 12px;
   border-radius: 20px;
   font-weight: bold;
@@ -314,7 +340,7 @@ textarea::-webkit-scrollbar,
   background: transparent;
   gap: 6px;
 }
-.Applicants .actionBox a{
+.Applicants .actionBox a {
   font-size: 17px;
 }
 
@@ -343,7 +369,7 @@ textarea::-webkit-scrollbar,
   color: #ffc107;
 }
 .Applicants .resumeBtn:hover > a,
-.Applicants .resumeBtn:hover{
+.Applicants .resumeBtn:hover {
   background-color: #ffc107;
   color: #000;
   border: none;
@@ -352,32 +378,32 @@ textarea::-webkit-scrollbar,
   color: #000;
 }
 
-.postJob .formRow{
+.postJob .formRow {
   display: flex;
   gap: 20px;
   margin-top: 20px;
   flex-wrap: wrap;
 }
 
-.postJob .mainSection{
+.postJob .mainSection {
   padding: 0 10px;
 }
 
-.postJob .formGroup{
+.postJob .formGroup {
   width: 48%;
   margin-top: 20px;
   display: flex;
   flex-direction: column;
 }
 
-.postJob .heading{
+.postJob .heading {
   font-size: 36px;
   font-weight: bold;
   text-transform: uppercase;
   margin-bottom: 15px;
 }
 
-.postJob .formGroup > label{
+.postJob .formGroup > label {
   font-size: 26px;
   margin-left: 5px;
   text-transform: uppercase;
@@ -386,42 +412,43 @@ textarea::-webkit-scrollbar,
 
 .postJob .formGroup > input,
 .postJob .formGroup > select,
-.postJob textarea{
+.postJob textarea {
   margin-top: 7px;
   width: 100%;
   font-size: 20px;
   border-radius: 10px;
-  border: 2px solid rgba(255,255,255,0.5);
+  border: 2px solid rgba(255, 255, 255, 0.5);
   outline: none;
-  background: rgba(255,255,255,0.03);
+  background: rgba(255, 255, 255, 0.03);
   color: white;
   padding: 8px 12px;
 }
 
 .postJob .formGroup input:focus,
 .postJob .formGroup select:focus,
-.postJob textarea:focus{
+.postJob textarea:focus {
   border-color: var(--yellowTextColor);
   box-shadow: 0 0 6px var(--yellowTextColor);
 }
 
-.postJob .formGroup select{
+.postJob .formGroup select {
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
 }
 
-.postJob .formGroup select option{
-  background: #1C1C1C;
+.postJob .formGroup select option {
+  background: #1c1c1c;
   color: white;
   font-size: 18px;
 }
 
-.postJob .saveBtn{
+.postJob .saveBtn {
   border: 3px solid var(--yellowTextColor);
   color: var(--yellowTextColor);
   background: transparent;
   width: 80%;
+  height: 46px !important;
   font-size: 20px;
   border-radius: 20px;
   font-weight: bold;
@@ -430,7 +457,7 @@ textarea::-webkit-scrollbar,
 }
 
 .postJob .backBtn:hover,
-.postJob .saveBtn:hover{
+.postJob .saveBtn:hover {
   background: var(--yellowTextColor);
   color: black;
 }
@@ -456,13 +483,12 @@ textarea::-webkit-scrollbar,
   filter: invert(1);
 }
 
-
-.companyProfile .header .imgBox{
+.companyProfile .header .imgBox {
   width: 100px;
   height: 100px;
 }
 
-.companyProfile .header .icon{
+.companyProfile .header .icon {
   border: 2px solid rgba(255, 255, 255, 0.71);
   border-radius: 50%;
   font-size: 35px;
@@ -470,12 +496,12 @@ textarea::-webkit-scrollbar,
   color: var(--yellowTextColor);
 }
 
-.companyProfile .personImg{
+.companyProfile .personImg {
   height: 80px;
   width: 80px;
 }
 
-.companyProfile .editBtn{
+.companyProfile .editBtn {
   top: 10px;
   right: 10px;
   padding: 0.4rem 0.8rem;
@@ -487,7 +513,7 @@ textarea::-webkit-scrollbar,
   font-weight: bold;
   width: 80px;
 }
-.companyProfile .ImgBox img{
+.companyProfile .ImgBox img {
   width: 100%;
   height: 100%;
   object-position: center;
@@ -496,24 +522,24 @@ textarea::-webkit-scrollbar,
   border-radius: 10px;
 }
 .companyProfile .imgBox1,
-.companyProfile .imgBox2{
+.companyProfile .imgBox2 {
   width: 49.3%;
   height: 600px;
 }
 .companyProfile .subImgBox1,
-.companyProfile .subImgBox2{
+.companyProfile .subImgBox2 {
   height: 49%;
 }
 
-.companyProfile .personImg img{
+.companyProfile .personImg img {
   object-position: center;
   object-fit: cover;
 }
 
-.companyProfile .companyLogo{
+.companyProfile .companyLogo {
   width: 100%;
   height: 100%;
-  object-fit:cover;
+  object-fit: cover;
   object-position: center;
 }
 
@@ -524,16 +550,45 @@ textarea::-webkit-scrollbar,
   background: transparent;
 }
 
-
-.companyProfile .backBtn:hover{
+.companyProfile .backBtn:hover {
   background-color: var(--yellowTextColor);
   color: #000;
 }
 
-.headerRow{
-  background: #1C1C1C;
+.companyProfile .belowAdditionalInfo{
+  border: 2px solid rgba(255, 255, 255, 0.71);
+  margin-top: 15px;
+  border-radius: 7px;
+  padding: 20px;
 }
-
+.companyProfile .belowAdditionalInfo h2{
+  font-size: 34px;
+  margin-bottom: 30px !important;
+}
+.companyProfile .belowAdditionalInfo h2::after {
+  content: "";
+  display: block;
+  width: 70px;
+  height: 3px;
+  background-color: var(--yellowTextColor);
+  border-radius: 2px;
+  margin-top: 5px;
+}
+.companyProfile .belowAdditionalInfo .bottomInfo{
+  gap: 30px;
+}
+.companyProfile .belowAdditionalInfo .bottomInfo .top{
+  font-size: 18px !important;
+}
+.companyProfile .belowAdditionalInfo .bottomInfo .below{
+  font-size: 13px !important;
+}
+.companyProfile .belowAdditionalInfo .icon {
+  font-size: 32px !important;
+}
+.headerRow {
+  background: #1c1c1c;
+}
 .editCompanyProfile .formRow {
   display: flex;
   gap: 20px;
@@ -560,7 +615,7 @@ textarea::-webkit-scrollbar,
 }
 
 .editCompanyProfile .formGroup > label,
-.editCompanyProfile .formRow.about >label {
+.editCompanyProfile .formRow.about > label {
   font-size: 26px;
   margin-left: 5px;
   text-transform: uppercase;
@@ -591,6 +646,7 @@ textarea::-webkit-scrollbar,
   color: var(--yellowTextColor);
   background: transparent;
   width: 80%;
+  height: 49px !important;
   font-size: 20px;
   border-radius: 20px;
   font-weight: bold;
@@ -598,7 +654,7 @@ textarea::-webkit-scrollbar,
   transition: 0.3s all;
 }
 
-.editCompanyProfile input[type="file"]{
+.editCompanyProfile input[type="file"] {
   padding: 5px 10px;
 }
 .editCompanyProfile input[type="file"]::file-selector-button {
@@ -638,28 +694,30 @@ textarea::-webkit-scrollbar,
   border-radius: 2px;
   margin-top: 5px;
 }
-.editCompanyProfile input[type="date"]::-webkit-calendar-picker-indicator { filter: invert(1); }
-.editCompanyProfile .formRow.about >label{
+.editCompanyProfile input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+}
+.editCompanyProfile .formRow.about > label {
   margin-top: 20px;
 }
-.editCompanyProfile textarea{
+.editCompanyProfile textarea {
   margin-top: -10px;
   margin-right: 20px;
   resize: vertical;
 }
 
-.recruiterPage .menuImgBox{
+.recruiterPage .menuImgBox {
   width: 53px;
   height: 53px;
 }
-.recruiterPage .menuImgBox > img{
+.recruiterPage .menuImgBox > img {
   width: 100%;
   object-position: center;
   object-fit: fill;
   height: 100%;
 }
 
-.recruiterPage .dropMenu{
+.recruiterPage .dropMenu {
   display: none;
   border: 1px solid red;
   max-width: 29%;
@@ -672,16 +730,791 @@ textarea::-webkit-scrollbar,
   animation: exitBoxAni 0.5s ease forwards;
 }
 @keyframes exitBoxAni {
-  0%{
+  0% {
     transform: translateX(-70px);
-     opacity: 0;
+    opacity: 0;
   }
-  100%{
+  100% {
     transform: translateX(0px);
-     opacity: 1;
+    opacity: 1;
   }
 }
-.recruiterPage .loginBox:hover > .dropMenu{
-  display: block;
+.recruiterPage .loginBox:hover > .dropMenu {
+  min-width: 90%;
+  font-size: 20px !important;
+  display: flex;
   cursor: pointer;
+  align-items: center;
+  background: transparent;
+}
+
+.recruiterPage .findJob .jobCard {
+  position: relative;
+  background: #1c1c1c;
+  border: 1px solid var(--yellowTextColor) !important;
+}
+
+.recruiterPage .findJob .jobCard .detailItem .icon {
+  color: var(--yellowTextColor);
+}
+
+@property --angle1 {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+@property --angle2 {
+  syntax: "<angle>";
+  initial-value: 180deg;
+  inherits: false;
+}
+
+.recruiterPage .applicationStatus .databox > div::after,
+.recruiterPage .applicationStatus .databox > div::before,
+.recruiterPage .applicationStatus .pieGraphBox > div::after,
+.recruiterPage .applicationStatus .pieGraphBox > div::before {
+  content: "";
+  position: absolute;
+  height: calc(100% + 8px);
+  width: calc(100% + 8px);
+  top: -4px;
+  left: -4px;
+  z-index: -2;
+  border-radius: 10px;
+  animation: roundMove 5s linear infinite;
+}
+.recruiterPage .applicationStatus .databox > div,
+.recruiterPage .applicationStatus .pieGraphBox > div {
+  position: relative;
+  background: #1c1c1c;
+  border-radius: 10px;
+  border: 1px solid var(--yellowTextColor) !important;
+}
+
+.recruiterPage .applicationStatus .databox > div::after,
+.recruiterPage .applicationStatus .pieGraphBox > div::after{
+  --angle1: 0deg;
+  background-image: conic-gradient(
+    from var(--angle1),
+    transparent 74%,
+    var(--yellowTextColor)
+  );
+}
+.recruiterPage .applicationStatus .databox > div::before,
+.recruiterPage .applicationStatus .pieGraphBox > div::before{
+  --angle2: 180deg;
+  background-image: conic-gradient(
+    from var(--angle2),
+    transparent 74%,
+    var(--yellowTextColor)
+  );
+}
+
+@keyframes roundMove {
+  from {
+    --angle1: 0deg;
+    --angle2: 180deg;
+  }
+  to {
+    --angle1: 360deg;
+    --angle2: 540deg;
+  }
+}
+
+@media only screen and (max-width: 470.98px) {
+
+  .menuIcon {
+    font-size: 50px !important;
+  }
+  .recruiterPage .phoneMenu {
+    width: 240px;
+  }
+  .recruiterPage .logo {
+    width: 32px;
+  }
+  .recruiterPage .logoName {
+    font-size: 26px !important;
+  }
+  .loginBox .emailId {
+    display: block;
+    font-size: 13px;
+  }
+  .recruiterPage .menuImgBox{
+    width: 40px !important;
+    height: 40px !important;
+  }
+  .loginBox .personName {
+    font-size: 17px;
+  }
+  .menuList .menuItem{
+    margin-left: 15px;
+  }
+  .loginBox{
+    padding-left: 10px !important;
+  }
+   .menuList .menuItem {
+    font-size: 20px !important;
+    margin-bottom: 5px;
+    padding: 8px 0 8px 0px !important;
+  }
+  .menuList .menuIcon {
+    font-size: 26px !important;
+  }
+  .menuImgBox {
+    width: 30px !important;
+  }
+  .recruiterPage .pageTitle {
+    font-size: 28px !important;
+    margin: auto 0;
+  }
+ .recruiterPage .PhoneMenuIcon {
+    font-size: 30px ;
+    margin-top: 2px;
+  }
+    .recruiterPage .applicationStatus > div > div > div {
+    background-color: #f44336;
+    width: 48%;
+    justify-content: center;
+  }
+  .recruiterPage .applicationStatus .databox > div {
+    border: 2px solid white;
+    margin-bottom: 6px;
+  }
+  .recruiterPage .applicationStatus .databox {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+  .recruiterPage .applicationStatus .databox > div {
+    padding: 0 10px;
+  }
+  .recruiterPage .applicationStatus .databox > div h1{
+    font-size: 40px;
+  }
+  .recruiterPage .loginBox:hover > .dropMenu {
+    font-size: 19px !important;
+  }
+  .recruiterDashboard .rah{
+    font-size: 22px;
+  }
+  .recruiterPage .applicationStatus .databox > div::after,
+  .recruiterPage .applicationStatus .databox > div::before,
+  .recruiterPage .applicationStatus .pieGraphBox > div::after,
+  .recruiterPage .applicationStatus .pieGraphBox > div::before {
+    display: none;
+  }
+      .recruiterDashboard .dbList .nameBox{
+  width: 90%;
+}
+
+.recruiterDashboard .dbList .nameBox h3{
+  font-size: 18px;
+}
+.recruiterDashboard .dbList .nameBox p{
+  font-size: 13px;
+}
+.recruiterDashboard .dbList .applicationBox{
+  display: none !important;
+}
+.recruiterDashboard .dbList .databox{
+  display: none;
+}
+.recruiterDashboard .dbList .statusBox{
+  width: 20%;
+  display: block !important;
+  margin-right: 16px;
+}
+.recruiterDashboard .dbList .status{
+  font-size: 15px;
+  min-width: 87px;
+}
+.jobPosted .filterBox{
+  display: flex !important;
+  flex-direction: column !important;
+}
+.jobPosted .jobTitleBox {
+  width: 90%;
+  margin: 0 auto;
+  margin-bottom: 10px;
+}
+.jobPosted .filter {
+  width: 150px;
+  margin: 0;
+  margin-left: 27% !important;
+}
+.Applicants .filterBox{
+  display: flex;
+  flex-wrap: wrap;
+}
+.Applicants .jobTitleBox {
+  width: 91%;
+  margin: 0 auto 10px auto !important;
+}
+.Applicants .filter {
+  width: 45%;
+  margin: 0 auto !important;
+}
+.postJob .formRow {
+  flex-direction: column;
+  gap: 0px;
+  margin-top: 0px;
+}
+.postJob .mainSection {
+  padding: 0 5px;
+}
+.postJob .formGroup {
+  width: 99%;
+  margin-top: 27px;
+}
+.postJob .heading {
+  font-size: 26px;
+  margin-bottom: 6px;
+}
+.postJob .formGroup > label {
+  font-size: 22px;
+  margin-left: 5px;
+}
+.postJob .formGroup > input,
+.postJob .formGroup > select,
+.postJob textarea {
+  margin-top: 8px;
+  font-size: 18px;
+}
+.postJob textarea {
+  width: 105%;
+}
+.postJob .formGroup select option {
+  font-size: 19px;
+}
+.postJob .saveBtn {
+  width: 90%;
+  font-size: 20px;
+}
+.postJob .heading::after {
+  width: 70px;
+}
+.companyProfile .imgBox1,
+.companyProfile .imgBox2 {
+  width: 100%;
+  height: 50%;
+}
+.companyProfile .subImgBox1,
+.companyProfile .subImgBox2 {
+  height: 100%;
+  width: 100%;
+}
+.companyProfile .editBtn {
+  position: static !important;
+  margin-top: 20px;
+  width: 100%;
+
+  padding: 2px;
+  font-size: 20px;
+}
+.companyProfile .ImgBox img {
+  width: 100%;
+  height: 100%;
+  object-position: center;
+  object-fit: cover;
+  border: 2px solid white;
+  border-radius: 10px;
+}
+.editCompanyProfile .formRow {
+  flex-direction: column;
+  gap: 0px;
+  margin-top: 0px;
+}
+
+.editCompanyProfile .mainSection {
+  padding: 0 4px;
+}
+
+.editCompanyProfile .formGroup {
+  width: 100%;
+  margin-top: 10px;
+}
+.editCompanyProfile textarea{
+  margin-top: 10px !important;
+}
+.editCompanyProfile .heading {
+  font-size: 24px;
+}
+.editCompanyProfile .formGroup > label,
+.editCompanyProfile .formRow.about > label {
+  font-size: 19px;
+}
+.editCompanyProfile .saveBtn {
+  width: 98%;
+  height: 42px;
+}
+.editCompanyProfile .formGroup > input,
+.editCompanyProfile textarea {
+  font-size: 19px;
+  padding: 5px 12px;
+}
+
+
+.editCompanyProfile input[type="file"]::file-selector-button {
+  font-size: 17px !important;
+  padding: 3px 10px;
+}
+
+.editCompanyProfile .backBtn {
+  min-width: 102px;
+}
+.editCompanyProfile .heading::after {
+  width: 70px;
+}
+.editCompanyProfile .pageTitle{
+  font-size: 30px !important;
+}
+
+}
+
+@media only screen and (min-width: 470.98px) and (max-width: 575.98px) {
+
+  .recruiterPage .pageTitle {
+    font-size: 36px !important;
+  }
+  .recruiterPage .PhoneMenuIcon {
+    font-size: 35px !important;
+  }
+  .loginBox .emailId {
+    display: block;
+    font-size: 13px;
+  }
+  .recruiterPage .menuImgBox{
+    width: 40px !important;
+    height: 40px !important;
+  }
+  .loginBox .personName {
+    font-size: 17px;
+  }
+  .pageTitle {
+    font-size: 40px !important;
+  }
+  .menuIcon {
+    font-size: 45px !important;
+  }
+  .recruiterPage .phoneMenu {
+    width: 250px;
+  }
+  .recruiterPage .logo {
+    width: 35px;
+  }
+  .recruiterPage .logoName {
+    font-size: 30px !important;
+  }
+  .recruiterPage .loginBox:hover > .dropMenu {
+    font-size: 18px !important;
+  }
+  .recruiterPage .applicationStatus > div > div > div {
+    width: 48.5%;
+    justify-content: center;
+    margin: 0;
+  }
+  .recruiterPage .applicationStatus > div > div {
+    display: flex;
+    margin-bottom: 10px;
+    width: 100%;
+    justify-content: space-between !important;
+  }
+  .recruiterPage .applicationStatus .databox > div::after,
+  .recruiterPage .applicationStatus .databox > div::before,
+  .recruiterPage .applicationStatus .pieGraphBox > div::after,
+  .recruiterPage .applicationStatus .pieGraphBox > div::before {
+    display: none;
+  }
+  .recruiterPage .heading h3 {
+    font-size: 27px;
+  }
+  .recruiterPage .heading p {
+    font-size: 15px;
+  }
+    .recruiterDashboard .dbList .nameBox{
+  width: 50%;
+}
+.recruiterDashboard .dbList .nameBox h3{
+  font-size: 20px;
+}
+.recruiterDashboard .dbList .nameBox p{
+  font-size: 15px;
+}
+.recruiterDashboard .dbList .applicationBox{
+  display: none !important;
+}
+.recruiterDashboard .dbList .databox{
+  display: none;
+}
+.recruiterDashboard .dbList .statusBox{
+  width: 15%;
+  display: block !important;
+  margin-right: 20px;
+}
+.jobPosted .jobTitleBox {
+  width: 60%;
+}
+.jobPosted .filter {
+  width: 28%;
+}
+.Applicants .filterBox{
+  display: flex;
+  flex-wrap: wrap;
+}
+.Applicants .jobTitleBox {
+  width: 80%;
+  margin: 0 auto 10px auto !important;
+}
+.Applicants .filter {
+  width: 40%;
+  margin: 0 auto !important;
+}
+.postJob .formRow {
+  flex-direction: column;
+  gap: 0px;
+  margin-top: 0px;
+}
+.postJob .mainSection {
+  padding: 0 5px;
+}
+.postJob .formGroup {
+  width: 99%;
+  margin-top: 27px;
+}
+.postJob .heading {
+  font-size: 28px;
+  margin-bottom: 6px;
+}
+.postJob .formGroup > label {
+  font-size: 23px;
+  margin-left: 5px;
+}
+.postJob .formGroup > input,
+.postJob .formGroup > select,
+.postJob textarea {
+  margin-top: 8px;
+  font-size: 19px;
+}
+.postJob textarea {
+  width: 105%;
+}
+.postJob .formGroup select option {
+  font-size: 19px;
+}
+.postJob .saveBtn {
+  width: 90%;
+  font-size: 20px;
+}
+.postJob .heading::after {
+  width: 70px;
+}
+.companyProfile .imgBox1,
+.companyProfile .imgBox2 {
+  width: 100%;
+  height: 50%;
+}
+.companyProfile .subImgBox1,
+.companyProfile .subImgBox2 {
+  height: 100%;
+  width: 100%;
+}
+.editCompanyProfile .formRow {
+  flex-direction: column;
+  gap: 0px;
+  margin-top: 0px;
+}
+
+.editCompanyProfile .mainSection {
+  padding: 0 4px;
+}
+
+.editCompanyProfile .formGroup {
+  width: 100%;
+  margin-top: 10px;
+}
+.editCompanyProfile textarea{
+  margin-top: 10px !important;
+}
+.editCompanyProfile .heading {
+  font-size: 25px;
+}
+.editCompanyProfile .formGroup > label,
+.editCompanyProfile .formRow.about > label {
+  font-size: 20px;
+}
+.editCompanyProfile .saveBtn {
+  width: 98%;
+}
+
+
+}
+
+@media only screen and (min-width: 576px) and (max-width: 767.98px) {
+
+  .pageTitle {
+    font-size: 40px !important;
+  }
+  .menuIcon {
+    font-size: 50px !important;
+  }
+  .recruiterPage .phoneMenu {
+    width: 250px;
+  }
+  .loginBox .emailId {
+    display: block;
+    font-size: 13px;
+  }
+  .recruiterPage .menuImgBox{
+    width: 40px !important;
+    height: 40px !important;
+  }
+  .loginBox .personName {
+    font-size: 17px;
+  }
+  .pageTitle {
+    font-size: 40px !important;
+  }
+  .menuIcon {
+    font-size: 50px !important;
+  }
+  .recruiterPage .logo {
+    width: 35px;
+  }
+  .recruiterPage .logoName {
+    font-size: 30px !important;
+  }
+  .recruiterPage .PhoneMenuIcon {
+    font-size: 40px ;
+  }
+  .recruiterPage .loginBox:hover > .dropMenu {
+    font-size: 15px !important;
+  }
+  .recruiterPage .applicationStatus > div > div {
+    display: flex;
+    margin-bottom: 20px;
+    width: 100%;
+    justify-content: space-between
+  }
+  .recruiterPage .applicationStatus > div > div > div {
+    width: 49%;
+    margin: 0;
+  }
+  .recruiterDashboard .dbList .nameBox{
+  width: 45%;
+}
+.recruiterDashboard .dbList .nameBox h3{
+  font-size: 20px;
+}
+.recruiterDashboard .dbList .nameBox p{
+  font-size: 15px;
+}
+.recruiterDashboard .dbList .applicationBox{
+  width: 15%;
+}
+.recruiterDashboard .dbList .applicationBox h5{
+  font-size: 19px !important;
+}
+.recruiterDashboard .dbList .databox{
+  display: none;
+}
+.recruiterDashboard .dbList .statusBox{
+  width: 15%;
+}
+.jobPosted .jobTitleBox {
+  width: 45%;
+}
+.jobPosted .filter {
+  width: 22%;
+}
+.Applicants .filterBox{
+  display: flex;
+  justify-content: start !important;
+  flex-wrap: wrap;
+}
+.Applicants .jobTitleBox {
+  width: 48%;
+}
+.Applicants .filter {
+  width: 36%;
+  margin: 0 auto !important;
+  margin-top: 12px !important;
+}
+.postJob .formRow {
+  flex-direction: column;
+  gap: 3px;
+  margin-top: 5px;
+}
+.postJob .mainSection {
+  padding: 0 5px;
+}
+.postJob .formGroup {
+  width: 99%;
+  margin-top: 27px;
+}
+.postJob .heading {
+  font-size: 30px;
+  margin-bottom: 7px;
+}
+.postJob .formGroup > label {
+  font-size: 26px;
+  margin-left: 5px;
+}
+.postJob .formGroup > input,
+.postJob .formGroup > select,
+.postJob textarea {
+  margin-top: 8px;
+  font-size: 20px;
+}
+.postJob textarea {
+  width: 103%;
+}
+.postJob .formGroup select option {
+  background: #1c1c1c;
+  color: white;
+  font-size: 19px;
+}
+.postJob .saveBtn {
+  width: 90%;
+  font-size: 23px;
+}
+
+.companyProfile .imgBox1,
+.companyProfile .imgBox2 {
+  width: 100%;
+  height: 50%;
+}
+.companyProfile .subImgBox1,
+.companyProfile .subImgBox2 {
+  height: 100%;
+  width: 100%;
+}
+
+.editCompanyProfile .formRow {
+  flex-direction: column;
+  gap: 0px;
+  margin-top: 0px;
+}
+
+.editCompanyProfile .mainSection {
+  padding: 0 4px;
+}
+
+.editCompanyProfile .formGroup {
+  width: 100%;
+  margin-top: 10px;
+}
+.editCompanyProfile textarea{
+  margin-top: 10px !important;
+}
+.editCompanyProfile .heading {
+  font-size: 30px;
+}
+
+.editCompanyProfile .formGroup > label,
+.editCompanyProfile .formRow.about > label {
+  font-size: 22px;
+}
+.editCompanyProfile .saveBtn {
+  width: 90%;
+}
+
+  
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991.98px) {
+
+  .recruiterPage .phoneMenu {
+    width: 300px;
+  }
+  .recruiterPage .PhoneMenuIcon {
+    font-size: 50px !important;
+  }
+  .recruiterPage .applicationStatus > div > div > div {
+    width: 48%;
+    display: flex;
+    justify-content: center;
+  }
+  .recruiterPage .applicationStatus > div > div {
+    display: flex;
+  }
+  .recruiterPage .applicationStatus .databox > div {
+    border: 2px solid white;
+    margin-bottom: 15px;
+    width: 48%;
+    padding: 0 19px;
+  }
+  .recruiterPage .applicationStatus .databox {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+  }
+  .recruiterPage .applicationStatus .databox > div::after,
+  .recruiterPage .applicationStatus .databox > div::before,
+  .recruiterPage .applicationStatus .pieGraphBox > div::after,
+  .recruiterPage .applicationStatus .pieGraphBox > div::before {
+    display: none;
+  }
+  .jobPosted .jobTitleBox {
+  width: 38%;
+}
+.jobPosted .filter {
+  width: 18%;
+}
+.Applicants table th,
+.Applicants table td{
+  padding: 8px 16px !important;
+}
+.Applicants .jobTitleBox {
+  width: 35%;
+}
+.Applicants .filter {
+  width: 23%;
+}
+
+}
+
+@media only screen and (max-width: 1199.98px) {
+  .recruiterPage .menuContent {
+    width: 100%;
+    padding: 0 2% !important;
+  }
+}
+
+
+@media only screen and (min-width: 992px) and (max-width: 1199.98px) {
+
+  .recruiterPage .phoneMenu {
+    width: 330px;
+  }
+  .recruiterPage .PhoneMenuIcon {
+    font-size: 55px !important;
+  }
+    table td,
+table th {
+  padding: 10px 16px !important;
+}
+.jobPosted .jobTitleBox {
+  width: 30%;
+}
+.jobPosted .filter {
+  width: 15%;
+}
+.Applicants .filter {
+  width: 18%;
+}
+  
+}
+
+@media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
+
+  table td,
+table th {
+  padding: 10px 17px !important;
+}
+.jobPosted .filter {
+  width: 15%;
+}
+.Applicants .filter {
+  width: 18%;
+}
 }

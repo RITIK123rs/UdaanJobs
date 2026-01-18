@@ -2,6 +2,7 @@ import React from "react";
 import PieGraph from "./pieChart";
 import { dateFormat } from "../utils/dateFormat";
 import { MdOutlineMenu } from "react-icons/md";
+import Clock from "../component/clock";
 
 
 function DashBoard({JobSeekerData, setOpenMenu}){
@@ -13,6 +14,9 @@ function DashBoard({JobSeekerData, setOpenMenu}){
       <div className="d-flex gap-3 mt-3 align-items-center" >
         < MdOutlineMenu className="PhoneMenuIcon d-xl-none" onClick={()=> setOpenMenu(true)} />
         <h2 className="pageTitle">Dashboard</h2>
+        <div className="ms-auto d-none d-md-block" >
+          < Clock />
+        </div>
       </div>
       <hr className="mt-1" ></hr>
       <div className="heading" >

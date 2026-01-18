@@ -28,21 +28,21 @@ function JobSeekerPage({ addMessageBox }) {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         setJobSeekerData(data);
       })
       .catch((error) => console.log("fetch error :-", error));
   }
 
   useEffect(() => {
-    console.log(recruiterId);
+    // console.log(recruiterId);
     async function getRecruiterData() {
       await fetch(`${API_URL}/jobseeker/recruiter/${recruiterId}`, {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       })
         .then((res) => res.json())
         .then((data) => {
-          console.log(data);
+          // console.log(data);
           setRecruiterData(data);
         });
     }

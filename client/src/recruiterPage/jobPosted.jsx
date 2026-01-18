@@ -2,6 +2,9 @@ import React, { useState, useEffect } from "react";
 import { FaSearch } from "react-icons/fa";
 import { MdFilterListAlt } from "react-icons/md";
 import { dateFormat } from "../utils/dateFormat";
+import { MdOutlineMenu } from "react-icons/md";
+import Clock from "../component/clock";
+
 
 function JobsPosted({
   recruiterData,
@@ -10,8 +13,11 @@ function JobsPosted({
   getRecruiterData,
   setViewPostId,
   addMessageBox,
+  setOpenMenu,
 }) {
-  const API_URL= import.meta.env.VITE_API_URL;
+  
+  const API_URL = import.meta.env.VITE_API_URL;
+  const [deleteBtnActive, setDeleteBtnActive]=useState(false);
   const [searchData, setSearchData] = useState({
     jobTitle: "",
     status: "",
@@ -19,7 +25,7 @@ function JobsPosted({
   const [filterData, setFilterData] = useState([]);
 
   const changeHandler = (e) => {
-    console.log(`${e.target.name} = ${e.target.value}`);
+    // console.log(`${e.target.name} = ${e.target.value}`);
     setSearchData((prev) => ({
       ...prev,
       [e.target.name]: e.target.value,
@@ -48,7 +54,7 @@ function JobsPosted({
           searchData.status == "";
         return jobTitleMatch && statusMatch;
       });
-      console.log(data);
+      // console.log(data);
       setFilterData(data);
     }, 800);
 
@@ -56,7 +62,8 @@ function JobsPosted({
   }, [searchData, recruiterData]);
 
   async function deleteJobPost(jobPostId) {
-    console.log(jobPostId);
+    setDeleteBtnActive(true);
+    // console.log(jobPostId);
     await fetch(`${API_URL}/recruiter/deletePost/${jobPostId}`, {
       method: "DELETE",
     })
@@ -65,15 +72,25 @@ function JobsPosted({
       .catch((error) => console.log(error));
 
     getRecruiterData();
-    addMessageBox("check","Job post deleted successfully");
-    console.log("message box");
+    addMessageBox("check", "Job post deleted successfully");
+    setDeleteBtnActive(false);
+    // console.log("message box");
   }
 
   return (
-    <div className="jobPosted container my-4">
-      <h2 className="mt-3 pageTitle">Jobs Posted</h2>
+    <div className="jobPosted my-4">
+      <div className="d-flex gap-2 mt-3 align-items-center">
+        <MdOutlineMenu
+          className="PhoneMenuIcon d-xl-none"
+          onClick={() => setOpenMenu(true)}
+        />
+        <h2 className="pageTitle">Jobs Posted</h2>
+        <div className="ms-auto d-none d-md-block" >
+                  < Clock />
+                </div>
+      </div>
       <hr className="my-3" />
-      <div className="filterBox mb-3 d-flex justify-content-end gap-2">
+      <div className="filterBox mb-3 d-flex justify-content-end gap-1">
         <div className="field jobTitleBox d-flex align-items-center">
           <FaSearch className="icon ms-1 me-3 fs-4" />
           <input
@@ -148,6 +165,7 @@ function JobsPosted({
                       Details
                     </button>
                     <button
+                      disabled={deleteBtnActive}
                       className="DeleteBtn "
                       onClick={() => deleteJobPost(data._id)}
                     >

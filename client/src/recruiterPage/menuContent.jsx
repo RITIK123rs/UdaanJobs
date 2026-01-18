@@ -6,17 +6,14 @@ import { ImExit } from "react-icons/im";
 import { NavLink, useNavigate } from "react-router-dom";
 import { ImCancelCircle } from "react-icons/im";
 
-export default function MenuContent() {
+export default function MenuContent({ recruiterData,setOpenMenu, phoneMenu=false, setActiveContent}) {
+  const navigate = useNavigate();
+  const API_URL = import.meta.env.VITE_API_URL;
   return (
     <>
-      <div className="d-flex flex-column mt-3 ">
+      <div className="d-flex flex-column mt-3">
         <div className="d-flex justify-content-end mb-2">
-          <ImCancelCircle
-            className={`text-white fs-3 me-3 ${
-              phoneMenu ? "d-flex" : "d-none"
-            } `}
-            onClick={() => setOpenMenu(false)}
-          />
+          <ImCancelCircle className={`xBtn fs-3 me-3 ${ phoneMenu ? "d-flex" : "d-none" } `} onClick={()=> setOpenMenu(false)} />
         </div>
         <div className="d-flex justify-content-center">
           <NavLink
@@ -27,84 +24,83 @@ export default function MenuContent() {
               src={logo}
               alt="Logo"
               width="40"
-              className="d-inline-block align-text-top me-3 mt-1"
+              className="d-inline-block align-text-top me-3 mt-1 logo"
             />
             Udaan<span className="yellowText">Jobs</span>
           </NavLink>
         </div>
-
-        <div className="menuList mt-5">
-          <ul type="none" className="text-white p-0">
-            <li
-              className="menuItem d-flex align-items-center fw-semibold"
-              onClick={() => setActiveContent("dashboard")}
-            >
-              <RiHome2Line className="menuIcon me-3" />
-              Dashboard
-            </li>
-
-            <li
-              className="menuItem d-flex align-items-center fw-semibold"
-              onClick={() => setActiveContent("jobPosted")}
-            >
-              <HiOutlineBriefcase className="menuIcon me-3" />
-              Job Posted
-            </li>
-
-            <li
-              className="menuItem d-flex align-items-center fw-semibold"
-              onClick={() => setActiveContent("applicants")}
-            >
-              <HiOutlineDocumentText className="menuIcon me-3" />
-              Applications
-            </li>
-
-            <li
-              className="menuItem d-flex align-items-center fw-semibold"
-              onClick={() => setActiveContent("postJob")}
-            >
-              <IoAddCircleOutline className="menuIcon me-3" />
-              Post Job
-            </li>
-
-            <li
-              className="menuItem d-flex align-items-center fw-semibold"
-              onClick={() => setActiveContent("companyProfile")}
-            >
-              <IoPersonOutline className="menuIcon me-3" />
-              Profile
-            </li>
-          </ul>
-        </div>
-
-        <div className="loginBox w-100 mt-auto mb-2 ps-3">
-          <div
-            className="dropMenu mb-2 me-2"
-            onClick={() => {
-              localStorage.clear();
-              navigate("/");
-            }}
+      </div>
+      <div className="menuList mt-4">
+        <ul type="none" className="text-white p-0">
+          <li
+            className="menuItem d-flex align-items-center fw-semibold"
+            onClick={() => {setActiveContent("dashboard"); setOpenMenu(false);}}
           >
-            <ImExit className="icon" /> Logout
+            <RiHome2Line className="menuIcon me-3" />
+            <span>Dashboard</span>
+          </li>
+
+          <li
+            className="menuItem d-flex align-items-center fw-semibold"
+            onClick={() => {setActiveContent("jobPosted"); setOpenMenu(false);}}
+          >
+            <HiOutlineBriefcase className="menuIcon me-3" />
+            <span>Job Posted</span>
+          </li>
+
+          <li
+            className="menuItem d-flex align-items-center fw-semibold"
+            onClick={() => {setActiveContent("applicants"); setOpenMenu(false);}}
+          >
+            <HiOutlineDocumentText className="menuIcon me-3" />
+            <span>Applications</span>
+          </li>
+
+          <li
+            className="menuItem d-flex align-items-center fw-semibold"
+            onClick={() => {setActiveContent("postJob"); setOpenMenu(false);}}
+          >
+            <IoAddCircleOutline className="menuIcon me-3" />
+            <span>Post Job</span>
+          </li>
+          
+          <li
+            className="menuItem d-flex align-items-center fw-semibold"
+            onClick={() => {setActiveContent("companyProfile"); setOpenMenu(false);}}
+          >
+            <IoPersonOutline className="menuIcon me-3" />
+            <span>Profile</span>
+          </li>
+        </ul>
+      </div>
+
+      <div className="loginBox w-100 mt-auto mb-2 ps-3">
+        <div
+          className="dropMenu mb-2 me-2"
+          onClick={() => {
+            localStorage.clear();
+            navigate("/");
+          }}
+        >
+          <ImExit className="icon mt-1 me-3" /> Logout
+        </div>
+        <div className="w-100 mt-auto d-flex align-items-center">
+          <div className="rounded-circle overflow-hidden menuImgBox">
+            <img
+              src={
+                recruiterData?.company?.logo || null
+                  ? `${API_URL}/upload/${recruiterData?.company?.logo}`
+                  : `${API_URL}/defaultImage/defaultCompanyImg.jpg`
+              }
+              alt=""
+              width="100%"
+            />
           </div>
-          <div className="w-100 mt-auto d-flex align-items-center">
-            <div className="rounded-circle overflow-hidden menuImgBox">
-              <img
-                src={
-                  recruiterData?.company?.logo || null
-                    ? `${API_URL}/upload/${recruiterData?.company?.logo}`
-                    : `${API_URL}/defaultImage/defaultCompanyImg.jpg`
-                }
-                alt=""
-                width="100%"
-              />
-            </div>
-            <div className="ms-2 text-white">
-              <p className="personName m-0 fw-bold fs-5">
-                {recruiterData?.company?.name}
-              </p>
-              <p className="emailId m-0">{recruiterData?.email}</p>
-            </div>
+          <div className="ms-2 text-white">
+            <p className="personName m-0 fw-bold">
+              {recruiterData?.company?.name}
+            </p>
+            <p className="emailId m-0">{recruiterData?.email}</p>
           </div>
         </div>
       </div>

@@ -3,14 +3,16 @@ import { FaUser, FaSearch } from "react-icons/fa";
 import { MdOutlineDateRange } from "react-icons/md";
 import { MdEmail } from "react-icons/md";
 import { dateFormat } from "../utils/dateFormat";
+import { MdOutlineMenu } from "react-icons/md";
+import Clock from "../component/clock";
 
 function RecruiterSection({
   setRecruiterId,
   setPrevContent,
   setActiveContent,
+  setOpenMenu,
 }) {
-
-  const API_URL= import.meta.env.VITE_API_URL;
+  const API_URL = import.meta.env.VITE_API_URL;
   const [recruiterData, setRecruiterData] = useState();
 
   const [searchData, setSearchData] = useState({
@@ -22,12 +24,12 @@ function RecruiterSection({
 
   const changeHandler = (e) => {
     const { name, value } = e.target;
-    console.log(searchData);
+    // console.log(searchData);
     setSearchData((prev) => ({
       ...prev,
       [name]: value,
     }));
-    console.log(searchData);
+    // console.log(searchData);
   };
 
   useEffect(() => {
@@ -61,7 +63,7 @@ function RecruiterSection({
         }
         return nameMatch && emailMatch && lastLoginMatch;
       });
-      console.log(data);
+      // console.log(data);
       setFilterData(data);
     }, 800);
 
@@ -75,7 +77,7 @@ function RecruiterSection({
       })
         .then((res) => res.json())
         .then((data) => {
-          console.log(data);
+          // console.log(data);
           setRecruiterData(data);
         })
         .catch((error) => console.log(error));
@@ -86,11 +88,20 @@ function RecruiterSection({
 
   return (
     <div className="recruiterSection">
-      <h2 className="pageTitle">Recruiters</h2>
+      <div className="d-flex gap-2 mt-3 align-items-center">
+        <MdOutlineMenu
+          className="PhoneMenuIcon d-xl-none"
+          onClick={() => setOpenMenu(true)}
+        />
+        <h2 className="pageTitle">Recruiters</h2>
+        <div className="ms-auto d-none d-md-block" >
+                  < Clock />
+                </div>
+      </div>
       <hr className="my-3" />
 
-      <div className="filterRow d-flex align-items-center gap-3 justify-content-end mb-4">
-        <div className="filterField d-flex align-items-center">
+      <div className="filterRow d-flex align-items-center gap-sm-2 justify-content-end mb-4">
+        <div className="filterField name d-flex align-items-center">
           <FaSearch className="icon me-2" />
           <input
             type="text"
@@ -100,7 +111,7 @@ function RecruiterSection({
           />
         </div>
 
-        <div className="filterField d-flex align-items-center">
+        <div className="filterField email d-flex align-items-center">
           <MdEmail className="icon me-2" />
           <input
             type="text"
