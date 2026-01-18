@@ -4,6 +4,7 @@ import { FaSearch } from "react-icons/fa";
 import { MdFilterListAlt } from "react-icons/md";
 import { dateFormat } from "../utils/dateFormat";
 import { MdOutlineMenu } from "react-icons/md";
+import Clock from "../component/clock";
 
 export default function JobApply({
   JobApplyData,
@@ -21,11 +22,11 @@ export default function JobApply({
     status: "",
   });
 
-  console.log(JobApplyData);
+  // console.log(JobApplyData);
 
   const changeHandler = (e) => {
     const { name, value } = e.target;
-    console.log({ name, value });
+    // console.log({ name, value });
     setSearchData((prev) => ({ ...prev, [name]: value }));
   };
 
@@ -36,9 +37,9 @@ export default function JobApply({
     }
 
     const timer = setTimeout(() => {
-      console.log(JobApplyData);
+      // console.log(JobApplyData);
       const data = JobApplyData.filter((value) => {
-        console.log(value);
+        // console.log(value);
         const jobTitleMatch = value.jobId.role
           .toLowerCase()
           .startsWith(searchData.jobTitle.toLowerCase().trim());
@@ -63,7 +64,7 @@ export default function JobApply({
         body: JSON.stringify(object),
       });
       const data = await res.json();
-      console.log(data);
+      // console.log(data);
       addMessageBox("check", "Application deleted successfully");
       fetchData();
     } catch (error) {
@@ -79,6 +80,9 @@ export default function JobApply({
           onClick={() => setOpenMenu(true)}
         />
         <h2 className="pageTitle">My Applications</h2>
+        <div className="ms-auto d-none d-md-block" >
+                  < Clock />
+                </div>
       </div>
       <hr className="my-3" />
 

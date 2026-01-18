@@ -16,7 +16,7 @@ export default function MenuContent({ JobSeekerData, setOpenMenu, phoneMenu=fals
     < >
       <div className="d-flex flex-column mt-3">
         <div className="d-flex justify-content-end mb-2" >
-            < ImCancelCircle className={`text-white fs-3 me-3 ${ phoneMenu ? "d-flex" : "d-none" } `} onClick={()=> setOpenMenu(false)} />
+            < ImCancelCircle className={`xBtn fs-3 me-3 ${ phoneMenu ? "d-flex" : "d-none" } `} onClick={()=> setOpenMenu(false)} />
         </div>
         <div className="d-flex  justify-content-center" >
             <NavLink
@@ -38,7 +38,7 @@ export default function MenuContent({ JobSeekerData, setOpenMenu, phoneMenu=fals
         <ul type="none" className="text-white p-0">
           <li
             className="menuItem d-flex align-items-center fw-semibold"
-            onClick={() => {setActiveContent("dashboard"),setOpenMenu(false);}}
+            onClick={() => {setActiveContent("dashboard");setOpenMenu(false);}}
           >
             <RiHome2Line className="menuIcon me-3" />
             <span>Dashboard</span>

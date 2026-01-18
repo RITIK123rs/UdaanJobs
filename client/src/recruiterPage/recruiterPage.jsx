@@ -21,12 +21,14 @@ export default function RecruiterPage({ addMessageBox }) {
   const [viewPostId, setViewPostId] = useState();
   const [viewPostData, setViewPostData] = useState();
   const [jobSeekerJobPost, setJobSeekerJobPost] = useState();
+  const [openMenu, setOpenMenu] = useState(false);
   const navigate=useNavigate();
+
 
   const renderContent = () => {
     switch (activeContent) {
       case "dashboard":
-        return <DashBoard recruiterData={recruiterData} />;
+        return <DashBoard recruiterData={recruiterData} setOpenMenu={setOpenMenu} />;
       case "jobPosted":
         return (
           <JobPosted
@@ -36,6 +38,7 @@ export default function RecruiterPage({ addMessageBox }) {
             getRecruiterData={getRecruiterData}
             setViewPostId={setViewPostId}
             addMessageBox={addMessageBox}
+            setOpenMenu={setOpenMenu}
           />
         );
       case "applicants":
@@ -46,6 +49,7 @@ export default function RecruiterPage({ addMessageBox }) {
             setActiveContent={setActiveContent}
             addMessageBox={addMessageBox}
             setJobSeekerJobPost={setJobSeekerJobPost}
+            setOpenMenu={setOpenMenu}
           />
         );
       case "postJob":
@@ -53,6 +57,7 @@ export default function RecruiterPage({ addMessageBox }) {
           <PostJob
             getRecruiterData={getRecruiterData}
             addMessageBox={addMessageBox}
+            setOpenMenu={setOpenMenu}
           />
         );
       case "companyProfile":
@@ -61,6 +66,7 @@ export default function RecruiterPage({ addMessageBox }) {
             setActiveContent={setActiveContent}
             recruiterData={recruiterData}
             isRecruiter={true}
+            setOpenMenu={setOpenMenu}
           />
         );
       case "jobSeekerProfile":
@@ -106,11 +112,12 @@ export default function RecruiterPage({ addMessageBox }) {
 
   useEffect(() => {
     async function getJobPostData() {
-      console.log(viewPostId);
-      await fetch(`${API_URL}/jobPostData/${viewPostId}`)
+      // console.log(viewPostId);
+      await fetch(`${API_URL}/recruiter/jobPostData/${viewPostId}`)
         .then((res) => res.json())
         .then((data) => {
-          console.log(data), setViewPostData(data);
+          // console.log(data), 
+          setViewPostData(data);
         })
         .catch((error) => error);
     }
@@ -124,7 +131,7 @@ export default function RecruiterPage({ addMessageBox }) {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         setRecruiterData(data);
       })
       .catch((error) => console.log(error));
@@ -135,13 +142,13 @@ export default function RecruiterPage({ addMessageBox }) {
   }, []);
 
   return (
-    <div className="recruiterPage">
-      <div>
-        < MenuContent />
+    <div className="recruiterPage position-relative">
+      <div className={`phoneMenu position-absolute h-100 d-flex flex-column ${ openMenu ? "menuOpen" : " menuClose"} `} >
+        < MenuContent recruiterData={recruiterData} phoneMenu={true} setOpenMenu={setOpenMenu} setActiveContent={setActiveContent} />
       </div>
       <div className="d-flex">
-        <div className="menuBox d-none d-xl-flex flex-column">
-          <MenuContent />
+        <div className="menuBox  d-none d-xl-flex flex-column">
+          <MenuContent recruiterData={recruiterData} setActiveContent={setActiveContent} />
         </div>
         <div className="menuContent text-white">{renderContent()}</div>
       </div>

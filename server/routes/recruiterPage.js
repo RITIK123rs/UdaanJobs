@@ -12,7 +12,7 @@ router.put("/updateJobSeekerStatus", async (req, res) => {
     const { jobId, jobStatus, jobSeekerId, oldJobStatus } = req.body;
     const jobSeekerObjId = new ObjectId(jobSeekerId);
     const jobIdObjId = new ObjectId(jobId);
-    console.log({ jobId, jobStatus, jobSeekerId, oldJobStatus });
+    // console.log({ jobId, jobStatus, jobSeekerId, oldJobStatus });
     const updateJobSeekerData = await jobSeeker.findOneAndUpdate(
       { _id: jobSeekerObjId, "application.appliedJobs.jobId": jobIdObjId },
       { $set: { "application.appliedJobs.$.status": jobStatus } },
@@ -43,6 +43,7 @@ router.put("/updateJobSeekerStatus", async (req, res) => {
 router.get("/jobPostData/:id", async (req, res) => {
   try {
     const jobPostId = req.params.id;
+    // console.log(jobPostId);
     const jobPostedData = await jobPosted
       .findById(jobPostId, { applications: 0 })
       .populate({
@@ -51,7 +52,7 @@ router.get("/jobPostData/:id", async (req, res) => {
       });
     res.json(jobPostedData);
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     res.status(500).json(error);
   }
 });
@@ -75,13 +76,13 @@ router.post("/postJob", auth("recruiter"), async (req, res) => {
     data = req.body;
     data.recruiter = userId;
     const savedPost = await jobPosted.create(data);
-    console.log({ savedPost });
+    // console.log({ savedPost });
     const updateRecruiter = await jobRecruiter.findByIdAndUpdate(
       userId,
       { $push: { jobPosted: savedPost._id } },
       { new: true }
     );
-    console.log(updateRecruiter);
+    // console.log(updateRecruiter);
 
     res.json("job Posted successfully");
   } catch (error) {
@@ -109,12 +110,12 @@ router.put("/UpdatePostData/:id", async (req, res) => {
 router.delete("/deletePost/:id", async (req, res) => {
   try {
     const jobPostId = req.params.id;
-    console.log({ jobPostId });
+    // console.log({ jobPostId });
     const DeleteJobPost = await jobPosted
       .findById(jobPostId)
       .select("recruiter applications");
     await jobPosted.findByIdAndDelete(jobPostId);
-    console.log("DeleteJobPost :- ", DeleteJobPost.applications);
+    // console.log("DeleteJobPost :- ", DeleteJobPost.applications);
     for (const application of DeleteJobPost.applications) {
       await jobSeeker.findOneAndUpdate(
         {
@@ -130,7 +131,7 @@ router.delete("/deletePost/:id", async (req, res) => {
         }
       );
     }
-    console.log(userId, DeleteJobPost.recruiter);
+    // console.log(userId, DeleteJobPost.recruiter);
     await jobRecruiter.findOneAndUpdate(
       {
         _id: new ObjectId(DeleteJobPost.recruiter),

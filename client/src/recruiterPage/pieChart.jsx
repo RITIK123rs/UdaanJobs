@@ -34,10 +34,10 @@ function PieGraph({applicationCount}) {
         </ResponsiveContainer>
       </div>
 
-      <div className="pieLegend" style={{ display: "flex", flexDirection: "column", justifyContent: "center", gap: "12px" }}>
+      <div className="pieLegend me-3" style={{ display: "flex", flexDirection: "column", justifyContent: "center", gap: "12px" }}>
         {data.map((item, index) => (
           <div key={index} style={{ display: "flex", alignItems: "center", fontSize: 14 }}>
-            <div style={{ width: 25, height: 25, backgroundColor: item.color, borderRadius: 4, marginLeft: "15px" }} />
+            <div style={{ width: 25, height: 25, backgroundColor: item.color, borderRadius: 4, margin: "0 13px" }} />
             <span >
               {item.name} <strong>({total > 0 ? ((item.value / total) * 100).toFixed(0) : 0}%)</strong>
             </span>

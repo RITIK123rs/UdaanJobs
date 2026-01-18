@@ -11,7 +11,7 @@ function App() {
 
   const addMessageBox= (type,message)=>{
     const id=new Date();
-    console.log(id);
+    // console.log(id);
     setMessageList((old)=>[...old,{"id":id,"type":type,"message":message}]);
     setTimeout(()=>{
       setMessageList((old)=> old.filter((msg)=> msg.id!=id));

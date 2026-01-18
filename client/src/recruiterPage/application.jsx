@@ -2,6 +2,8 @@ import React, {useState,useEffect} from "react";
 import { FaSearch, FaUser, FaFilePdf } from "react-icons/fa";
 import { MdFilterListAlt } from "react-icons/md";
 import { dateFormat } from "../utils/dateFormat";
+import { MdOutlineMenu } from "react-icons/md";
+import Clock from "../component/clock";
 
 function JobApplicants({
   recruiterData,
@@ -9,12 +11,13 @@ function JobApplicants({
   setActiveContent,
   addMessageBox,
   setJobSeekerJobPost,
+  setOpenMenu
 }) {
 
   const [usedData,SetUsedData]=useState([]);
   const [filterData, setFilterData] = useState([]);
   const API_URL= import.meta.env.VITE_API_URL;
-
+  
 
   useEffect(()=>{
 
@@ -45,7 +48,7 @@ function JobApplicants({
   });
 
   const changeHandler = (e) => {
-    console.log(`${e.target.name} = ${e.target.value}`);
+    // console.log(`${e.target.name} = ${e.target.value}`);
     setSearchData((prev) => ({
       ...prev,
       [e.target.name]: e.target.value,
@@ -74,7 +77,7 @@ function JobApplicants({
 
         return jobTitleMatch && applicantNameMatch && statusMatch;
       });
-      console.log(data);
+      // console.log(data);
       setFilterData(data);
     }, 800);
 
@@ -96,10 +99,19 @@ function JobApplicants({
   }
 
   return (
-    <div className="Applicants container my-4">
-      <h2 className="mt-3 pageTitle">Job Applicants</h2>
+    <div className="Applicants my-4">
+      <div className="d-flex gap-2 mt-3 align-items-center">
+              <MdOutlineMenu
+                className="PhoneMenuIcon d-xl-none"
+                onClick={() => setOpenMenu(true)}
+              />
+              <h2 className="pageTitle">Job Applicants</h2>
+              <div className="ms-auto d-none d-md-block" >
+                        < Clock />
+                      </div>
+            </div>
       <hr className="my-3" />
-      <div className="filterBox mb-3 d-flex justify-content-end gap-2">
+      <div className="filterBox mb-3 d-flex justify-content-end gap-">
         <div className="field jobTitleBox d-flex align-items-center">
           <FaSearch className="icon ms-1 me-2 fs-4" />
           <input type="text" placeholder="Job Title" name="jobTitle" onChange={changeHandler} />
@@ -146,7 +158,7 @@ function JobApplicants({
                     </span>
                   </td>
                   <td className="actionBox ">
-                    <div className="d-flex justify-content-evenly">
+                    <div className="d-flex justify-content-center ">
                       <button
                         className="profileBtn"
                         onClick={() => {
@@ -161,7 +173,7 @@ function JobApplicants({
                         <FaUser className="icon" /> Profile
                       </button>
                       <button
-                        className="resumeBtn"
+                        className="resumeBtn ms-3"
                         onClick={(e) => {
                           if (!data.resume) {
                             e.preventDefault();

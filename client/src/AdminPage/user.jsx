@@ -5,15 +5,18 @@ import { MdFilterListAlt } from "react-icons/md";
 import { MdOutlineDateRange } from "react-icons/md";
 import "./adminPage.css";
 import { dateFormat } from "../utils/dateFormat";
+import { MdOutlineMenu } from "react-icons/md";
+import Clock from "../component/clock";
+
 
 function Users({
   setActiveContent,
   setJobSeekerId,
   setRecruiterId,
-  setPrevContent,
+  setOpenMenu,
 }) {
   const [users, setUsers] = useState([]);
-  const API_URL= import.meta.env.VITE_API_URL;
+  const API_URL = import.meta.env.VITE_API_URL;
 
   const [searchData, setSearchData] = useState({
     name: "",
@@ -24,12 +27,12 @@ function Users({
 
   const changeHandler = (e) => {
     const { name, type, value, checked } = e.target;
-    console.log(searchData);
+    // console.log(searchData);
     setSearchData((prev) => ({
       ...prev,
       [name]: type == "checkbox" ? checked : value,
     }));
-    console.log(searchData);
+    // console.log(searchData);
   };
 
   useEffect(() => {
@@ -69,7 +72,7 @@ function Users({
           searchData.role == user.userType || searchData.role == "";
         return nameMatch && lastLoginMatch && roleMatch;
       });
-      console.log(data);
+      // console.log(data);
       setFilterData(data);
     }, 800);
 
@@ -83,7 +86,7 @@ function Users({
       })
         .then((res) => res.json())
         .then((data) => {
-          console.log(data);
+          // console.log(data);
           setUsers(data);
         })
         .catch((error) => console.log(error));
@@ -104,10 +107,19 @@ function Users({
 
   return (
     <div className="usersSection">
-      <h2 className=" pageTitle">Users</h2>
+      <div className="d-flex gap-2 mt-3 align-items-center">
+        <MdOutlineMenu
+          className="PhoneMenuIcon d-xl-none"
+          onClick={() => setOpenMenu(true)}
+        />
+        <h2 className="pageTitle">Users</h2>
+        <div className="ms-auto d-none d-md-block" >
+                  < Clock />
+                </div>
+      </div>
       <hr className="my-3" />
 
-      <div className="filterBox mb-3 d-flex justify-content-end pe-3">
+      <div className="filterBox mb-3 d-flex justify-content-end pe-md-3">
         <div className="field textBox">
           <FaSearch className="icon me-2 fs-5" />
           <input
@@ -117,7 +129,7 @@ function Users({
             onChange={changeHandler}
           />
         </div>
-        <div className="field dateBox ms-2">
+        <div className="field dateBox ms-md-2">
           <MdOutlineDateRange className="icon me-2 fs-3" />
           <input
             type="date"

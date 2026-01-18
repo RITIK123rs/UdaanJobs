@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { FaArrowLeft } from "react-icons/fa6";
+import Loading from "../assets/loginPage/signUpLoading.webm";
 
 export default function EditCompanyProfile({
   recruiterData,
@@ -7,13 +8,13 @@ export default function EditCompanyProfile({
   getRecruiterData,
   addMessageBox,
 }) {
-
-  const API_URL= import.meta.env.VITE_API_URL;
+  const API_URL = import.meta.env.VITE_API_URL;
+  const [updateActive, setUpdateActive] = useState(false);
   const [companyData, setCompanyData] = useState(recruiterData?.company);
 
   const handleChange = (e) => {
     const { name, value, type, files } = e.target;
-    console.log({name, value});
+    // console.log({ name, value });
 
     if (type == "file") {
       setCompanyData((prev) => ({
@@ -25,7 +26,7 @@ export default function EditCompanyProfile({
 
     if (name.includes(".")) {
       const [parent, child] = name.split(".");
-      console.log({parent, child});
+      // console.log({ parent, child });
       setCompanyData((prev) => ({
         ...prev,
         [parent]: {
@@ -40,7 +41,7 @@ export default function EditCompanyProfile({
 
   const setComputerData = async (e) => {
     e.preventDefault();
-    console.log(companyData);
+    // console.log(companyData);
     const formData = new FormData();
     formData.append("name", companyData.name);
     formData.append("founded", companyData.founded);
@@ -55,17 +56,17 @@ export default function EditCompanyProfile({
 
     await fetch(`${API_URL}/fileHandle/recruiter`, {
       method: "PUT",
-      headers: { "Authorization": `Bearer ${localStorage.getItem("token")}` },
+      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       body: formData,
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
       })
       .catch((error) => console.log(error));
 
     getRecruiterData();
-    setActiveContent("companyProfile")
+    setActiveContent("companyProfile");
     addMessageBox("check", "Profile updated successfully");
   };
 
@@ -75,13 +76,14 @@ export default function EditCompanyProfile({
       <hr className="divider" />
       <button
         className="backBtn fs-5 ms-2 p-1 px-2 mb-3 rounded-3 d-flex align-items-center fw-bold"
-        onClick={() => {setActiveContent("companyProfile")}}
+        onClick={() => {
+          setActiveContent("companyProfile");
+        }}
         type="button"
-
       >
         <FaArrowLeft className="me-2" /> BACK
       </button>
-      <form className="mainSection" onSubmit={setComputerData}method="post" >
+      <form className="mainSection" onSubmit={setComputerData} method="post">
         <section className="formSection">
           <h3 className="heading">Basic Information</h3>
 
@@ -197,7 +199,6 @@ export default function EditCompanyProfile({
                 name="contact.website"
                 value={companyData?.contact?.website}
                 onChange={handleChange}
-                
               />
             </div>
           </div>
@@ -211,7 +212,6 @@ export default function EditCompanyProfile({
                 name="contact.twitter"
                 value={companyData?.contact?.twitter}
                 onChange={handleChange}
-                
               />
             </div>
 
@@ -242,8 +242,25 @@ export default function EditCompanyProfile({
         </section>
 
         <div className="endBtn mt-5 mb-4 w-100 d-flex justify-content-center">
-          <button type="submit" className="saveBtn py-1">
-            UPDATE
+          <button
+            type="submit"
+            className="w-100 mt-3 rounded-pill fw-bold text-white saveBtn py-1 rounded-pill py-1 d-flex justify-content-center align-items-center"
+            disabled={updateActive}
+          >
+            {updateActive ? (
+              <video
+                src={Loading}
+                autoPlay
+                loop
+                muted
+                style={{
+                  width: "90px",
+                  height: "90px",
+                }}
+              />
+            ) : (
+              <span className="yellowText">UPDATE</span>
+            )}
           </button>
         </div>
       </form>

@@ -9,7 +9,6 @@ const auth = require("./auth");
 router.get("/",auth("admin"),async (req,res)=>{
 
     try{
-    
     const jobPostedCount= await jobPosted.countDocuments();
     const jobSeekerCount = await jobseeker.countDocuments();
     const recruiterCount= await jobRecruiter.countDocuments();

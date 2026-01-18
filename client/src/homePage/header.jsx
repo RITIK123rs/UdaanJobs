@@ -9,9 +9,9 @@ function Header() {
 
   const getStarted=async ()=>{
     const token=localStorage.getItem("token");
-    console.log(token);
+    // console.log(token);
     if(!token){
-      console.log("/login");
+      // console.log("/login");
       navigate("/login");
       return;
     }
@@ -22,15 +22,15 @@ function Header() {
     })
     .then(res => res.json())
     .then(data => {
-      console.log(data.isLogin);
+      // console.log(data.isLogin);
       if(data.isLogin){
         userType=data.userType
-        console.log(userType);
+        // console.log(userType);
       }
     })
     .catch(error => console.log(error));
 
-    console.log(userType);
+    // console.log(userType);
     navigate(`/${userType}`);
     return;
   }

@@ -9,6 +9,7 @@ import { FaLocationDot } from "react-icons/fa6";
 import { MdFileDownload } from "react-icons/md";
 import { FaArrowLeft } from "react-icons/fa6";
 import { MdOutlineMenu } from "react-icons/md";
+import Clock from "../component/clock";
 
 function Profile({
   setActiveContent,
@@ -22,10 +23,12 @@ function Profile({
   setOpenMenu,
 }) {
   const [activeStatus, setActiveStatus] = useState(jobSeekerJobPost?.jobStatus);
-  const API_URL= import.meta.env.VITE_API_URL;
+  const [statusChangeActive, setStatusChangeActive]= useState(false);
+    const API_URL= import.meta.env.VITE_API_URL;
 
   const StatusChange = (newStatus) => {
-    console.log(newStatus);
+    // console.log(newStatus);
+    setStatusChangeActive(true);
     async function updateJobSeekerStatus() {
       await fetch(`${API_URL}/recruiter/updateJobSeekerStatus`, {
         method: "PUT",
@@ -34,21 +37,24 @@ function Profile({
           jobId: jobSeekerJobPost?.jobId,
           jobStatus: newStatus,
           jobSeekerId: jobSeekerJobPost?.jobSeekerId,
-          oldJobStatus: jobSeekerJobPost?.jobStatus,
+          oldJobStatus: activeStatus,
         }),
       })
         .then((res) => res.json())
         .then((data) => {
-          console.log(data),
+          // console.log(data),
+            setActiveStatus(newStatus);
+            getRecruiterData();
             addMessageBox("check", "status Changed successfully");
         })
         .catch((error) => console.log(error));
     }
-    console.log(activeStatus);
+    // console.log(activeStatus);
+    
     if (isRecruiter) {
       updateJobSeekerStatus();
-      getRecruiterData();
     }
+    setStatusChangeActive(false);
   };
 
   return (
@@ -59,6 +65,9 @@ function Profile({
           onClick={() => setOpenMenu(true)}
         />
         <h2 className="pageTitle">{isRecruiter ? "" : "My"} Profile</h2>
+        <div className="ms-auto d-none d-md-block" >
+                  < Clock />
+                </div>
       </div>
       <hr className="my-3"></hr>
       {isRecruiter || isAdmin ? (
@@ -118,12 +127,11 @@ function Profile({
                   ""
                 ) : isRecruiter ? (
                   <select
+                    disabled={statusChangeActive}
                     className={`setStatus ${activeStatus}`}
                     value={activeStatus}
                     onChange={(e) => {
-                      const newStatus = e.target.value;
-                      setActiveStatus(newStatus); 
-                      StatusChange(newStatus);
+                      StatusChange(e.target.value);
                     }}
                   >
                     <option className="pending" value="pending">
@@ -179,11 +187,11 @@ function Profile({
               </div>
             </div>
           </div>
-          <div className="aboutBox mt-3 p-4">
+          <div className="aboutBox mt-3  p-3 p-sm-4">
             <h3 className="boxHead">About Me</h3>
             <p className="mt-3">{JobSeekerData?.personalInfo?.aboutMe}</p>
           </div>
-          <div className="skillBox mt-3 p-4 pb-5">
+          <div className="skillBox mt-3  p-3 p-sm-4 pb-5">
             <h3 className="boxHead">Skills</h3>
             <div className="mt-4 d-flex flex-wrap gap-2">
               {JobSeekerData?.personalInfo?.skills.map((data) => (
@@ -192,7 +200,7 @@ function Profile({
             </div>
           </div>
 
-          <div className="ExperienceBox mt-3 p-4">
+          <div className="ExperienceBox mt-3 p-3 p-sm-4">
             <h3 className="boxHead">Experiences</h3>
             {JobSeekerData?.personalInfo?.experience.map((data) => (
               <div className="cardBox mt-4 d-flex">
@@ -230,7 +238,7 @@ function Profile({
             ))}
           </div>
 
-          <div className="educationBox mt-3 p-4">
+          <div className="educationBox mt-3 p-3 p-sm-4">
             <h3 className="boxHead">Educations</h3>
             {JobSeekerData?.personalInfo?.education.map((data) => (
               <div className="cardBox mt-4 d-flex">

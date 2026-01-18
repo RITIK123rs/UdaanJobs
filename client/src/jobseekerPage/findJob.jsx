@@ -8,6 +8,7 @@ import { RiUser3Line } from "react-icons/ri";
 import { FaIndianRupeeSign } from "react-icons/fa6";
 import companyImg1 from "../assets/homepage/Netflix.png";
 import { MdOutlineMenu } from "react-icons/md";
+import Clock from "../component/clock";
 
 
 function FindJob({
@@ -18,7 +19,8 @@ function FindJob({
   setRecruiterId,
   setOpenMenu,
 }) {
-  const API_URL=import.meta.env.VITE_API_URL;
+  const API_URL = import.meta.env.VITE_API_URL;
+  const [applyActive, setApplyActive] = useState(false);
   const [findJobData, setFindJobData] = useState([]);
   const [searchData, setSearchData] = useState({
     jobTitle: "",
@@ -28,10 +30,11 @@ function FindJob({
   });
   const [filterData, setFilterData] = useState([]);
 
-  console.log(filterData);
+  // console.log(filterData);
 
   const changeHandler = (e) => {
-    e.preventDefault(), console.log(`${e.target.name} = ${e.target.value}`);
+    e.preventDefault();
+    // console.log(`${e.target.name} = ${e.target.value}`);
     setSearchData((prev) => ({
       ...prev,
       [e.target.name]: e.target.value,
@@ -66,7 +69,7 @@ function FindJob({
           jobTitleMatch && locationMatch && jobTypeMatch && experienceMatch
         );
       });
-      console.log(data);
+      // console.log(data);
       setFilterData(data);
     }, 800);
 
@@ -90,6 +93,7 @@ function FindJob({
   }
 
   async function applyJob(object) {
+    setApplyActive(true);
     await fetch(`${API_URL}/jobseeker/apply`, {
       method: "PUT",
       headers: {
@@ -100,18 +104,19 @@ function FindJob({
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         if (!data.isPresent) {
-          console.log(data.message);
+          // console.log(data.message);
           addMessageBox("check", "Application submitted successfully");
         } else {
-          console.log(data.message);
+          // console.log(data.message);
           addMessageBox("Warning", "Already applied for this job");
         }
       })
       .catch((error) => console.log("Put error :-", error));
 
     fetchData();
+    setApplyActive(false);
   }
 
   useEffect(() => {
@@ -119,12 +124,12 @@ function FindJob({
       await fetch(`${API_URL}/jobseeker/findJob`)
         .then((res) => res.json())
         .then((data) => {
-          console.log(data);
+          // console.log(data);
           const currentDate = new Date();
           const openJob = data.filter((info) => {
             const closingDate = new Date(info.closingDate);
-            console.log(closingDate);
-            console.log(currentDate);
+            // console.log(closingDate);
+            // console.log(currentDate);
             if (closingDate > currentDate) return true;
             else return false;
           });
@@ -138,8 +143,14 @@ function FindJob({
   return (
     <div className="findJob">
       <div className="d-flex gap-3 mt-3 align-items-center">
-        <MdOutlineMenu className="PhoneMenuIcon d-xl-none" onClick={() => setOpenMenu(true)} />
+        <MdOutlineMenu
+          className="PhoneMenuIcon d-xl-none"
+          onClick={() => setOpenMenu(true)}
+        />
         <h2 className="pageTitle">Find Job</h2>
+        <div className="ms-auto d-none d-md-block">
+          <Clock />
+        </div>
       </div>
       <hr className="my-2"></hr>
       <div className="d-flex filterInput justify-content-lg-evenly mt-4">
@@ -242,7 +253,7 @@ function FindJob({
               <button
                 className="btn detailBtn w-50"
                 onClick={() => {
-                  console.log(data);
+                  // console.log(data);
                   setSelectData(data);
                   setActiveContent("jobDetail");
                 }}
@@ -250,6 +261,7 @@ function FindJob({
                 Details
               </button>
               <button
+                disabled={applyActive}
                 className="btn applyBtn w-50"
                 onClick={() => {
                   applyJob({ id: data?._id, applicants: data?.applications });

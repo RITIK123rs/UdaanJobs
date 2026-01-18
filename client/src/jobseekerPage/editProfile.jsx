@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { ImCross } from "react-icons/im";
 import { FaArrowLeft } from "react-icons/fa6";
 import { MdAddTask } from "react-icons/md";
+import Loading from "../assets/loginPage/signUpLoading.webm";
 
 function EditProfile({
   setActiveContent,
@@ -9,6 +10,7 @@ function EditProfile({
   fetchData,
   addMessageBox,
 }) {
+    const [saveActive, setSaveActive]=useState(false);
   const API_URL=import.meta.env.VITE_API_URL;
   const [editData, setEditData] = useState({
     userName: JobSeekerData?.userName || "",
@@ -29,7 +31,7 @@ function EditProfile({
 
   const handleChangeEditData = (e) => {
     const { name, value } = e.target;
-    console.log(`${name} : ${value}`);
+    // console.log(`${name} : ${value}`);
     setEditData((prev) => ({
       ...prev,
       [name]: value,
@@ -49,7 +51,7 @@ function EditProfile({
 
   const handleChangeExperienceData = (e) => {
     const { name, value } = e.target;
-    console.log(`${name} : ${value}`);
+    // console.log(`${name} : ${value}`);
     setExperienceData((prev) => ({
       ...prev,
       [name]: value,
@@ -143,6 +145,7 @@ function EditProfile({
 
   const saveEditData = async (e) => {
      e.preventDefault();
+     setSaveActive(true)
     var data = { ...editData };
     data.skills = data.skills
       .split(",")
@@ -155,9 +158,9 @@ function EditProfile({
       headers: { "content-Type": "application/json", "Authorization": `bearer ${localStorage.getItem("token")}`},
       body: JSON.stringify(data),
     })
-    .then((res) => res.json())
-    .then((data) => console.log(data))
-    .catch((error) => console.log(error));
+    // .then((res) => res.json())
+    // .then((data) => console.log(data))
+    // .catch((error) => console.log(error));
 
     const fileData = new FormData();
     Object.entries(uploadFiles).forEach(([key, file]) => {
@@ -174,16 +177,19 @@ function EditProfile({
       headers: { "Authorization": `bearer ${localStorage.getItem("token")}`  },
       body: fileData,
     })
-    .then((res) => res.json())
-    .then((data) => console.log(data))
-    .catch((error) => console.log(error));
+  //   .then((res) => res.json())
+  //   .then((data) =>
+  //      console.log(data)
+  // )
+  //   .catch((error) => console.log(error));
 
     // console.log("feachData");
-    console.log("test line");
+    // console.log("test line");
     fetchData();
     setActiveContent("profile");
-    console.log("change to profile");
+    // console.log("change to profile");
     addMessageBox("check", "Profile updated successfully.");
+    setSaveActive(false)
     return;
   };
 
@@ -385,7 +391,7 @@ function EditProfile({
                 <ImCross
                   className="cancelIcon fs-6 ms-3"
                   onClick={() => {
-                    console.log(index);
+                    // console.log(index);
                     deleteExperienceData(index);
                   }}
                 />
@@ -547,8 +553,25 @@ function EditProfile({
         </section>
 
         <div className="endBtn mt-5 mb-4 w-100 d-flex">
-          <button type="submit" className="saveBtn py-1" >
-            Save Profile
+          <button
+            type="submit"
+            className="w-100 mt-3 rounded-pill fw-bold text-white saveBtn py-1 d-flex justify-content-center align-items-center"
+            disabled={saveActive}
+          >
+            {saveActive ? (
+              <video
+                src={Loading}
+                autoPlay
+                loop
+                muted
+                style={{
+                  width: "90px",
+                  height: "90px",
+                } }
+              />
+            ) : (
+    <span className="saveBtnText">Save Profile</span>
+  ) }
           </button>
         </div>
       </form>
