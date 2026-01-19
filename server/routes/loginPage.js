@@ -315,7 +315,8 @@ router.post("/", async (req, res) => {
 
     return res.json({ login: true, token, userType });
   } catch (error) {
-    return res.status(500).json("failed to login");
+     return res.status(500).json({ login: false, message: "Failed to login" });
+
   }
 });
 

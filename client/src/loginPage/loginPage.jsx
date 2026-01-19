@@ -7,9 +7,9 @@ import { Navigate, NavLink, useNavigate } from "react-router-dom";
 import { MdMail } from "react-icons/md";
 import { FaRegCircleXmark } from "react-icons/fa6";
 import BoyImg from "../assets/Boy.png"
+import { API_URL } from "../api";
 
 function LoginPage({ addMessageBox }) {
-  const API_URL = import.meta.env.VITE_API_URL;
   const [showPassword, setShowPassword] = useState(false);
   const [showPassword2, setShowPassword2] = useState(false);
   const [showPassword3, setShowPassword3] = useState(false);

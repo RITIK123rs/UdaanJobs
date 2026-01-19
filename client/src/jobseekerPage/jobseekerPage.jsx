@@ -10,9 +10,9 @@ import CompanyProfile from "../recruiterPage/companyProfile";
 import { ImExit } from "react-icons/im";
 import { NavLink, useNavigate } from "react-router-dom";
 import MenuContent from "./menuContent";
+import { API_URL } from "../api";
 
 function JobSeekerPage({ addMessageBox }) {
-  const API_URL = import.meta.env.VITE_API_URL;
   const [JobSeekerData, setJobSeekerData] = useState({});
   const [selectData, setSelectData] = useState({});
   const [activeContent, setActiveContent] = useState("dashboard");
