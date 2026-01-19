@@ -1,4 +1,4 @@
 
 
-export const API_URL = `http://localhost:3200`;
+export const API_URL = `https://udaanjobs-server.onrender.com`;
 

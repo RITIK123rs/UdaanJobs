@@ -94,7 +94,7 @@ function Profile({
                 src={
                   JobSeekerData?.personalInfo?.banner || null
                     ? `${API_URL}/upload/${JobSeekerData.personalInfo.banner}`
-                    : `${API_URL}/defaultImage/defaultbanner.jpg`
+                    : `${API_URL}/defaultImage/defaultBanner.jpg`
                 }
                 alt="banner"
                 className="uploadImg"
