@@ -88,8 +88,8 @@ function Comment() {
                         <p className='yellowText'>Backend Engineer</p>
                     </div>
                 </div>
-                <p className='mt-3'>"The skill-based matching algorithm actually works! I stopped wasting time scrolling and
-        got interview calls from companies truly aligned with my experience."</p>
+                <p className='mt-3'>"I love how easy it is to update my profile and get matched to relevant openings. 
+        Got hired at a startup that perfectly fits my skillset!"</p>
               </div>
             </SwiperSlide>
             <SwiperSlide>

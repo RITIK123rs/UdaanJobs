@@ -1,7 +1,7 @@
 
 .imgBox,
 .menuImgBox {
-  flex-shrink: 0;  
+  flex-shrink: 0;
   border: 2px solid var(--yellowTextColor);
 }
 
@@ -22,6 +22,7 @@
   width: 21%;
   border-right: 2px solid white;
 }
+
 .jobSeekerPage .menuContent {
   height: 100vh;
   width: 78%;
@@ -58,6 +59,12 @@
 
 .menuImgBox {
   width: 50px;
+  height: 50px;
+}
+.menuImgBox img{
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
 }
 .applicationStatus .databox > div {
   border: 1px solid var(--yellowTextColor);
@@ -892,6 +899,7 @@
   }
   .loginBox .menuImgBox {
     width: 40px !important;
+    height: 40px !important;
     flex-shrink: 0;  
   }
   .loginBox .personName {
@@ -910,6 +918,7 @@
   }
   .menuImgBox {
     width: 30px !important;
+    height: 30px !important;
     flex-shrink: 0;  
   }
   .loginBox .personName {
@@ -1409,6 +1418,7 @@
   }
   .menuImgBox {
     width: 40px !important;
+    width: 40px !important;
   }
   .loginBox .personName {
     font-size: 17px;
@@ -1551,6 +1561,7 @@
   }
   .menuImgBox {
     width: 40px !important;
+    height: 40px !important;
   }
   .loginBox .personName {
     font-size: 17px;

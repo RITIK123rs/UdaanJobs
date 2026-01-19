@@ -104,7 +104,7 @@ Start your career journey today!</p>
         {
             cardData.map((element, index) => (
                 <SwiperSlide>
-          <div className='cardBox text-white d-flex flex-column justify-content-center align-items-center p-2 pt-4 rounded-4'>
+          <div key={index} className='cardBox text-white d-flex flex-column justify-content-center align-items-center p-2 pt-4 rounded-4'>
             <div className='imageBox overflow-hidden rounded-circle cardImgBox'>
                 <img src={element.img} alt="" className='w-100 h-100' />
             </div>

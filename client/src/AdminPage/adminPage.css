@@ -50,7 +50,13 @@
   font-size: 29px;
 }
 .menuImgBox {
-  width: 50px;
+  width: 50px !important;
+  height: 50px !important;
+}
+.menuImgBox img{
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
 }
 .adminPage ul li:hover {
   background-color: var(--yellowTextColor);
@@ -64,7 +70,8 @@
   font-size: 29px;
 }
 .menuImgBox {
-  width: 50px;
+  width: 50px !important;
+  height: 50px !important;
 }
 
 .adminPage .tableBox,
@@ -547,6 +554,7 @@ table td {
   }
   .menuImgBox {
     width: 30px !important;
+    height: 30px !important;
   }
   .adminPage .pageTitle {
     font-size: 30px !important;

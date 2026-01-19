@@ -65,6 +65,12 @@ textarea::-webkit-scrollbar,
 }
 .menuImgBox {
   width: 50px;
+  height: 50px;
+}
+.menuImgBox img{
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
 }
 .recruiterPage ul li:hover {
   background-color: var(--yellowTextColor);
@@ -82,6 +88,7 @@ textarea::-webkit-scrollbar,
 } */
 .menuImgBox {
   width: 50px;
+  height: 50px;
 }
 .recruiterDashboard .databox h1 {
   font-weight: bolder;
@@ -862,6 +869,7 @@ table th {
   }
   .menuImgBox {
     width: 30px !important;
+    height: 30px !important;
   }
   .recruiterPage .pageTitle {
     font-size: 28px !important;
@@ -951,7 +959,7 @@ table th {
   margin: 0 auto 10px auto !important;
 }
 .Applicants .filter {
-  width: 45%;
+  width: 170px;
   margin: 0 auto !important;
 }
 .postJob .formRow {
@@ -1166,7 +1174,7 @@ table th {
   margin: 0 auto 10px auto !important;
 }
 .Applicants .filter {
-  width: 40%;
+  width: 170px;
   margin: 0 auto !important;
 }
 .postJob .formRow {

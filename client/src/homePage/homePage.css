@@ -134,7 +134,7 @@
 .commentBox .cardBox{
   border: 2px solid var(--yellowTextColor);
   padding: 20px 20px 5px 20px ;
-  min-height: 230px;
+  min-height: 235px;
 }
 .commentBox .starBox{
   color: var(--yellowTextColor);
@@ -187,8 +187,8 @@
 }
 
 .stepWorkingBox .iconBox{
-  width: 80px;
-  height: 60px;
+  width: 75px;
+  height: 50px;
 }
 
 .stepWorkingBox .stepBox{
