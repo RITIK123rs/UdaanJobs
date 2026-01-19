@@ -135,7 +135,7 @@ export default function JobApply({
                 <td>{index + 1}</td>
                 <td>
                   <div
-                    className="company-cell d-flex align-items-center justify-content-center"
+                    className="company-cell d-flex align-items-center justify-content-start"
                     onClick={() => {
                       setRecruiterId(data.jobId?.recruiter._id);
                       setActiveContent("companyProfile");
