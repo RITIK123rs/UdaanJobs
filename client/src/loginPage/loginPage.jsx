@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./loginPage.css";
-import img1 from "../assets/homepage/Boy.png";
 import { MdOutlineMailOutline } from "react-icons/md";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { FaArrowLeft } from "react-icons/fa6";
@@ -653,7 +652,7 @@ function LoginPage({ addMessageBox }) {
           }}
         >
           <img
-            src={img1}
+            src="/Boy.png"
             alt=""
             className=" boyImg "
             style={{

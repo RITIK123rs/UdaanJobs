@@ -1,6 +1,5 @@
 import React from 'react';
 import { IoStar } from "react-icons/io5";
-import img1 from "../assets/homepage/avatar.png";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import { FaAnglesLeft, FaAnglesRight } from "react-icons/fa6";
@@ -36,7 +35,7 @@ function Comment() {
               <div className='cardBox text-white rounded-4 '>
                 <div className='d-flex'>
                     <div className='imgBox rounded-circle overflow-hidden'>
-                        <img src={img1} alt="" className='w-100 h-100 ' />
+                        <img src="/avatar.png" alt="" className='w-100 h-100 ' />
                     </div>
                     <div className='my-auto pt-2 ms-3'>
                         <h4 className='fw-bold m-0 mb-1'>Riya Sharma</h4>
@@ -51,7 +50,7 @@ function Comment() {
               <div className='cardBox text-white rounded-4 '>
                 <div className='d-flex'>
                     <div className='imgBox rounded-circle overflow-hidden'>
-                        <img src={img1} alt="" className='w-100 h-100 ' />
+                        <img src="/avatar.png" alt="" className='w-100 h-100 ' />
                     </div>
                     <div className='my-auto pt-2 ms-3'>
                         <h4 className='fw-bold m-0 mb-1'>Aman Verma</h4>
@@ -66,7 +65,7 @@ function Comment() {
               <div className='cardBox text-white rounded-4 '>
                 <div className='d-flex'>
                     <div className='imgBox rounded-circle overflow-hidden'>
-                        <img src={img1} alt="" className='w-100 h-100 ' />
+                        <img src="/avatar.png" alt="" className='w-100 h-100 ' />
                     </div>
                     <div className='my-auto pt-2 ms-3'>
                         <h4 className='fw-bold m-0 mb-1'>Sneha Patel</h4>
@@ -81,7 +80,7 @@ function Comment() {
               <div className='cardBox text-white rounded-4 '>
                 <div className='d-flex'>
                     <div className='imgBox rounded-circle overflow-hidden'>
-                        <img src={img1} alt="" className='w-100 h-100 ' />
+                        <img src="/avatar.png" alt="" className='w-100 h-100 ' />
                     </div>
                     <div className='my-auto pt-2 ms-3'>
                         <h4 className='fw-bold m-0 mb-1'>Rahul Mehta</h4>
@@ -96,7 +95,7 @@ function Comment() {
               <div className='cardBox text-white rounded-4 '>
                 <div className='d-flex'>
                     <div className='imgBox rounded-circle overflow-hidden'>
-                        <img src={img1} alt="" className='w-100 h-100 ' />
+                        <img src="/avatar.png" alt="" className='w-100 h-100 ' />
                     </div>
                     <div className='my-auto pt-2 ms-3'>
                         <h4 className='fw-bold m-0 mb-1'>Ananya Gupta</h4>
@@ -111,7 +110,7 @@ function Comment() {
               <div className='cardBox text-white rounded-4 '>
                 <div className='d-flex'>
                     <div className='imgBox rounded-circle overflow-hidden'>
-                        <img src={img1} alt="" className='w-100 h-100 ' />
+                        <img src="/avatar.png" alt="" className='w-100 h-100 ' />
                     </div>
                     <div className='my-auto pt-2 ms-3'>
                         <h4 className='fw-bold m-0 mb-1'>Vikram Singh</h4>
