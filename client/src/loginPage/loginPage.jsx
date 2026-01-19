@@ -637,7 +637,7 @@ function LoginPage({ addMessageBox }) {
               Don't have an account?{" "}
               <span
                 className="yellowText"
-                onClick={() => setCurrentLoginBox(false)}
+                onClick={() => { if(!loading) setCurrentLoginBox(false) } }
               >
                 Sign Up
               </span>
@@ -776,7 +776,7 @@ function LoginPage({ addMessageBox }) {
               Already have an account?{" "}
               <span
                 className="yellowText"
-                onClick={() => setCurrentLoginBox(true)}
+                onClick={() => { if(!loading) setCurrentLoginBox(true) } }
               >
                 Login
               </span>

@@ -154,7 +154,7 @@
   width: 70px;
   height: 70px;
   background: transparent;
-  flex-shrink: 0;  
+  flex-shrink: 0;
 }
 .findJob .jobCard .detailItem {
   margin-bottom: 5px;
