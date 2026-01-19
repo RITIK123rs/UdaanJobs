@@ -68,22 +68,22 @@ function DashBoard({ recruiterData, setOpenMenu }) {
         <div className="row-lg text-center d-md-flex justify-content-lg-evenly">
           <div className="col-lg-3 p-0 databox">
             <div>
-              <h1 className="yellowText">{recruiterData?.jobPosted?.length}</h1>
+              <h1 className="yellowText">{recruiterData?.jobPosted?.length  || 0 }</h1>
               <h5>Total Jobs Posted</h5>
             </div>
             <div>
-              <h1 className="yellowText">{liveJobs}</h1>
+              <h1 className="yellowText">{liveJobs || 0 }</h1>
               <h5>Live Jobs</h5>
             </div>
           </div>
 
           <div className="col-lg-3 p-0 databox">
             <div>
-              <h1 className="yellowText">{applicationCount.accepted}</h1>
+              <h1 className="yellowText">{applicationCount.accepted || 0}</h1>
               <h5>Accepted Applications</h5>
             </div>
             <div>
-              <h1 className="yellowText">{applicationCount.rejected}</h1>
+              <h1 className="yellowText">{applicationCount.rejected || 0 }</h1>
               <h5>Rejected Applications</h5>
             </div>
           </div>

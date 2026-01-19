@@ -6,9 +6,9 @@ import { FaUserTie } from "react-icons/fa";
 import { RiMapPinLine } from "react-icons/ri";
 import { RiUser3Line } from "react-icons/ri";
 import { FaIndianRupeeSign } from "react-icons/fa6";
-import companyImg1 from "../assets/homepage/Netflix.png";
 import { MdOutlineMenu } from "react-icons/md";
 import Clock from "../component/clock";
+import { API_URL } from "../api";
 
 
 function FindJob({
@@ -19,7 +19,6 @@ function FindJob({
   setRecruiterId,
   setOpenMenu,
 }) {
-  const API_URL = import.meta.env.VITE_API_URL;
   const [applyActive, setApplyActive] = useState(false);
   const [findJobData, setFindJobData] = useState([]);
   const [searchData, setSearchData] = useState({

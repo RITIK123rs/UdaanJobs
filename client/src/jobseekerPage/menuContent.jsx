@@ -8,10 +8,10 @@ import { IoPersonOutline } from "react-icons/io5";
 import { ImExit } from "react-icons/im";
 import { NavLink, useNavigate } from "react-router-dom";
 import { ImCancelCircle } from "react-icons/im";
+import { API_URL } from "../api";
 
 export default function MenuContent({ JobSeekerData, setOpenMenu, phoneMenu=false, setActiveContent, setPreviousComponent }) {
   const navigate = useNavigate();
-  const API_URL=import.meta.env.VITE_API_URL;
   return (
     < >
       <div className="d-flex flex-column mt-3">

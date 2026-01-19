@@ -12,6 +12,7 @@ import { dateFormat } from "../utils/dateFormat";
 import { FaArrowLeft } from "react-icons/fa6";
 import { MdOutlineMenu } from "react-icons/md";
 import Clock from "../component/clock";
+import { API_URL } from "../api";
 
 export default function CompanyProfile({
   recruiterData,
@@ -20,7 +21,7 @@ export default function CompanyProfile({
   isRecruiter = false,
   setOpenMenu,
 }) {
-  const API_URL = import.meta.env.VITE_API_URL;
+
 
   return (
     <div className="profile companyProfile text-white">
@@ -82,7 +83,7 @@ export default function CompanyProfile({
                 </h1>
                 <div className="d-flex flex-wrap gap-4 mt-3">
                   <div className="d-flex align-items-center gap-2">
-                    <FaFire className="icon" />
+                    <FaFire className="icon flex-shrink-0 " />
                     <div className="headerInfo">
                       <div className="fw-bold">Founded</div>
                       <small className="opacity-75">
@@ -92,7 +93,7 @@ export default function CompanyProfile({
                   </div>
 
                   <div className="d-flex align-items-center gap-2">
-                    <HiUserGroup className="icon" />
+                    <HiUserGroup className="icon flex-shrink-0" />
                     <div className="headerInfo">
                       <div className="fw-bold">Employees</div>
                       <small className="opacity-75">
@@ -102,7 +103,7 @@ export default function CompanyProfile({
                   </div>
 
                   <div className="d-flex align-items-center gap-2">
-                    <FaLocationDot className="icon" />
+                    <FaLocationDot className="icon flex-shrink-0" />
                     <div className="headerInfo">
                       <div className="fw-bold">Location</div>
                       <small className="opacity-75">
@@ -112,7 +113,7 @@ export default function CompanyProfile({
                   </div>
 
                   <div className="d-flex align-items-center gap-2">
-                    <PiBuildingsBold className="icon fs-1" />
+                    <PiBuildingsBold className="icon fs-1 flex-shrink-0" />
                     <div className="headerInfo">
                       <div className="fw-bold">Industry</div>
                       <small className="opacity-75">
@@ -251,7 +252,7 @@ export default function CompanyProfile({
           <div className="p-4 rounded border border-white overflow-hidden">
             <h2 className="fw-bold mb-4 text-white">Contact Details</h2>
             <div className="d-flex align-items-center mt-2 mb-3">
-              <IoIosMail className="fs-2 me-3 text-warning" />
+              <IoIosMail className="fs-2 me-3 text-warning flex-shrink-0" />
               <div>
                 <div className="fw-bold text-white">Email</div>
                 <div className="text-white opacity-75">
@@ -261,7 +262,7 @@ export default function CompanyProfile({
             </div>
 
             <div className="d-flex align-items-center mt-2 mb-3">
-              <BsTwitterX className="fs-3 me-3 text-warning" />
+              <BsTwitterX className="fs-3 me-3 text-warning flex-shrink-0" />
               <div>
                 <div className="fw-bold text-white">Twitter</div>
                 <div className="text-white opacity-75">
@@ -271,7 +272,7 @@ export default function CompanyProfile({
             </div>
 
             <div className="d-flex align-items-center mt-2 mb-3">
-              <FaFacebookF className="fs-2 me-3 text-warning" />
+              <FaFacebookF className="fs-2 me-3 text-warning flex-shrink-0" />
               <div>
                 <div className="fw-bold text-white">Facebook</div>
                 <div className="text-white opacity-75">
@@ -281,7 +282,7 @@ export default function CompanyProfile({
             </div>
 
             <div className="d-flex align-items-center mt-2 mb-3">
-              <FaLinkedin className="fs-2 me-3 text-warning" />
+              <FaLinkedin className="fs-2 me-3 text-warning flex-shrink-0" />
               <div>
                 <div className="fw-bold text-white">LinkedIn</div>
                 <div className="text-white opacity-75">
@@ -291,7 +292,7 @@ export default function CompanyProfile({
             </div>
 
             <div className="d-flex align-items-center mt-2">
-              <BsGlobe2 className="fs-2 me-3 text-warning" />
+              <BsGlobe2 className="fs-2 me-3 text-warning flex-shrink-0" />
               <div>
                 <div className="fw-bold text-white">Website</div>
                 <div className="text-white opacity-75">

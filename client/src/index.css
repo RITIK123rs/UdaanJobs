@@ -1,21 +1,45 @@
-
 :root {
-  --yellowGradient: linear-gradient(135deg, #FFBD20 10%, #FFD700 90%);
-  --yellowTextColor: #FFBD20;
+  --yellowGradient: linear-gradient(135deg, #ffbd20 10%, #ffd700 90%);
+  --yellowTextColor: #ffbd20;
 }
-*{
+* {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
 }
-body{
-  background-color: #1C1C1C;
+body {
+  background-color: #1c1c1c;
 }
-.yellowText{
+.yellowText {
   color: var(--yellowTextColor);
 }
-p{
-  white-space: pre-wrap !important; 
+p {
+  white-space: pre-wrap !important;
 }
 
+/* <span class="loader" style={{ width: "20px", height:"20px" }} ></span> */
 
+.loader {
+  width: 25px;
+  height: 25px;
+  border: 3.5px solid #fff;
+  border-bottom-color: transparent;
+  border-radius: 50%;
+  display: inline-block;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+}
+
+.loader.loaderYellow{
+  border-color: var(--yellowTextColor);
+  border-bottom-color: transparent;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

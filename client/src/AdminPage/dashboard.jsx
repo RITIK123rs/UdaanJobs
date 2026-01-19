@@ -5,9 +5,9 @@ import { dateFormat } from "../utils/dateFormat";
 import { jwtDecode } from "jwt-decode";
 import { MdOutlineMenu } from "react-icons/md";
 import Clock from "../component/clock";
+import { API_URL } from "../api";
 
 function DashBoard({ setOpenMenu }) {
-  const API_URL = import.meta.env.VITE_API_URL;
   const [dashBoardData, setDashBoardData] = useState();
 
   useEffect(() => {
@@ -64,23 +64,23 @@ function DashBoard({ setOpenMenu }) {
           <div className="col-lg-3 p-0 databox">
             <div className="statItem">
               <h1 className="yellowText">
-                {dashBoardData?.jobSeekerCount + dashBoardData?.recruiterCount}
+                {(dashBoardData?.jobSeekerCount + dashBoardData?.recruiterCount) || 0 }
               </h1>
               <h5>Total Users</h5>
             </div>
             <div className="statItem">
-              <h1 className="yellowText">{dashBoardData?.recruiterCount}</h1>
+              <h1 className="yellowText">{dashBoardData?.recruiterCount || 0 }</h1>
               <h5>Recruiters</h5>
             </div>
           </div>
 
           <div className="col-lg-3 p-0 databox">
             <div className="statItem">
-              <h1 className="yellowText">{dashBoardData?.jobSeekerCount}</h1>
+              <h1 className="yellowText">{dashBoardData?.jobSeekerCount || 0}</h1>
               <h5>Job Seekers</h5>
             </div>
             <div className="statItem">
-              <h1 className="yellowText">{dashBoardData?.jobPostedCount}</h1>
+              <h1 className="yellowText">{dashBoardData?.jobPostedCount || 0}</h1>
               <h5>Jobs</h5>
             </div>
           </div>

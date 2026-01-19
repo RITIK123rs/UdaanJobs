@@ -28,12 +28,18 @@
   align-items: center;
   padding: 0 20px;
   transform: translateX(100%);
-  animation: moveleft 0.5s linear forwards;
+  animation: moveleft 0.5s ease forwards, moveright 0.5s ease forwards 4.4s; ;
 }
 
 .tableBox {
   position: relative;
   z-index: 200;
+}
+@keyframes moveright {
+  100% {
+    transform: translateX(120%);
+    opacity: 0;
+  }
 }
 
 @keyframes moveleft {

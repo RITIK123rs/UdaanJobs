@@ -4,6 +4,7 @@ import { MdFilterListAlt } from "react-icons/md";
 import { dateFormat } from "../utils/dateFormat";
 import { MdOutlineMenu } from "react-icons/md";
 import Clock from "../component/clock";
+import { API_URL } from "../api";
 
 
 function JobsPosted({
@@ -15,8 +16,7 @@ function JobsPosted({
   addMessageBox,
   setOpenMenu,
 }) {
-  
-  const API_URL = import.meta.env.VITE_API_URL;
+
   const [deleteBtnActive, setDeleteBtnActive]=useState(false);
   const [searchData, setSearchData] = useState({
     jobTitle: "",

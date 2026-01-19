@@ -15,7 +15,7 @@ function App() {
     setMessageList((old)=>[...old,{"id":id,"type":type,"message":message}]);
     setTimeout(()=>{
       setMessageList((old)=> old.filter((msg)=> msg.id!=id));
-    },4400);
+    },4500);
     
   }
   

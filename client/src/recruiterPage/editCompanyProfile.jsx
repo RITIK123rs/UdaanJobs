@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { FaArrowLeft } from "react-icons/fa6";
-import Loading from "../assets/loginPage/signUpLoading.webm";
+import { API_URL } from "../api";
 
 export default function EditCompanyProfile({
   recruiterData,
@@ -8,7 +8,7 @@ export default function EditCompanyProfile({
   getRecruiterData,
   addMessageBox,
 }) {
-  const API_URL = import.meta.env.VITE_API_URL;
+
   const [updateActive, setUpdateActive] = useState(false);
   const [companyData, setCompanyData] = useState(recruiterData?.company);
 
@@ -41,6 +41,7 @@ export default function EditCompanyProfile({
 
   const setComputerData = async (e) => {
     e.preventDefault();
+    setUpdateActive(true);
     // console.log(companyData);
     const formData = new FormData();
     formData.append("name", companyData.name);
@@ -66,6 +67,7 @@ export default function EditCompanyProfile({
       .catch((error) => console.log(error));
 
     getRecruiterData();
+    setUpdateActive(false);
     setActiveContent("companyProfile");
     addMessageBox("check", "Profile updated successfully");
   };
@@ -248,16 +250,7 @@ export default function EditCompanyProfile({
             disabled={updateActive}
           >
             {updateActive ? (
-              <video
-                src={Loading}
-                autoPlay
-                loop
-                muted
-                style={{
-                  width: "90px",
-                  height: "90px",
-                }}
-              />
+              <span class="loader loaderYellow" style={{ width: "20px", height:"20px" }} ></span>
             ) : (
               <span className="yellowText">UPDATE</span>
             )}

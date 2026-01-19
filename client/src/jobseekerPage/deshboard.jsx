@@ -3,11 +3,11 @@ import PieGraph from "./pieChart";
 import { dateFormat } from "../utils/dateFormat";
 import { MdOutlineMenu } from "react-icons/md";
 import Clock from "../component/clock";
+import { API_URL } from "../api";
 
 
 function DashBoard({JobSeekerData, setOpenMenu}){
 
-  const API_URL= import.meta.env.VITE_API_URL;
 
   return (
     <>
@@ -27,21 +27,21 @@ function DashBoard({JobSeekerData, setOpenMenu}){
         <div className="row-lg text-center d-md-flex justify-content-lg-evenly">
           <div className="col-lg-3 p-0 databox">
             <div>
-              <h1 className="yellowText">{JobSeekerData.application?.total}</h1>
+              <h1 className="yellowText">{JobSeekerData.application?.total || 0}</h1>
               <h5>Total Applications</h5>
             </div>
             <div>
-              <h1 className="yellowText" >{JobSeekerData.application?.pending}</h1>
+              <h1 className="yellowText" >{JobSeekerData.application?.pending || 0}</h1>
               <h5>Pending Applications</h5>
             </div>
           </div>
           <div className="col-lg-3 p-0 databox">
             <div>
-              <h1 className="yellowText" >{JobSeekerData.application?.accepted}</h1>
+              <h1 className="yellowText" >{JobSeekerData.application?.accepted || 0}</h1>
               <h5>Accepted Applications</h5>
             </div>
             <div>
-              <h1 className="yellowText" >{JobSeekerData.application?.rejected}</h1>
+              <h1 className="yellowText" >{JobSeekerData.application?.rejected || 0}</h1>
               <h5>Rejected Applications</h5>
             </div>
           </div>

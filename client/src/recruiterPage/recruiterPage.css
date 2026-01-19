@@ -463,8 +463,7 @@ table th {
   transition: 0.3s all;
 }
 
-.postJob .backBtn:hover,
-.postJob .saveBtn:hover {
+.postJob .backBtn:hover{
   background: var(--yellowTextColor);
   color: black;
 }
@@ -673,11 +672,6 @@ table th {
   border: none;
   cursor: pointer;
   margin-right: 10px;
-}
-
-.editCompanyProfile .saveBtn:hover {
-  background: var(--yellowTextColor);
-  color: black;
 }
 
 .editCompanyProfile .backBtn {

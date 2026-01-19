@@ -5,6 +5,7 @@ import { MdEmail } from "react-icons/md";
 import { dateFormat } from "../utils/dateFormat";
 import { MdOutlineMenu } from "react-icons/md";
 import Clock from "../component/clock";
+import { API_URL } from "../api";
 
 function JobSeekerSection({
   setActiveContent,
@@ -12,7 +13,6 @@ function JobSeekerSection({
   setPrevContent,
   setOpenMenu,
 }) {
-  const API_URL = import.meta.env.VITE_API_URL;
   const [jobSeekerData, setJobSeekerData] = useState();
 
   const [searchData, setSearchData] = useState({

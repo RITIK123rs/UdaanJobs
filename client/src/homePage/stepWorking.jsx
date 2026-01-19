@@ -3,6 +3,7 @@ import { MdPersonAddAlt1 } from "react-icons/md";
 import { FaSearch } from "react-icons/fa";
 import { RiVerifiedBadgeFill } from "react-icons/ri";
 import { FaHandshake } from "react-icons/fa6";
+import girlImg from  "../assets/homepage/Girl.png"
 
 function StepWorking() {
   return (
@@ -14,7 +15,7 @@ function StepWorking() {
       <div className='content mt-5'>
         <div className='row'>
           <div className="col-lg-6 d-flex justify-content-center align-items-center">
-            <img src="/Girl.png" className='girlImg w-100 h-100' alt="" />
+            <img src={girlImg} className='girlImg w-100 h-100' alt="" />
           </div>
           <div className="col-lg-6 pt-xl-5">
             <div className='stepBox d-flex'>

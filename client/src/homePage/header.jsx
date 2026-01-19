@@ -1,15 +1,16 @@
-import React from "react";
+import React, {useState} from "react";
 import AvatarHeader from "./avatarHeader";
 import { useNavigate } from "react-router-dom";
-
+import { API_URL } from "../api";
 function Header() {
 
-  const API_URL=import.meta.env.VITE_API_URL;
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
 
   const getStarted=async ()=>{
+    setLoading(true)
     const token=localStorage.getItem("token");
-    // console.log(token);
+    console.log(token);
     if(!token){
       // console.log("/login");
       navigate("/login");
@@ -32,6 +33,7 @@ function Header() {
 
     // console.log(userType);
     navigate(`/${userType}`);
+    setLoading(false);
     return;
   }
 
@@ -49,7 +51,11 @@ function Header() {
               easily, and manage everything in one place to make your career
               path simple, smart, and successful
             </p>
-            <button onClick={getStarted} className="text-white px-4 py-2 mt-2 rounded-5 fw-bold border-0">Get Started Now</button>
+            <button onClick={getStarted} disabled={loading} className="text-white px-4 py-2 mt-2 rounded-5 fw-bold border-0">
+              {loading ? (
+                <span class="loader mt-1" style={{ width: "20px", height:"20px" }} ></span>
+              ) : "Get Started Now" }
+              </button>
             </span>
           </div>
           <AvatarHeader property="d-none d-md-block" />

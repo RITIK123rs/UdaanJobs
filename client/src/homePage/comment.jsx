@@ -5,6 +5,9 @@ import { Navigation } from "swiper/modules";
 import { FaAnglesLeft, FaAnglesRight } from "react-icons/fa6";
 import "swiper/css";
 import "swiper/css/navigation";
+import avatarImg from "../assets/homepage/avatar.png";
+
+
 function Comment() {
   return (
     <div className='commentBox container-lg mt-5'>
@@ -35,22 +38,22 @@ function Comment() {
               <div className='cardBox text-white rounded-4 '>
                 <div className='d-flex'>
                     <div className='imgBox rounded-circle overflow-hidden'>
-                        <img src="/avatar.png" alt="" className='w-100 h-100 ' />
+                        <img src={avatarImg} alt="" className='w-100 h-100 ' />
                     </div>
                     <div className='my-auto pt-2 ms-3'>
                         <h4 className='fw-bold m-0 mb-1'>Riya Sharma</h4>
                         <p className='yellowText'>Frontend Developer</p>
                     </div>
                 </div>
-                <p className='mt-3'>"I landed a remote React developer position through HireConnect in just 10 days!
-        The platform’s job filters and skill-matching feature made the process effortless."</p>
+                <p className='mt-3'>"The site helped me connect with multiple startups looking for creative freelancers.
+        I got three new projects within a month!"</p>
               </div>
             </SwiperSlide>
             <SwiperSlide>
               <div className='cardBox text-white rounded-4 '>
                 <div className='d-flex'>
                     <div className='imgBox rounded-circle overflow-hidden'>
-                        <img src="/avatar.png" alt="" className='w-100 h-100 ' />
+                        <img src={avatarImg} alt="" className='w-100 h-100 ' />
                     </div>
                     <div className='my-auto pt-2 ms-3'>
                         <h4 className='fw-bold m-0 mb-1'>Aman Verma</h4>
@@ -65,7 +68,7 @@ function Comment() {
               <div className='cardBox text-white rounded-4 '>
                 <div className='d-flex'>
                     <div className='imgBox rounded-circle overflow-hidden'>
-                        <img src="/avatar.png" alt="" className='w-100 h-100 ' />
+                        <img src={avatarImg} alt="" className='w-100 h-100 ' />
                     </div>
                     <div className='my-auto pt-2 ms-3'>
                         <h4 className='fw-bold m-0 mb-1'>Sneha Patel</h4>
@@ -80,22 +83,22 @@ function Comment() {
               <div className='cardBox text-white rounded-4 '>
                 <div className='d-flex'>
                     <div className='imgBox rounded-circle overflow-hidden'>
-                        <img src="/avatar.png" alt="" className='w-100 h-100 ' />
+                        <img src={avatarImg} alt="" className='w-100 h-100 ' />
                     </div>
                     <div className='my-auto pt-2 ms-3'>
                         <h4 className='fw-bold m-0 mb-1'>Rahul Mehta</h4>
                         <p className='yellowText'>Backend Engineer</p>
                     </div>
                 </div>
-                <p className='mt-3'>"I love how easy it is to update my profile and get matched to relevant openings. 
-        Got hired at a startup that perfectly fits my skillset!"</p>
+                <p className='mt-3'>"Posting jobs on HireConnect was incredibly smooth. We received over 50 quality applicants
+        within a week, and the dashboard made shortlisting easy."</p>
               </div>
             </SwiperSlide>
             <SwiperSlide>
               <div className='cardBox text-white rounded-4 '>
                 <div className='d-flex'>
                     <div className='imgBox rounded-circle overflow-hidden'>
-                        <img src="/avatar.png" alt="" className='w-100 h-100 ' />
+                        <img src={avatarImg} alt="" className='w-100 h-100 ' />
                     </div>
                     <div className='my-auto pt-2 ms-3'>
                         <h4 className='fw-bold m-0 mb-1'>Ananya Gupta</h4>
@@ -110,7 +113,7 @@ function Comment() {
               <div className='cardBox text-white rounded-4 '>
                 <div className='d-flex'>
                     <div className='imgBox rounded-circle overflow-hidden'>
-                        <img src="/avatar.png" alt="" className='w-100 h-100 ' />
+                        <img src={avatarImg} alt="" className='w-100 h-100 ' />
                     </div>
                     <div className='my-auto pt-2 ms-3'>
                         <h4 className='fw-bold m-0 mb-1'>Vikram Singh</h4>

@@ -10,6 +10,7 @@ import { MdFileDownload } from "react-icons/md";
 import { FaArrowLeft } from "react-icons/fa6";
 import { MdOutlineMenu } from "react-icons/md";
 import Clock from "../component/clock";
+import { API_URL } from "../api";
 
 function Profile({
   setActiveContent,
@@ -24,7 +25,6 @@ function Profile({
 }) {
   const [activeStatus, setActiveStatus] = useState(jobSeekerJobPost?.jobStatus);
   const [statusChangeActive, setStatusChangeActive]= useState(false);
-    const API_URL= import.meta.env.VITE_API_URL;
 
   const StatusChange = (newStatus) => {
     // console.log(newStatus);
@@ -280,7 +280,7 @@ function Profile({
           <div>
             <h4 className="fw-bold mb-3">Additional Details</h4>
             <div className="d-flex align-items-center mt-2">
-              <MdMailOutline className="fs-3 me-2" />
+              <MdMailOutline className="fs-3 me-3 flex-shrink-0" />
               <div>
                 <div className="fw-bold">Email</div>
                 <a href="" className="text-decoration-none">
@@ -289,14 +289,14 @@ function Profile({
               </div>
             </div>
             <div className="d-flex align-items-center mt-2">
-              <MdOutlinePhone className="fs-3 me-2" />
+              <MdOutlinePhone className="fs-3 me-3 flex-shrink-0" />
               <div>
                 <div className="fw-bold">Phone</div>
                 <div>{JobSeekerData?.personalInfo?.phone}</div>
               </div>
             </div>
             <div className="d-flex align-items-center mt-2">
-              <IoLanguage className="fs-3 me-2" />
+              <IoLanguage className="fs-3 me-3 flex-shrink-0" />
               <div>
                 <div className="fw-bold">Language</div>
                 <div>{JobSeekerData?.personalInfo?.languages}</div>
@@ -306,7 +306,7 @@ function Profile({
           <div className="mt-lg-3">
             <h4 className="fw-bold mb-3">Social Links</h4>
             <div className="d-flex align-items-center mt-2">
-              <FaInstagram className="fs-3 me-2" />
+              <FaInstagram className="fs-3 me-3 flex-shrink-0" />
               <div>
                 <div className="fw-bold">Instragram</div>
                 <a href="" className="text-decoration-none">
@@ -315,7 +315,7 @@ function Profile({
               </div>
             </div>
             <div className="d-flex align-items-center mt-2">
-              <FaXTwitter className="fs-3 me-2" />
+              <FaXTwitter className="fs-3 me-3 flex-shrink-0" />
               <div>
                 <div className="fw-bold">Twitter</div>
                 <a href="" className="text-decoration-none">
@@ -324,7 +324,7 @@ function Profile({
               </div>
             </div>
             <div className="d-flex align-items-center mt-2">
-              <BsGlobe2 className="fs-3 me-2" />
+              <BsGlobe2 className="fs-3 me-3 flex-shrink-0" />
               <div>
                 <div className="fw-bold">Website</div>
                 <a href="" className="text-decoration-none">

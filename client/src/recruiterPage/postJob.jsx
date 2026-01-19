@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { FaArrowLeft } from "react-icons/fa6";
 import { MdOutlineMenu } from "react-icons/md";
-import Loading from "../assets/loginPage/signUpLoading.webm";
 import Clock from "../component/clock";
-
+import { API_URL } from "../api";
 
 export default function PostJob({
   isEditPost = false,
@@ -13,7 +12,6 @@ export default function PostJob({
   addMessageBox,
   setOpenMenu,
 }) {
-  const API_URL = import.meta.env.VITE_API_URL;
   const [postJobActive, setPostJobActive]= useState(false);
   const resetJobPostData = {
     role: "",
@@ -303,21 +301,12 @@ export default function PostJob({
         <div className="endBtn mt-5 mb-4 w-100 d-flex justify-content-center">
          <button
            type="submit"
-           className="w-100 mt-3 rounded-pill fw-bold text-white saveBtn py-1 d-flex justify-content-center align-items-center"
+           className="w-100 mt-2 rounded-pill fw-bold text-white saveBtn py-1 d-flex justify-content-center align-items-center"
            disabled={postJobActive}
          >
            {postJobActive ? (
-             <video
-               src={Loading}
-               autoPlay
-               loop
-               muted
-               style={{
-                 width: "90px",
-                 height: "90px",
-               } }
-             />
-           ) : ( <span className="yellowText"> {isEditPost ? "Update Post" : "Post Job"}</span> ) }
+            <span class="loader loaderYellow" style={{ width: "20px", height:"20px" }} ></span>
+             ) : ( <span className="yellowText"> {isEditPost ? "Update Post" : "Post Job"}</span> ) }
          </button>
         </div>
       </form>

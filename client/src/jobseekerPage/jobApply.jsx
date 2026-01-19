@@ -5,6 +5,7 @@ import { MdFilterListAlt } from "react-icons/md";
 import { dateFormat } from "../utils/dateFormat";
 import { MdOutlineMenu } from "react-icons/md";
 import Clock from "../component/clock";
+import { API_URL } from "../api";
 
 export default function JobApply({
   JobApplyData,
@@ -15,7 +16,7 @@ export default function JobApply({
   setRecruiterId,
   setOpenMenu,
 }) {
-  const API_URL=import.meta.env.VITE_API_URL;
+  const [ deleteActive, setDeleteActive ]= useState(false)
   const [filterData, setFilterData] = useState([]);
   const [searchData, setSearchData] = useState({
     jobTitle: "",
@@ -54,7 +55,9 @@ export default function JobApply({
   }, [searchData, JobApplyData]);
 
   const deleteApplication = async (object) => {
+    
     try {
+      setDeleteActive(true);
       const res = await fetch(`${API_URL}/jobseeker/jobApply`, {
         method: "PUT",
         headers: {
@@ -66,6 +69,7 @@ export default function JobApply({
       const data = await res.json();
       // console.log(data);
       addMessageBox("check", "Application deleted successfully");
+      setDeleteActive(false);
       fetchData();
     } catch (error) {
       console.log("Delete error :-", error);
@@ -169,6 +173,7 @@ export default function JobApply({
                     View
                   </button>
                   <button
+                    disabled={deleteActive}
                     className="btn btn-delete ms-2"
                     onClick={() => {
                       deleteApplication({

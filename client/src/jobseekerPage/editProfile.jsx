@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { ImCross } from "react-icons/im";
 import { FaArrowLeft } from "react-icons/fa6";
 import { MdAddTask } from "react-icons/md";
-import Loading from "../assets/loginPage/signUpLoading.webm";
+import { API_URL } from "../api";
 
 function EditProfile({
   setActiveContent,
@@ -11,7 +11,6 @@ function EditProfile({
   addMessageBox,
 }) {
     const [saveActive, setSaveActive]=useState(false);
-  const API_URL=import.meta.env.VITE_API_URL;
   const [editData, setEditData] = useState({
     userName: JobSeekerData?.userName || "",
     jobTitle: JobSeekerData.personalInfo?.jobTitle || "",
@@ -559,16 +558,7 @@ function EditProfile({
             disabled={saveActive}
           >
             {saveActive ? (
-              <video
-                src={Loading}
-                autoPlay
-                loop
-                muted
-                style={{
-                  width: "90px",
-                  height: "90px",
-                } }
-              />
+              <span class="loader loaderYellow" style={{ width: "20px", height:"20px" }} ></span>
             ) : (
     <span className="saveBtnText">Save Profile</span>
   ) }

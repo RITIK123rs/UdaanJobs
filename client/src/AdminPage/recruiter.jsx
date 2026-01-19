@@ -5,6 +5,7 @@ import { MdEmail } from "react-icons/md";
 import { dateFormat } from "../utils/dateFormat";
 import { MdOutlineMenu } from "react-icons/md";
 import Clock from "../component/clock";
+import { API_URL } from "../api";
 
 function RecruiterSection({
   setRecruiterId,
@@ -12,7 +13,7 @@ function RecruiterSection({
   setActiveContent,
   setOpenMenu,
 }) {
-  const API_URL = import.meta.env.VITE_API_URL;
+
   const [recruiterData, setRecruiterData] = useState();
 
   const [searchData, setSearchData] = useState({

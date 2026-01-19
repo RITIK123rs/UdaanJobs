@@ -3,6 +3,7 @@ import { FaBriefcase } from "react-icons/fa";
 import { RiMapPinLine } from "react-icons/ri";
 import { FaArrowLeft } from "react-icons/fa6";
 import { dateFormat } from "../utils/dateFormat";
+import { API_URL } from "../api";
 
 export default function JobDetail({
   setActiveContent,
@@ -12,8 +13,6 @@ export default function JobDetail({
   isRecruiter = false,
   isAdmin = false,
 }) {
-
-  const API_URL=import.meta.env.VITE_API_URL;
   const [applyActive, setApplyActive]=useState(false);
 
   async function applyJob(object) {

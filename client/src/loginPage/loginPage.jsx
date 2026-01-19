@@ -6,7 +6,7 @@ import { FaArrowLeft } from "react-icons/fa6";
 import { Navigate, NavLink, useNavigate } from "react-router-dom";
 import { MdMail } from "react-icons/md";
 import { FaRegCircleXmark } from "react-icons/fa6";
-import Loading from "../assets/loginPage/signUpLoading.webm";
+import BoyImg from "../assets/Boy.png"
 
 function LoginPage({ addMessageBox }) {
   const API_URL = import.meta.env.VITE_API_URL;
@@ -619,16 +619,7 @@ function LoginPage({ addMessageBox }) {
               disabled={loading}
             >
               {loading ? (
-                <video
-                  src={Loading}
-                  autoPlay
-                  loop
-                  muted
-                  style={{
-                    width: "90px",
-                    height: "90px",
-                  }}
-                />
+                <span class="loader" style={{ width: "22px", height:"22px" }} ></span>
               ) : (
                 "Login"
               )}
@@ -652,7 +643,7 @@ function LoginPage({ addMessageBox }) {
           }}
         >
           <img
-            src="/Boy.png"
+            src={BoyImg}
             alt=""
             className=" boyImg "
             style={{
@@ -758,16 +749,7 @@ function LoginPage({ addMessageBox }) {
               disabled={loading}
             >
               {loading ? (
-                <video
-                  src={Loading}
-                  autoPlay
-                  loop
-                  muted
-                  style={{
-                    width: "90px",
-                    height: "90px",
-                  }}
-                />
+               <span class="loader" style={{ width: "22px", height:"22px" }} ></span>
               ) : (
                 "Sign Up"
               )}

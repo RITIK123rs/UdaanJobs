@@ -11,6 +11,7 @@ import JobDetail from "../jobseekerPage/jobDetail";
 import Profile from "../jobseekerPage/profile";
 import CompanyProfile from "../recruiterPage/companyProfile";
 import MenuContent from "./menuContent";
+import { API_URL } from "../api";
 
 export default function AdminPage() {
   const [activeContent, setActiveContent] = useState("dashboard");
@@ -23,7 +24,6 @@ export default function AdminPage() {
   const [recruiterData, setRecruiterData] = useState();
   const [prevContent, setPrevContent] = useState();
   const [openMenu, setOpenMenu] = useState(false);
-  const API_URL = import.meta.env.VITE_API_URL;
 
   const renderContent = () => {
     switch (activeContent) {
