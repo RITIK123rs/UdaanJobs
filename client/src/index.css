@@ -17,7 +17,7 @@ p {
   white-space: pre-wrap !important;
 }
 
-/* <span class="loader" style={{ width: "20px", height:"20px" }} ></span> */
+/* <span className="loader" style={{ width: "20px", height:"20px" }} ></span> */
 
 .loader {
   width: 25px;

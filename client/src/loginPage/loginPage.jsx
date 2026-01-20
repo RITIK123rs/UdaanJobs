@@ -619,7 +619,7 @@ function LoginPage({ addMessageBox }) {
               disabled={loading}
             >
               {loading ? (
-                <span class="loader" style={{ width: "22px", height:"22px" }} ></span>
+                <span className="loader" style={{ width: "22px", height:"22px" }} ></span>
               ) : (
                 "Login"
               )}
@@ -749,7 +749,7 @@ function LoginPage({ addMessageBox }) {
               disabled={loading}
             >
               {loading ? (
-               <span class="loader" style={{ width: "22px", height:"22px" }} ></span>
+               <span className="loader" style={{ width: "22px", height:"22px" }} ></span>
               ) : (
                 "Sign Up"
               )}
