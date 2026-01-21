@@ -12,10 +12,13 @@ const nodemailer = require("nodemailer");
 
 const transporter = nodemailer.createTransport({
   service: "gmail",
+  port: 587,
+  secure: false,
   auth: {
     user: process.env.Email_Id,
     pass: process.env.Email_PasswordCode,
   },
+  connectionTimeout: 10000,
 });
 
 const otpStore = {};
@@ -43,7 +46,7 @@ router.post("/generateOTP", async (req, res) => {
 
     if (isSignUp) {
       mailData = {
-        from: `UdaanJobs < ${process.env.Email_Id} >`,
+        from: `UdaanJobs <${process.env.Email_Id}>`,
         to: email,
         subject: "Email Verification OTP",
         html: `
