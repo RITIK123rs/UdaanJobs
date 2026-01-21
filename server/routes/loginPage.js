@@ -11,11 +11,19 @@ require("dotenv").config();
 const nodemailer = require("nodemailer");
 
 const transporter = nodemailer.createTransport({
-  service: "gmail",
+  // service: "gmail",
+  // auth: {
+  //   user: process.env.Email_Id,
+  //   pass: process.env.Email_PasswordCode,
+  // },
+
+  host: smtp-relay.brevo.com,
+  port: process.env.SMTP_port,
   auth: {
-    user: process.env.Email_Id,
-    pass: process.env.Email_PasswordCode,
+    user: process.env.SMTP_user,
+    pass: process.env.SMTP_pass,
   },
+
 });
 
 const otpStore = {};
