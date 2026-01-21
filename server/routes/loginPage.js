@@ -17,8 +17,8 @@ const transporter = nodemailer.createTransport({
   //   pass: process.env.Email_PasswordCode,
   // },
 
-  host: smtp-relay.brevo.com,
-  port: process.env.SMTP_port,
+  host: "smtp-relay.brevo.com",
+  port: Number(process.env.SMTP_port),
   auth: {
     user: process.env.SMTP_user,
     pass: process.env.SMTP_pass,
