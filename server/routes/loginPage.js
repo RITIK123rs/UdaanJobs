@@ -11,27 +11,11 @@ require("dotenv").config();
 const nodemailer = require("nodemailer");
 
 const transporter = nodemailer.createTransport({
-  // service: "gmail",
-  // auth: {
-  //   user: process.env.Email_Id,
-  //   pass: process.env.Email_PasswordCode,
-  // },
-
-  host: process.env.SMTP_Server,
-  port: Number(process.env.SMTP_post),
-  secure: false,
+  service: "gmail",
   auth: {
     user: process.env.Email_Id,
     pass: process.env.Email_PasswordCode,
   },
-});
-
-transporter.verify((err, success) => {
-  if (err) {
-    console.error("transporter ERROR ❌", err);
-  } else {
-    console.log("transporter READY ✅");
-  }
 });
 
 const otpStore = {};
