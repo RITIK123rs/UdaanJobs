@@ -12,13 +12,18 @@ const nodemailer = require("nodemailer");
 
 const transporter = nodemailer.createTransport({
   service: "gmail",
-  port: 587,
-  secure: false,
   auth: {
     user: process.env.Email_Id,
     pass: process.env.Email_PasswordCode,
   },
-  connectionTimeout: 10000,
+});
+
+transporter.verify((err, success) => {
+  if (err) {
+    console.error("transporter ERROR ❌", err);
+  } else {
+    console.log("transporter READY ✅");
+  }
 });
 
 const otpStore = {};
