@@ -6,7 +6,7 @@ const jobSeeker = require("../database/jobseekerModel");
 const jobRecruiter = require("../database/recruiterModel");
 const Admin = require("../database/adminModel");
 const jwt = require("jsonwebtoken");
-const bcrypt= require("bcryptjs");
+const bcrypt = require("bcryptjs");
 require("dotenv").config();
 const nodemailer = require("nodemailer");
 
@@ -18,20 +18,20 @@ const transporter = nodemailer.createTransport({
   // },
 
   host: "smtp-relay.brevo.com",
-  port: Number(process.env.SMTP_port),
+  port: 587,
+  secure: false,
   auth: {
-    user: process.env.SMTP_user,
-    pass: process.env.SMTP_pass,
+    user: process.env.Smtp_user,
+    pass: process.env.Smtp_pass,
   },
-
 });
 
 const otpStore = {};
 
 router.post("/generateOTP", async (req, res) => {
   try {
-    // console.log("generateOTP");
-    // console.log(req.body);
+    console.log("generateOTP");
+    console.log(req.body);
     const { email, isSignUp } = req.body;
     let OTP = "";
     for (let i = 0; i < 6; i++) {
@@ -40,9 +40,12 @@ router.post("/generateOTP", async (req, res) => {
     // console.log(OTP);
     otpStore[email] = OTP;
     // console.log(otpStore[email]);
-    setTimeout(() => {
-      delete otpStore[email];
-    }, 5 * 60 * 1000);
+    setTimeout(
+      () => {
+        delete otpStore[email];
+      },
+      5 * 60 * 1000,
+    );
 
     let mailData;
 
@@ -95,7 +98,7 @@ router.post("/generateOTP", async (req, res) => {
       };
     } else {
       mailData = {
-        from: `Udaan Jobs < ${process.env.Email_Id} >`,
+        from: `Udaan Jobs <${process.env.Email_Id}>`,
         to: email,
         subject: "Password Reset OTP",
         html: `
@@ -173,20 +176,20 @@ router.post("/changePassword", async (req, res) => {
   try {
     const { email, password } = req.body;
 
-    const hashedPassword= bcrypt.hashSync(password,10);
+    const hashedPassword = bcrypt.hashSync(password, 10);
 
     // console.log({ email, password });
     let user = await jobSeeker.findOneAndUpdate(
       { email },
-      { $set: {password: hashedPassword} },
-      { new: true }
+      { $set: { password: hashedPassword } },
+      { new: true },
     );
 
     if (!user) {
       user = await jobRecruiter.findOneAndUpdate(
         { email },
-        { $set: {password: hashedPassword } },
-        { new: true }
+        { $set: { password: hashedPassword } },
+        { new: true },
       );
     }
 
@@ -194,7 +197,7 @@ router.post("/changePassword", async (req, res) => {
       user = await Admin.findOneAndUpdate(
         { email },
         { $set: { password: hashedPassword } },
-        { new: true }
+        { new: true },
       );
     }
 
@@ -212,8 +215,8 @@ router.post("/userCheck", async (req, res) => {
 
     const checkUser =
       (await jobSeeker.findOne({ email })) ||
-      (await jobRecruiter.findOne({ email } )) ||
-      (await Admin.findOne({ email })) ;
+      (await jobRecruiter.findOne({ email })) ||
+      (await Admin.findOne({ email }));
 
     // console.log("userCheck :-", checkUser);
 
@@ -223,7 +226,7 @@ router.post("/userCheck", async (req, res) => {
 
     return res.json({ message: "new email", emailExist: false });
   } catch (error) {
-    console.log("userCheck error :- ".error);
+    console.log("userCheck error :- ",error);
   }
 });
 
@@ -248,13 +251,21 @@ router.post("/signUp", async (req, res) => {
     // console.log("userType");
 
     let user = null;
-    const hashedPassword= await bcrypt.hash(password, 10)
+    const hashedPassword = await bcrypt.hash(password, 10);
     // console.log(hashedPassword);
 
     if (userType == "jobSeeker") {
-      user = await jobSeeker.create({ userName: name, email, password: hashedPassword });
+      user = await jobSeeker.create({
+        userName: name,
+        email,
+        password: hashedPassword,
+      });
     } else {
-      user = await jobRecruiter.create({ userName: name, email, password: hashedPassword });
+      user = await jobRecruiter.create({
+        userName: name,
+        email,
+        password: hashedPassword,
+      });
     }
 
     // console.log(user);
@@ -263,7 +274,7 @@ router.post("/signUp", async (req, res) => {
     const token = jwt.sign(
       { userId: user._id, userType },
       process.env.SECRET_KEY,
-      { expiresIn: "1d" }
+      { expiresIn: "1d" },
     );
     return res.json({ newUserCreated: true, token, userType });
   } catch (error) {
@@ -309,7 +320,7 @@ router.post("/", async (req, res) => {
     if (!user) return res.json({ login: false, emailMatch: false });
 
     // console.log(user.password);
-    const match = await bcrypt.compare(password, user.password)
+    const match = await bcrypt.compare(password, user.password);
     // console.log(match);
     if (!match) {
       return res.json({ login: false, emailMatch: true });
@@ -318,13 +329,12 @@ router.post("/", async (req, res) => {
     const token = jwt.sign(
       { userId: user._id, userName: user.userName, userType },
       process.env.SECRET_KEY,
-      rememberMe ? { expiresIn: "30d" } : {}
+      rememberMe ? { expiresIn: "30d" } : {},
     );
 
     return res.json({ login: true, token, userType });
   } catch (error) {
-     return res.status(500).json({ login: false, message: "Failed to login" });
-
+    return res.status(500).json({ login: false, message: "Failed to login" });
   }
 });
 

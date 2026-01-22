@@ -126,13 +126,13 @@ function LoginPage({ addMessageBox }) {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, isSignUp }),
     })
-      // .then((res) => res.json())
-      // .then((data) => console.log(data))
-      // .catch((error) => console.log(error));
+      .then((res) => res.json())
+      .then((data) => console.log(data))
+      .catch((error) => console.log(error));
   }
 
   async function signUpFunction(otp) {
-    // console.log(otp);
+    console.log(otp);
     await fetch(`${API_URL}/login/signUp`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -140,10 +140,10 @@ function LoginPage({ addMessageBox }) {
     })
       .then((res) => res.json())
       .then((data) => {
-        // console.log(data);
+        console.log(data);
         if (data.newUserCreated) {
-          // console.log("SignUp Successfully");
-          // console.log(data);
+          console.log("SignUp Successfully");
+          console.log(data);
           localStorage.setItem("token", data.token);
           navigate(`/${data.userType}`);
           setisOTPclose(true);
@@ -181,7 +181,7 @@ function LoginPage({ addMessageBox }) {
     let userCheck = await res.json();
 
     if (!res.ok) {
-      // console.log(userCheck);
+      console.log(userCheck);
       return;
     }
 
