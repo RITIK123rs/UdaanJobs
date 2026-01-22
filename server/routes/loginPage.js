@@ -10,6 +10,7 @@ const bcrypt = require("bcryptjs");
 require("dotenv").config();
 const nodemailer = require("nodemailer");
 
+
 const transporter = nodemailer.createTransport({
   // service: "gmail",
   // auth: {
@@ -17,20 +18,12 @@ const transporter = nodemailer.createTransport({
   //   pass: process.env.Email_PasswordCode,
   // },
 
-  // host: "smtp-relay.brevo.com",
-  // port: 587,
-  // secure: false,
-  // auth: {
-  //   user: process.env.Smtp_user,
-  //   pass: process.env.Smtp_pass,
-  // },
-
   host: "smtp-relay.brevo.com",
-  port: 465, // SSL port
-  secure: true, // must be true for 465
+  port: 587,
+  secure: false,
   auth: {
-    user: process.env.BREVO_SMTP_USER,
-    pass: process.env.BREVO_SMTP_PASS,
+    user: process.env.Smtp_user,
+    pass: process.env.Smtp_pass,
   },
   
 });
@@ -240,7 +233,7 @@ router.post("/userCheck", async (req, res) => {
 
     return res.json({ message: "new email", emailExist: false });
   } catch (error) {
-    console.log("userCheck error :- ", error);
+    console.log("userCheck error :- ",error);
   }
 });
 
