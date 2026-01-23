@@ -23,12 +23,12 @@ app.get('/', (req, res) => {
 app.use("/upload", express.static('upload'));
 app.use("/defaultImage", express.static('defaultImage'));
 
-// app.use("/jobseeker",jobseekerRouter);
-// app.use("/fileHandle",multerRouter);
-// app.use("/recruiter",recruiterRoter);
-// app.use("/login",loginRouter);
-// app.use("/home",homeRouter);
-// app.use("/admin",adminRouter);
+app.use("/jobseeker",jobseekerRouter);
+app.use("/fileHandle",multerRouter);
+app.use("/recruiter",recruiterRoter);
+app.use("/login",loginRouter);
+app.use("/home",homeRouter);
+app.use("/admin",adminRouter);
 
 
 app.listen(process.env.port_no,"0.0.0.0");
