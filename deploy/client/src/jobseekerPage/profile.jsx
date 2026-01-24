@@ -13,6 +13,9 @@ import Clock from "../component/clock";
 import { API_URL } from "../api";
 import defaultBanner from "../assets/defaultImage/defaultBanner.jpg"
 import defaultProfilePic from "../assets/defaultImage/defaultProfilePic.jpg"
+import defaultCompanyImg from "../assets/defaultImage/defaultCompanyImg.jpg"
+import defaultCollegeImg from "../assets/defaultImage/defaultCollegeImg.jpg"
+
 
 
 function Profile({
@@ -207,7 +210,7 @@ function Profile({
               <div className="cardBox mt-4 d-flex">
                 <div className="imgBox d-none d-lg-block rounded-circle me-3">
                   <img
-                    src={`${API_URL}/defaultImage/defaultCompanyImg.jpg`}
+                    src={defaultCompanyImg}
                     alt=""
                   />
                 </div>
@@ -216,7 +219,7 @@ function Profile({
                     <div className="d-flex">
                       <div className="imgBox d-block d-lg-none img2 rounded-circle me-3">
                         <img
-                          src={`${API_URL}/defaultImage/defaultCompanyImg.jpg`}
+                          src={defaultCompanyImg}
                           alt=""
                         />
                       </div>
@@ -245,7 +248,7 @@ function Profile({
               <div className="cardBox mt-4 d-flex">
                 <div className="imgBox d-none d-lg-block rounded-circle me-3">
                   <img
-                    src={`${API_URL}/defaultImage/defaultCollegeImg.jpg`}
+                    src={defaultCollegeImg}
                     alt=""
                   />
                 </div>
@@ -254,7 +257,7 @@ function Profile({
                     <div className="d-flex">
                       <div className="imgBox d-block d-lg-none img2 rounded-circle me-3">
                         <img
-                          src={`${API_URL}/defaultImage/defaultCollegeImg.jpg`}
+                          src={defaultCollegeImg}
                           alt=""
                         />
                       </div>
