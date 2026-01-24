@@ -4,7 +4,7 @@ const express= require("express");
 const app= express();
 const cors= require("cors");
 const jobseekerRouter= require("./routes/jobseekerPage");
-const multerRouter= require("./routes/multer");
+const cloudRouter= require("./routes/cloud");
 const recruiterRoter= require("./routes/recruiterPage");
 const loginRouter=require("./routes/loginPage");
 const homeRouter= require("./routes/homePage");
@@ -21,7 +21,7 @@ app.get('/', (req, res) => {
 });
 
 app.use("/jobseeker",jobseekerRouter);
-app.use("/fileHandle",multerRouter);
+app.use("/fileHandle",cloudRouter);
 app.use("/recruiter",recruiterRoter);
 app.use("/login",loginRouter);
 app.use("/home",homeRouter);

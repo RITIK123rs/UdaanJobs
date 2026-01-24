@@ -21,13 +21,16 @@ const storage = multer.memoryStorage();
 const upload = multer({ storage });
 
 
-const uploadToCloudinary = (buffer, folder, fieldname) =>
+const uploadToCloudinary = (buffer, folder, fieldname, mimetype) =>
   new Promise((resolve, reject) => {
-    console.log(`Uploading ${fieldname} to Cloudinary folder: ${folder} ...`);
+    const isPDF = mimetype === "application/pdf";
+
+    // console.log(`Uploading ${fieldname} (${isPDF ? "PDF" : "MEDIA"})...`);
+
     const stream = cloudinary.uploader.upload_stream(
       {
         folder,
-        resource_type: "auto",
+        resource_type: isPDF ? "raw" : "image",
         public_id: `${fieldname}-${Date.now()}`,
       },
       (err, result) => {
@@ -35,13 +38,14 @@ const uploadToCloudinary = (buffer, folder, fieldname) =>
           console.error(`Error uploading ${fieldname}:`, err);
           reject(err);
         } else {
-          console.log(`Upload successful for ${fieldname}:`, result);
           resolve(result);
         }
       }
     );
+
     streamifier.createReadStream(buffer).pipe(stream);
   });
+
 
 
 const deleteFromCloudinary = async (publicId, type = "image") => {
