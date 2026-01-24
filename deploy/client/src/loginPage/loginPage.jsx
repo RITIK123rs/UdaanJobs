@@ -23,8 +23,8 @@ function LoginPage({ addMessageBox }) {
   const [isOTPclose, setisOTPclose] = useState(true);
   const [isResendClose, setIsResendClose] = useState(false);
 
-  const handleResend = (email) => {
-    generateOTP(email, false);
+  const handleResend = (email,choose) => {
+    generateOTP(email, choose);
     setIsResendClose(true);
     setTimeout(() => {
       setIsResendClose(false);
@@ -381,7 +381,7 @@ function LoginPage({ addMessageBox }) {
           </button>
           <p className="resendText">
             Didn’t get the code?{" "}
-            <span onClick={() => isResendClose ?  undefined : handleResend(forgotPasswordData.email)}>
+            <span onClick={() => isResendClose ?  undefined : handleResend(forgotPasswordData.email, false)}>
               Resend
             </span>
           </p>
@@ -521,7 +521,7 @@ function LoginPage({ addMessageBox }) {
               <p className="resendText">
                 {" "}
                 Didn’t get the code?{" "}
-                <span onClick={() => isResendClose ?  undefined : handleResend(signUpData.email)}>
+                <span onClick={() => isResendClose ?  undefined : handleResend(signUpData.email, true)}>
                   Resend
                 </span>
               </p>

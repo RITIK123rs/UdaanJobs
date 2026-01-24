@@ -21,6 +21,15 @@ function LoginPage({ addMessageBox }) {
   const [blurBackground, setBlurBackground] = useState(false);
   const [loading, setLoading] = useState(false);
   const [isOTPclose, setisOTPclose] = useState(true);
+  const [isResendClose, setIsResendClose] = useState(false);
+
+  const handleResend = (email,choose) => {
+    generateOTP(email, choose);
+    setIsResendClose(true);
+    setTimeout(() => {
+      setIsResendClose(false);
+    }, 60000);
+  };
   const defaultForgotPasswordData = {
     email: "",
     password: "",
@@ -372,7 +381,7 @@ function LoginPage({ addMessageBox }) {
           </button>
           <p className="resendText">
             Didn’t get the code?{" "}
-            <span onClick={() => generateOTP(forgotPasswordData.email, false)}>
+            <span onClick={() => isResendClose ?  undefined : handleResend(forgotPasswordData.email, false)}>
               Resend
             </span>
           </p>
@@ -461,6 +470,7 @@ function LoginPage({ addMessageBox }) {
                 setForgotPasswordStatus("close");
                 setForgotPasswordData(defaultForgotPasswordData);
                 otpRef2.current.map((e) => (e.value = ""));
+                isResendClose(false);
               }}
             />
 
@@ -479,8 +489,9 @@ function LoginPage({ addMessageBox }) {
                 <FaRegCircleXmark
                   onClick={() => {
                     setLoading(false);
-                    setisOTPclose(true),
+                    setisOTPclose(true);
                       otpRef.current.map((e) => (e.value = ""));
+                      isResendClose(false);
                   }}
                 />
               </div>
@@ -510,7 +521,7 @@ function LoginPage({ addMessageBox }) {
               <p className="resendText">
                 {" "}
                 Didn’t get the code?{" "}
-                <span onClick={() => generateOTP(signUpData.email, true)}>
+                <span onClick={() => isResendClose ?  undefined : handleResend(signUpData.email, true)}>
                   Resend
                 </span>
               </p>
