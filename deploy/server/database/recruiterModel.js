@@ -31,6 +31,9 @@ const recruiterSchema = new mongoose.Schema({
     logo:{
       type: String,
     },
+    logoPublicId:{
+      type: String,
+    },
     about: {
       type: String,
     },

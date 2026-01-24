@@ -9,6 +9,7 @@ import { FaIndianRupeeSign } from "react-icons/fa6";
 import { MdOutlineMenu } from "react-icons/md";
 import Clock from "../component/clock";
 import { API_URL } from "../api";
+import defaultCompanyImg from "../assets/defaultImage/defaultCompanyImg.jpg"
 
 
 function FindJob({
@@ -204,8 +205,8 @@ function FindJob({
                   className="w-100 companyLogo h-100"
                   src={
                     data?.recruiter?.company?.logo || null
-                      ? `${API_URL}/upload/${data?.recruiter?.company?.logo}`
-                      : `${API_URL}/defaultImage/defaultCompanyImg.jpg`
+                      ? (data?.recruiter?.company?.logo)
+                      : defaultCompanyImg
                   }
                   alt=""
                 />

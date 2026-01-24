@@ -4,6 +4,7 @@ import { dateFormat } from "../utils/dateFormat";
 import { MdOutlineMenu } from "react-icons/md";
 import Clock from "../component/clock";
 import { API_URL } from "../api";
+import defaultCompanyImg from "../assets/defaultImage/defaultCompanyImg.jpg"
 
 
 function DashBoard({JobSeekerData, setOpenMenu}){
@@ -56,7 +57,7 @@ function DashBoard({JobSeekerData, setOpenMenu}){
         { (JobSeekerData?.application?.appliedJobs || []).slice(0,5).map(( data , i) => (
           <div key={data._id} className="d-flex flex-row justify-content-around py-2">
             <div className="imgBox rounded-circle mt-1">
-              <img className="w-100 h-100 companyLogo" src={ (data?.jobId?.recruiter?.company?.logo || null ) ? `${API_URL}/upload/${data?.jobId?.recruiter?.company?.logo}`  : (`${API_URL}/defaultImage/defaultCompanyImg.jpg`) } alt="" />
+              <img className="w-100 h-100 companyLogo" src={ (data?.jobId?.recruiter?.company?.logo || null ) ? (data?.jobId?.recruiter?.company?.logo) : (defaultCompanyImg) } alt="" />
             </div>
 
             <div className="nameBox d-flex flex-column justify-content-center ">

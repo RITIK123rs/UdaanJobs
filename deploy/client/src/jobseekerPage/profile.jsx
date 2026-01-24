@@ -11,6 +11,9 @@ import { FaArrowLeft } from "react-icons/fa6";
 import { MdOutlineMenu } from "react-icons/md";
 import Clock from "../component/clock";
 import { API_URL } from "../api";
+import defaultBanner from "../assets/defaultImage/defaultBanner.jpg"
+import defaultProfilePic from "../assets/defaultImage/defaultProfilePic.jpg"
+
 
 function Profile({
   setActiveContent,
@@ -93,8 +96,8 @@ function Profile({
               <img
                 src={
                   JobSeekerData?.personalInfo?.banner || null
-                    ? `${API_URL}/upload/${JobSeekerData.personalInfo.banner}`
-                    : `${API_URL}/defaultImage/defaultBanner.jpg`
+                    ? (JobSeekerData.personalInfo.banner)
+                    : defaultBanner
                 }
                 alt="banner"
                 className="uploadImg"
@@ -104,8 +107,8 @@ function Profile({
               <img
                 src={
                   JobSeekerData?.personalInfo?.profilePhoto || null
-                    ? `${API_URL}/upload/${JobSeekerData.personalInfo.profilePhoto}`
-                    : `${API_URL}/defaultImage/defaultProfilePic.jpg`
+                    ? (JobSeekerData.personalInfo.profilePhoto)
+                    :  defaultProfilePic
                 }
                 alt="Profile"
                 className="uploadImg"
@@ -164,7 +167,7 @@ function Profile({
                   >
                     <a
                       className="px-3"
-                      href={`${API_URL}/upload/${JobSeekerData?.personalInfo?.resume}`}
+                      href={JobSeekerData?.personalInfo?.resume}
                       target="_blank"
                       download="Resume.pdf"
                     >

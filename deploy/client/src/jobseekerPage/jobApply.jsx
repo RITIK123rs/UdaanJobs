@@ -6,6 +6,8 @@ import { dateFormat } from "../utils/dateFormat";
 import { MdOutlineMenu } from "react-icons/md";
 import Clock from "../component/clock";
 import { API_URL } from "../api";
+import defaultCompanyImg from "../assets/defaultImage/defaultCompanyImg.jpg"
+
 
 export default function JobApply({
   JobApplyData,
@@ -146,8 +148,8 @@ export default function JobApply({
                         className="w-100 h-100 companyLogo"
                         src={
                           data?.jobId?.recruiter?.company?.logo || null
-                            ? `${API_URL}/upload/${data?.jobId?.recruiter?.company?.logo}`
-                            : `${API_URL}/defaultImage/defaultCompanyImg.jpg`
+                            ? (data?.jobId?.recruiter?.company?.logo)
+                            : defaultCompanyImg
                         }
                         alt=""
                       />

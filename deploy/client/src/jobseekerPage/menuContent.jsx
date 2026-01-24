@@ -9,6 +9,7 @@ import { ImExit } from "react-icons/im";
 import { NavLink, useNavigate } from "react-router-dom";
 import { ImCancelCircle } from "react-icons/im";
 import { API_URL } from "../api";
+import defaultProfilePic from "../assets/defaultImage/defaultProfilePic.jpg"
 
 export default function MenuContent({ JobSeekerData, setOpenMenu, phoneMenu=false, setActiveContent, setPreviousComponent }) {
   const navigate = useNavigate();
@@ -90,8 +91,8 @@ export default function MenuContent({ JobSeekerData, setOpenMenu, phoneMenu=fals
             <img
               src={
                 JobSeekerData?.personalInfo?.profilePhoto || null
-                  ? `${API_URL}/upload/${JobSeekerData.personalInfo.profilePhoto}`
-                  : `${API_URL}/defaultImage/defaultProfilePic.jpg`
+                  ? (JobSeekerData.personalInfo.profilePhoto)
+                  : defaultProfilePic
               }
               alt=""
               width="100%"
