@@ -6,6 +6,7 @@ import { ImExit } from "react-icons/im";
 import { NavLink, useNavigate } from "react-router-dom";
 import { ImCancelCircle } from "react-icons/im";
 import { API_URL } from "../api";
+import defaultCompanyImg from "../assets/defaultImage/defaultCompanyImg.jpg"
 
 export default function MenuContent({ recruiterData,setOpenMenu, phoneMenu=false, setActiveContent}) {
   const navigate = useNavigate();
@@ -89,8 +90,8 @@ export default function MenuContent({ recruiterData,setOpenMenu, phoneMenu=false
             <img
               src={
                 recruiterData?.company?.logo || null
-                  ? `${API_URL}/upload/${recruiterData?.company?.logo}`
-                  : `${API_URL}/defaultImage/defaultCompanyImg.jpg`
+                  ? (recruiterData?.company?.logo)
+                  : defaultCompanyImg
               }
               alt=""
               width="100%"

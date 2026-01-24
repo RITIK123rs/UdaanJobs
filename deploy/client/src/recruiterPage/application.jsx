@@ -182,9 +182,8 @@ function JobApplicants({
                       >
                         <a
                           className="text-decoration-none d-flex align-items-center"
-                          href={`${API_URL}/upload/${data.resume}`}
+                          href={data.resume}
                           target="_blank"
-                          download="Resume.pdf"
                         >
                           <FaFilePdf className="icon fs-5 me-1" />
                           Resume

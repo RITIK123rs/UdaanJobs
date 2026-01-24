@@ -6,6 +6,7 @@ import { dateFormat } from "../utils/dateFormat";
 import { MdOutlineMenu } from "react-icons/md";
 import Clock from "../component/clock";
 import { API_URL } from "../api";
+import defaultProfilePic from "../assets/defaultImage/defaultProfilePic.jpg"
 
 function JobSeekerSection({
   setActiveContent,
@@ -151,8 +152,8 @@ function JobSeekerSection({
                       <img
                         src={
                           data.personalInfo.profilePhoto
-                            ? `${API_URL}/upload/${data.personalInfo.profilePhoto}`
-                            : `${API_URL}/defaultImage/defaultProfilePic.jpg`
+                            ? (data.personalInfo.profilePhoto)
+                            : defaultProfilePic
                         }
                         alt=""
                       />

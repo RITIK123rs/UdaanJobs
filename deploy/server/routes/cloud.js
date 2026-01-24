@@ -32,6 +32,7 @@ const uploadToCloudinary = (buffer, folder, fieldname, mimetype) =>
         folder,
         resource_type: isPDF ? "raw" : "image",
         public_id: `${fieldname}-${Date.now()}`,
+        ...(isPDF && { format: "pdf" }),
       },
       (err, result) => {
         if (err) {
@@ -93,8 +94,11 @@ router.put(
       for (const field of ["resume", "profilePhoto", "banner"]) {
         if (req.files[field]?.[0]) {
           const file = req.files[field][0];
+          if (field === "resume" && file.mimetype !== "application/pdf") {
+  return res.status(400).json({ error: "Resume must be a PDF file" });
+}
           // console.log(`Processing field: ${field}, filename: ${file.originalname}`);
-          const result = await uploadToCloudinary(file.buffer, `udaanjobs_uploads/${field}`, field);
+          const result = await uploadToCloudinary(file.buffer, `udaanjobs_uploads/${field}`, field, file.mimetype);
           // console.log(`Deleting old ${field} from Cloudinary if exists...`);
           await deleteFromCloudinary(prevData?.personalInfo?.[`${field}PublicId`],typeMap[field]);
           updateObj[`personalInfo.${field}`] = result.secure_url;
@@ -136,7 +140,7 @@ router.put(
 
       if (req.file) {
         // console.log("Uploading recruiter logo...");
-        const result = await uploadToCloudinary(req.file.buffer, "udaanjobs_uploads/logo", "logo");
+        const result = await uploadToCloudinary(req.file.buffer, "udaanjobs_uploads/logo", "logo", req.file.mimetype);
         // console.log("Deleting old logo if exists...");
         await deleteFromCloudinary(prevData?.company?.logoPublicId);
 

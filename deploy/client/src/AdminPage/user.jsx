@@ -8,6 +8,9 @@ import { dateFormat } from "../utils/dateFormat";
 import { MdOutlineMenu } from "react-icons/md";
 import Clock from "../component/clock";
 import { API_URL } from "../api";
+import defaultProfilePic from "../assets/defaultImage/defaultProfilePic.jpg"
+import defaultCompanyImg from "../assets/defaultImage/defaultCompanyImg.jpg"
+
 
 
 function Users({
@@ -177,11 +180,11 @@ function Users({
                         src={
                           user.userType === "jobSeeker"
                             ? user.image
-                              ? `${API_URL}/upload/${user.image}`
-                              : `${API_URL}/defaultImage/defaultProfilePic.jpg`
+                              ? (user.image)
+                              : defaultProfilePic
                             : user.image
-                            ? `${API_URL}/upload/${user.image}`
-                            : `${API_URL}/defaultImage/defaultCompanyImg.jpg`
+                            ? (user.image)
+                            : defaultCompanyImg
                         }
                         alt="user"
                       />

@@ -71,6 +71,7 @@ textarea::-webkit-scrollbar,
   height: 100%;
   width: 100%;
   object-fit: cover;
+  object-position: center;
 }
 .recruiterPage ul li:hover {
   background-color: var(--yellowTextColor);
@@ -89,6 +90,7 @@ textarea::-webkit-scrollbar,
 .menuImgBox {
   width: 50px;
   height: 50px;
+  border: 1px solid var(--yellowTextColor);
 }
 .recruiterDashboard .databox h1 {
   font-weight: bolder;
@@ -548,7 +550,9 @@ table th {
   object-fit: cover;
   object-position: center;
 }
-
+.companyProfile .logoBox{
+  border: 1px solid var(--yellowTextColor);
+}
 .companyProfile .backBtn {
   min-width: 110px;
   color: var(--yellowTextColor);
@@ -714,7 +718,7 @@ table th {
 .recruiterPage .menuImgBox > img {
   width: 100%;
   object-position: center;
-  object-fit: fill;
+  object-fit: cover;
   height: 100%;
 }
 

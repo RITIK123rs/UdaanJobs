@@ -4,6 +4,7 @@ import { RiMapPinLine } from "react-icons/ri";
 import { FaArrowLeft } from "react-icons/fa6";
 import { dateFormat } from "../utils/dateFormat";
 import { API_URL } from "../api";
+import defaultCompanyImg from "../assets/defaultImage/defaultCompanyImg.jpg"
 
 export default function JobDetail({
   setActiveContent,
@@ -65,8 +66,8 @@ export default function JobDetail({
               className="companyLogo"
               src={
                 selectData?.recruiter?.company?.logo || null
-                  ? `${API_URL}/upload/${selectData?.recruiter?.company?.logo}`
-                  : `${API_URL}/defaultImage/defaultCompanyImg.jpg`
+                  ?  (selectData?.recruiter?.company?.logo)
+                  :  defaultCompanyImg
               }
               alt=""
             />

@@ -6,6 +6,10 @@ import { jwtDecode } from "jwt-decode";
 import { MdOutlineMenu } from "react-icons/md";
 import Clock from "../component/clock";
 import { API_URL } from "../api";
+import defaultProfilePic from "../assets/defaultImage/defaultProfilePic.jpg"
+import defaultCompanyImg from "../assets/defaultImage/defaultCompanyImg.jpg"
+
+
 
 function DashBoard({ setOpenMenu }) {
   const [dashBoardData, setDashBoardData] = useState();
@@ -107,11 +111,11 @@ function DashBoard({ setOpenMenu }) {
                 src={
                   data.userType === "jobSeeker"
                     ? data.image
-                      ? `${API_URL}/upload/${data.image}`
-                      : `${API_URL}/defaultImage/defaultProfilePic.jpg`
-                    : data.image
-                    ? `${API_URL}/upload/${data.image}`
-                    : `${API_URL}/defaultImage/defaultCompanyImg.jpg`
+                      ? (data.image)
+                      : defaultProfilePic
+                    : (data.image)
+                    ? (data.image)
+                    : defaultCompanyImg
                 }
                 alt="user"
               />

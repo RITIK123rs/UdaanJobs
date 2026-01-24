@@ -166,10 +166,8 @@ function Profile({
                     }}
                   >
                     <a
-                      className="px-3"
                       href={JobSeekerData?.personalInfo?.resume}
                       target="_blank"
-                      download="Resume.pdf"
                     >
                       <MdFileDownload className="fs-4 me-1" />
                       Resume
@@ -181,7 +179,7 @@ function Profile({
                   ""
                 ) : (
                   <button
-                    className=" ms-2 editBtn px-3"
+                    className=" ms-2 editBtn"
                     onClick={() => setActiveContent("editProfile")}
                   >
                     Edit Page

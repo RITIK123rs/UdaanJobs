@@ -332,16 +332,19 @@
 }
 .profile .details .editBtn,
 .profile .details .resumeBtn {
-  padding: 7px 0;
+  padding: 7px 13px;
   border: 2px solid var(--yellowTextColor);
   background: transparent;
   color: var(--yellowTextColor);
   font-weight: bold;
   border-radius: 10px;
+  font-size: 15px;
+}
+.profile .details .resumeBtn{
+  padding: 5.5px 14px;
 }
 .profile .details .resumeBtn a {
   text-decoration: none;
-  font-size: 18px;
   color: var(--yellowTextColor);
 }
 .profile .setStatus {
@@ -675,13 +678,16 @@
   overflow: hidden;
   border-radius: 50%;
   object-position: center;
-  object-fit: fill;
+  object-fit: cover;
   flex-shrink: 0;  
 }
-.companyLogo {
+.jobSeekerPage .companyLogo {
   width: 100%;
   height: 100%;
+  object-fit: cover;
+  object-position: center;
 }
+
 .jobApply .companyName,
 .findJob .companyName {
   cursor: pointer;

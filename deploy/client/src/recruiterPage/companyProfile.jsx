@@ -13,6 +13,15 @@ import { FaArrowLeft } from "react-icons/fa6";
 import { MdOutlineMenu } from "react-icons/md";
 import Clock from "../component/clock";
 import { API_URL } from "../api";
+import defaultCompanyImg from "../assets/defaultImage/defaultCompanyImg.jpg";
+import companyPeople1 from "../assets/defaultImage/companyPeople1.jpg";
+import companyPeople5 from "../assets/defaultImage/companyPeople5.jpg";
+import companyPerson4 from "../assets/defaultImage/companyPerson4.jpg";
+import companyPeople2 from "../assets/defaultImage/companyPeople2.jpg";
+import companyPerson3 from "../assets/defaultImage/companyPeople3.jpg";
+import companyImg2 from "../assets/defaultImage/companyImg2.jpg";
+import companyImg1 from "../assets/defaultImage/companyImg1.jpg";
+import companyImg3 from "../assets/defaultImage/companyImg3.jpg";
 
 export default function CompanyProfile({
   recruiterData,
@@ -54,13 +63,13 @@ export default function CompanyProfile({
         <div className="info flex-grow-1 me-lg-3">
           <div className=" header mb-4 align-items-center p-3 rounded border border-white position-relative">
             <div className="d-flex gap-4">
-              <div className="imgBox rounded-circle overflow-hidden border border-white">
+              <div className="imgBox logoBox rounded-circle overflow-hidden">
                 <img
                   className="companyLogo"
                   src={
                     recruiterData?.company?.logo || null
-                      ? `${API_URL}/upload/${recruiterData?.company?.logo}`
-                      : `${API_URL}/defaultImage/defaultCompanyImg.jpg`
+                      ? recruiterData?.company?.logo
+                      : defaultCompanyImg
                   }
                   alt=""
                 />
@@ -151,7 +160,7 @@ export default function CompanyProfile({
                 >
                   <img
                     className="w-100 h-100"
-                    src={`${API_URL}/defaultImage/companyPeople1.jpg`}
+                    src={companyPeople1}
                     alt="John Doe"
                   />
                 </div>
@@ -166,7 +175,7 @@ export default function CompanyProfile({
                 >
                   <img
                     className="w-100 h-100"
-                    src={`${API_URL}/defaultImage/companyPeople5.jpg`}
+                    src={companyPeople5}
                     alt="Jane Smith"
                   />
                 </div>
@@ -181,7 +190,7 @@ export default function CompanyProfile({
                 >
                   <img
                     className="w-100 h-100"
-                    src={`${API_URL}/defaultImage/companyPerson4.jpg`}
+                    src={companyPerson4}
                     alt="Alice Brown"
                   />
                 </div>
@@ -196,7 +205,7 @@ export default function CompanyProfile({
                 >
                   <img
                     className="w-100 h-100"
-                    src={`${API_URL}/defaultImage/companyPeople2.jpg`}
+                    src={companyPeople2}
                     alt="Bob Johnson"
                   />
                 </div>
@@ -211,7 +220,7 @@ export default function CompanyProfile({
                 >
                   <img
                     className="w-100 h-100"
-                    src={`${API_URL}/defaultImage/companyPeople3.jpg`}
+                    src={companyPerson3}
                     alt="Eve Davis"
                   />
                 </div>
@@ -226,20 +235,20 @@ export default function CompanyProfile({
             <div className="d-flex gap-2 mt-4 flex-wrap">
               <div className="imgBox1">
                 <img
-                  src={`${API_URL}/defaultImage/companyImg2.jpg`}
+                  src={companyImg2}
                   alt="imgBox1"
                 />
               </div>
               <div className="imgBox2 d-flex flex-column gap-2">
                 <div className="subImgBox1">
                   <img
-                    src={`${API_URL}/defaultImage/companyImg1.jpg`}
+                    src={companyImg1}
                     alt="subImgBox1"
                   />
                 </div>
                 <div className="subImgBox2">
                   <img
-                    src={`${API_URL}/defaultImage/companyImg3.jpg`}
+                    src={companyImg3}
                     alt="subImgBox2"
                   />
                 </div>
