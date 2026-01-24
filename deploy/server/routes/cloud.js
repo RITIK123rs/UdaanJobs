@@ -25,7 +25,7 @@ const uploadToCloudinary = (buffer, folder, fieldname, mimetype) =>
   new Promise((resolve, reject) => {
     const isPDF = mimetype === "application/pdf";
 
-    // console.log(`Uploading ${fieldname} (${isPDF ? "PDF" : "MEDIA"})...`);
+    console.log(`Uploading ${fieldname} (${isPDF ? "PDF" : "MEDIA"})...`);
 
     const stream = cloudinary.uploader.upload_stream(
       {
