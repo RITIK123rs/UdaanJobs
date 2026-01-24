@@ -24,10 +24,8 @@ function LoginPage({ addMessageBox }) {
   const [isResendClose, setIsResendClose] = useState(false);
 
   const handleResend = (email) => {
-    generateOTP(email, false); // send OTP
-    setIsResendClose(true);        // disable button
-
-    // Re-enable button after 1 minute (60,000ms)
+    generateOTP(email, false);
+    setIsResendClose(true);
     setTimeout(() => {
       setIsResendClose(false);
     }, 60000);
@@ -468,11 +466,11 @@ function LoginPage({ addMessageBox }) {
               className="position-absolute closeIcon"
               onClick={() => {
                 setLoading(false);
-                isResendClose(false);
                 setBlurBackground(false);
                 setForgotPasswordStatus("close");
                 setForgotPasswordData(defaultForgotPasswordData);
                 otpRef2.current.map((e) => (e.value = ""));
+                isResendClose(false);
               }}
             />
 
@@ -491,9 +489,9 @@ function LoginPage({ addMessageBox }) {
                 <FaRegCircleXmark
                   onClick={() => {
                     setLoading(false);
-                    isResendClose(false);
-                    setisOTPclose(true),
+                    setisOTPclose(true);
                       otpRef.current.map((e) => (e.value = ""));
+                    isResendClose(false);
                   }}
                 />
               </div>
