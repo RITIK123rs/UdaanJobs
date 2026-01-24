@@ -1,0 +1,403 @@
+
+.Container{
+    border: 2px solid yellow;
+}
+
+.header .content .title{
+    font-size: 65px;
+    line-height: 65px;
+}
+.header .content button{
+  min-height: 40px;
+  min-width: 245px;
+}
+.header .content button{
+    font-size: 20px;
+    background: var(--yellowGradient);
+    box-shadow: 0 2px 25px rgba(255, 189, 32, 0.3);
+}
+
+.header .content .subtitle{
+    font-size: 18px;
+}
+
+.header .avatarBox{
+  border: 2px solid var(--yellowTextColor);
+  width: 140px;
+  height: 75px;
+  top: 50%;
+  right: 5%;
+  backdrop-filter: blur(7px);
+}
+
+.header .avatarImgBox{
+  width: 35px;
+  height: 35px;
+  border: 1px solid white;
+  margin-left: -10px;
+}
+
+.header .avatarCount{
+  margin-top: 6px;
+}
+
+.titleHeading{
+  font-size: 45px;
+  margin-top: 30px;
+}
+
+.ScrollBox .scrollContainer{
+  height: 150px;
+  margin-top: 40px;
+}
+.ScrollBox .logoImgBox{
+  position: absolute;
+  left:1800px;
+  animation: scrollAnimation linear infinite;
+  animation-duration: calc(10*1.3s); ;
+  animation-delay: calc(var(--position) * -1.3s);
+}
+
+.subscribeBox{
+  margin-top: 90px;
+}
+.subscribeBox .emailBox input{
+  width: 40%;
+  outline: none;
+  
+}
+.subscribeBox .emailBox button{
+  width: 15%;
+  background-color: var(--yellowTextColor);
+  outline: none;
+
+}
+
+@keyframes scrollAnimation {
+  80%{
+    left:-200px;
+  }
+  100%{
+    left:-200px;
+  }
+}
+.ScrollBox .logoImgBox img{
+  width: 200px;
+}
+
+.JobCategoryBox .scrollCardBox{
+  margin-top: 60px;
+}
+
+.JobCategoryBox .cardButton{
+  width: 100px;
+  height: 50px;
+  background-color: var(--yellowTextColor);
+  border: 0;
+}
+
+.JobCategoryBox .cardButtonIcon{
+  width: 40px ;
+  height: 40px;
+}
+.JobCategoryBox .cardBox{
+  border: 2px solid var(--yellowTextColor);
+  min-height: 330px;
+}
+
+.JobCategoryBox .cardImgBox{
+  width: 90px;
+  padding: 15px;
+  background: var(--yellowGradient);
+  box-shadow: 0 2px 25px rgba(255, 189, 32, 0.3);
+}
+
+.stepWorkingBox {
+  margin-top: 80px !important;
+}
+.stepWorkingBox .iconBox{
+  width: 60px;
+  height: 60px;
+  padding: 8px;
+  background: var(--yellowGradient);
+  box-shadow: 0 2px 25px rgba(255, 189, 32, 0.3);
+}
+.stepWorkingBox .stepBox{
+  margin: 30px 0;
+}
+.stepWorkingBox .stepHead{
+  font-size: 25px;
+}
+.stepWorkingBox .stepBody{
+  font-size: 16px;
+}
+.stepWorkingBox .searchIcon{
+  height: 94%;
+  width: 85%;
+}
+.commentBox .cardBox{
+  border: 2px solid var(--yellowTextColor);
+  padding: 20px 20px 5px 20px ;
+  min-height: 235px;
+}
+.commentBox .starBox{
+  color: var(--yellowTextColor);
+  font-size: 17px;
+}
+.commentBox .imgBox{
+  width: 80px;
+  height: 80px;
+  border: 3px solid var(--yellowTextColor);
+}
+.commentBox  .iconBox{
+  width: 80px;
+  height: 50px;
+  padding: 8px;
+  background-color: var(--yellowTextColor);
+  border: none;
+  box-shadow: 0 2px 25px rgba(255, 189, 32, 0.3);
+}
+.subscribeBox .emailBox input{
+  width: 52%;
+}
+.subscribeBox .emailBox button{
+  width: 20%;
+
+}
+
+@media only screen and (max-width: 470.98px){
+    .header .content .title{
+    font-size: 40px;
+    line-height: 47px;
+}
+.header .content .subtitle{
+    font-size: 16px;
+}
+.header .content button{
+    font-size: 17px;
+}
+.header .avatarBox{
+  display: none;
+}
+.titleHeading{
+  font-size: 35px;
+  margin-top: 30px;
+}
+.JobCategoryBox .titleHeading{
+  font-size: 35px;
+}
+.JobCategoryBox .subTitleHeading{
+  font-size: 18bpx !important;
+}
+
+.stepWorkingBox .iconBox{
+  width: 75px;
+  height: 50px;
+}
+
+.stepWorkingBox .stepBox{
+  margin: 15px 0;
+}
+.stepWorkingBox .stepHead{
+  font-size: 20px;
+}
+.stepWorkingBox .stepBody{
+  font-size: 15px;
+}
+.stepWorkingBox .titleHeading{
+  font-size: 40px;
+}
+.stepWorkingBox .subTitleHeading{
+  font-size: 20px !important;
+}
+.commentBox  .iconBox{
+  width: 155px;
+  height: 35px;
+  padding: 5px;
+}
+.subscribeBox .emailBox input{
+  width: 80%;
+}
+.subscribeBox .emailBox button{
+  width: 40%;
+}
+
+}
+
+@media only screen and (min-width: 470.98px) and (max-width: 575.98px) {
+
+      .header .content .title{
+    font-size: 50px;
+    line-height: 57px;
+}
+.header .content button{
+    font-size: 20px;
+}
+
+.header .content .subtitle{
+    font-size: 18px;
+}
+.titleHeading{
+  font-size: 32px;
+  margin-top: 30px;
+}
+
+.JobCategoryBox .titleHeading{
+  font-size: 39px;
+}
+.JobCategoryBox .subTitleHeading{
+  font-size: 20px !important;
+}
+.stepWorkingBox .stepBox{
+  padding: 0 25px;
+}
+.stepWorkingBox .iconBox{
+  width: 75px;
+  height: 60px;
+}
+.commentBox  .iconBox{
+  width: 200px;
+  height: 40px;
+  padding: 5px;
+}
+.commentBox .cardBox{
+  min-height: 200px;
+}
+.subscribeBox .emailBox input{
+  width: 90%;
+  
+}
+.subscribeBox .emailBox button{
+  width: 60%;
+
+}
+}
+
+
+@media only screen and (min-width: 576px) and (max-width: 767.98px) {
+  .header .avatarBoy{
+    width: 70%;
+  }
+
+      .header .content .title{
+    font-size: 66px;
+    line-height: 72px;
+}
+.header .content button{
+    font-size: 25px;
+}
+
+.header .content .subtitle{
+    font-size: 20px;
+}
+
+.titleHeading{
+  font-size: 38px;
+  margin-top: 30px;
+}
+.stepWorkingBox .iconBox{
+  width: 70px;
+  height: 60px;
+}
+.stepWorkingBox .titleHeading{
+  font-size: 45px;
+}
+.commentBox  .iconBox{
+  width: 200px;
+  height: 40px;
+  padding: 5px;
+}
+.commentBox .cardBox{
+  min-height: 200px;
+}
+.subscribeBox .emailBox input{
+  width: 65%;
+  
+}
+.subscribeBox .emailBox button{
+  width: 30%;
+
+}
+}
+
+
+@media only screen and (min-width: 768px) and (max-width: 991.98px) {
+    .header .content .title{
+    font-size: 46px;
+    line-height: 52px;
+}
+.header .content button{
+    font-size: 16px;
+}
+
+.header .content .subtitle{
+    font-size: 14px;
+}
+
+.stepWorkingBox .girlImg{
+  width: 500px !important;
+}
+.commentBox  .iconBox{
+  width: 100px;
+  height: 40px;
+  padding: 5px;
+}
+.subscribeBox .emailBox input{
+  width: 65%;
+  
+}
+.subscribeBox .emailBox button{
+  width: 25%;
+
+}
+}
+
+
+@media only screen and (min-width: 992px) and (max-width: 1199.98px) {
+  .header .content .title{
+    font-size: 50px;
+    line-height: 52px;
+}
+.header .content button{
+    font-size: 18px;
+}
+
+.header .content .subtitle{
+    font-size: 15px;
+}
+
+.stepWorkingBox .iconBox{
+  width: 70px;
+  height: 60px;
+}
+
+.stepWorkingBox .stepBox{
+  margin: 15px 0;
+}
+.stepWorkingBox .stepHead{
+  font-size: 20px;
+}
+.stepWorkingBox .stepBody{
+  font-size: 15px;
+}
+.commentBox  .iconBox{
+  width: 100px;
+  height: 40px;
+  padding: 5px;
+}
+.commentBox .cardBox{
+  min-height: 230px;
+}
+.subscribeBox .emailBox input{
+  width: 50%;
+  
+}
+.subscribeBox .emailBox button{
+  width: 20%;
+
+}
+
+}
+
+
+

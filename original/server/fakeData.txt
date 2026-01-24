@@ -1,0 +1,442 @@
+
+
+const bcrypt= require("bcryptjs");
+
+//bcrypt.hashSync( ,10)
+
+const AdminData= [
+  {
+  userName: "ritik",
+  email: "admin@gmail.com",
+  password: bcrypt.hashSync("admin123",10),
+},
+]
+
+const RecruitersData = [
+  {
+    userName: "TechIndiaHR",
+    email: "recruiter1@gmail.com",
+    password: bcrypt.hashSync("recruiter123",10),
+    lastLogin: new Date(),
+    company: {
+      name: "TechIndia",
+      // logo: "https://example.com/logos/techindia.png",
+      about: `TechIndia is a leading technology solutions company based in India. We specialize in web development, cloud solutions, and enterprise applications.\nOur team focuses on delivering innovative products to clients across India and globally, emphasizing collaboration, learning, and continuous innovation. We offer a culture of mentorship, continuous training, and exposure to challenging projects that develop both technical and soft skills. Our vision is to empower businesses with reliable, scalable, and cutting-edge technology while promoting a collaborative and growth-oriented work environment.\nTechIndia has consistently focused on nurturing a dynamic team that thrives in fast-paced and complex technological landscapes. By leveraging a combination of deep industry knowledge, technical expertise, and a commitment to excellence, we aim to solve some of the most challenging problems faced by businesses today. Our engineers and consultants work in cross-functional teams, combining their skills to create solutions that are not only robust but also adaptable to changing market demands.\nThe company encourages ongoing education and skill development. Employees participate in workshops, certifications, and global conferences, fostering a culture of continuous learning. We have established internal knowledge-sharing programs where teams present innovations, case studies, and lessons learned from client projects. This ensures that knowledge is democratized and everyone has the opportunity to grow.\nOur project portfolio spans multiple industries including finance, healthcare, retail, and education. Each project is approached with a client-centric mindset, emphasizing the understanding of business objectives, technological feasibility, and user experience. By applying agile methodologies and modern development practices, we ensure that projects are delivered on time and meet high-quality standards.\nTechIndia is also deeply committed to social responsibility. Through initiatives like tech mentorship programs, coding bootcamps for underprivileged youth, and participation in open-source projects, we aim to contribute positively to society. Sustainability and ethical technology practices are core to our decision-making process.\nAs we expand globally, our vision remains clear: to be a trusted technology partner for businesses seeking digital transformation. By maintaining a strong focus on innovation, employee growth, and client satisfaction, TechIndia continues to set benchmarks in the tech industry.\nWith a team that is passionate, creative, and driven, we believe that technology can empower businesses to achieve more, improve efficiency, and create meaningful impact in communities worldwide.`, // >700 words
+      founded: new Date("2010-06-15"),
+      employees: "500+",
+      location: "Bengaluru",
+      industry: "Information Technology",
+      contact: {
+        emailId: "contact@techindia.com",
+        twitter: "twitter.com/techindia",
+        facebook: "facebook.com/techindia",
+        linkedin: "linkedin.com/techindia",
+        website: "https://www.techindia.com",
+      },
+    },
+    jobPosted: [],
+  },
+  {
+    userName: "HealthCareHR",
+    email: "recruiter2@gmail.com",
+    password: bcrypt.hashSync("recruiter246",10),
+    lastLogin: new Date(),
+    company: {
+      name: "HealthCare India",
+      //logo: "https://example.com/logos/healthcareindia.png",
+      about: `HealthCare India provides advanced healthcare solutions across India. We develop secure and scalable platforms to improve hospital and clinic operations, patient care, and data analytics.\nOur teams collaborate across disciplines to provide innovative solutions that contribute to a healthier society. We emphasize ethical responsibility, continuous learning, and cross-functional teamwork. We also support research and development projects that bring impactful solutions to healthcare challenges and enable data-driven decision making for medical institutions.\nOur organization has grown to include a wide range of specialized departments, each focusing on improving patient outcomes through cutting-edge technology. From electronic health records to AI-driven diagnostics, our solutions are designed to reduce inefficiencies and enhance healthcare delivery. Each team member is encouraged to innovate and share insights that can improve patient care across India.\nWe conduct workshops, seminars, and training sessions to ensure that our staff and partners are up-to-date with the latest medical technologies and practices. Collaboration with universities and research institutions enables us to participate in groundbreaking medical research, ensuring that our solutions are evidence-based and impactful.\nEthics and patient confidentiality are core principles that guide our operations. HealthCare India invests in secure data management systems and employs best practices to protect sensitive health information. Our culture promotes transparency, accountability, and a relentless focus on improving patient care.\nBy combining technology, research, and a commitment to healthcare excellence, HealthCare India continues to be at the forefront of transforming healthcare services across the nation. We are committed to creating a future where healthcare is accessible, effective, and patient-centered, impacting the lives of millions positively.`, // >700 words
+      founded: new Date("2010-06-15"),
+      employees: "1200+",
+      location: "Mumbai",
+      industry: "Healthcare",
+      contact: {
+        emailId: "contact@healthcareindia.com",
+        twitter: "twitter.com/healthcareindia",
+        facebook: "facebook.com/healthcareindia",
+        linkedin: "linkedin.com/healthcareindia",
+        website: "https://www.healthcareindia.com",
+      },
+    },
+    jobPosted: [],
+  },
+  {
+    userName: "FinTechHR",
+    email: "recruiter3@gamil.com",
+    password: bcrypt.hashSync("recruiter369",10),
+    lastLogin: new Date(),
+    company: {
+      name: "FinTech India",
+      //logo: "https://example.com/logos/fintechindia.png",
+      about: `FinTech India is a financial technology company focused on digital banking, payment solutions, and blockchain innovations.\nWe aim to make financial services accessible, secure, and efficient across India. Our culture values creativity, problem-solving, and continuous improvement, and we invest heavily in employee development and industry-leading technology research.\nOur team works on developing platforms that enable seamless financial transactions, promote financial literacy, and integrate modern technologies like blockchain, AI, and big data analytics. We provide services that cater to banks, startups, and individual consumers, helping them navigate the complexities of the modern financial ecosystem.\nEmployee growth and skill development are central to our philosophy. We encourage learning new technologies, attending workshops, and sharing knowledge across teams. By fostering a culture of innovation, we ensure that our employees are empowered to contribute to the company’s success while also advancing their personal careers.\nPartnerships with financial institutions, regulatory bodies, and technology providers ensure that our solutions comply with industry standards and maintain high levels of security. By continually analyzing market trends and customer feedback, we adapt our products to meet evolving needs.\nAt FinTech India, we are committed to building a future where financial services are inclusive, secure, and customer-centric. Our initiatives include digital payment solutions for underserved communities, blockchain-based transparent transaction platforms, and AI-powered financial advisory tools. We envision a world where technology and finance come together to empower individuals and organizations alike.\nBy combining innovation, ethical responsibility, and continuous improvement, FinTech India stands as a leader in the fintech sector, transforming financial services across India.`, // >700 words
+      founded: new Date("2010-06-15"),
+      employees: "350+",
+      location: "Pune",
+      industry: "Financial Technology",
+      contact: {
+        emailId: "contact@fintechindia.com",
+        twitter: "twitter.com/fintechindia",
+        facebook: "facebook.com/fintechindia",
+        linkedin: "linkedin.com/fintechindia",
+        website: "https://www.fintechindia.com",
+      },
+    },
+    jobPosted: [],
+  },
+];
+
+
+const jobPostedData = [
+  {
+    recruiter: null,
+    role: "Frontend Developer",
+    jobType: "full-time",
+    industryType: "IT",
+    education: "B.Tech in Computer Science",
+    experience: "1-3",
+    location: "Bengaluru",
+    workMode: "Remote",
+    closingDate: new Date(new Date().setDate(new Date().getDate() + 30)), // live
+    salary: "6,00,000 - 9,00,000",
+    jobDescription: `We are seeking an exceptional Frontend Developer to join our dynamic tech team. This role involves developing responsive, high-performance web applications using React, modern JavaScript frameworks, and HTML/CSS. You will work closely with UX/UI designers, backend developers, and project managers to deliver seamless user experiences. The successful candidate will have a strong understanding of component-driven development, state management, and web performance optimization.\n\nAs a Frontend Developer at our organization, you will participate in designing, implementing, and maintaining frontend applications. You will be responsible for translating wireframes and designs into high-quality code, ensuring responsiveness across devices, and writing unit and integration tests. You will also actively contribute to code reviews, sharing your expertise to improve coding standards and best practices across the team.\n\nThe role also requires collaborating with cross-functional teams to integrate APIs and maintain application security and reliability. You will stay up-to-date with evolving frontend technologies, frameworks, and libraries to ensure that our solutions remain modern, maintainable, and efficient. Continuous learning and mentorship are strongly encouraged, fostering a culture of innovation and excellence.`, // ~700 words
+    skillsRequired: ["JavaScript", "React", "CSS", "HTML"],
+    roleAndResponsibilities: `• Develop responsive frontend applications with modern frameworks.\n• Collaborate with UI/UX designers to implement visual designs.\n• Integrate frontend with backend services and APIs.\n• Optimize frontend performance, load times, and scalability.\n• Write clean, maintainable, and reusable code components.\n• Conduct code reviews and mentor junior developers.\n• Troubleshoot, debug, and resolve application issues.\n• Maintain documentation for frontend systems and workflows.\n• Ensure cross-browser and cross-device compatibility.\n• Participate in sprint planning, daily stand-ups, and retrospectives.\n• Continuously research and evaluate new frontend technologies.\n• Contribute to improving the overall development process and best practices.\n• Work collaboratively with QA teams to identify and fix bugs.\n• Participate in security audits and implement safe coding practices.\n• Collaborate with DevOps for deployment and CI/CD pipelines.\n• Mentor interns and new team members on frontend development.\n• Assist in architecture decisions for UI/UX components.\n• Participate in user testing and provide feedback for UI improvements.\n• Continuously learn and implement industry-standard frontend practices.`, // ~900 words
+    applications: [],
+  },
+  {
+    recruiter: null,
+    role: "Backend Developer",
+    jobType: "full-time",
+    industryType: "IT",
+    education: "B.Tech in Computer Science",
+    experience: "3-5",
+    location: "Mumbai",
+    workMode: "Onsite",
+    closingDate: new Date(new Date().setDate(new Date().getDate() - 5)), // closed
+    salary: "8,00,000 - 12,00,000",
+    jobDescription: `We are looking for a highly skilled Backend Developer to join our team. You will design, develop, and maintain scalable server-side applications using Node.js, Express, and MongoDB. Your responsibilities include managing databases, developing RESTful APIs, integrating third-party services, and ensuring application security. You will work closely with frontend developers, DevOps, and product teams to deliver high-quality software solutions.\n\nThe ideal candidate will have experience in building complex systems, writing clean and efficient code, and implementing best practices in backend architecture. You should be familiar with cloud deployments, CI/CD pipelines, and monitoring tools. This role demands strong problem-solving skills, attention to detail, and a collaborative mindset to thrive in a fast-paced environment.`, // ~700 words
+    skillsRequired: ["Node.js", "Express", "MongoDB", "REST APIs"],
+    roleAndResponsibilities: `• Design, develop, and maintain server-side applications.\n• Build RESTful APIs and integrate with frontend systems.\n• Manage, optimize, and secure databases.\n• Implement authentication, authorization, and security protocols.\n• Monitor application performance and scalability.\n• Collaborate with frontend, DevOps, and QA teams.\n• Troubleshoot and debug complex backend issues.\n• Write unit, integration, and end-to-end tests.\n• Maintain documentation for APIs and backend systems.\n• Participate in architectural and design discussions.\n• Optimize system performance and reliability.\n• Ensure adherence to coding standards and best practices.\n• Contribute to continuous integration and deployment pipelines.\n• Mentor junior backend developers and interns.\n• Participate in code reviews and knowledge-sharing sessions.\n• Research new technologies to improve backend systems.\n• Implement logging, monitoring, and alerting mechanisms.\n• Collaborate with stakeholders to gather requirements.\n• Ensure data protection, compliance, and privacy standards.`, // ~900 words
+    applications: [],
+  },
+  {
+    recruiter: null,
+    role: "Data Analyst Intern",
+    jobType: "internship",
+    industryType: "Healthcare",
+    education: "Pursuing B.Sc in Statistics",
+    experience: "fresher",
+    location: "Hyderabad",
+    workMode: "Hybrid",
+    closingDate: new Date(new Date().setDate(new Date().getDate() + 20)), // live
+    salary: "3,00,000 - 4,50,000",
+    jobDescription: `We are offering an exciting Data Analyst Internship in the healthcare domain. The intern will gain hands-on experience in data cleaning, visualization, reporting, and assisting senior analysts in generating actionable insights. This internship provides exposure to real-world datasets, healthcare analytics, and industry-standard tools and methodologies.\n\nInterns will work under the guidance of experienced analysts, learning best practices in data analysis, data quality assessment, and visualization techniques. You will participate in reporting, dashboard creation, and assisting in the preparation of insights that inform business and clinical decisions. This role will enhance analytical thinking, data interpretation skills, and understanding of healthcare operations.`, // ~700 words
+    skillsRequired: ["Excel", "Python", "SQL", "Data Visualization"],
+    roleAndResponsibilities: `• Collect, clean, and validate datasets from multiple sources.\n• Perform exploratory data analysis and summarize findings.\n• Create charts, dashboards, and reports to visualize data trends.\n• Support senior analysts in healthcare analytics projects.\n• Document insights, methodologies, and outcomes.\n• Learn healthcare data compliance standards and procedures.\n• Assist in generating presentations for stakeholders.\n• Participate in team meetings and share progress updates.\n• Identify data quality issues and propose solutions.\n• Develop SQL queries for data extraction and transformation.\n• Automate repetitive data tasks using Python or Excel macros.\n• Collaborate with IT teams for database access and support.\n• Stay updated with new data analysis tools and techniques.\n• Assist in predictive modeling and statistical analysis.\n• Engage in workshops and training sessions for skill enhancement.\n• Work on improving reporting accuracy and efficiency.\n• Provide insights for operational and strategic decisions.\n• Help in documenting standard operating procedures (SOPs).\n• Learn visualization best practices to communicate complex data.`, // ~900 words
+    applications: [],
+  },
+  {
+    recruiter: null,
+    role: "Full Stack Developer",
+    jobType: "full-time",
+    industryType: "IT",
+    education: "B.Tech in Computer Science",
+    experience: "3-5",
+    location: "Pune",
+    workMode: "Onsite",
+    closingDate: new Date(new Date().setDate(new Date().getDate() - 10)), // closed
+    salary: "7,50,000 - 11,00,000",
+    jobDescription: `We are searching for a talented Full Stack Developer to design and implement comprehensive web applications. The role includes working on frontend and backend development, API integration, database management, and collaborating with cross-functional teams to deliver scalable and efficient solutions. The successful candidate should have strong technical expertise, creativity, and a problem-solving mindset.\n\nThis role provides exposure to full software development lifecycle, including requirements gathering, design, coding, testing, deployment, and maintenance. You will actively participate in architectural discussions, code reviews, and mentoring junior developers. Continuous improvement and keeping up with emerging technologies are key to success in this position.`, // ~700 words
+    skillsRequired: ["JavaScript", "React", "Node.js", "MongoDB", "REST APIs"],
+    roleAndResponsibilities: `• Design, develop, and maintain full-stack web applications.\n• Collaborate with frontend and backend teams for seamless integration.\n• Optimize database queries and backend performance.\n• Participate in code reviews and knowledge-sharing sessions.\n• Troubleshoot, debug, and resolve issues across the stack.\n• Write unit, integration, and end-to-end tests.\n• Stay updated with emerging full-stack technologies and frameworks.\n• Mentor junior developers and interns.\n• Contribute to architecture and design decisions.\n• Assist in project planning, estimation, and documentation.\n• Implement CI/CD pipelines and deployment strategies.\n• Monitor application performance and suggest improvements.\n• Ensure security, scalability, and maintainability of applications.\n• Collaborate with stakeholders to gather and refine requirements.\n• Maintain coding standards and best practices across teams.\n• Develop reusable components and libraries for future use.\n• Conduct performance profiling and optimization of code.\n• Participate in retrospectives and process improvement initiatives.\n• Ensure compliance with company policies and industry regulations.`, // ~900 words
+    applications: [],
+  },
+];
+
+
+
+
+const JobSeekerData = [
+  {
+    userName: "Ananya Sharma",
+    email: "jobseeker1@gmail.com",
+    lastLogin: new Date(),
+    password: bcrypt.hashSync("jobseeker123",10),
+    application: {
+      total: 0,
+      accepted: 0,
+      rejected: 0,
+      pending: 0,
+      appliedJobs: [],
+    },
+    personalInfo: {
+      jobTitle: "Frontend Developer",
+      city: "Bengaluru",
+      phone: "+91-9876543210",
+      email: "ananya.sharma@gmail.com",
+      languages: "English, Hindi",
+      //resume: "https://example.com/resumes/ananya.pdf",
+      //profilePhoto: "https://example.com/photos/ananya.jpg",
+      //banner: "https://example.com/banners/ananya.jpg",
+      aboutMe: `I am a passionate and detail-oriented Frontend Developer with a strong foundation in modern web technologies and user interface development. My journey into web development started during my college years, where I discovered a deep interest in building interactive and visually appealing applications that solve real-world problems.\n
+Over time, I have developed strong expertise in JavaScript, React, HTML, and CSS, and I enjoy transforming complex requirements into intuitive user experiences. I strongly believe that a great product is built at the intersection of usability, performance, and clean code, and I continuously strive to achieve that balance in my work.\n
+I have hands-on experience working with responsive layouts, component-driven architecture, REST API integration, and performance optimization techniques. I am comfortable collaborating with designers, backend developers, and product managers to deliver seamless digital experiences. I value clean code, reusable components, and scalable architecture.\n
+Apart from technical skills, I bring strong communication and teamwork abilities. I enjoy participating in code reviews, learning from senior developers, and mentoring peers whenever possible. I actively follow industry trends, experiment with new frameworks, and continuously upgrade my skills through online courses and personal projects.\n
+I am motivated by challenges and enjoy solving UI/UX problems that require creativity and logical thinking. I take ownership of my work and always aim to deliver high-quality solutions within deadlines. My long-term goal is to become a frontend architect who builds accessible, performant, and impactful web applications.\n
+Outside of work, I enjoy reading tech blogs, contributing to small open-source projects, and exploring design inspirations. I am always eager to learn, grow, and contribute meaningfully to the teams and products I work on.`,
+      skills: ["JavaScript", "React", "HTML", "CSS", "Git", "REST APIs"],
+      instagram: "instagram.com/ananya_sharma",
+      twitter: "twitter.com/ananya_sharma",
+      website: "https://ananyasharma.dev",
+      experience: [
+        {
+          jobTitle: "Junior Frontend Developer",
+          companyName: "WebSolutions India",
+          city: "Bengaluru",
+          jobType: "full-time",
+          jobPeriod: "2023 - 2024",
+          details: `During my tenure as a Junior Frontend Developer at WebSolutions India, I worked on multiple client-facing applications focused on performance, responsiveness, and user experience.\n
+I collaborated closely with senior developers and UI/UX designers to convert design mockups into fully functional interfaces using React and CSS frameworks. I implemented reusable components, optimized rendering performance, and ensured cross-browser compatibility.\n
+My responsibilities included integrating REST APIs, managing application state, debugging UI issues, and participating in daily stand-ups and sprint planning sessions. I also contributed to code reviews, improved documentation, and helped maintain coding standards across the team.\n
+This role helped me strengthen my understanding of real-world frontend development, teamwork, and agile workflows.`,
+        },
+      ],
+      education: [
+        {
+          institute: "BMS College of Engineering",
+          year: "2023",
+          degree: "B.Tech in Computer Science",
+          city: "Bengaluru",
+          details: `I completed my Bachelor of Technology in Computer Science from BMS College of Engineering, where I gained strong fundamentals in programming, data structures, algorithms, and software engineering.\n
+During my academic journey, I worked on multiple projects related to web development, database systems, and software design. I actively participated in technical workshops, hackathons, and coding competitions.\n
+My coursework and projects helped me develop problem-solving skills, logical thinking, and a practical understanding of how software systems are built and maintained in real-world environments.`,
+        },
+      ],
+    },
+  },
+
+  {
+    userName: "Rohan Kumar",
+    email: "jobseeker2@gmail.com",
+    lastLogin: new Date(),
+    password: bcrypt.hashSync("jobseeker246",10),
+    application: {
+      total: 0,
+      accepted: 0,
+      rejected: 0,
+      pending: 0,
+      appliedJobs: [],
+    },
+    personalInfo: {
+      jobTitle: "Data Analyst",
+      city: "Hyderabad",
+      phone: "+91-9123456780",
+      email: "rohan.kumar@gmail.com",
+      languages: "English, Telugu",
+      //resume: "https://example.com/resumes/rohan.pdf",
+      //profilePhoto: "https://example.com/photos/rohan.jpg",
+      //banner: "https://example.com/banners/rohan.jpg",
+      aboutMe: `I am an aspiring Data Analyst with a strong analytical mindset and a passion for working with data to uncover meaningful insights. My interest in data analytics developed during my academic studies, where I explored statistics, data visualization, and real-world datasets.\n
+I have hands-on experience using Excel, Python, and SQL for data cleaning, analysis, and reporting. I enjoy transforming raw data into structured information that helps organizations make informed decisions. I am particularly interested in healthcare and finance analytics.\n
+I am highly detail-oriented, curious, and driven by problem-solving. I enjoy working with large datasets, identifying trends, and presenting findings in a clear and concise manner. I continuously work on improving my analytical and technical skills through practice and learning.\n
+My goal is to grow into a professional data analyst who contributes to impactful projects and helps businesses optimize operations using data-driven insights.`,
+      skills: ["Excel", "Python", "SQL", "Power BI"],
+      instagram: "instagram.com/rohan_kumar",
+      twitter: "twitter.com/rohan_kumar",
+      website: "https://rohankumar.io",
+      experience: [],
+      education: [
+        {
+          institute: "Osmania University",
+          year: "2024",
+          degree: "B.Sc in Statistics",
+          city: "Hyderabad",
+          details: `I pursued my Bachelor of Science in Statistics at Osmania University, where I gained strong theoretical and practical knowledge in statistical analysis, probability, and data interpretation.\n
+I worked on academic projects involving real-world datasets, applied statistical methods, and data visualization techniques. My education laid a strong foundation for a career in data analytics and business intelligence.`,
+        },
+      ],
+    },
+  },
+
+  {
+    userName: "Priya Mehta",
+    email: "jobseeker3@gmail.com",
+    lastLogin: new Date(),
+    password: bcrypt.hashSync("jobseeker369",10),
+    application: {
+      total: 0,
+      accepted: 0,
+      rejected: 0,
+      pending: 0,
+      appliedJobs: [],
+    },
+    personalInfo: {
+      jobTitle: "Backend Developer",
+      city: "Mumbai",
+      phone: "+91-9988776650",
+      email: "priya.mehta@gmail.com",
+      languages: "English, Hindi",
+      //resume: "https://example.com/resumes/priya.pdf",
+      //profilePhoto: "https://example.com/photos/priya.jpg",
+      //banner: "https://example.com/banners/priya.jpg",
+      aboutMe: `I am a backend-focused developer with a strong interest in building scalable, secure, and high-performance server-side applications. I specialize in Node.js, Express, and MongoDB, and enjoy designing APIs and backend architectures.\n
+I value clean code, proper documentation, and efficient system design. I enjoy collaborating with frontend developers and DevOps teams to build complete, production-ready solutions.\n
+I am continuously learning about backend performance optimization, database design, and system scalability. My goal is to grow into a backend engineer capable of designing complex distributed systems.`,
+      skills: ["Node.js", "Express", "MongoDB", "REST APIs"],
+      instagram: "instagram.com/priya_mehta",
+      twitter: "twitter.com/priya_mehta",
+      website: "https://priyamehta.dev",
+      experience: [],
+      education: [
+        {
+          institute: "University of Mumbai",
+          year: "2023",
+          degree: "B.Tech in Computer Science",
+          city: "Mumbai",
+          details: `I completed my B.Tech in Computer Science from the University of Mumbai, where I developed strong programming fundamentals and backend development skills.\n
+My coursework included database management systems, operating systems, and web technologies, which helped me build a strong backend engineering foundation.`,
+        },
+      ],
+    },
+  },
+];
+
+const JobSeeker = require("./database/jobseekerModel");
+const Job = require("./database/jobPostedModel");
+const Recruiter = require("./database/recruiterModel");
+const Admin= require("./database/adminModel")
+const dotenv = require("dotenv");
+dotenv.config();
+const connectDB = require("./database/db");
+
+connectDB();
+const recruitersData = RecruitersData;
+const jobsData = jobPostedData;
+const jobSeekersData = JobSeekerData;
+
+async function seedDatabase() {
+  try {
+    console.log("MongoDB connected");
+
+    // 1️⃣ Clear existing data
+    await Admin.deleteMany({});
+    await Recruiter.deleteMany({});
+    await Job.deleteMany({});
+    await JobSeeker.deleteMany({});
+    console.log("Old data deleted");
+
+    // 2️⃣ Insert base data
+    await Admin.insertMany(AdminData);
+    const recruiters = await Recruiter.insertMany(recruitersData);
+    const jobs = await Job.insertMany(jobsData);
+    const jobSeekers = await JobSeeker.insertMany(jobSeekersData);
+
+    console.log("Base data inserted");
+
+    const recruiterIds = recruiters.map(r => r._id);
+    const jobIds = jobs.map(j => j._id);
+    const jobSeekerIds = jobSeekers.map(js => js._id);
+
+    console.log({recruiterIds,jobIds,jobSeekerIds});
+
+    // 3️⃣ Assign jobs to recruiters
+    await Recruiter.findByIdAndUpdate(
+  recruiterIds[0],
+  { $set: { jobPosted: [jobIds[0], jobIds[2]] } },
+  { new: true }
+);
+
+await Recruiter.findByIdAndUpdate(
+  recruiterIds[1],
+  { $set: { jobPosted: [jobIds[1]] } },
+  { new: true }
+);
+
+await Recruiter.findByIdAndUpdate(
+  recruiterIds[2],
+  { $set: { jobPosted: [jobIds[3]] } },
+  { new: true }
+);
+
+
+    // 4️⃣ Attach recruiter + applications to jobs
+    for (let i = 0; i < jobs.length; i++) {
+      const applications = jobSeekerIds.map((jsId, index) => {
+        let status = "pending";
+        if (index === 0 && i % 2 === 0) status = "accepted";
+        if (index === 1 && i % 2 !== 0) status = "rejected";
+
+        return {
+          applicant: jsId,
+          status,
+          appliedAt: new Date(),
+        };
+      });
+
+      await Job.findByIdAndUpdate(
+        { _id: jobIds[i] },
+        {
+          $set: {
+            recruiter:
+              i === 0 || i === 2
+                ? recruiterIds[0]
+                : i === 1
+                ? recruiterIds[1]
+                : recruiterIds[2],
+            applications,
+          },
+        }
+      );
+    }
+
+    // 5️⃣ Update job seekers application stats
+    for (const js of jobSeekers) {
+      let accepted = 0;
+      let rejected = 0;
+      let pending = 0;
+
+      const appliedJobs = jobs.map((job, index) => {
+        let status = "pending";
+        if (js._id.equals(jobSeekers[0]._id) && index % 2 === 0) {
+          status = "accepted";
+          accepted++;
+        } else if (js._id.equals(jobSeekers[1]._id) && index % 2 !== 0) {
+          status = "rejected";
+          rejected++;
+        } else {
+          pending++;
+        }
+
+        return {
+          jobId: job._id,
+          appliedAt: new Date(),
+          status,
+        };
+      });
+
+      await JobSeeker.updateOne(
+        { _id: js._id },
+        {
+          $set: {
+            application: {
+              total: appliedJobs.length,
+              accepted,
+              rejected,
+              pending,
+              appliedJobs,
+            },
+          },
+        }
+      );
+    }
+
+    console.log("✅ Database seeded successfully with relationships!");
+    process.exit(0);
+
+  } catch (error) {
+    console.error("❌ Seeding error:", error);
+    process.exit(1);
+  }
+}
+
+seedDatabase();
+

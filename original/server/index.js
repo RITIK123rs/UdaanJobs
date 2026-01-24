@@ -10,6 +10,7 @@ const loginRouter=require("./routes/loginPage");
 const homeRouter= require("./routes/homePage");
 const adminRouter= require("./routes/admin");
 const fs= require("fs");
+require("dotenv").config();
 
 dotenv.config();
 connectDB();
@@ -31,5 +32,6 @@ app.use("/home",homeRouter);
 app.use("/admin",adminRouter);
 
 
-app.listen(process.env.port_no,"0.0.0.0");
-
+app.listen(process.env.port_no,() => {
+  console.log(`Server running at http://localhost:${process.env.port_no}`);
+});

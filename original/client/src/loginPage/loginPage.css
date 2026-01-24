@@ -1,0 +1,551 @@
+
+.loginPage {
+  width: 156vw;
+  height: 100vh !important;
+  transition: transform 0.8s ease;
+  transform: translateX(0);
+  will-change: transform;
+}
+.loginPage.onLogin {
+  transform: translateX(0%);
+}
+.loginPage.onSignUp {
+  transform: translateX(-36%);
+}
+.loginBox,
+.signUpBox {
+  width: 45%;
+}
+.homeBtn {
+  top: 20px;
+  left: 30px;
+  background: transparent;
+  z-index: 10;
+  
+}
+.imgBox {
+  width: 35%;
+  background-color: var(--yellowTextColor);
+}
+.boyImg {
+  width: 90%;
+}
+
+.signUpForm,
+.loginForm {
+  border: 5px solid var(--yellowTextColor);
+  border-radius: 20px;
+  height: 550px;
+  width: 450px;
+  padding: 22px;
+  box-shadow: 0 2px 25px rgba(255, 189, 32, 0.3);
+}
+.loginForm .heading {
+  font-size: 60px;
+}
+.loginForm .subHeading {
+  font-size: 19px;
+}
+.signUpForm .inputBox label,
+.loginForm .inputBox label {
+  font-size: 21px;
+  font-weight: 500;
+}
+.signUpForm .registerAsBox > label {
+  font-size: 20px;
+}
+.signUpForm .inputBox > div,
+.loginForm .inputBox > div {
+  border: 2px solid white;
+  border-radius: 5px;
+}
+.signUpForm .inputBox .icon,
+.loginForm .inputBox .icon {
+  font-size: 25px;
+}
+.signUpForm .inputBox input,
+.loginForm .inputBox input {
+  font-size: 19px;
+  width: 90%;
+  border: 0;
+  outline: none;
+  background: transparent;
+}
+.signUpForm .inputBox:focus-within > div,
+.loginForm .inputBox:focus-within > div {
+  border-color: var(--yellowTextColor);
+}
+
+.signUpForm .checkBox input,
+.loginForm .checkBox input {
+  width: 18px;
+  height: 18px;
+}
+.signUpForm button,
+.loginForm button {
+  background-color: var(--yellowTextColor);
+  box-shadow: 0 2px 25px rgba(255, 189, 32, 0.3);
+  font-size: 20px;
+  border: 0;
+  outline: 0;
+}
+.signUpForm .lastLine,
+.loginForm .lastLine {
+  font-size: 17px;
+}
+.signUpForm {
+  height: 650px;
+  width: 500px;
+}
+.signUpForm .nameInput {
+  border: 2px solid white !important;
+  border-radius: 5px;
+}
+.signUpForm .inputBox .nameInput:focus {
+  border-color: var(--yellowTextColor) !important;
+}
+.signUpForm .heading {
+  font-size: 50px;
+}
+.signUpForm .subHeading {
+  font-size: 18px;
+}
+.form-check-input:checked {
+  background-color: var(--yellowTextColor);
+  border-color: var(--yellowTextColors);
+}
+
+.form-check-input:focus {
+  box-shadow: none;
+  border-color: var(--yellowTextColor);
+}
+.signUpForm .registerAsBox > div label {
+  font-size: 18px;
+}
+.signUpForm span,
+.loginForm span {
+  cursor: pointer;
+}
+
+.loginForm .forgetPasswordText{
+  cursor: pointer;
+}
+
+.otpBox{
+  border: 4px solid var(--yellowTextColor);
+  background: #1C1C1C;
+  height: 420px;
+  width: 500px;
+  border-radius: 30px;
+  display: flex;
+  justify-self: center;
+  z-index: 50;
+  top: 20%;
+}
+
+.passwordChangeBox{
+  background: #1C1C1C;
+  z-index: 20;
+  border-radius: 20px;
+  border: 3px solid var(--yellowTextColor);
+  outline: none;
+}
+
+.passwordChangeBox .emailTake{
+  padding: 30px 40px 20px 40px;
+}
+
+.passwordChangeBox .takePassword{
+  padding: 30px 40px 20px 40px;
+}
+
+.passwordChangeBox.emailTake{
+  width: 540px;
+  height: 40%;
+}
+.passwordChangeBox.optCheck{
+  height: 415px;
+  width: 500px;
+}
+.passwordChangeBox.takePassword{
+  height: 380px;
+  width: 540px;
+}
+.passwordChangeBox.close{
+  display: none;
+}
+
+.passwordChangeBox .closeIcon{
+  color: var(--yellowTextColor);
+  top: 4%;
+  right: 3%;
+  font-size: 33px;
+  z-index: 200;
+}
+
+.otpBox .iconBox,
+.optCheck .iconBox{
+  color: #1C1C1C;
+  font-size: 40px;
+  width: 65px;
+  height: 63px;
+  background-color: var(--yellowTextColor);
+  margin: 12px auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+}
+.otpBox .emailText,
+.optCheck .emailText{
+  color: var(--yellowTextColor);
+}
+.otpBox .text,
+.optCheck .text{
+  font-size: 18px;
+  margin-top: 15px;
+}
+.otpBox .otpInputsBox,
+.optCheck .otpInputsBox{
+  display: flex;
+  gap: 15px;
+  display: flex;
+  justify-self: center;
+  margin-bottom: 20px;
+}
+.otpBox .otpInputsBox input,
+.optCheck .otpInputsBox input{
+  width: 60px;
+  height: 60px;
+  background: transparent;
+  color: white;
+  font-size: 45px;
+  text-align: center;
+  border-radius: 10px;
+  border: 3px solid var(--yellowTextColor);
+  outline: none;
+  font-weight: bold;
+}
+
+.otpBox .verifyBtn,
+.optCheck .verifyBtn{
+  width: 60%;
+  margin-left: 19%;
+  padding: 5px 0;
+  border-radius: 20px;
+  background: var(--yellowTextColor);
+  border: none;
+  font-size: 20px;
+  font-weight: bolder;
+}
+.otpBox .resendText,
+.optCheck .resendText{
+  color: white;
+  text-align: center;
+  margin-top: 17px;
+}
+.otpBox .resendText span,
+.optCheck .resendText span{
+  color: var(--yellowTextColor);
+  cursor: pointer;
+}
+
+.otpBox .closeBox,
+.optCheck .closeBox{
+  font-size: 35px;
+  right: 20px;
+  color: var(--yellowTextColor);
+}
+
+.otpBackground.active{
+  width: 100%;
+  height: 100%;
+  z-index: 20;
+  backdrop-filter: blur(3px);
+}
+
+.passwordChangeBox .emailTake h1,
+.takePassword h1{
+  color: white;
+  font-weight: bold;
+  font-size: 43px;
+  margin-bottom: 20px;
+}
+
+.passwordChangeBox .emailTake label,
+.takePassword label{
+  font-size: 25px;
+  font-weight: 500;
+  color: white;
+}
+
+.passwordChangeBox .emailTake > div > div,
+.takePassword > div > div{
+  border: 2px solid white;
+  border-radius: 5px;
+}s
+.passwordChangeBox .emailTake .icon,
+.takePassword .icon {
+  font-size: 25px;
+  color: white;
+}
+.passwordChangeBox .emailTake  input,
+.takePassword input{
+  font-size: 19px;
+  width: 90%;
+  border: 0;
+  outline: none;
+  background: transparent;
+}
+.passwordChangeBox .emailTake:focus-within > div > div{
+  border-color: var(--yellowTextColor);
+}
+
+.passwordChangeBox .emailTake button,
+.takePassword button{
+  background: var(--yellowGradient);
+  box-shadow: 0 2px 25px rgba(255, 189, 32, 0.3);
+  font-size: 20px;
+  border: 0;
+  outline: 0;
+  width: 100%;
+  margin-top: 10px;
+  color: white;
+  font-weight: bold;
+  border-radius: 10px;
+  padding: 4px 0;
+}
+
+.takePassword .showPassword2:focus-within > div,
+.takePassword .showPassword3:focus-within > div{
+  border-color: var(--yellowTextColor);
+}
+
+.signUpBtn,
+.loginBtn{
+  height: 42px;
+}
+
+
+@media only screen and (max-width: 470.98px) {
+  .signUpForm {
+    width: 450px;
+    height: 730px;
+    margin-top: 200px !important;
+  }
+  .loginForm {
+    max-width: 400px;
+  }
+
+  
+.otpBox{
+  height: 370px;
+  width: 350px;
+}
+
+.passwordChangeBox .emailTake{
+  padding: 30px 20px 20px 20px;
+}
+
+.passwordChangeBox .takePassword{
+  padding: 30px 20px 20px 20px;
+}
+
+.passwordChangeBox.emailTake{
+  width: 350px;
+  height: 36%;
+}
+.passwordChangeBox.optCheck{
+  height: 370px;
+  width: 350px;
+}
+.passwordChangeBox.takePassword{
+  height: 45%;
+  width: 350px;
+}
+
+.passwordChangeBox .closeIcon{
+  font-size: 27px;
+}
+
+.otpBox .iconBox,
+.optCheck .iconBox{
+  font-size: 35px;
+  width: 55px;
+  height: 53px;
+}
+.otpBox h2,
+.optCheck h2{
+  font-size: 23px;
+}
+.otpBox .text,
+.optCheck .text{
+  font-size: 15px;
+}
+.otpBox .otpInputsBox,
+.optCheck .otpInputsBox{
+  display: flex;
+  gap: 9px;
+  margin-bottom: 15px;
+}
+.otpBox .otpInputsBox input,
+.optCheck .otpInputsBox input{
+  width: 45px;
+  height: 45px;
+  font-size: 40px;
+  border: 2px solid var(--yellowTextColor);
+}
+
+.otpBox .verifyBtn,
+.optCheck .verifyBtn{
+  width: 70%;
+  margin-left: 14%;
+  padding: 3px 0;
+  font-size: 18px;
+}
+
+.otpBox .closeBox,
+.optCheck .closeBox{
+  font-size: 30px;
+}
+.passwordChangeBox .emailTake h1,
+.takePassword h1{
+  font-size: 27px;
+}
+
+.passwordChangeBox .emailTake label,
+.takePassword label{
+  font-size: 20px;
+}
+
+.passwordChangeBox .emailTake > div > div,
+.takePassword > div > div{
+  padding-right: 5px;
+}
+
+
+}
+
+@media only screen and (min-width: 470.98px) and (max-width: 575.98px) {
+  .signUpForm {
+    width: 450px;
+  }
+  .loginForm {
+    width: 420px;
+  }
+.otpBox{
+  height: 380px;
+  width: 450px;
+}
+.passwordChangeBox .emailTake{
+  padding: 30px 40px 20px 40px;
+}
+
+.passwordChangeBox.optCheck{
+  height: 370px;
+  width: 450px;
+}
+
+
+.otpBox .iconBox,
+.optCheck .iconBox{
+  font-size: 30px;
+  width: 55px;
+  height: 53px;
+}
+.otpBox h2,
+.optCheck h2{
+  font-size: 23px;
+}
+.otpBox .text,
+.optCheck .text{
+  font-size: 15px;
+}
+.otpBox .otpInputsBox,
+.optCheck .otpInputsBox{
+  gap: 10px;
+}
+.otpBox .otpInputsBox input,
+.optCheck .otpInputsBox input{
+  width: 55px;
+  height: 55px;
+  font-size: 40px;
+}
+
+.otpBox .verifyBtn,
+.optCheck .verifyBtn{
+  width: 50%;
+  margin-left: 24%;
+  padding: 3px 0;
+  font-size: 18px;
+}
+
+.otpBox .closeBox,
+.optCheck .closeBox{
+  font-size: 30px;
+}
+
+
+.passwordChangeBox .emailTake h1,
+.takePassword h1{
+  font-size: 35px;
+}
+
+
+
+}
+
+@media only screen and (min-width: 576px) and (max-width: 767.98px) {
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991.98px) {
+}
+
+@media only screen and (max-width: 991.98px) {
+  .loginForm {
+    margin-top: 40px;
+  }
+  .homeBtn {
+    background: transparent !important;
+    color: var(--yellowTextColor) !important;
+    border: 2px solid var(--yellowTextColor) !important;
+  }
+
+  .loginPage.onSignUp {
+    transform: translateX(-36%);
+  }
+  .loginPage {
+    width: 200vw;
+  }
+  .loginPage.onSignUp {
+    min-height: 120vh;
+    overflow-y: scroll;
+  }
+  .signUpForm {
+    margin: 140px 0 100px 0;
+  }
+
+  .loginBox,
+  .signUpBox {
+    width: 100vw;
+  }
+
+  .loginPage.onSignUp {
+    transform: translateX(-100vw);
+  }
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1199.98px) {
+  .loginForm {
+    margin-top: 50px;
+  }
+  .boyImg {
+    width: 100% !important;
+  }
+}
+
+@media only screen and (min-width: 1200px) and (max-width: 1399.98px) {
+  .loginForm {
+    margin-top: 40px;
+  }
+}

@@ -12,25 +12,25 @@ const nodemailer = require("nodemailer");
 
 
 const transporter = nodemailer.createTransport({
-  // service: "gmail",
-  // auth: {
-  //   user: process.env.Email_Id,
-  //   pass: process.env.Email_PasswordCode,
-  // },
-
-  host: "smtp-relay.brevo.com",
-  port: 587,
-  secure: false,
+  service: "gmail",
   auth: {
-    user: process.env.Smtp_user,
-    pass: process.env.Smtp_pass,
+    user: process.env.Email_Id,
+    pass: process.env.Email_PasswordCode,
   },
+
+  // host: "smtp-relay.brevo.com",
+  // port: 587,
+  // secure: false,
+  // auth: {
+  //   user: process.env.Smtp_user,
+  //   pass: process.env.Smtp_pass,
+  // },
   
 });
 
 transporter.verify((err) => {
   if (err) console.error("SMTP error:", err);
-  else console.log("Brevo SMTP ready");
+  else console.log("SMTP ready");
 });
 
 const otpStore = {};
