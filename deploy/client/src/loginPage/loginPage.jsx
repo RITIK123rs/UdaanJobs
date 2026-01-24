@@ -21,6 +21,17 @@ function LoginPage({ addMessageBox }) {
   const [blurBackground, setBlurBackground] = useState(false);
   const [loading, setLoading] = useState(false);
   const [isOTPclose, setisOTPclose] = useState(true);
+  const [isResendClose, setIsResendClose] = useState(false);
+
+  const handleResend = (email) => {
+    generateOTP(email, false); // send OTP
+    setIsResendClose(true);        // disable button
+
+    // Re-enable button after 1 minute (60,000ms)
+    setTimeout(() => {
+      setIsResendClose(false);
+    }, 60000);
+  };
   const defaultForgotPasswordData = {
     email: "",
     password: "",
@@ -372,7 +383,7 @@ function LoginPage({ addMessageBox }) {
           </button>
           <p className="resendText">
             Didn’t get the code?{" "}
-            <span onClick={() => generateOTP(forgotPasswordData.email, false)}>
+            <span onClick={() => isResendClose ?  undefined : handleResend(forgotPasswordData.email)}>
               Resend
             </span>
           </p>
@@ -457,6 +468,7 @@ function LoginPage({ addMessageBox }) {
               className="position-absolute closeIcon"
               onClick={() => {
                 setLoading(false);
+                isResendClose(false);
                 setBlurBackground(false);
                 setForgotPasswordStatus("close");
                 setForgotPasswordData(defaultForgotPasswordData);
@@ -479,6 +491,7 @@ function LoginPage({ addMessageBox }) {
                 <FaRegCircleXmark
                   onClick={() => {
                     setLoading(false);
+                    isResendClose(false);
                     setisOTPclose(true),
                       otpRef.current.map((e) => (e.value = ""));
                   }}
@@ -510,7 +523,7 @@ function LoginPage({ addMessageBox }) {
               <p className="resendText">
                 {" "}
                 Didn’t get the code?{" "}
-                <span onClick={() => generateOTP(signUpData.email, true)}>
+                <span onClick={() => isResendClose ?  undefined : handleResend(signUpData.email)}>
                   Resend
                 </span>
               </p>
