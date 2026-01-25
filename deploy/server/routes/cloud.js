@@ -87,7 +87,7 @@ router.put(
 
       const userId = req.user.userId;
       const prevData = await jobseeker.findById(userId);
-      console.log("Previous data fetched:", prevData);
+      // console.log("Previous data fetched:", prevData);
 
       const updateObj = {};
 
