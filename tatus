@@ -1,0 +1,31 @@
+warning: in the working copy of 'deploy/server/routes/cloud.js', LF will be replaced by CRLF the next time Git touches it
+[1mdiff --git a/deploy/server/routes/cloud.js b/deploy/server/routes/cloud.js[m
+[1mindex 5b0e263..bdcd5b4 100644[m
+[1m--- a/deploy/server/routes/cloud.js[m
+[1m+++ b/deploy/server/routes/cloud.js[m
+[36m@@ -9,14 +9,14 @@[m [mconst jobseeker = require("../database/jobseekerModel");[m
+ const jobRecruiter = require("../database/recruiterModel");[m
+ const auth = require("./auth");[m
+ [m
+[31m-console.log("Configuring Cloudinary...");[m
+[32m+[m[32m// console.log("Configuring Cloudinary...");[m
+ cloudinary.config({[m
+   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,[m
+   api_key: process.env.CLOUDINARY_API_KEY,[m
+   api_secret: process.env.CLOUDINARY_API_SECRET,[m
+ });[m
+ [m
+[31m-console.log("Setting up multer memory storage...");[m
+[32m+[m[32m// console.log("Setting up multer memory storage...");[m
+ const storage = multer.memoryStorage();[m
+ const upload = multer({ storage });[m
+ [m
+[36m@@ -25,7 +25,7 @@[m [mconst uploadToCloudinary = (buffer, folder, fieldname, mimetype) =>[m
+   new Promise((resolve, reject) => {[m
+     const isPDF = mimetype === "application/pdf";[m
+ [m
+[31m-    console.log(`Uploading ${fieldname} (${isPDF ? "PDF" : "MEDIA"})...`);[m
+[32m+[m[32m    // console.log(`Uploading ${fieldname} (${isPDF ? "PDF" : "MEDIA"})...`);[m
+ [m
+     const stream = cloudinary.uploader.upload_stream([m
+       {[m

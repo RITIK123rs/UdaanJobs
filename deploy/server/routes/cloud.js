@@ -9,14 +9,14 @@ const jobseeker = require("../database/jobseekerModel");
 const jobRecruiter = require("../database/recruiterModel");
 const auth = require("./auth");
 
-console.log("Configuring Cloudinary...");
+// console.log("Configuring Cloudinary...");
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
   api_key: process.env.CLOUDINARY_API_KEY,
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
-console.log("Setting up multer memory storage...");
+// console.log("Setting up multer memory storage...");
 const storage = multer.memoryStorage();
 const upload = multer({ storage });
 
@@ -25,7 +25,7 @@ const uploadToCloudinary = (buffer, folder, fieldname, mimetype) =>
   new Promise((resolve, reject) => {
     const isPDF = mimetype === "application/pdf";
 
-    console.log(`Uploading ${fieldname} (${isPDF ? "PDF" : "MEDIA"})...`);
+    // console.log(`Uploading ${fieldname} (${isPDF ? "PDF" : "MEDIA"})...`);
 
     const stream = cloudinary.uploader.upload_stream(
       {
