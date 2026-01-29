@@ -13,7 +13,11 @@ const fs= require("fs");
 
 dotenv.config();
 connectDB();
-app.use(cors());
+app.use(cors({
+  origin: ["https://udaanjobs.netlify.app","https://udaanjobs-ecru.vercel.app"],
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true
+}));
 app.use(express.json());
 
 app.get('/', (req, res) => {
@@ -28,5 +32,5 @@ app.use("/home",homeRouter);
 app.use("/admin",adminRouter);
 
 
-app.listen(process.env.port_no,"0.0.0.0");
+app.listen(process.env.port_no);
 
