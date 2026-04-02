@@ -179,6 +179,26 @@ function LoginPage({ addMessageBox }) {
     e.preventDefault();
     setLoading(true);
 
+    const password = signUpData.password;
+
+    if (password.length < 8) {
+      addMessageBox("warning", "Password must be at least 8 characters");
+      setLoading(false);
+      return;
+    } else if (!/[A-Z]/.test(password)) {
+      addMessageBox("warning", "Add at least one uppercase letter");
+      setLoading(false);
+      return;
+    } else if (!/[a-z]/.test(password)) {
+      addMessageBox("warning", "Add at least one lowercase letter");
+      setLoading(false);
+      return;
+    } else if (!/\d/.test(password)) {
+      addMessageBox("warning", "Add at least one number");
+      setLoading(false);
+      return;
+    }
+
     // console.log(signUpData);
 
     const res = await fetch(`${API_URL}/login/userCheck`, {

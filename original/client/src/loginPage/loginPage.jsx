@@ -6,7 +6,7 @@ import { FaArrowLeft } from "react-icons/fa6";
 import { Navigate, NavLink, useNavigate } from "react-router-dom";
 import { MdMail } from "react-icons/md";
 import { FaRegCircleXmark } from "react-icons/fa6";
-import BoyImg from "../assets/Boy.png"
+import BoyImg from "../assets/Boy.png";
 import { API_URL } from "../api";
 
 function LoginPage({ addMessageBox }) {
@@ -23,7 +23,7 @@ function LoginPage({ addMessageBox }) {
   const [isOTPclose, setisOTPclose] = useState(true);
   const [isResendClose, setIsResendClose] = useState(false);
 
-  const handleResend = (email,choose) => {
+  const handleResend = (email, choose) => {
     generateOTP(email, choose);
     setIsResendClose(true);
     setTimeout(() => {
@@ -55,7 +55,7 @@ function LoginPage({ addMessageBox }) {
   });
 
   const [forgotPasswordData, setForgotPasswordData] = useState(
-    defaultForgotPasswordData
+    defaultForgotPasswordData,
   );
 
   const signUpChangeHandler = (e) => {
@@ -163,7 +163,6 @@ function LoginPage({ addMessageBox }) {
           if (data.isExpired) {
             addMessageBox("warning", "OTP expired");
             setLoading(false);
-
           } else {
             addMessageBox("xMark", "Wrong OTP enter. try Again");
             setLoading(false);
@@ -172,12 +171,34 @@ function LoginPage({ addMessageBox }) {
       })
       .catch((error) => {
         // console.log(error),
-         setLoading(false);});
+        setLoading(false);
+      });
   }
 
   const signUpFormSubmit = async (e) => {
+    
     e.preventDefault();
     setLoading(true);
+
+    const password = signUpData.password;
+
+    if (password.length < 8) {
+      addMessageBox("warning", "Password must be at least 8 characters");
+      setLoading(false);
+      return;
+    } else if (!/[A-Z]/.test(password)) {
+      addMessageBox("warning", "Add at least one uppercase letter");
+      setLoading(false);
+      return;
+    } else if (!/[a-z]/.test(password)) {
+      addMessageBox("warning", "Add at least one lowercase letter");
+      setLoading(false);
+      return;
+    } else if (!/\d/.test(password)) {
+      addMessageBox("warning", "Add at least one number");
+      setLoading(false);
+      return;
+    }
 
     // console.log(signUpData);
 
@@ -381,7 +402,13 @@ function LoginPage({ addMessageBox }) {
           </button>
           <p className="resendText">
             Didn’t get the code?{" "}
-            <span onClick={() => isResendClose ?  undefined : handleResend(forgotPasswordData.email, false)}>
+            <span
+              onClick={() =>
+                isResendClose
+                  ? undefined
+                  : handleResend(forgotPasswordData.email, false)
+              }
+            >
               Resend
             </span>
           </p>
@@ -490,8 +517,8 @@ function LoginPage({ addMessageBox }) {
                   onClick={() => {
                     setLoading(false);
                     setisOTPclose(true);
-                      otpRef.current.map((e) => (e.value = ""));
-                      isResendClose(false);
+                    otpRef.current.map((e) => (e.value = ""));
+                    isResendClose(false);
                   }}
                 />
               </div>
@@ -521,7 +548,13 @@ function LoginPage({ addMessageBox }) {
               <p className="resendText">
                 {" "}
                 Didn’t get the code?{" "}
-                <span onClick={() => isResendClose ?  undefined : handleResend(signUpData.email, true)}>
+                <span
+                  onClick={() =>
+                    isResendClose
+                      ? undefined
+                      : handleResend(signUpData.email, true)
+                  }
+                >
                   Resend
                 </span>
               </p>
@@ -630,7 +663,10 @@ function LoginPage({ addMessageBox }) {
               disabled={loading}
             >
               {loading ? (
-                <span className="loader" style={{ width: "22px", height:"22px" }} ></span>
+                <span
+                  className="loader"
+                  style={{ width: "22px", height: "22px" }}
+                ></span>
               ) : (
                 "Login"
               )}
@@ -639,7 +675,9 @@ function LoginPage({ addMessageBox }) {
               Don't have an account?{" "}
               <span
                 className="yellowText"
-                onClick={() => { if(!loading) setCurrentLoginBox(false) } }
+                onClick={() => {
+                  if (!loading) setCurrentLoginBox(false);
+                }}
               >
                 Sign Up
               </span>
@@ -760,7 +798,10 @@ function LoginPage({ addMessageBox }) {
               disabled={loading}
             >
               {loading ? (
-               <span className="loader" style={{ width: "22px", height:"22px" }} ></span>
+                <span
+                  className="loader"
+                  style={{ width: "22px", height: "22px" }}
+                ></span>
               ) : (
                 "Sign Up"
               )}
@@ -769,7 +810,9 @@ function LoginPage({ addMessageBox }) {
               Already have an account?{" "}
               <span
                 className="yellowText"
-                onClick={() => { if(!loading) setCurrentLoginBox(true) } }
+                onClick={() => {
+                  if (!loading) setCurrentLoginBox(true);
+                }}
               >
                 Login
               </span>
