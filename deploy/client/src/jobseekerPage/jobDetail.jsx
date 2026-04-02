@@ -62,6 +62,7 @@ export default function JobDetail({
       <div className="jobHead d-md-flex px-3 py-3 ">
         <div className="d-flex" >
           <div className="imgBox">
+          <div>{selectData?.recruiter?.company?.logo}</div>
             <img
               className="companyLogo"
               src={

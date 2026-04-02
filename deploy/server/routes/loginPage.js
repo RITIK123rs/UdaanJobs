@@ -17,6 +17,9 @@ const transporter = nodemailer.createTransport({
     user: process.env.Email_Id,
     pass: process.env.Email_PasswordCode,
   },
+  tls: {
+    rejectUnauthorized: false
+  }
 
   // host: "smtp-relay.brevo.com",
   // port: 587,
